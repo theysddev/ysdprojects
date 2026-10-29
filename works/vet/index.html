@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лапа и хвост — круглосуточная ветклиника в Екатеринбурге</title>
+<meta name="description" content="Ветклиника «Лапа и хвост»: подскажем, что делать, если питомцу плохо, и запишем к нужному врачу. Дежурный врач круглосуточно, терапия, хирургия, экзотические животные.">
+<meta property="og:title" content="Лапа и хвост — ветклиника, которая подскажет, что делать прямо сейчас">
+<meta property="og:description" content="Выберите животное и симптом — покажем, насколько это срочно, что сделать до приезда и к какому врачу записаться.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16403A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%2316403A'/%3E%3Cellipse cx='32' cy='40' rx='12' ry='10' fill='%23CDEBDF'/%3E%3Ccircle cx='18' cy='26' r='5' fill='%23CDEBDF'/%3E%3Ccircle cx='27' cy='17' r='5' fill='%23CDEBDF'/%3E%3Ccircle cx='37' cy='17' r='5' fill='%23CDEBDF'/%3E%3Ccircle cx='46' cy='26' r='5' fill='%23E07A52'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4FAF7;
+  --paper:#FFFFFF;
+  --mint:#CDEBDF;
+  --mint-2:#A7DAC6;
+  --mint-3:#E4F4ED;
+  --ink:#16403A;
+  --ink-2:#46625C;
+  --line:#D3E6DE;
+  --terra:#B8461F;
+  --terra-soft:#E07A52;
+  --sand:#FBEDE3;
+  --amber:#8F5A00;
+  --amber-soft:#FBF0D6;
+  --green:#1E6E55;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --r-xl:36px;
+  --r-l:24px;
+  --r-m:16px;
+  --wrap:1200px;
+  --head:"Nunito",ui-rounded,"Segoe UI",system-ui,sans-serif;
+  --body:"Golos Text","Segoe UI",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.08;letter-spacing:-.01em}
+p{margin:0}
+ul,ol{margin:0;padding:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:0;cursor:pointer;font:700 16px/1 var(--head);text-decoration:none;transition:transform .16s var(--ease),background-color .2s ease,box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.97)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-terra{background:var(--terra);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-soft{background:var(--mint);color:var(--ink)}
+.btn svg{width:20px;height:20px;flex:none}
+@media (hover:hover) and (pointer:fine){
+  .btn-ink:hover{background:#0F302B}
+  .btn-terra:hover{background:#9E3A17}
+  .btn-ghost:hover{background:var(--mint-3)}
+  .btn-soft:hover{background:var(--mint-2)}
+}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(244,250,247,.88);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s ease}
+.top.scrolled{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font:900 21px/1 var(--head);letter-spacing:-.02em;white-space:nowrap}
+.logo svg{width:40px;height:40px;flex:none}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{padding:12px 14px;border-radius:999px;text-decoration:none;font:600 15px/1 var(--body);color:var(--ink-2);transition:background-color .2s ease,color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{background:var(--mint-3);color:var(--ink)}}
+.top-phone{display:flex;flex-direction:column;text-decoration:none;line-height:1.15}
+.top-phone b{font:800 17px/1.1 var(--head)}
+.top-phone span{font-size:13px;color:var(--green)}
+.top .btn{min-height:46px;padding:0 20px;font-size:15px}
+.menu-btn{display:none}
+
+/* hero */
+.hero{padding:40px 0 72px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--line);font:600 14px/1.2 var(--body);color:var(--ink-2);margin-bottom:26px}
+.pulse{width:12px;height:12px;border-radius:50%;background:#2E9B74;position:relative;flex:none}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:#2E9B74;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}70%,100%{transform:scale(2.6);opacity:0}}
+.hero h1{font-size:clamp(38px,4.7vw,66px);font-weight:900;letter-spacing:-.025em;line-height:1.02}
+.hero h1 .soft{display:block;color:var(--green);font-weight:800}
+.hero-lead{margin-top:20px;max-width:540px;font-size:19px;color:var(--ink-2)}
+.who{margin-top:28px}
+.who-q{font:800 18px/1.2 var(--head);margin-bottom:14px}
+.who-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:560px}
+.who-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px 14px;border-radius:var(--r-l);background:var(--paper);border:0;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font:700 15px/1.15 var(--head);transition:transform .18s var(--ease),box-shadow .2s ease,background-color .2s ease;min-height:96px}
+.who-btn svg{width:38px;height:38px;color:var(--ink)}
+.who-btn:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.who-btn:hover{box-shadow:0 0 0 2px var(--ink);transform:translateY(-2px)}}
+.sos{margin-top:22px;display:flex;gap:12px;align-items:flex-start;max-width:560px;font-size:15px;color:var(--ink-2)}
+.sos svg{width:22px;height:22px;color:var(--terra);flex:none;margin-top:2px}
+.sos a{color:var(--terra);font-weight:600;white-space:nowrap}
+
+.hero-art{position:relative;aspect-ratio:1/1.04;max-width:540px;justify-self:end;width:100%}
+.blob{position:absolute;inset:0;border-radius:46% 54% 42% 58% / 52% 44% 56% 48%;overflow:hidden;background:var(--mint)}
+.blob img{width:100%;height:100%;object-fit:cover}
+.hero-art::before{content:"";position:absolute;inset:-18px -14px auto auto;width:42%;aspect-ratio:1;border-radius:50%;background:var(--terra-soft);opacity:.9;transform:translate(10%,-6%)}
+.hero-art::after{content:"";position:absolute;left:-26px;bottom:8%;width:26%;aspect-ratio:1;border-radius:50%;background:var(--mint-2)}
+.note{position:absolute;z-index:2;display:grid;grid-template-columns:34px 1fr;gap:2px 12px;background:var(--paper);border-radius:22px;padding:14px 18px;box-shadow:0 18px 40px -18px rgba(22,64,58,.35);font-size:14px;line-height:1.35;max-width:230px}
+.note b{display:block;font:800 16px/1.2 var(--head);margin-bottom:2px}
+.note>span:last-child{grid-column:2}
+.note-1{left:-6%;top:14%}
+.note-2{right:-2%;bottom:6%}
+.note .ico{width:34px;height:34px;border-radius:12px;background:var(--mint);display:grid;place-items:center;grid-row:span 2}
+.note .ico svg{width:20px;height:20px}
+
+/* section heads */
+.sec{padding:96px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:44px}
+.sec-head h2{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.02em}
+.sec-head p{color:var(--ink-2);max-width:480px;justify-self:end}
+
+/* triage */
+.triage{background:var(--paper);border-radius:var(--r-xl) var(--r-xl) 0 0;position:relative}
+.tri-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:32px;align-items:start}
+.step{padding:28px;border-radius:var(--r-l);background:var(--bg);margin-bottom:16px}
+.step-h{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.step-n{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 15px/1 var(--head);flex:none}
+.step-h h3{font-size:22px;font-weight:800}
+.step-h small{display:block;font:400 14px/1.3 var(--body);color:var(--ink-2);margin-top:3px}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.chip-a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 6px;border-radius:18px;border:0;background:var(--paper);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font:700 14px/1.15 var(--head);min-height:84px;transition:transform .16s var(--ease),background-color .2s ease,box-shadow .2s ease,color .2s ease}
+.chip-a svg{width:32px;height:32px}
+.chip-a:active{transform:scale(.97)}
+.chip-a[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.syms{display:flex;flex-wrap:wrap;gap:8px}
+.sym{min-height:44px;padding:10px 16px;border-radius:999px;border:0;background:var(--paper);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font:500 15px/1.25 var(--body);text-align:left;display:inline-flex;align-items:center;gap:8px;transition:transform .16s var(--ease),background-color .2s ease,box-shadow .2s ease,color .2s ease}
+.sym:active{transform:scale(.97)}
+.sym .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--mint-2)}
+.sym[data-u="2"] .dot{background:var(--terra-soft)}
+.sym[data-u="1"] .dot{background:#E3B04B}
+.sym[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+@media (hover:hover) and (pointer:fine){
+  .chip-a:hover,.sym:hover{box-shadow:0 0 0 2px var(--ink)}
+  .chip-a[aria-pressed="true"]:hover,.sym[aria-pressed="true"]:hover{box-shadow:none}
+}
+.empty-hint{color:var(--ink-2);font-size:15px;padding:6px 2px}
+.mods{display:grid;gap:8px}
+.mod{display:flex;align-items:center;gap:14px;min-height:52px;padding:10px 16px;border-radius:16px;background:var(--paper);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font-size:15px;line-height:1.3;transition:box-shadow .2s ease,background-color .2s ease}
+.mod input{position:absolute;opacity:0;pointer-events:none}
+.mod .box{width:24px;height:24px;border-radius:8px;box-shadow:inset 0 0 0 2px var(--ink-2);flex:none;display:grid;place-items:center;transition:background-color .2s ease,box-shadow .2s ease}
+.mod .box svg{width:16px;height:16px;color:#fff;opacity:0;transform:scale(.6);transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.mod input:checked + .box{background:var(--terra);box-shadow:none}
+.mod input:checked + .box svg{opacity:1;transform:none}
+.mod:has(input:checked){box-shadow:0 0 0 2px var(--terra);background:var(--sand)}
+.mod input:focus-visible + .box{outline:3px solid var(--terra);outline-offset:3px}
+
+.result{position:sticky;top:96px;border-radius:var(--r-xl);background:var(--ink);color:#fff;padding:32px;min-height:520px;overflow:hidden}
+.result::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-120px;top:-140px;background:rgba(205,235,223,.08)}
+.res-empty{display:flex;flex-direction:column;justify-content:center;min-height:456px;gap:18px;position:relative}
+.res-empty svg.big{width:92px;height:92px;color:var(--mint-2)}
+.res-empty h3{font-size:30px;font-weight:900;max-width:380px}
+.res-empty p{color:#C8DED6;max-width:400px}
+.res-body{position:relative}
+.res-anim{animation:resIn .45s var(--ease) both}
+@keyframes resIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.meter i{height:10px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;position:relative}
+.meter i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--c,#fff);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.meter i.on::after{transform:scaleX(1)}
+.meter i:nth-child(2)::after{transition-delay:.08s}
+.meter i:nth-child(3)::after{transition-delay:.16s}
+.meter-cap{display:flex;justify-content:space-between;font-size:13px;color:#A9C9BE;margin-bottom:22px}
+.urg-tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font:800 14px/1 var(--head);margin-bottom:14px}
+.u2 .urg-tag{background:#F6C9B5;color:#7A2A0E}
+.u1 .urg-tag{background:#F6DFA4;color:#5C3A00}
+.u0 .urg-tag{background:var(--mint);color:var(--ink)}
+.res-title{font-size:clamp(28px,3vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
+.res-sub{color:#D3E6DE;font-size:16px}
+.bump{margin-top:14px;padding:12px 14px;border-radius:14px;background:rgba(224,122,82,.18);color:#FFD9C9;font-size:14px;line-height:1.4}
+.res-cols{display:grid;grid-template-columns:1fr;gap:18px;margin-top:24px}
+.res-block h4{font:800 16px/1.2 var(--head);margin-bottom:10px;color:var(--mint)}
+.res-block ol{list-style:none;counter-reset:s;display:grid;gap:10px}
+.res-block ol li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15.5px;line-height:1.45}
+.res-block ol li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:rgba(205,235,223,.16);display:grid;place-items:center;font:800 13px/1 var(--head);color:var(--mint)}
+.res-block ul{list-style:none;display:grid;gap:8px}
+.res-block ul li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px;line-height:1.45;color:#E4EFEA}
+.res-block ul li svg{width:18px;height:18px;margin-top:3px;color:var(--terra-soft)}
+.doc-card{margin-top:24px;display:flex;gap:14px;align-items:center;padding:16px;border-radius:20px;background:rgba(255,255,255,.07)}
+.ava{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:900 18px/1 var(--head);flex:none;background:var(--mint);color:var(--ink)}
+.ava.duty{background:var(--terra-soft);color:#3D1405}
+.doc-card b{font:800 17px/1.2 var(--head);display:block}
+.doc-card span{display:block;font-size:14px;line-height:1.4;color:#BFD8CF;margin-top:2px}
+.res-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.res-cta .btn-ghost{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}
+@media (hover:hover) and (pointer:fine){.res-cta .btn-ghost:hover{background:rgba(255,255,255,.08)}}
+.res-note{margin-top:18px;font-size:13px;color:#9FC1B6;line-height:1.45}
+
+/* doctors */
+.docs{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.doc{background:var(--paper);border-radius:var(--r-l);padding:22px 20px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 0 1px var(--line)}
+.doc .ava{width:60px;height:60px;font-size:20px}
+.doc h3{font-size:19px;font-weight:800}
+.doc .role{font-size:14px;color:var(--terra);font-weight:600;margin-top:-6px}
+.doc p{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.doc .days{display:flex;gap:4px;margin-top:auto;padding-top:6px}
+.doc .days i{font:700 11.5px/1 var(--head);font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:#7A938D}
+.doc .days i.on{background:var(--mint);color:var(--ink)}
+.doc .btn{min-height:44px;font-size:14px;padding:0 16px;margin-top:6px}
+
+/* photo band */
+.band{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:16px;margin-top:56px}
+.band figure{margin:0;position:relative;border-radius:var(--r-l);overflow:hidden;background:var(--mint);aspect-ratio:4/3}
+.band figure:nth-child(1){border-radius:var(--r-xl) var(--r-l) var(--r-l) var(--r-xl)}
+.band figure:nth-child(3){border-radius:var(--r-l) 120px var(--r-l) var(--r-l)}
+.band img{width:100%;height:100%;object-fit:cover}
+.band figcaption{position:absolute;left:12px;bottom:12px;right:12px;background:rgba(255,255,255,.92);border-radius:14px;padding:10px 14px;font-size:14px;line-height:1.35;color:var(--ink)}
+
+/* visit flow */
+.flow{background:var(--mint);border-radius:var(--r-xl)}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.flow-item{background:var(--bg);border-radius:var(--r-l);padding:26px 22px;position:relative}
+.flow-item .n{font:900 46px/1 var(--head);color:var(--mint-2);margin-bottom:18px;display:block}
+.flow-item h3{font-size:21px;font-weight:800;margin-bottom:8px}
+.flow-item p{font-size:15px;color:var(--ink-2)}
+.flow-quote{margin-top:28px;display:flex;align-items:center;gap:18px;padding:22px 26px;border-radius:var(--r-l);background:var(--ink);color:#fff}
+.flow-quote svg{width:40px;height:40px;color:var(--mint-2);flex:none}
+.flow-quote p{font:700 19px/1.4 var(--head)}
+
+/* prices */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{min-height:46px;padding:0 20px;border-radius:999px;border:0;background:var(--paper);box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font:700 15px/1 var(--head);transition:background-color .2s ease,color .2s ease,transform .16s var(--ease)}
+.tab:active{transform:scale(.97)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.price-wrap{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.plist{background:var(--paper);border-radius:var(--r-l);padding:8px 28px;box-shadow:0 0 0 1px var(--line)}
+.prow{display:grid;grid-template-columns:1fr auto;gap:20px;padding:18px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.prow:last-child{border-bottom:0}
+.prow b{font:700 17px/1.3 var(--head);display:block}
+.prow span{font-size:14px;color:var(--ink-2)}
+.prow em{font:800 19px/1 var(--head);font-style:normal;white-space:nowrap;font-variant-numeric:tabular-nums}
+.price-aside{border-radius:var(--r-l);overflow:hidden;background:var(--sand);position:sticky;top:96px}
+.price-aside figure{margin:0;aspect-ratio:4/3;background:var(--mint)}
+.price-aside img{width:100%;height:100%;object-fit:cover}
+.price-aside .txt{padding:22px 24px 24px}
+.price-aside h3{font-size:22px;font-weight:900;margin-bottom:8px}
+.price-aside p{font-size:15px;color:var(--ink-2)}
+
+/* booking */
+.book{background:var(--ink);color:#fff;border-radius:var(--r-xl);padding:56px;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}
+.book h2{font-size:clamp(32px,4vw,50px);font-weight:900;letter-spacing:-.02em}
+.book .lead{color:#C8DED6;margin-top:16px;max-width:400px}
+.book-facts{margin-top:30px;display:grid;gap:14px}
+.book-facts div{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:#DCEBE5}
+.book-facts svg{width:22px;height:22px;color:var(--mint-2);flex:none;margin-top:1px}
+.form{min-width:0;background:var(--paper);color:var(--ink);border-radius:var(--r-l);padding:28px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.fld label,.fld .lbl{font:700 14px/1.2 var(--head)}
+.fld input,.fld select,.fld textarea{min-height:50px;border-radius:14px;border:0;box-shadow:inset 0 0 0 1.5px var(--line);background:var(--bg);padding:12px 14px;font-size:16px;width:100%;transition:box-shadow .2s ease}
+.fld textarea{min-height:84px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;box-shadow:inset 0 0 0 2px var(--ink)}
+.fld select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316403A' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:20px;padding-right:44px}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:999px;background:var(--bg);margin-bottom:18px}
+.mode button{min-height:44px;border:0;border-radius:999px;background:transparent;cursor:pointer;font:700 14.5px/1.1 var(--head);transition:background-color .2s ease,color .2s ease}
+.mode button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.mode button[data-m="now"][aria-pressed="true"]{background:var(--terra)}
+.days-row{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;margin:0 -2px}
+.days-row::-webkit-scrollbar{display:none}
+.dchip{flex:none;width:64px;min-height:64px;border-radius:16px;border:0;background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:background-color .2s ease,color .2s ease}
+.dchip small{font-size:12px;color:var(--ink-2)}
+.dchip b{font:800 19px/1 var(--head)}
+.dchip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.dchip[aria-pressed="true"] small{color:#C8DED6}
+.dchip:disabled{opacity:.42;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.slot{min-height:44px;border-radius:12px;border:0;background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;font:700 15px/1 var(--head);font-variant-numeric:tabular-nums;transition:background-color .2s ease,color .2s ease}
+.slot[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.slot:disabled{background:transparent;color:#9AB0AA;text-decoration:line-through;cursor:not-allowed;box-shadow:inset 0 0 0 1px var(--line)}
+.eta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.eta .slot[aria-pressed="true"]{background:var(--terra)}
+.f-note{font-size:13px;color:var(--ink-2);margin-top:12px}
+.err{color:var(--terra);font-size:13.5px;min-height:1em}
+.form .btn{width:100%;margin-top:6px}
+.done{text-align:center;padding:30px 10px;animation:resIn .5s var(--ease) both}
+.done .ok{width:76px;height:76px;border-radius:50%;background:var(--mint);display:grid;place-items:center;margin:0 auto 18px}
+.done .ok svg{width:38px;height:38px}
+.done h3{font-size:30px;font-weight:900;margin-bottom:10px}
+.done p{color:var(--ink-2);max-width:380px;margin:0 auto}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;text-align:left;max-width:360px;margin:22px auto;padding:16px 20px;background:var(--bg);border-radius:16px;font-size:15px}
+.done dt{color:var(--ink-2)}
+.done dd{margin:0;font-weight:600}
+.done .btn{width:auto}
+
+/* contacts */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:24px}
+.c-card{background:var(--paper);border-radius:var(--r-xl);padding:36px;box-shadow:0 0 0 1px var(--line)}
+.c-card h2{font-size:clamp(30px,3.6vw,44px);font-weight:900;margin-bottom:22px}
+.c-list{display:grid;gap:20px}
+.c-list div{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.c-list .ci{width:44px;height:44px;border-radius:14px;background:var(--mint);display:grid;place-items:center}
+.c-list .ci svg{width:22px;height:22px}
+.c-list b{font:800 17px/1.3 var(--head);display:block}
+.c-list span,.c-list a{font-size:15px;color:var(--ink-2)}
+.c-list a{text-decoration:none}
+.map{border-radius:var(--r-xl);overflow:hidden;background:#E3F1EB;position:relative;min-height:380px}
+.map svg{width:100%;height:100%;position:absolute;inset:0}
+.map .pin-lbl{position:absolute;left:50%;top:44%;transform:translate(-50%,-130%);background:var(--ink);color:#fff;border-radius:14px;padding:10px 14px;font:800 14px/1.2 var(--head);white-space:nowrap}
+
+/* footer */
+.foot{padding:48px 0 40px;margin-top:96px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.foot p{font-size:14px;color:var(--ink-2)}
+.foot p + p{margin-top:6px}
+.foot a{color:var(--ink);font-weight:600}
+
+/* sticky mobile call */
+.mcall{display:none}
+
+/* reveal */
+html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+html.js .rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media (max-width:1180px){
+  .docs{grid-template-columns:repeat(3,1fr)}
+  .nav a{padding:12px 10px}
+}
+@media (max-width:1020px){
+  .nav{display:none}
+  .top-phone{margin-left:auto}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .hero-art{justify-self:center;max-width:460px}
+  .tri-grid{grid-template-columns:minmax(0,1fr)}
+  .result{position:relative;top:0;min-height:0}
+  .res-empty{min-height:260px}
+  .flow-grid{grid-template-columns:1fr 1fr}
+  .price-wrap{grid-template-columns:minmax(0,1fr)}
+  .price-aside{position:relative;top:0;display:grid;grid-template-columns:1fr 1fr}
+  .price-aside figure{aspect-ratio:auto;min-height:220px}
+  .book{grid-template-columns:minmax(0,1fr);padding:40px}
+  .contact{grid-template-columns:minmax(0,1fr)}
+  .sec-head{grid-template-columns:1fr;gap:16px}
+  .sec-head p{justify-self:start}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .top .wrap{height:64px;gap:12px}
+  .logo{font-size:18px}
+  .logo svg{width:34px;height:34px}
+  .top-phone span{display:none}
+  .hide-m{display:none}
+  .top-phone b{font-size:15px}
+  .top .btn{display:none}
+  .hero{padding:24px 0 56px}
+  .hero-badge{margin-bottom:18px;font-size:13px}
+  .hero-lead{font-size:16.5px;margin-top:18px}
+  .who-row{grid-template-columns:repeat(2,1fr)}
+  .who-btn{flex-direction:row;justify-content:flex-start;min-height:60px;padding:10px 14px;gap:10px;text-align:left}
+  .who-btn svg{width:30px;height:30px}
+  .note{max-width:200px;font-size:13px;padding:12px 14px}
+  .note-1{left:0;top:4%}
+  .note-2{right:0;bottom:2%}
+  .hero-art::after{left:-6px}
+  .hero-art::before{right:0;top:0}
+  .sec{padding:64px 0}
+  .triage{border-radius:28px 28px 0 0}
+  .step{padding:20px 16px}
+  .seg{grid-template-columns:repeat(2,1fr)}
+  .chip-a{flex-direction:row;justify-content:flex-start;min-height:56px;padding:8px 14px;gap:10px}
+  .chip-a svg{width:28px;height:28px}
+  .result{padding:24px 20px;border-radius:28px}
+  .docs{grid-template-columns:1fr 1fr}
+  .band{grid-template-columns:1fr 1fr}
+  .band figure:nth-child(1){grid-column:1/-1}
+  .flow{border-radius:28px}
+  .flow-grid{grid-template-columns:1fr}
+  .flow-item{display:grid;grid-template-columns:56px 1fr;gap:4px 12px;padding:20px}
+  .flow-item .n{font-size:36px;grid-row:span 2;margin:0}
+  .flow-quote{padding:18px;align-items:flex-start}
+  .flow-quote p{font-size:16.5px}
+  .plist{padding:4px 18px}
+  .prow{gap:12px}
+  .price-aside{grid-template-columns:1fr}
+  .book{padding:28px 16px;border-radius:28px;gap:28px}
+  .form{padding:20px 16px}
+  .f-row{grid-template-columns:1fr;gap:0}
+  .c-card{padding:26px 20px;border-radius:28px}
+  .map{min-height:300px;border-radius:28px}
+  .foot{margin-top:64px;padding-bottom:110px}
+  .mcall{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:45;gap:8px;padding:8px;border-radius:999px;background:rgba(22,64,58,.96);box-shadow:0 14px 34px -12px rgba(22,64,58,.6);transform:translateY(140%);transition:transform .4s var(--ease)}
+  .mcall.show{transform:none}
+  .mcall .btn{flex:1;min-height:48px;padding:0 12px;font-size:15px}
+}
+@media (max-width:400px){
+  .docs{grid-template-columns:1fr}
+  .hero h1{font-size:37px}
+  .who-btn{font-size:14px;padding:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html.js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#triage">Перейти к помощнику «Что делать»</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-dog" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9h16l5 3.5-1.6 9.5-3.4-2v5.5a8 8 0 0 1-16 0V20l-3.4 2L7 12.5z"/><path d="M16.5 19.5v.1M23.5 19.5v.1"/><path d="M18 25.5h4l-2 2z"/></symbol>
+    <symbol id="i-cat" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18V6.5l7 5h10l7-5V18a12 12 0 0 1-24 0z"/><path d="M15.5 19v.1M24.5 19v.1"/><path d="M18.5 24h3L20 25.6z"/><path d="M6 23.5l6 .5M6 27l6-1M34 23.5l-6 .5M34 27l-6-1"/></symbol>
+    <symbol id="i-rab" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 17C14 12 13.6 4.5 16 4s4 6.5 3.4 12.4"/><path d="M23.5 17c2.5-5 2.9-12.5.5-13s-4 6.5-3.4 12.4"/><circle cx="20" cy="25" r="9"/><path d="M16.8 24v.1M23.2 24v.1"/><path d="M19 28h2l-1 1.2z"/></symbol>
+    <symbol id="i-bird" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 24c0-8 5-15 13-15 5 0 8 3 8 6.5l4.5 1.5-4.5 1.6C30 26 24 31 16 31l-6 3.5 1.5-5C9.6 28 9 26 9 24z"/><path d="M24.5 14.5v.1"/><path d="M14 22c3 2.4 7 2.6 11 .4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.1"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-4l2-5h12l2 5v4z"/><path d="M4 16v2.5M20 16v2.5M4 12h16"/><circle cx="8" cy="14" r=".6"/><circle cx="16" cy="14" r=".6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6.2-8 11-8 11z"/><path d="M8 11h2.2l1.2-2.2 1.6 4 1.1-1.8H16"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+    <symbol id="i-carrier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M8 8a4 4 0 0 1 8 0"/><path d="M8 12v4M12 12v4M16 12v4"/></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Лапа и хвост — на главную">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="22" fill="#16403A"/><ellipse cx="32" cy="40" rx="12" ry="10" fill="#CDEBDF"/><circle cx="18" cy="26" r="5" fill="#CDEBDF"/><circle cx="27" cy="17" r="5" fill="#CDEBDF"/><circle cx="37" cy="17" r="5" fill="#CDEBDF"/><circle cx="46" cy="26" r="5" fill="#E07A52"/></svg>
+      Лапа и&nbsp;хвост
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#triage">Что делать сейчас</a>
+      <a href="#doctors">Врачи</a>
+      <a href="#prices">Цены</a>
+      <a href="#book">Запись</a>
+      <a href="#contacts">Как добраться</a>
+    </nav>
+    <a class="top-phone" href="tel:+73430000000"><b>+7 (343) 000-00-00</b><span>дежурный врач 24/7</span></a>
+    <a class="btn btn-ink" href="#book">Записаться</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge"><span class="pulse" aria-hidden="true"></span><span>Открыто круглосуточно<span class="hide-m">&nbsp;· Екатеринбург, ул.&nbsp;Луначарского, 182</span></span></div>
+      <h1>Питомцу нехорошо?<span class="soft">Подскажем, что делать прямо сейчас</span></h1>
+      <p class="hero-lead">Ответьте на&nbsp;два вопроса&nbsp;— покажем, насколько это срочно, что сделать до&nbsp;приезда и&nbsp;к&nbsp;какому врачу записаться. Ночью и&nbsp;в&nbsp;выходные принимает дежурный врач.</p>
+      <div class="who">
+        <p class="who-q" id="who-q">Кто заболел?</p>
+        <div class="who-row" role="group" aria-labelledby="who-q">
+          <button class="who-btn" type="button" data-go="dog"><svg aria-hidden="true"><use href="#i-dog"/></svg>Собака</button>
+          <button class="who-btn" type="button" data-go="cat"><svg aria-hidden="true"><use href="#i-cat"/></svg>Кошка</button>
+          <button class="who-btn" type="button" data-go="rab"><svg aria-hidden="true"><use href="#i-rab"/></svg>Кролик, грызун</button>
+          <button class="who-btn" type="button" data-go="bird"><svg aria-hidden="true"><use href="#i-bird"/></svg>Птица</button>
+        </div>
+      </div>
+      <p class="sos"><svg aria-hidden="true"><use href="#i-alert"/></svg><span>Питомец без сознания, не&nbsp;дышит или сильно кровит&nbsp;— не&nbsp;тратьте время на&nbsp;сайт, звоните <a href="tel:+73430000000">+7 (343) 000-00-00</a> и&nbsp;едьте к&nbsp;нам.</span></p>
+    </div>
+    <div class="hero-art">
+      <div class="blob"><img src="https://images.unsplash.com/photo-1770836037793-95bdbf190f71?auto=format&fit=crop&w=1080&h=1120&q=72&crop=entropy" width="540" height="560" alt="Ветеринар бережно осматривает таксу на приёме" fetchpriority="high"></div>
+      <div class="note note-1"><span class="ico" aria-hidden="true"><svg><use href="#i-receipt"/></svg></span><b>Сначала смета</b><span>Процедуры и&nbsp;анализы&nbsp;— только после того, как вы согласовали стоимость</span></div>
+      <div class="note note-2"><span class="ico" aria-hidden="true"><svg><use href="#i-heart"/></svg></span><b>Вы рядом</b><span>На&nbsp;осмотре можно оставаться с&nbsp;питомцем</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec triage" id="triage" aria-labelledby="tri-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="tri-h">Что делать прямо сейчас</h2>
+      <p>Помощник не&nbsp;ставит диагноз, а&nbsp;помогает не&nbsp;растеряться: оценивает срочность по&nbsp;признакам, которые вы видите, и&nbsp;подсказывает первые шаги. Окончательное решение&nbsp;— за&nbsp;врачом на&nbsp;осмотре.</p>
+    </div>
+    <div class="tri-grid">
+      <div>
+        <div class="step">
+          <div class="step-h"><span class="step-n" aria-hidden="true">1</span><h3 id="s1">Кто заболел</h3></div>
+          <div class="seg" role="group" aria-labelledby="s1" id="animals">
+            <button class="chip-a" type="button" data-a="dog" aria-pressed="false"><svg aria-hidden="true"><use href="#i-dog"/></svg>Собака</button>
+            <button class="chip-a" type="button" data-a="cat" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cat"/></svg>Кошка</button>
+            <button class="chip-a" type="button" data-a="rab" aria-pressed="false"><svg aria-hidden="true"><use href="#i-rab"/></svg>Кролик, грызун</button>
+            <button class="chip-a" type="button" data-a="bird" aria-pressed="false"><svg aria-hidden="true"><use href="#i-bird"/></svg>Птица</button>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-h"><span class="step-n" aria-hidden="true">2</span><div><h3 id="s2">Что вас беспокоит</h3><small>Выберите главный признак</small></div></div>
+          <div class="syms" role="group" aria-labelledby="s2" id="syms"><p class="empty-hint">Сначала выберите животное&nbsp;— покажем признаки, которые встречаются чаще всего.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-h"><span class="step-n" aria-hidden="true">3</span><div><h3 id="s3">Есть&nbsp;ли что-то из&nbsp;этого</h3><small>Любой отмеченный пункт повышает срочность</small></div></div>
+          <div class="mods" id="mods" role="group" aria-labelledby="s3"></div>
+        </div>
+      </div>
+      <div class="result" id="result" aria-live="polite">
+        <div class="res-empty">
+          <svg class="big" viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="17"/><path d="M20 11v9l6 4"/></svg>
+          <h3>Здесь появится план действий</h3>
+          <p>Выберите животное и&nbsp;главный признак. Мы покажем, ехать&nbsp;ли прямо сейчас, что сделать дома и&nbsp;кто из&nbsp;врачей примет.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="doctors" aria-labelledby="doc-h" style="background:var(--paper);padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="doc-h">Кто вас примет</h2>
+      <p>Пять направлений под&nbsp;одной крышей: если на&nbsp;приёме окажется, что нужен хирург или узкий специалист, не&nbsp;придётся ехать в&nbsp;другую клинику.</p>
+    </div>
+    <div class="docs" id="docs"></div>
+    <div class="band">
+      <figure class="rv" style="--i:0"><img src="https://images.unsplash.com/photo-1725409796872-8b41e8eca929?auto=format&fit=crop&w=900&h=675&q=72&crop=entropy" width="900" height="675" loading="lazy" alt="Белого котёнка осматривают на смотровом столе"><figcaption>Отдельная смотровая для кошек&nbsp;— без запаха собак и&nbsp;лишнего шума</figcaption></figure>
+      <figure class="rv" style="--i:1"><img src="https://images.unsplash.com/photo-1770836037275-38b44e4b101f?auto=format&fit=crop&w=600&h=450&q=72&crop=entropy" width="600" height="450" loading="lazy" alt="Ветеринар делает прививку небольшой собаке"><figcaption>Прививки по&nbsp;графику&nbsp;— напомним заранее</figcaption></figure>
+      <figure class="rv" style="--i:2"><img src="https://images.unsplash.com/photo-1596272875729-ed2ff7d6d9c5?auto=format&fit=crop&w=600&h=450&q=72&crop=entropy" width="600" height="450" loading="lazy" alt="Человек держит на руках серого полосатого кота"><figcaption>Можно держать питомца на&nbsp;руках во&nbsp;время осмотра</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="flow-h">
+  <div class="wrap">
+    <div class="flow sec" style="padding:56px clamp(16px,4vw,56px)">
+      <div class="sec-head" style="margin-bottom:32px">
+        <h2 id="flow-h">Как пройдёт первый визит</h2>
+        <p>Самое частое опасение&nbsp;— что в&nbsp;клинике назначат лишнего. Поэтому у&nbsp;нас каждый шаг проговаривается заранее.</p>
+      </div>
+      <ol class="flow-grid" style="list-style:none">
+        <li class="flow-item rv" style="--i:0"><span class="n" aria-hidden="true">1</span><h3>Запись или звонок</h3><p>Администратор уточнит, что случилось, и&nbsp;подберёт врача. Если ситуация срочная&nbsp;— скажет ехать сразу.</p></li>
+        <li class="flow-item rv" style="--i:1"><span class="n" aria-hidden="true">2</span><h3>Сборы</h3><p>Переноска или поводок, ветпаспорт, упаковка лекарств, которые давали дома. Фото рвоты или стула тоже пригодится.</p></li>
+        <li class="flow-item rv" style="--i:2"><span class="n" aria-hidden="true">3</span><h3>Осмотр</h3><p>Врач расспросит, осмотрит и&nbsp;объяснит, что видит. Вы остаётесь рядом, если не&nbsp;нужна стерильная процедура.</p></li>
+        <li class="flow-item rv" style="--i:3"><span class="n" aria-hidden="true">4</span><h3>План и&nbsp;смета</h3><p>Получаете план лечения с&nbsp;ценами. Что обязательно сейчас, а&nbsp;что можно отложить&nbsp;— решаете вместе с&nbsp;врачом.</p></li>
+      </ol>
+      <div class="flow-quote"><svg aria-hidden="true"><use href="#i-receipt"/></svg><p>Ни&nbsp;одна платная процедура не&nbsp;начинается без вашего согласия&nbsp;— даже ночью, даже в&nbsp;реанимации.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="prices" aria-labelledby="pr-h" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="pr-h">Цены без мелкого шрифта</h2>
+      <p>Стоимость основных услуг. Точную смету врач назовёт после осмотра&nbsp;— до&nbsp;начала процедур.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Категории услуг" id="ptabs"></div>
+    <div class="price-wrap">
+      <div class="plist" id="plist" role="tabpanel" aria-labelledby="ptab-0"></div>
+      <aside class="price-aside">
+        <figure><img src="https://images.unsplash.com/photo-1767777575137-278b66c71473?auto=format&fit=crop&w=720&h=540&q=72&crop=entropy" width="720" height="540" loading="lazy" alt="Котёнок широко зевает"></figure>
+        <div class="txt">
+          <h3>Ночью цена та&nbsp;же, плюс выезд врача</h3>
+          <p>С&nbsp;21:00 до&nbsp;08:00 к&nbsp;приёму добавляется надбавка за&nbsp;ночной вызов&nbsp;— 700&nbsp;₽. Остальные услуги стоят так&nbsp;же, как днём.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="book" aria-labelledby="book-h" style="padding-top:24px">
+  <div class="wrap">
+    <div class="book">
+      <div>
+        <h2 id="book-h">Запись на&nbsp;приём</h2>
+        <p class="lead">Выберите врача и&nbsp;время&nbsp;— администратор перезвонит в&nbsp;течение 15&nbsp;минут и&nbsp;подтвердит. Если едете срочно, просто предупредите нас: встретим у&nbsp;входа.</p>
+        <div class="book-facts">
+          <div><svg aria-hidden="true"><use href="#i-clock"/></svg><span>Плановый приём ежедневно 09:00–21:00, дежурный врач&nbsp;— круглосуточно</span></div>
+          <div><svg aria-hidden="true"><use href="#i-carrier"/></svg><span>Нет переноски? Дадим на&nbsp;время приёма бесплатно</span></div>
+          <div><svg aria-hidden="true"><use href="#i-car"/></svg><span>Парковка у&nbsp;входа, пандус для тяжёлых собак</span></div>
+        </div>
+      </div>
+      <div class="form" id="formBox">
+        <form id="bookForm" novalidate>
+          <div class="mode" role="group" aria-label="Тип визита">
+            <button type="button" data-m="slot" aria-pressed="true">Записаться на&nbsp;время</button>
+            <button type="button" data-m="now" aria-pressed="false">Едем сейчас</button>
+          </div>
+          <div class="f-row">
+            <div class="fld"><label for="fAnimal">Кто</label>
+              <select id="fAnimal" name="animal"><option value="dog">Собака</option><option value="cat">Кошка</option><option value="rab">Кролик или грызун</option><option value="bird">Птица</option></select></div>
+            <div class="fld"><label for="fDoc">Врач</label><select id="fDoc" name="doc"></select></div>
+          </div>
+          <div id="slotPart">
+            <div class="fld"><span class="lbl" id="dayL">День</span><div class="days-row" id="days" role="group" aria-labelledby="dayL"></div></div>
+            <div class="fld"><span class="lbl" id="timeL">Время</span><div class="slots" id="slots" role="group" aria-labelledby="timeL"></div></div>
+          </div>
+          <div id="nowPart" hidden>
+            <div class="fld"><span class="lbl" id="etaL">Будем в&nbsp;клинике через</span><div class="eta" role="group" aria-labelledby="etaL" id="eta">
+              <button type="button" class="slot" data-eta="15 минут" aria-pressed="false">15 мин</button>
+              <button type="button" class="slot" data-eta="30 минут" aria-pressed="true">30 мин</button>
+              <button type="button" class="slot" data-eta="час" aria-pressed="false">Час</button>
+            </div></div>
+          </div>
+          <div class="f-row">
+            <div class="fld"><label for="fName">Ваше имя</label><input id="fName" name="name" autocomplete="name" placeholder="Екатерина"></div>
+            <div class="fld"><label for="fPhone">Телефон</label><input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00"></div>
+          </div>
+          <div class="fld"><label for="fNote">Что случилось</label><textarea id="fNote" name="note" placeholder="Кличка, возраст, что беспокоит"></textarea></div>
+          <p class="err" id="fErr" aria-live="assertive"></p>
+          <button class="btn btn-ink" type="submit" id="fSubmit">Записаться</button>
+          <p class="f-note">Это демо: заявка никуда не&nbsp;отправляется.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contacts" aria-labelledby="c-h" style="padding-top:0">
+  <div class="wrap contact">
+    <div class="c-card">
+      <h2 id="c-h">Как добраться</h2>
+      <div class="c-list">
+        <div><span class="ci" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><p><b>Екатеринбург, ул. Луначарского, 182</b><span>Вход со&nbsp;двора, зелёная вывеска с&nbsp;лапой. Остановка «Шарташская»&nbsp;— 4&nbsp;минуты пешком.</span></p></div>
+        <div><span class="ci" aria-hidden="true"><svg><use href="#i-clock"/></svg></span><p><b>Круглосуточно</b><span>Плановый приём 09:00–21:00, ночью&nbsp;— дежурный врач и&nbsp;стационар.</span></p></div>
+        <div><span class="ci" aria-hidden="true"><svg><use href="#i-phone"/></svg></span><p><b><a href="tel:+73430000000" style="color:inherit;font-size:inherit">+7 (343) 000-00-00</a></b><span>Звоните, даже если не&nbsp;уверены, что нужно ехать.</span></p></div>
+        <div><span class="ci" aria-hidden="true"><svg><use href="#i-mail"/></svg></span><p><b><a href="mailto:hello@ysdprojects.space" style="color:inherit;font-size:inherit">hello@ysdprojects.space</a></b><span>Для результатов анализов и&nbsp;документов.</span></p></div>
+      </div>
+    </div>
+    <div class="map" role="img" aria-label="Схема проезда: клиника на углу улиц Луначарского и Шарташской, парковка у входа">
+      <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="600" height="420" fill="#E3F1EB"/>
+        <g fill="#CFE6DC"><rect x="20" y="20" width="170" height="120" rx="22"/><rect x="230" y="20" width="140" height="120" rx="22"/><rect x="410" y="20" width="170" height="120" rx="22"/><rect x="20" y="190" width="170" height="210" rx="22"/><rect x="410" y="190" width="170" height="90" rx="22"/><rect x="410" y="320" width="170" height="80" rx="22"/></g>
+        <rect x="230" y="190" width="140" height="210" rx="22" fill="#A7DAC6"/>
+        <circle cx="105" cy="290" r="44" fill="#B9E0CF"/><circle cx="140" cy="250" r="22" fill="#B9E0CF"/>
+        <g stroke="#FFFFFF" stroke-width="26" stroke-linecap="round" fill="none"><path d="M0 165h600"/><path d="M210 0v420"/><path d="M390 0v420"/><path d="M390 300h210"/></g>
+        <path d="M210 165h180" stroke="#E07A52" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round" fill="none"/>
+        <g fill="#46625C" font-family="Golos Text, sans-serif" font-size="14" font-weight="600"><text x="440" y="158">ул. Луначарского</text><text x="218" y="410" transform="rotate(-90 218 410)">ул. Шарташская</text></g>
+        <rect x="260" y="330" width="80" height="44" rx="12" fill="#FFFFFF"/><text x="300" y="358" text-anchor="middle" fill="#16403A" font-family="Nunito, sans-serif" font-weight="800" font-size="16">P</text>
+        <circle cx="300" cy="248" r="30" fill="#16403A"/><circle cx="300" cy="248" r="11" fill="#CDEBDF"/>
+        <circle cx="210" cy="165" r="10" fill="#E07A52"/>
+      </svg>
+      <span class="pin-lbl" aria-hidden="true">Лапа и&nbsp;хвост</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и&nbsp;реквизиты вымышлены.</p>
+    </div>
+    <a class="logo" href="#top" style="font-size:17px"><svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px"><rect width="64" height="64" rx="22" fill="#16403A"/><ellipse cx="32" cy="40" rx="12" ry="10" fill="#CDEBDF"/><circle cx="18" cy="26" r="5" fill="#CDEBDF"/><circle cx="27" cy="17" r="5" fill="#CDEBDF"/><circle cx="37" cy="17" r="5" fill="#CDEBDF"/><circle cx="46" cy="26" r="5" fill="#E07A52"/></svg>Наверх</a>
+  </div>
+</footer>
+
+<div class="mcall" id="mcall">
+  <a class="btn btn-terra" href="tel:+73430000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Позвонить</a>
+  <a class="btn btn-soft" href="#triage">Что делать</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+document.documentElement.classList.add('js');
+var NB=' ';
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var DOCS={
+  duty:{n:'Дежурный врач',i:'24',role:'Реанимация и интенсивная терапия',d:'Принимает без записи в любое время суток, ведёт стационар.',days:[1,1,1,1,1,1,1],duty:true,who:['dog','cat','rab','bird']},
+  ther:{n:'Анна Мельникова',i:'АМ',role:'Терапевт',d:'Кошки и собаки: первичный приём, вакцинация, хронические болезни.',days:[1,1,1,1,1,0,0],who:['dog','cat']},
+  surg:{n:'Игорь Савельев',i:'ИС',role:'Хирург, травматолог',d:'Травмы, хромота, переломы, плановые операции и кастрация.',days:[0,1,0,1,0,1,0],who:['dog','cat']},
+  exo:{n:'Ольга Кравец',i:'ОК',role:'Экзотические животные',d:'Кролики, морские свинки, хорьки, грызуны и декоративные птицы.',days:[1,0,1,0,1,0,1],who:['rab','bird']},
+  derm:{n:'Мария Ткач',i:'МТ',role:'Дерматолог',d:'Зуд, выпадение шерсти, аллергия, ушные инфекции.',days:[0,0,1,0,0,1,0],who:['dog','cat']}
+};
+var DOC_ORDER=['duty','ther','surg','exo','derm'];
+var WD=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+var A={
+ dog:{n:'Собака',acc:'собаку',sym:[
+  {t:'Вздутый живот, пустые позывы к рвоте',u:2,doc:'duty',why:'У собак, особенно крупных, это может быть заворот желудка. Помогает только операция, и чем раньше, тем лучше.',do:['Не кормите и не поите','Сразу выезжайте, по дороге позвоните — подготовим операционную','Везите лёжа, не заставляйте идти пешком'],dont:['Не давайте обезболивающие и спазмолитики из своей аптечки','Не ждите, что пройдёт само']},
+  {t:'Съела что-то ядовитое или несъедобное',u:2,doc:'duty',why:'Часть ядов и предметов опасна в первые часы, пока их ещё можно удалить без операции.',do:['Возьмите с собой упаковку, остатки или фото того, что съедено','Запишите примерное время и количество','Выезжайте в клинику'],dont:['Не вызывайте рвоту солью или перекисью — можно получить ожог','Не давайте молоко и уголь без указания врача']},
+  {t:'Травма или кровотечение',u:2,doc:'surg',why:'Даже если собака держится бодро, после удара бывают внутренние повреждения.',do:['Прижмите к ране чистую ткань и не снимайте её, если промокла — добавьте сверху','Наденьте намордник или петлю из бинта: от боли кусаются даже спокойные собаки','Перевозите на ровной поверхности — доске или плотном пледе'],dont:['Не лейте в глубокую рану перекись и зелёнку','Не давайте человеческие обезболивающие']},
+  {t:'Тяжело дышит, язык синеет',u:2,doc:'duty',why:'Синюшный язык и одышка в покое — признаки нехватки кислорода.',do:['Снимите ошейник и шлейку','Обеспечьте прохладу и свежий воздух','Выезжайте сразу, животное не должно идти пешком'],dont:['Не пытайтесь напоить через силу','Не накрывайте плотной тканью']},
+  {t:'Судороги',u:2,doc:'duty',why:'Приступ дольше пяти минут или несколько подряд требуют помощи в клинике.',do:['Уберите рядом острые и твёрдые предметы','Засеките время приступа и снимите видео, если можете','После приступа приглушите свет и везите в клинику'],dont:['Не держите язык и не засовывайте в пасть пальцы и предметы','Не удерживайте собаку силой']},
+  {t:'Рвота',u:1,doc:'ther',why:'Однократная рвота у бодрой собаки бывает от погрешности в корме. Повторная — повод показаться врачу сегодня.',do:['Уберите корм на 6–8 часов, воду давайте небольшими порциями','Отметьте, сколько раз и как выглядит рвота, — можно сфотографировать','Запишитесь на сегодня'],dont:['Не давайте человеческие противорвотные','Не кормите сразу после приступа']},
+  {t:'Понос',u:1,doc:'ther',why:'Если собака бодрая и пьёт, можно прийти в течение дня. У щенков обезвоживание наступает быстро.',do:['Оставьте свободный доступ к воде','Соберите немного кала в чистый контейнер для анализа','Запишитесь на сегодня'],dont:['Не давайте препараты от диареи для людей','Не переводите резко на другой корм']},
+  {t:'Укус клеща',u:1,doc:'ther',why:'Клещи переносят пироплазмоз. Сам укус не страшен, важно наблюдать за самочувствием три недели.',do:['Выкрутите клеща специальным крючком, не раздавливая','Сохраните клеща в баночке — его можно исследовать','Меряйте температуру утром и вечером'],dont:['Не капайте масло и не прижигайте клеща','Не ждите, если появилась вялость или тёмная моча, — это срочно']},
+  {t:'Хромает',u:0,doc:'surg',why:'Если собака опирается на лапу и нет отёка, обычно можно записаться на плановый приём.',do:['Осмотрите подушечки и межпальцевые промежутки на занозы и порезы','Ограничьте прогулки и прыжки на пару дней','Запишитесь к хирургу-травматологу'],dont:['Не давайте ибупрофен и парацетамол — для собак они токсичны','Не растирайте и не грейте сустав']},
+  {t:'Чешется, расчёсы на коже',u:0,doc:'derm',why:'Зуд редко бывает срочным, но без лечения расчёсы быстро инфицируются.',do:['Проверьте шерсть на блох — расчешите над белым листом','Вспомните, меняли ли корм, шампунь или средства от паразитов','Запишитесь к дерматологу'],dont:['Не мажьте кожу кремами для людей','Не стригите налысо без рекомендации врача']}
+ ]},
+ cat:{n:'Кошка',acc:'кошку',sym:[
+  {t:'Ходит в лоток, но мочи нет или капли',u:2,doc:'duty',why:'Особенно опасно у котов: закупорка уретры за сутки приводит к отравлению организма.',do:['Выезжайте сразу, не дожидаясь утра','Посадите в переноску на впитывающую пелёнку','Вспомните, когда был последний нормальный поход в лоток'],dont:['Не давите на живот','Не давайте мочегонные травы и сборы']},
+  {t:'Дышит открытым ртом',u:2,doc:'duty',why:'Кошки почти никогда не дышат ртом. Это признак серьёзной нехватки воздуха.',do:['Не беспокойте лишний раз, стресс усиливает одышку','Посадите в открытую сверху переноску','Выезжайте сразу'],dont:['Не заставляйте ходить и не держите крепко на руках','Не давайте лекарства']},
+  {t:'Съела нитку, дождик или лилию',u:2,doc:'duty',why:'Нитки и мишура режут кишечник, а лилия даже в малом количестве опасна для почек кошек.',do:['Если нитка торчит изо рта или из-под хвоста — оставьте как есть','Возьмите с собой часть растения или упаковку','Выезжайте в клинику'],dont:['Не тяните нитку','Не вызывайте рвоту самостоятельно']},
+  {t:'Упала с высоты',u:2,doc:'surg',why:'Даже если кошка встала и ушла под диван, при падении бывают травмы груди и челюсти.',do:['Аккуратно переложите в переноску на полотенце','Держите переноску горизонтально','Покажите врачу в ближайшие часы, даже если кошка выглядит нормально'],dont:['Не давайте обезболивающие из своей аптечки','Не кормите до осмотра']},
+  {t:'Не ест больше суток',u:1,doc:'ther',why:'Для кошек это серьёзнее, чем кажется: голодание быстро нагружает печень.',do:['Предложите любимый влажный корм, слегка подогретый','Проследите, пьёт ли кошка и ходит ли в лоток','Запишитесь на сегодня'],dont:['Не кормите насильно из шприца без указаний врача','Не ждите ещё сутки']},
+  {t:'Рвота',u:1,doc:'ther',why:'Однократная рвота шерстью у бодрой кошки — не повод для паники. Повторная — повод показаться сегодня.',do:['Уберите корм на несколько часов, воду оставьте','Посмотрите, нет ли в рвоте ниток, пластика, крови','Запишитесь на сегодня, если рвота повторилась'],dont:['Не давайте человеческие противорвотные','Не меняйте корм на этом фоне']},
+  {t:'Чихает, слезятся глаза',u:0,doc:'ther',why:'Чаще всего это вирусная инфекция. Важно, чтобы кошка продолжала есть.',do:['Протирайте глаза и нос ватным диском, смоченным тёплой кипячёной водой','Следите за аппетитом: без еды больше суток — уже срочнее','Запишитесь на ближайшие дни'],dont:['Не капайте человеческие капли','Не давайте антибиотики без назначения']},
+  {t:'Чешется, выпадает шерсть',u:0,doc:'derm',why:'Причины разные: блохи, аллергия, стресс. Нужен осмотр и иногда соскоб.',do:['Проверьте шерсть на блох','Запишите, где именно появились проплешины','Запишитесь к дерматологу'],dont:['Не обрабатывайте кожу средствами для собак — некоторые смертельно опасны для кошек','Не купайте без необходимости']}
+ ]},
+ rab:{n:'Кролик или грызун',acc:'кролика или грызуна',sym:[
+  {t:'Не ест, и нет помёта больше 8 часов',u:2,doc:'exo',why:'У кроликов и морских свинок кишечник должен работать постоянно. Остановка опасна в течение нескольких часов.',do:['Предложите сено и свежую зелень','Держите в тепле, без сквозняка','Выезжайте к врачу по экзотическим животным'],dont:['Не давайте слабительные и ветрогонные для людей','Не ждите до завтра']},
+  {t:'Травма или падение',u:2,doc:'exo',why:'У кроликов хрупкий позвоночник: неудачный прыжок с рук может его повредить.',do:['Переложите в переноску на мягкую подстилку','Держите переноску ровно, избегайте тряски','Выезжайте в клинику'],dont:['Не берите за уши и холку','Не давайте лекарства']},
+  {t:'Слюни, не может жевать',u:1,doc:'exo',why:'Скорее всего, отросли и мешают зубы. Без коррекции животное перестаёт есть.',do:['Предложите мягкую зелень','Проверьте, мокрый ли подбородок','Запишитесь на сегодня'],dont:['Не подпиливайте зубы самостоятельно','Не давайте твёрдые лакомства']},
+  {t:'Понос',u:1,doc:'exo',why:'У малышей и морских свинок обезвоживание наступает быстро.',do:['Уберите фрукты и лакомства, оставьте сено и воду','Держите подстилку сухой','Запишитесь на сегодня'],dont:['Не давайте препараты для кошек и собак','Не купайте животное']},
+  {t:'Наклон головы, теряет равновесие',u:1,doc:'exo',why:'Бывает при ушной инфекции или паразитах. Чем раньше начать лечение, тем лучше прогноз.',do:['Пересадите в небольшую клетку без полок','Положите мягкую подстилку','Запишитесь на сегодня'],dont:['Не пытайтесь выпрямить голову руками','Не оставляйте на высоте']}
+ ]},
+ bird:{n:'Птица',acc:'птицу',sym:[
+  {t:'Сидит нахохлившись на дне клетки',u:2,doc:'exo',why:'Птицы до последнего скрывают болезнь. Если она сидит внизу — состояние уже тяжёлое.',do:['Накройте клетку тканью с трёх сторон и держите в тепле','Поставьте корм и воду на пол клетки','Везите в переноске, укрытой от холода'],dont:['Не выпускайте полетать','Не давайте лекарства в воду без назначения']},
+  {t:'Кровотечение из пера или когтя',u:2,doc:'exo',why:'Для маленькой птицы даже небольшая кровопотеря опасна.',do:['Прижмите место кровотечения чистой салфеткой','Коготь можно присыпать кукурузным крахмалом','Выезжайте, если кровь не остановилась за пару минут'],dont:['Не тяните кровящее перо самостоятельно','Не обрабатывайте спиртом']},
+  {t:'Тяжело дышит, качает хвостом',u:2,doc:'exo',why:'Качание хвостом в такт дыханию — признак тяжёлой одышки.',do:['Уберите из комнаты аэрозоли, дым, ароматизаторы','Обеспечьте тепло и покой','Выезжайте сразу'],dont:['Не используйте антипригарную посуду рядом — её пары токсичны для птиц','Не опрыскивайте водой']},
+  {t:'Выщипывает перья',u:0,doc:'exo',why:'Частая причина — скука, стресс или питание. Нужен осмотр и разбор условий содержания.',do:['Запишите, когда началось и что менялось дома','Дайте новые игрушки и ветки для погрызов','Запишитесь на ближайшие дни'],dont:['Не надевайте воротник без назначения врача','Не ругайте птицу']}
+ ]}
+};
+var MODS=[
+  {id:'weak',t:'Вялость, не встаёт или не реагирует как обычно',k:'plus'},
+  {id:'blood',t:'Кровь в рвоте, стуле или моче',k:'force'},
+  {id:'gums',t:'Бледные, серые или синюшные дёсны',k:'force'},
+  {id:'age',t:'Малыш до 6 месяцев или пожилое животное',k:'plus'}
+];
+var U=[
+  {tag:'Планово',title:'Можно записаться на плановый приём',sub:'Понаблюдайте за питомцем и запишитесь в удобный день. Если появятся признаки из третьего шага — ситуация станет срочнее.',c:'#A7DAC6'},
+  {tag:'Сегодня',title:'Покажите врачу сегодня',sub:'Состояние не критичное, но откладывать на несколько дней не стоит. Запишитесь на ближайшее время.',c:'#E3B04B'},
+  {tag:'Срочно',title:'Выезжайте в клинику сейчас',sub:'Не ждите утра и записи: дежурный врач принимает круглосуточно. Позвоните по дороге — встретим у входа.',c:'#E07A52'}
+];
+
+var st={animal:null,sym:null,mods:{}};
+var EMPTY=document.getElementById('result').innerHTML;
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function nb(s){return esc(s).replace(/ (—|–)/g,NB+'$1').replace(/(^|[\s(«])([а-яёА-ЯЁ]{1,2}) /g,'$1$2'+NB)}
+
+/* --- triage --- */
+function renderMods(){
+  $('#mods').innerHTML=MODS.map(function(m){
+    return '<label class="mod"><input type="checkbox" value="'+m.id+'"><span class="box" aria-hidden="true"><svg><use href="#i-check"/></svg></span><span>'+nb(m.t)+'</span></label>';
+  }).join('');
+  $$('#mods input').forEach(function(inp){
+    inp.addEventListener('change',function(){st.mods[inp.value]=inp.checked;renderResult();});
+  });
+}
+function setAnimal(a){
+  st.animal=a;st.sym=null;
+  $$('#animals .chip-a').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.a===a))});
+  var list=A[a].sym;
+  $('#syms').innerHTML=list.map(function(s,i){
+    return '<button type="button" class="sym" data-i="'+i+'" data-u="'+s.u+'" aria-pressed="false"><span class="dot" aria-hidden="true"></span>'+nb(s.t)+'</button>';
+  }).join('');
+  $$('#syms .sym').forEach(function(b){
+    b.addEventListener('click',function(){
+      st.sym=+b.dataset.i;
+      $$('#syms .sym').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+      renderResult(true);
+      if(window.innerWidth<1020){
+        var r=$('#result');
+        setTimeout(function(){r.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})},60);
+      }
+    });
+  });
+  $('#fAnimal').value=a;fillDocSelect();
+  renderResult();
+}
+function level(){
+  var s=A[st.animal].sym[st.sym];var u=s.u;var reasons=[];
+  MODS.forEach(function(m){
+    if(!st.mods[m.id])return;
+    if(m.k==='force'&&u<2){u=2;reasons.push(m.t.toLowerCase())}
+    else if(m.k==='plus'&&u<2){u=Math.min(2,u+1);reasons.push(m.t.toLowerCase())}
+  });
+  return {u:u,base:s.u,reasons:reasons};
+}
+function renderResult(animate){
+  var box=$('#result');
+  if(!st.animal||st.sym===null){box.innerHTML=EMPTY;return}
+  var s=A[st.animal].sym[st.sym];var L=level();var u=U[L.u];var d=DOCS[L.u===2?'duty':s.doc];
+  var extra=(L.u===2&&s.doc!=='duty')?DOCS[s.doc]:null;
+  var steps=s.do.map(function(x){return (L.u===2&&L.base<2&&/^Запишитесь/.test(x))?'Не откладывайте запись — выезжайте сейчас и позвоните дежурному по дороге':x});
+  var doCall=L.u===2;
+  var html='<div class="res-body u'+L.u+(animate===false?'':' res-anim')+'">'+
+    '<div class="meter" aria-hidden="true">'+[0,1,2].map(function(k){return '<i style="--c:'+u.c+'"'+(k<=L.u?' data-on="1"':'')+'></i>'}).join('')+'</div>'+
+    '<div class="meter-cap" aria-hidden="true"><span>Планово</span><span>Сегодня</span><span>Сейчас</span></div>'+
+    '<span class="urg-tag">'+(L.u===2?'<svg width="16" height="16" aria-hidden="true"><use href="#i-alert"/></svg>':'')+u.tag+'</span>'+
+    '<h3 class="res-title">'+nb(u.title)+'</h3>'+
+    '<p class="res-sub">'+nb(s.why)+' '+nb(u.sub)+'</p>'+
+    (L.reasons.length&&L.u>L.base?'<p class="bump">Срочность повышена, потому что отмечено: '+esc(L.reasons.join('; '))+'.</p>':'')+
+    '<div class="res-cols">'+
+      '<div class="res-block"><h4>Что сделать сейчас</h4><ol>'+steps.map(function(x){return '<li><span>'+nb(x)+'</span></li>'}).join('')+'</ol></div>'+
+      '<div class="res-block"><h4>Чего не делать</h4><ul>'+s.dont.map(function(x){return '<li><svg aria-hidden="true"><use href="#i-x"/></svg><span>'+nb(x)+'</span></li>'}).join('')+'</ul></div>'+
+    '</div>'+
+    '<div class="doc-card"><span class="ava'+(d.duty?' duty':'')+'" aria-hidden="true">'+d.i+'</span><div><b>'+esc(d.n)+'</b><span>'+esc(d.role)+(d.duty?' · без записи, круглосуточно':' · '+nextDayText(d))+'</span>'+(extra?'<span style="display:block;margin-top:4px">При необходимости подключит: '+esc(extra.n)+', '+esc(extra.role.toLowerCase())+'</span>':'')+'</div></div>'+
+    '<div class="res-cta">'+
+      (doCall?'<a class="btn btn-terra" href="tel:+73430000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Позвонить дежурному</a><button type="button" class="btn btn-ghost" data-act="now">Предупредить, что едем</button>'
+             :'<button type="button" class="btn btn-terra" data-act="slot">Записаться: '+esc(d.n)+'</button><a class="btn btn-ghost" href="tel:+73430000000">Позвонить</a>')+
+    '</div>'+
+    '<p class="res-note">Подсказка основана на типичных ситуациях и не заменяет осмотр. Если сомневаетесь — звоните, дежурный врач подскажет по телефону.</p>'+
+  '</div>';
+  box.innerHTML=html;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){$$('.meter i',box).forEach(function(i){if(i.dataset.on)i.classList.add('on')})})});
+  var btn=box.querySelector('[data-act]');
+  if(btn)btn.addEventListener('click',function(){
+    var mode=btn.dataset.act;
+    var docKey=mode==='now'?'duty':(L.u===2?'duty':s.doc);
+    prefillBooking(mode,docKey,A[st.animal].n+': '+s.t.toLowerCase()+(L.reasons.length?'; также '+L.reasons.join(', '):''));
+  });
+}
+function nextDayText(d){
+  var t=new Date();
+  for(var k=0;k<7;k++){var x=new Date(t);x.setDate(t.getDate()+k);var wd=(x.getDay()+6)%7;if(d.days[wd])return k===0?'принимает сегодня':(k===1?'ближайший приём завтра':'ближайший приём: '+WD[wd].toLowerCase()+', '+x.getDate()+' '+MON[x.getMonth()])}
+  return 'по записи';
+}
+var MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+$$('#animals .chip-a').forEach(function(b){b.addEventListener('click',function(){setAnimal(b.dataset.a)})});
+$$('.who-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    setAnimal(b.dataset.go);
+    var t=$('#triage');t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+    setTimeout(function(){var f=$('#syms .sym');if(f)f.focus({preventScroll:true})},reduce?0:500);
+  });
+});
+renderMods();
+
+/* --- doctors grid --- */
+$('#docs').innerHTML=DOC_ORDER.map(function(k,ix){var d=DOCS[k];
+  return '<article class="doc rv" style="--i:'+ix+'"><span class="ava'+(d.duty?' duty':'')+'" aria-hidden="true">'+d.i+'</span><div><h3>'+esc(d.n)+'</h3></div><p class="role">'+esc(d.role)+'</p><p>'+nb(d.d)+'</p>'+
+  '<div class="days" aria-label="Дни приёма: '+WD.filter(function(_,i){return d.days[i]}).join(', ')+'">'+WD.map(function(w,i){return '<i class="'+(d.days[i]?'on':'')+'" aria-hidden="true">'+w+'</i>'}).join('')+'</div>'+
+  '<button type="button" class="btn '+(d.duty?'btn-terra':'btn-soft')+'" data-doc="'+k+'">'+(d.duty?'Предупредить о приезде':'Записаться')+'</button></article>';
+}).join('');
+$$('#docs [data-doc]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.doc;prefillBooking(k==='duty'?'now':'slot',k,'')})});
+
+/* --- prices --- */
+var PR=[
+ {t:'Приём',r:[['Первичный приём терапевта','осмотр, консультация, план обследования','1 500'],['Повторный приём','в течение 14 дней по тому же случаю','900'],['Приём узкого специалиста','хирург, дерматолог, экзотические животные','2 000'],['Ночная надбавка','с 21:00 до 08:00, к приёму','700'],['Консультация по результатам анализов','очно или по видеосвязи','800']]},
+ {t:'Прививки',r:[['Комплексная вакцинация собаки','вакцина, осмотр, отметка в паспорте','2 300'],['Комплексная вакцинация кошки','вакцина, осмотр, отметка в паспорте','2 100'],['Вакцинация от бешенства','для поездок и выставок','900'],['Чипирование','чип и внесение в базу','1 400'],['Обработка от паразитов','препарат подбирается по весу','от 600']]},
+ {t:'Диагностика',r:[['Общий анализ крови','результат в течение часа','1 100'],['Биохимия крови, 12 показателей','результат в течение дня','2 300'],['УЗИ брюшной полости','с заключением врача','2 400'],['Рентген, 1 проекция','снимок на руки в электронном виде','1 600'],['Экспресс-тест на пироплазмоз','мазок крови, 20 минут','700']]},
+ {t:'Хирургия',r:[['Кастрация кота','с наркозом и послеоперационным осмотром','4 800'],['Стерилизация кошки','с наркозом, попона в подарок','8 500'],['Стерилизация собаки до 10 кг','с наркозом и осмотром','11 000'],['Обработка раны','с местной анестезией','от 1 500'],['Санация ротовой полости','ультразвуковая чистка зубов под наркозом','от 6 000']]},
+ {t:'Стационар',r:[['Сутки в стационаре','наблюдение, кормление, капельницы по назначению','2 800'],['Инфекционный бокс, сутки','отдельное помещение','3 400'],['Кислородная камера, час','при одышке и после операций','900'],['Посещение питомца','в любое время, без доплаты','0']]}
+];
+function renderPrices(i){
+  $$('#ptabs .tab').forEach(function(b,k){b.setAttribute('aria-selected',String(k===i));b.tabIndex=k===i?0:-1});
+  var p=$('#plist');p.setAttribute('aria-labelledby','ptab-'+i);
+  p.innerHTML=PR[i].r.map(function(r){return '<div class="prow"><div><b>'+nb(r[0])+'</b><span>'+nb(r[1])+'</span></div><em>'+(r[2]==='0'?'бесплатно':r[2]+NB+'₽')+'</em></div>'}).join('');
+  if(!reduce){p.classList.remove('res-anim');void p.offsetWidth;p.classList.add('res-anim')}
+}
+$('#ptabs').innerHTML=PR.map(function(c,i){return '<button class="tab" role="tab" id="ptab-'+i+'" aria-controls="plist" type="button">'+c.t+'</button>'}).join('');
+$$('#ptabs .tab').forEach(function(b,i){
+  b.addEventListener('click',function(){renderPrices(i)});
+  b.addEventListener('keydown',function(e){
+    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+    var n=(i+(e.key==='ArrowRight'?1:-1)+PR.length)%PR.length;renderPrices(n);$('#ptab-'+n).focus();
+  });
+});
+renderPrices(0);
+
+/* --- booking --- */
+var bk={mode:'slot',doc:'ther',day:null,time:null,eta:'30 минут'};
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0)}
+function fillDocSelect(){
+  var a=$('#fAnimal').value;var sel=$('#fDoc');var cur=bk.doc;
+  var keys=DOC_ORDER.filter(function(k){return k!=='duty'&&DOCS[k].who.indexOf(a)>-1});
+  if(bk.mode==='now')keys=['duty'];
+  sel.innerHTML=keys.map(function(k){return '<option value="'+k+'">'+esc(DOCS[k].n+' — '+DOCS[k].role.toLowerCase())+'</option>'}).join('');
+  if(keys.indexOf(cur)>-1)sel.value=cur;else bk.doc=sel.value;
+  renderDays();
+}
+function renderDays(){
+  var d=DOCS[bk.doc];if(!d)return;var t=new Date();var html='';var first=null;
+  for(var k=0;k<10;k++){
+    var x=new Date(t.getFullYear(),t.getMonth(),t.getDate()+k);var wd=(x.getDay()+6)%7;var on=!!d.days[wd];
+    var key=x.getFullYear()+'-'+(x.getMonth()+1)+'-'+x.getDate();
+    if(on&&first===null&&freeSlots(key,k===0).some(function(s){return s.free}))first=key;
+    html+='<button type="button" class="dchip" data-day="'+key+'" data-today="'+(k===0?1:0)+'" aria-pressed="false"'+(on?'':' disabled')+' aria-label="'+(k===0?'Сегодня, ':k===1?'Завтра, ':'')+WD[wd]+', '+x.getDate()+' '+MON[x.getMonth()]+(on?'':', врач не принимает')+'"><small>'+(k===0?'сег.':k===1?'завт.':WD[wd].toLowerCase())+'</small><b>'+x.getDate()+'</b></button>';
+  }
+  $('#days').innerHTML=html;
+  if(!bk.day||!$('#days [data-day="'+bk.day+'"]')||$('#days [data-day="'+bk.day+'"]').disabled)bk.day=first;
+  $$('#days .dchip').forEach(function(b){b.addEventListener('click',function(){bk.day=b.dataset.day;bk.time=null;markDays();renderSlots()})});
+  markDays();renderSlots();
+}
+function markDays(){$$('#days .dchip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.day===bk.day))})}
+function freeSlots(dayKey,isToday){
+  var res=[];var now=new Date();var nowM=now.getHours()*60+now.getMinutes();
+  for(var m=9*60;m<=20*60;m+=40){
+    var hh=Math.floor(m/60),mm=m%60;var lbl=(hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm;
+    var busy=hash(bk.doc+dayKey+lbl)%100<38;
+    if(isToday&&m<nowM+30)busy=true;
+    res.push({t:lbl,free:!busy});
+  }
+  return res;
+}
+function renderSlots(){
+  var box=$('#slots');
+  if(!bk.day){box.innerHTML='<p class="empty-hint">Нет свободного времени в ближайшие дни. Позвоните нам — найдём окно.</p>';return}
+  var b=$('#days [data-day="'+bk.day+'"]');var list=freeSlots(bk.day,b&&b.dataset.today==='1');
+  if(!list.some(function(s){return s.free})){box.innerHTML='<p class="empty-hint">На этот день всё занято — выберите другой.</p>';return}
+  box.innerHTML=list.map(function(s){return '<button type="button" class="slot" data-t="'+s.t+'" aria-pressed="'+(bk.time===s.t)+'"'+(s.free?'':' disabled aria-label="'+s.t+', занято"')+'>'+s.t+'</button>'}).join('');
+  $$('#slots .slot').forEach(function(x){x.addEventListener('click',function(){bk.time=x.dataset.t;$$('#slots .slot').forEach(function(y){y.setAttribute('aria-pressed',String(y===x))});$('#fErr').textContent=''})});
+}
+function setMode(m){
+  bk.mode=m;
+  $$('.mode button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.m===m))});
+  $('#slotPart').hidden=m!=='slot';$('#nowPart').hidden=m!=='now';
+  var sub=$('#fSubmit');sub.textContent=m==='now'?'Предупредить клинику':'Записаться';
+  sub.className='btn '+(m==='now'?'btn-terra':'btn-ink');
+  if(m==='now')bk.doc='duty';else if(bk.doc==='duty')bk.doc=$('#fAnimal').value==='rab'||$('#fAnimal').value==='bird'?'exo':'ther';
+  fillDocSelect();
+}
+$$('.mode button').forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.m)})});
+$$('#eta .slot').forEach(function(b){b.addEventListener('click',function(){bk.eta=b.dataset.eta;$$('#eta .slot').forEach(function(y){y.setAttribute('aria-pressed',String(y===b))})})});
+$('#fAnimal').addEventListener('change',function(){fillDocSelect()});
+$('#fDoc').addEventListener('change',function(e){bk.doc=e.target.value;bk.time=null;renderDays()});
+function prefillBooking(mode,docKey,note){
+  var a=st.animal||$('#fAnimal').value;
+  if(DOCS[docKey].who.indexOf(a)<0)a=DOCS[docKey].who[0];
+  $('#fAnimal').value=a;
+  bk.doc=docKey;bk.time=null;setMode(mode);
+  if(note)$('#fNote').value=note;
+  var t=$('#book');t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+  setTimeout(function(){$('#fName').focus({preventScroll:true})},reduce?0:600);
+}
+function fmtPhone(v){var d=v.replace(/\D/g,'');if(d[0]==='8')d='7'+d.slice(1);if(d[0]!=='7')d='7'+d;d=d.slice(0,11);var o='+7';if(d.length>1)o+=' ('+d.slice(1,4);if(d.length>=4)o+=')';if(d.length>4)o+=' '+d.slice(4,7);if(d.length>7)o+='-'+d.slice(7,9);if(d.length>9)o+='-'+d.slice(9,11);return o}
+$('#fPhone').addEventListener('input',function(e){var el=e.target;if(!el.value){return}el.value=fmtPhone(el.value)});
+$('#bookForm').addEventListener('submit',function(e){
+  e.preventDefault();var err=$('#fErr');
+  var name=$('#fName').value.trim();var ph=$('#fPhone').value.replace(/\D/g,'');
+  if(bk.mode==='slot'&&(!bk.day||!bk.time)){err.textContent='Выберите день и время приёма.';return}
+  if(!name){err.textContent='Укажите, как к вам обращаться.';$('#fName').focus();return}
+  if(ph.length<11){err.textContent='Проверьте номер телефона: нужно 11 цифр.';$('#fPhone').focus();return}
+  err.textContent='';
+  var d=DOCS[bk.doc];var when;
+  if(bk.mode==='slot'){var p=bk.day.split('-');var dt=new Date(+p[0],+p[1]-1,+p[2]);when=WD[(dt.getDay()+6)%7]+', '+dt.getDate()+' '+MON[dt.getMonth()]+', '+bk.time}else{when='через '+bk.eta}
+  var box=$('#formBox');
+  box.innerHTML='<div class="done" tabindex="-1" id="done"><div class="ok" aria-hidden="true"><svg><use href="#i-check"/></svg></div>'+
+   '<h3>'+(bk.mode==='now'?'Ждём вас':'Заявка принята')+'</h3>'+
+   '<p>'+(bk.mode==='now'?'Дежурный врач предупреждён. Если по дороге станет хуже — звоните, подскажем, что делать.':'Администратор перезвонит в течение 15 минут и подтвердит время.')+'</p>'+
+   '<dl><dt>Кто</dt><dd>'+esc($('#fAnimal').selectedOptions[0].textContent)+'</dd><dt>Врач</dt><dd>'+esc(d.n)+'</dd><dt>Когда</dt><dd>'+esc(when)+'</dd><dt>Телефон</dt><dd>'+esc($('#fPhone').value)+'</dd></dl>'+
+   '<button type="button" class="btn btn-soft" id="again">Новая запись</button></div>';
+  var dn=$('#done');dn.focus();
+  $('#again').addEventListener('click',function(){location.hash='';location.reload()});
+});
+fillDocSelect();
+
+/* --- header + reveal + mobile bar --- */
+var top=$('#top');var mc=$('#mcall');
+function onScroll(){var y=window.scrollY;top.classList.toggle('scrolled',y>8);mc.classList.toggle('show',y>520)}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+if('IntersectionObserver' in window&&!reduce){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.12});
+  $$('.rv').forEach(function(el){io.observe(el)});
+}else{$$('.rv').forEach(function(el){el.classList.add('in')})}
+})();
+</script>
+</body>
+</html>
