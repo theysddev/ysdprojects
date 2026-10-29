@@ -637,6 +637,9 @@ section[id]{scroll-margin-top:72px}
   }
   fitKin();
   if(d.fonts&&d.fonts.ready)d.fonts.ready.then(fitKin);
+  if(d.fonts&&d.fonts.addEventListener)d.fonts.addEventListener('loadingdone',fitKin);
+  if(d.fonts&&d.fonts.load)d.fonts.load('900 100px Unbounded','СДВИГ').then(fitKin,function(){});
+  addEventListener('load',fitKin);setTimeout(fitKin,1500);
   var rT;addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(fitKin,120)});
   function startKin(){
     var px=0.5,py=0.5,inside=false,raf=null,sy=0;
