@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Код Юниор — школа программирования для детей 6–14 лет</title>
+<meta name="description" content="Детская IT-школа «Код Юниор»: игры на Scratch, роботы LEGO, Minecraft, Python и сайты для детей 6–14 лет. Подбор курса по возрасту и интересам, бесплатное пробное занятие.">
+<meta property="og:title" content="Код Юниор — дети не играют в игры, а делают их">
+<meta property="og:description" content="Подбор курса по возрасту и интересам, мини-игра «Собери алгоритм», запись на бесплатное пробное занятие.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#6A35E8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%236A35E8'/%3E%3Cpath d='M26 20l-10 12 10 12M38 20l10 12-10 12' fill='none' stroke='%23FF7A1A' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;--ink:#1D1940;--muted:#545078;--line:#E7E3F4;
+  --or:#FF7A1A;--or-d:#B84A00;--or-soft:#FFEEDF;
+  --vi:#6A35E8;--vi-d:#4F22C4;--vi-soft:#F0EBFF;
+  --mint:#0E8F5E;--mint-soft:#DDF6EA;--red:#C8283A;
+  --r-s:12px;--r-m:20px;--r-l:32px;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --wrap:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{font-weight:900;line-height:1.08;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.4rem)}
+h3{font-size:1.3rem;line-height:1.2}
+p{margin:0}
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:60ch}
+section{padding:clamp(72px,10vw,128px) 0}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(32px,5vw,56px);max-width:760px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;border:0;font-weight:800;font-size:1.02rem;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,box-shadow .2s ease;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-vi{background:var(--vi);color:#fff;box-shadow:0 6px 0 var(--vi-d)}
+.btn-or{background:var(--or);color:var(--ink);box-shadow:0 6px 0 #D45F05}
+.btn-ghost{background:var(--vi-soft);color:var(--vi-d)}
+.btn svg{width:20px;height:20px;flex:none}
+@media (hover:hover) and (pointer:fine){
+  .btn-vi:hover{background:#5B28D8}
+  .btn-or:hover{background:#FF8B36}
+  .btn-ghost:hover{background:#E4DBFF}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.logo{white-space:nowrap;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:1.25rem;letter-spacing:-.01em}
+.logo svg{width:38px;height:38px;flex:none}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;font-weight:700;color:var(--muted);transition:background-color .2s ease,color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{background:var(--vi-soft);color:var(--vi-d)}}
+.hdr .btn{min-height:46px;padding:0 20px;box-shadow:0 4px 0 var(--vi-d)}
+.burger{display:none;width:46px;height:46px;border-radius:14px;border:0;background:var(--vi-soft);color:var(--vi-d);cursor:pointer;align-items:center;justify-content:center}
+.burger svg{width:22px;height:22px}
+.mnav{display:none}
+@media (max-width:960px){
+  .nav{display:none}
+  .hdr .btn{margin-left:auto}
+  .burger{display:inline-flex}
+  .mnav{display:block;position:absolute;left:0;right:0;top:72px;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px 16px;transform-origin:top;transform:translateY(-8px);opacity:0;visibility:hidden;transition:transform .22s var(--ease),opacity .22s var(--ease),visibility 0s .22s}
+  .mnav.open{transform:none;opacity:1;visibility:visible;transition:transform .22s var(--ease),opacity .22s var(--ease)}
+  .mnav a{display:flex;align-items:center;min-height:50px;padding:0 12px;font-weight:800;text-decoration:none;border-radius:12px}
+}
+@media (max-width:520px){.hide-s{display:none}}
+@media (max-width:420px){.hdr .btn{padding:0 16px;font-size:.95rem}.logo span{font-size:1.1rem}.hdr .wrap{gap:10px}}
+
+/* hero */
+.hero{padding:clamp(40px,6vw,80px) 0 clamp(64px,8vw,104px);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(2.55rem,6.2vw,5.1rem);max-width:12ch}
+.hero .lead{margin-top:22px;max-width:46ch;color:var(--muted)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;padding:0;list-style:none}
+.facts li{display:flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:14px;background:var(--vi-soft);font-weight:700;font-size:.95rem;color:var(--vi-d)}
+.facts li:nth-child(2){background:var(--or-soft);color:var(--or-d)}
+.facts li:nth-child(3){background:var(--mint-soft);color:#08603F}
+.facts svg{width:18px;height:18px;flex:none}
+.hero-art{position:relative;aspect-ratio:1/1.02;max-width:560px;width:100%;justify-self:end}
+.hero-blob{position:absolute;inset:6% 0 0 8%;border-radius:48% 52% 44% 56%/52% 44% 56% 48%;background:var(--or);transform:rotate(-6deg)}
+.hero-photo{position:absolute;inset:0 6% 10% 0;border-radius:40px;overflow:hidden;background:#D9CFFF;box-shadow:0 30px 60px -30px rgba(29,25,64,.45)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;color:transparent}
+.stack{position:absolute;right:0;bottom:2%;display:grid;gap:0;filter:drop-shadow(0 14px 20px rgba(29,25,64,.25))}
+.blk{position:relative;display:flex;align-items:center;gap:8px;padding:12px 18px 12px 16px;font-weight:800;font-size:.95rem;border-radius:12px;color:#fff;width:max-content}
+.blk::after{content:"";position:absolute;left:18px;bottom:-7px;width:22px;height:8px;border-radius:0 0 6px 6px;background:inherit;z-index:1}
+.blk .pill{background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;font-weight:900}
+.blk-a{background:var(--or);color:var(--ink);border-radius:22px 22px 12px 12px}
+.blk-b{background:var(--vi);margin-left:0}
+.blk-c{background:#2E9BEF;color:var(--ink);margin-left:22px}
+.blk-d{background:var(--vi);border-radius:12px}
+.blk-d::after{display:none}
+@keyframes drop{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.stack .blk{animation:drop .6s var(--ease) both}
+.stack .blk:nth-child(1){animation-delay:.35s}.stack .blk:nth-child(2){animation-delay:.5s}.stack .blk:nth-child(3){animation-delay:.65s}.stack .blk:nth-child(4){animation-delay:.8s}
+.hero-copy>*{animation:rise .7s var(--ease) both}
+.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}.hero-copy>*:nth-child(4){animation-delay:.24s}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{justify-self:stretch;max-width:520px;margin:0 auto;aspect-ratio:1/.92}
+}
+@media (max-width:480px){
+  .hero h1{font-size:2.45rem}
+  .hero-cta .btn{flex:1 1 100%}
+  .blk{font-size:.82rem;padding:9px 13px}
+  .hero-art{aspect-ratio:1/1.05}
+  .hero-photo{inset:0 4% 18% 0;border-radius:28px}
+}
+
+/* picker */
+.picker{background:var(--vi-soft);border-radius:var(--r-l);margin:0 16px}
+.pick-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,48px);align-items:start}
+.panel{background:#fff;border-radius:28px;padding:clamp(22px,3vw,36px);box-shadow:0 2px 0 var(--line)}
+.ctl+.ctl{margin-top:30px}
+.ctl-t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-weight:800;font-size:1.05rem;margin-bottom:12px}
+.age-val{font-size:2.4rem;font-weight:900;line-height:1;color:var(--vi)}
+.age-val small{font-size:1rem;color:var(--muted);font-weight:700;margin-left:4px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:12px;border-radius:999px;background:linear-gradient(90deg,var(--or) 0 var(--p,40%),var(--line) var(--p,40%))}
+input[type=range]::-moz-range-track{height:12px;border-radius:999px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:12px;border-radius:999px;background:var(--or)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;margin-top:-10px;border-radius:50%;background:#fff;border:5px solid var(--vi);box-shadow:0 3px 8px rgba(29,25,64,.25)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--vi)}
+.ticks{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;color:var(--muted);padding:0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;border:2px solid var(--line);background:#fff;font-weight:700;font-size:.95rem;cursor:pointer;transition:background-color .18s ease,border-color .18s ease,transform .16s var(--ease)}
+.chip:active{transform:scale(.97)}
+.chip svg{width:20px;height:20px;flex:none;color:var(--vi)}
+.chip[aria-pressed=true]{background:var(--vi);border-color:var(--vi);color:#fff}
+.chip[aria-pressed=true] svg{color:#FFD2AE}
+@media (hover:hover) and (pointer:fine){.chip:hover{border-color:#C7B8FF}}
+.seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--vi-soft);border-radius:999px;padding:4px;gap:4px;width:100%;max-width:380px}
+.seg button{min-height:44px;border-radius:999px;border:0;background:transparent;font-weight:800;cursor:pointer;color:var(--muted);transition:background-color .18s ease,color .18s ease}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(29,25,64,.12)}
+.res{position:sticky;top:96px}
+.res-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 2px 0 var(--line)}
+.res-top{padding:clamp(22px,3vw,34px);position:relative}
+.res-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:var(--or-soft);color:var(--or-d);font-weight:800;font-size:.85rem}
+.res h3{font-size:clamp(1.7rem,3vw,2.3rem);margin:14px 0 8px}
+.res-why{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 18px;padding:0;list-style:none}
+.res-why li{font-size:.86rem;font-weight:700;background:var(--vi-soft);color:var(--vi-d);border-radius:8px;padding:3px 10px}
+.res-why li.warn{background:var(--or-soft);color:var(--or-d)}
+.res-make{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:16px;border-radius:16px;background:var(--mint-soft)}
+.res-make svg{width:44px;height:44px;color:var(--mint)}
+.res-make b{display:block;font-size:.85rem;color:#08603F}
+.res-meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px dashed var(--line)}
+.res-meta div{padding:16px clamp(14px,2vw,24px);border-right:2px dashed var(--line)}
+.res-meta div:last-child{border-right:0}
+.res-meta span{display:block;font-size:.8rem;color:var(--muted);font-weight:700}
+.res-meta strong{font-size:1.1rem;font-weight:900;font-variant-numeric:tabular-nums}
+.res-foot{padding:0 clamp(22px,3vw,34px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.res-foot .btn{flex:1 1 auto}
+.alts{margin-top:16px;display:grid;gap:8px}
+.alts p{font-weight:800;font-size:.95rem;color:var(--muted)}
+.alt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;padding:10px 18px;border-radius:18px;background:#fff;border:2px solid transparent;cursor:pointer;text-align:left;font-weight:800;transition:border-color .18s ease}
+.alt span{font-weight:700;color:var(--muted);font-size:.9rem;white-space:nowrap}
+@media (hover:hover) and (pointer:fine){.alt:hover{border-color:#C7B8FF}}
+.res-anim{animation:pop .45s var(--ease)}
+@keyframes pop{from{opacity:.2;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+@media (max-width:900px){.pick-grid{grid-template-columns:1fr}.res{position:static}}
+@media (max-width:520px){.picker{margin:0 8px;border-radius:24px}.res-meta{grid-template-columns:1fr 1fr}.res-meta div:nth-child(2){border-right:0}.res-meta div:nth-child(3){grid-column:1/-1;border-top:2px dashed var(--line);border-right:0}}
+
+/* game */
+.game-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:start}
+.lvls{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.lvl{min-height:44px;min-width:44px;padding:0 16px;border-radius:14px;border:2px solid var(--line);background:#fff;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.lvl[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#fff}
+.lvl.done::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.lvl:disabled{opacity:.45;cursor:not-allowed}
+.board-wrap{background:var(--ink);border-radius:28px;padding:clamp(12px,2vw,20px);position:relative}
+.board{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#2A2556}
+.cell{position:relative;border:1px solid rgba(255,255,255,.06)}
+.cell:nth-child(odd){background:rgba(255,255,255,.025)}
+.cell.wall{background:#3E3878}
+.cell.wall::before{content:"";position:absolute;inset:16%;border-radius:22%;background:#5A52A8;box-shadow:inset 0 -5px 0 rgba(0,0,0,.18)}
+.cell.trail::after{content:"";position:absolute;left:50%;top:50%;width:14%;height:14%;margin:-7% 0 0 -7%;border-radius:50%;background:var(--or);opacity:.55}
+.star{position:absolute;width:calc(100%/6);aspect-ratio:1;display:grid;place-items:center;pointer-events:none}
+.star svg{width:66%;height:66%;color:#FFC233}
+.star.got svg{animation:spin .8s var(--ease)}
+@keyframes spin{from{transform:scale(1.5) rotate(-90deg)}to{transform:none}}
+.bot{position:absolute;left:0;top:0;width:calc(100%/6);aspect-ratio:1;display:grid;place-items:center;transition:transform .36s var(--ease);will-change:transform;pointer-events:none}
+.bot .inner{width:76%;height:76%;transition:transform .32s var(--ease)}
+.bot .inner svg{width:100%;height:100%;display:block}
+.bot.crash .inner svg{animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-8%)}50%{transform:translateX(7%)}75%{transform:translateX(-4%)}}
+.coords{display:flex;justify-content:space-between;color:#B9B3E6;font-size:.82rem;font-weight:700;margin-top:10px;padding:0 4px;gap:10px;flex-wrap:wrap}
+.palette{display:flex;flex-wrap:wrap;gap:10px}
+.cmd{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 18px 0 14px;border-radius:14px;border:0;font-weight:900;font-size:1rem;cursor:pointer;transition:transform .16s var(--ease),opacity .2s ease}
+.cmd:active{transform:scale(.96)}
+.cmd svg{width:22px;height:22px;flex:none}
+.cmd-f{background:var(--or);color:var(--ink)}
+.cmd-l,.cmd-r{background:var(--vi);color:#fff}
+.cmd:disabled{opacity:.4;cursor:not-allowed}
+.prog-box{margin-top:20px;border:2px dashed #CFC6F2;border-radius:22px;padding:14px;min-height:150px;background:#FBFAFF}
+.prog-h{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.9rem;color:var(--muted);margin:0 4px 10px}
+.prog-h b{color:var(--ink)}
+.prog{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.prog li{display:flex;align-items:stretch}
+.prog li.new{animation:drop .3s var(--ease)}
+.prog .pb{flex:1;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:0;border-radius:12px 0 0 12px;font-weight:900;cursor:pointer;text-align:left;position:relative;transition:transform .16s var(--ease)}
+.prog .pb:active{transform:scale(.98)}
+.prog .pb svg{width:20px;height:20px;flex:none}
+.prog .rep{margin-left:auto;background:#fff;color:var(--ink);border-radius:999px;padding:0 10px;font-size:.9rem;min-width:38px;text-align:center}
+.prog .px{width:46px;border:0;border-radius:0 12px 12px 0;cursor:pointer;display:grid;place-items:center;background:rgba(29,25,64,.12)}
+.prog .px svg{width:18px;height:18px}
+.prog li.f .pb{background:var(--or);color:var(--ink)}
+.prog li.f .px{background:#F06A0A;color:var(--ink)}
+.prog li.l .pb,.prog li.r .pb{background:var(--vi);color:#fff}
+.prog li.l .px,.prog li.r .px{background:var(--vi-d);color:#fff}
+.prog li+li{margin-top:4px}
+.prog li.now .pb{box-shadow:inset 0 0 0 3px #fff, 0 0 0 3px var(--ink)}
+.prog-empty{color:var(--muted);font-weight:700;padding:18px 6px;font-size:.95rem}
+.game-ctl{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.game-ctl .btn{flex:1 1 auto}
+.g-status{margin-top:16px;padding:14px 18px;border-radius:16px;background:var(--vi-soft);font-weight:700;min-height:56px;display:flex;align-items:center;gap:12px}
+.g-status svg{width:26px;height:26px;flex:none}
+.g-status.ok{background:var(--mint-soft);color:#08603F}
+.g-status.bad{background:#FFE6E9;color:#9C1B2C}
+.g-task{font-weight:800;font-size:1.15rem;margin-bottom:14px}
+.g-task small{display:block;font-weight:700;font-size:.9rem;color:var(--muted)}
+@media (max-width:900px){.game-grid{grid-template-columns:1fr}.board-wrap{max-width:520px;margin:0 auto;width:100%}}
+
+/* track */
+.track-sec{background:linear-gradient(var(--paper),var(--paper))}
+.track{position:relative;overflow:hidden;border-radius:var(--r-l);border:2px solid var(--line);padding:clamp(18px,3vw,36px)}
+.t-scale{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:20px;align-items:end;margin-bottom:10px}
+.t-ages{position:relative;display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:.85rem}
+.t-ages span{width:0;display:flex;justify-content:center}
+.t-row{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:20px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.t-name{font-weight:900;line-height:1.25}
+.t-name small{display:block;font-weight:700;color:var(--muted);font-size:.85rem}
+.t-lane{position:relative;height:40px;border-radius:999px;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),var(--line) calc(12.5% - 1px) 12.5%)}
+.t-bar{position:absolute;top:4px;bottom:4px;border-radius:999px;display:flex;align-items:center;padding:0 14px;font-weight:800;font-size:.85rem;white-space:nowrap;transition:transform .3s var(--ease),opacity .3s ease}
+.t-bar.c1{background:var(--or);color:var(--ink)}
+.t-bar.c2{background:var(--vi);color:#fff}
+.t-bar.c3{background:#2E9BEF;color:var(--ink)}
+.t-row.dim .t-bar{background:#EEEBF7;color:var(--muted)}
+.t-row.dim .t-name{color:var(--muted)}
+.t-mkw{position:absolute;inset:-12px 0;pointer-events:none;transform:translateX(calc(var(--pos,37.5)*1%));transition:transform .35s var(--ease);z-index:2}
+.t-mkw i{position:absolute;left:-1.5px;top:0;bottom:0;border-left:3px dashed var(--ink)}
+.t-labw{position:absolute;left:0;right:0;top:-4px;height:0;pointer-events:none;transform:translateX(calc(var(--pos,37.5)*1%));transition:transform .35s var(--ease)}
+.t-labw span{position:absolute;left:-32px;top:-3px;width:64px;text-align:center;background:var(--ink);color:#fff;border-radius:8px;font-size:.8rem;font-weight:800;padding:3px 0}
+.t-ages{--pos:37.5}
+.t-lanes{position:relative}
+.t-note{margin-top:22px;color:var(--muted);font-weight:600;max-width:70ch}
+@media (max-width:700px){
+  .t-scale{grid-template-columns:1fr}.t-scale>div:first-child{display:none}
+  .t-row{grid-template-columns:1fr;gap:8px}
+  .t-bar{font-size:.78rem;padding:0 10px}
+  .t-mkw{inset:-4px 0}
+}
+
+/* lesson */
+.lesson{background:var(--ink);color:#fff;border-radius:var(--r-l);margin:0 16px}
+.lesson h2{color:#fff}
+.lesson .lead{color:#CFCAF0}
+.ls-bar{display:flex;height:64px;border-radius:18px;overflow:hidden;margin:8px 0 28px}
+.ls-bar div{display:flex;align-items:center;padding:0 14px;font-weight:900;font-size:.95rem;white-space:nowrap;overflow:hidden}
+.ls-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ls-steps li{border-top:4px solid;padding-top:16px}
+.ls-steps .n{font-size:.85rem;font-weight:800;color:#B9B3E6}
+.ls-steps h3{margin:4px 0 8px;font-size:1.15rem}
+.ls-steps p{color:#D9D5F5;font-size:.95rem}
+.k1{background:#2E9BEF;color:var(--ink);border-color:#2E9BEF!important}
+.k2{background:#A889FF;color:var(--ink);border-color:#A889FF!important}
+.k3{background:var(--or);color:var(--ink);border-color:var(--or)!important}
+.k4{background:#3FD69B;color:var(--ink);border-color:#3FD69B!important}
+.ls-steps li.k1,.ls-steps li.k2,.ls-steps li.k3,.ls-steps li.k4{background:none;color:#fff}
+.ls-photo{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:clamp(40px,6vw,64px)}
+.ls-photo figure{margin:0;border-radius:24px;overflow:hidden;background:#3A3470;position:relative;min-height:220px}
+.ls-photo img{width:100%;height:100%;object-fit:cover;color:transparent}
+.ls-photo figcaption{position:absolute;left:14px;bottom:14px;right:14px;background:rgba(29,25,64,.82);color:#fff;border-radius:12px;padding:8px 14px;font-weight:700;font-size:.9rem}
+@media (max-width:860px){
+  .ls-steps{grid-template-columns:1fr 1fr}
+  .ls-bar div span{display:none}
+}
+@media (max-width:520px){
+  .lesson{margin:0 8px;border-radius:24px}
+  .ls-steps{grid-template-columns:1fr}
+  .ls-bar{height:44px}
+  .ls-bar div{padding:0 6px;font-size:.8rem;justify-content:center}
+  .ls-photo{grid-template-columns:1fr}
+}
+
+/* parents */
+.par-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.par-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.par-list li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:20px;border-radius:22px;background:var(--or-soft)}
+.par-list li:nth-child(2){background:var(--vi-soft)}
+.par-list li:nth-child(3){background:var(--mint-soft)}
+.par-ic{width:56px;height:56px;border-radius:16px;background:#fff;display:grid;place-items:center}
+.par-ic svg{width:28px;height:28px;color:var(--ink)}
+.par-list h3{font-size:1.12rem;margin-bottom:4px}
+.par-list p{color:var(--muted);font-size:.97rem}
+.chat{border-radius:28px;background:#F6F4FC;padding:clamp(18px,3vw,28px);display:grid;gap:12px}
+.chat-h{display:flex;align-items:center;gap:12px;font-weight:800}
+.ava{width:44px;height:44px;border-radius:50%;background:var(--vi);color:#fff;display:grid;place-items:center;font-weight:900}
+.chat-h small{display:block;color:var(--muted);font-weight:600}
+.msg{background:#fff;border-radius:6px 20px 20px 20px;padding:14px 16px;max-width:92%;box-shadow:0 1px 0 var(--line)}
+.msg p+p{margin-top:8px}
+.msg .att{display:flex;align-items:center;gap:12px;margin-top:10px;padding:10px;border-radius:12px;background:var(--vi-soft);font-weight:800;font-size:.92rem}
+.msg .att i{width:44px;height:44px;border-radius:10px;background:var(--or);display:grid;place-items:center;flex:none}
+.msg .att svg{width:22px;height:22px}
+.msg.me{justify-self:end;background:var(--vi);color:#fff;border-radius:20px 6px 20px 20px}
+.chat-note{font-size:.85rem;color:var(--muted);text-align:center}
+@media (max-width:860px){.par-grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:860px}
+.faq details{border-bottom:2px solid var(--line)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding:16px 0;font-weight:800;font-size:1.12rem;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--vi-soft);display:grid;place-items:center;transition:transform .25s var(--ease),background-color .2s ease}
+.faq summary i svg{width:18px;height:18px;color:var(--vi-d)}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--or)}
+.faq details[open] summary i svg{color:var(--ink)}
+.faq .ans{padding:0 0 22px;color:var(--muted);max-width:68ch}
+.faq details[open] .ans{animation:rise .35s var(--ease)}
+
+/* prices */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{border-radius:28px;padding:clamp(22px,3vw,32px);background:#fff;border:2px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.plan.hl{border-color:var(--vi);background:var(--vi);color:#fff}
+.plan .pt{font-weight:900;font-size:1.3rem}
+.plan .pp{font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.plan .pp small{font-size:1rem;font-weight:700;opacity:.8;letter-spacing:0}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;flex:1}
+.plan li{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.plan li svg{width:20px;height:20px;flex:none;margin-top:3px;color:var(--mint)}
+.plan.hl li svg{color:#FFC59A}
+.plan .btn{margin-top:6px}
+.plan.hl .btn{background:#fff;color:var(--vi-d);box-shadow:0 6px 0 #3A1A9E}
+.plan .pd{color:var(--muted);font-weight:600}
+.plan.hl .pd{color:#E3DAFF}
+.price-note{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+.price-note span{padding:8px 14px;border-radius:12px;background:var(--or-soft);color:var(--or-d);font-weight:800;font-size:.92rem}
+@media (max-width:900px){.prices{grid-template-columns:1fr}}
+
+/* form */
+.signup{background:var(--or);border-radius:var(--r-l);margin:0 16px}
+.su-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px);align-items:start}
+.signup h2{color:var(--ink)}
+.signup .lead{color:#3A2410}
+.su-steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:12px;counter-reset:s}
+.su-steps li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;font-weight:700;color:#2A1A0A}
+.su-steps li::before{counter-increment:s;content:counter(s);width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:900}
+.form{background:#fff;border-radius:28px;padding:clamp(22px,3vw,36px);box-shadow:0 14px 0 -4px #D45F05}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:grid;gap:6px;margin-bottom:16px}
+.fld label,.fld legend{font-weight:800;font-size:.93rem}
+.fld input,.fld select{min-height:52px;border-radius:14px;border:2px solid var(--line);padding:0 14px;background:#fff;width:100%;transition:border-color .18s ease}
+.fld input:focus,.fld select:focus{border-color:var(--vi);outline:none;box-shadow:0 0 0 4px var(--vi-soft)}
+.fld input[aria-invalid=true]{border-color:var(--red)}
+.err{color:var(--red);font-size:.85rem;font-weight:700;min-height:0}
+fieldset.fld{border:0;padding:0;margin:0 0 16px}
+.rads{display:flex;flex-wrap:wrap;gap:8px}
+.rads label{position:relative;cursor:pointer}
+.rads input{position:absolute;opacity:0;width:1px;height:1px}
+.rads span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:.93rem;transition:background-color .18s ease}
+.rads input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rads input:focus-visible+span{outline:3px solid var(--or);outline-offset:2px}
+.form .btn{width:100%;margin-top:8px}
+.form small{display:block;margin-top:12px;color:var(--muted);font-size:.85rem}
+.done{text-align:center;padding:24px 8px}
+.done .tick{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:var(--mint-soft);display:grid;place-items:center;animation:pop .5s var(--ease)}
+.done .tick svg{width:44px;height:44px;color:var(--mint)}
+.done h3{font-size:1.8rem;margin-bottom:10px}
+.done p{color:var(--muted);max-width:42ch;margin:0 auto}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;text-align:left;max-width:360px;margin:20px auto;padding:16px;border-radius:16px;background:var(--vi-soft)}
+.done dt{color:var(--muted);font-weight:700}
+.done dd{margin:0;font-weight:800}
+@media (max-width:900px){.su-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.signup{margin:0 8px;border-radius:24px}.f-row{grid-template-columns:1fr;gap:0}}
+
+/* footer */
+.ftr{padding:64px 0 40px}
+.ftr-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;padding-bottom:36px;border-bottom:2px solid var(--line)}
+.ftr h3{font-size:1rem;margin-bottom:12px}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.ftr a{text-decoration:none;font-weight:700;display:inline-flex;min-height:36px;align-items:center}
+@media (hover:hover) and (pointer:fine){.ftr a:hover{color:var(--vi)}}
+.ftr p{color:var(--muted)}
+.legal{padding-top:24px;display:grid;gap:4px;color:var(--muted);font-size:.9rem}
+.legal a{color:var(--vi-d);display:inline;min-height:0}
+@media (max-width:760px){.ftr-grid{grid-template-columns:1fr}}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M9 7H4v-5M4.5 7A8.5 8.5 0 1 1 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 2)"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M15 7h5v-5M19.5 7A8.5 8.5 0 1 0 18 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 2)"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+    <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4zM8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 12.8h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-robot" viewBox="0 0 24 24"><rect x="4.5" y="8" width="15" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8V4.5M9 13h.01M15 13h.01M9.5 16h5M2.5 12.5v3M21.5 12.5v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="3.6" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-brush" viewBox="0 0 24 24"><path d="M14.5 4.5l5 5L11 18l-5-5zM6 13l-2.2 2.2a2.6 2.6 0 0 0 0 3.7L4 19l1 1a2.6 2.6 0 0 0 3.7 0L11 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 3v3.5M14 3v3.5M10 17.5V21M14 17.5V21M3 10h3.5M3 14h3.5M17.5 10H21M17.5 14H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M5 8h3a2 2 0 1 1 4 0h3v3a2 2 0 1 1 0 4v4H5v-4a2 2 0 1 0 0-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 11h16v9H4zM3 7.5h18V11H3zM12 7.5V20M12 7.5c-1.5-3.5-5.5-3.5-5-1 .3 1.3 2.5 1 5 1zm0 0c1.5-3.5 5.5-3.5 5-1-.3 1.3-2.5 1-5 1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5M15.5 5.6a3.2 3.2 0 0 1 0 6M17.5 14.3c1.8.6 3 2.2 3.4 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M4 5.5h16v10.5H10l-4.5 3.5V16H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 20h6M12 16.5V20M10 8.5l3.5 2-3.5 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 6.5a1.5 1.5 0 0 1 1.5-1.5h4.5l2 2.5H19a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 40 40">
+      <rect x="3" y="10" width="5" height="20" rx="2.5" fill="#1D1940"/><rect x="32" y="10" width="5" height="20" rx="2.5" fill="#1D1940"/>
+      <rect x="6" y="6" width="28" height="28" rx="10" fill="#FF7A1A"/>
+      <rect x="10" y="9" width="20" height="11" rx="5.5" fill="#fff"/>
+      <circle cx="15.5" cy="14.5" r="2.6" fill="#1D1940"/><circle cx="24.5" cy="14.5" r="2.6" fill="#1D1940"/>
+      <path d="M20 1.5v5" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="2.2" r="2" fill="#fff"/>
+      <rect x="13" y="25" width="14" height="4" rx="2" fill="#B84A00"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Код Юниор — на главную">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#6A35E8"/><path d="M26 20l-10 12 10 12M38 20l10 12-10 12" fill="none" stroke="#FF7A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Код Юниор</span>
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="#podbor">Подбор курса</a>
+      <a href="#igra">Мини-игра</a>
+      <a href="#kursy">Курсы</a>
+      <a href="#zanyatie">Как проходит занятие</a>
+      <a href="#ceny">Цены</a>
+    </nav>
+    <a class="btn btn-vi hdr-cta" href="#zapis">Пробное<span class="hide-s"> занятие</span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Меню">
+    <a href="#podbor">Подбор курса</a>
+    <a href="#igra">Мини-игра</a>
+    <a href="#kursy">Курсы</a>
+    <a href="#zanyatie">Как проходит занятие</a>
+    <a href="#ceny">Цены</a>
+    <a href="#voprosy">Вопросы родителей</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="h1">Здесь дети не&nbsp;играют в&nbsp;игры, а&nbsp;делают&nbsp;их</h1>
+      <p class="lead">Школа программирования для детей <span style="white-space:nowrap">6–14 лет</span> в&nbsp;Екатеринбурге и&nbsp;онлайн. Scratch, роботы LEGO, Minecraft, Python и&nbsp;сайты&nbsp;— к&nbsp;концу каждого модуля у&nbsp;ребёнка готов свой проект.</p>
+      <div class="hero-cta">
+        <a class="btn btn-or" href="#podbor">Подобрать курс</a>
+        <a class="btn btn-ghost" href="#igra"><svg aria-hidden="true"><use href="#i-play"/></svg>Попробовать мини-игру</a>
+      </div>
+      <ul class="facts" aria-label="Коротко о занятиях">
+        <li><svg aria-hidden="true"><use href="#i-users"/></svg>Группы до 8 детей</li>
+        <li><svg aria-hidden="true"><use href="#i-clock"/></svg>90 минут раз в неделю</li>
+        <li><svg aria-hidden="true"><use href="#i-gift"/></svg>Первое занятие бесплатно</li>
+      </ul>
+    </div>
+    <div class="hero-art">
+      <div class="hero-blob" aria-hidden="true"></div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1743677077216-00a458eff9e0?auto=format&fit=crop&w=1000&h=1000&q=72&crop=entropy" width="1000" height="1000" alt="Дети собрались вокруг ноутбука и вместе разбирают программу" fetchpriority="high">
+      </div>
+      <div class="stack" aria-hidden="true">
+        <div class="blk blk-a">когда нажат старт</div>
+        <div class="blk blk-b">повторить <span class="pill">4</span> раза</div>
+        <div class="blk blk-c">идти <span class="pill">10</span> шагов</div>
+        <div class="blk blk-d">сказать «Я сам это сделал!»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="picker" id="podbor" aria-labelledby="pick-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="pick-h">Подберём курс за&nbsp;минуту</h2>
+      <p class="lead">Укажите возраст и&nbsp;то, чем ребёнок уже увлекается. Покажем курс, с&nbsp;которого лучше начать, и&nbsp;что он сделает своими руками к&nbsp;концу обучения.</p>
+    </div>
+    <div class="pick-grid">
+      <div class="panel rv">
+        <div class="ctl">
+          <div class="ctl-t"><label for="age">Возраст ребёнка</label><output class="age-val" id="ageOut" for="age">9<small>лет</small></output></div>
+          <input type="range" id="age" min="6" max="14" step="1" value="9" aria-valuetext="9 лет">
+          <div class="ticks" aria-hidden="true"><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span></div>
+        </div>
+        <div class="ctl" role="group" aria-labelledby="int-t">
+          <div class="ctl-t"><span id="int-t">Что нравится</span><span style="font-size:.85rem;color:var(--muted);font-weight:700">можно несколько</span></div>
+          <div class="chips" id="chips">
+            <button class="chip" type="button" data-i="games" aria-pressed="true"><svg aria-hidden="true"><use href="#i-game"/></svg>Видеоигры</button>
+            <button class="chip" type="button" data-i="robots" aria-pressed="false"><svg aria-hidden="true"><use href="#i-robot"/></svg>Конструкторы и роботы</button>
+            <button class="chip" type="button" data-i="draw" aria-pressed="false"><svg aria-hidden="true"><use href="#i-brush"/></svg>Рисовать и мультики</button>
+            <button class="chip" type="button" data-i="minecraft" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cube"/></svg>Minecraft</button>
+            <button class="chip" type="button" data-i="tech" aria-pressed="false"><svg aria-hidden="true"><use href="#i-chip"/></svg>Разбирать технику</button>
+            <button class="chip" type="button" data-i="web" aria-pressed="false"><svg aria-hidden="true"><use href="#i-globe"/></svg>Сайты и интернет</button>
+            <button class="chip" type="button" data-i="math" aria-pressed="false"><svg aria-hidden="true"><use href="#i-puzzle"/></svg>Задачки и головоломки</button>
+          </div>
+        </div>
+        <div class="ctl" role="group" aria-labelledby="fmt-t">
+          <div class="ctl-t"><span id="fmt-t">Формат</span></div>
+          <div class="seg" id="fmt">
+            <button type="button" data-f="off" aria-pressed="true">Очно</button>
+            <button type="button" data-f="on" aria-pressed="false">Онлайн</button>
+          </div>
+        </div>
+      </div>
+      <div class="res rv" style="--d:.08s">
+        <div id="result" aria-live="polite"></div>
+        <div class="alts" id="alts"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="igra" aria-labelledby="game-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="game-h">Соберите алгоритм&nbsp;— как на&nbsp;первом занятии</h2>
+      <p class="lead">Робот Бип хочет добраться до&nbsp;звезды. Сложите программу из&nbsp;блоков и&nbsp;нажмите «Запустить». Нажмите на&nbsp;блок в&nbsp;программе, и&nbsp;он повторится 2, 3, 4 или 5 раз&nbsp;— так дети знакомятся с&nbsp;циклами.</p>
+    </div>
+    <div class="game-grid">
+      <div class="rv">
+        <div class="lvls" role="group" aria-label="Уровни">
+          <button class="lvl" type="button" data-l="0" aria-pressed="true">Уровень 1</button>
+          <button class="lvl" type="button" data-l="1" aria-pressed="false" disabled>Уровень 2</button>
+          <button class="lvl" type="button" data-l="2" aria-pressed="false" disabled>Уровень 3</button>
+        </div>
+        <div class="board-wrap">
+          <div class="board" id="board" role="img" aria-label="Игровое поле 6 на 6 клеток"></div>
+          <div class="coords"><span id="botPos">Бип: клетка 1-5, смотрит вправо</span><span>Звезда <span id="starPos"></span></span></div>
+        </div>
+      </div>
+      <div class="rv" style="--d:.08s">
+        <p class="g-task" id="gTask"></p>
+        <div class="palette" role="group" aria-label="Блоки команд">
+          <button class="cmd cmd-f" type="button" data-c="f"><svg aria-hidden="true"><use href="#i-up"/></svg>Шаг вперёд</button>
+          <button class="cmd cmd-l" type="button" data-c="l"><svg aria-hidden="true"><use href="#i-left"/></svg>Налево</button>
+          <button class="cmd cmd-r" type="button" data-c="r"><svg aria-hidden="true"><use href="#i-right"/></svg>Направо</button>
+        </div>
+        <div class="prog-box">
+          <div class="prog-h"><span>Программа</span><span>блоков: <b id="pCount">0</b> из <b id="pMax">6</b></span></div>
+          <ol class="prog" id="prog" aria-label="Программа робота"></ol>
+          <p class="prog-empty" id="progEmpty">Пока пусто. Нажмите на&nbsp;блок выше, чтобы добавить его в&nbsp;программу.</p>
+        </div>
+        <div class="game-ctl">
+          <button class="btn btn-vi" type="button" id="run"><svg aria-hidden="true"><use href="#i-play"/></svg>Запустить</button>
+          <button class="btn btn-ghost" type="button" id="reset"><svg aria-hidden="true"><use href="#i-reset"/></svg>Начать заново</button>
+        </div>
+        <div class="g-status" id="gStatus" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="track-sec" id="kursy" aria-labelledby="kursy-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="kursy-h">Дорожка от&nbsp;первых блоков до&nbsp;настоящего кода</h2>
+      <p class="lead">Семь курсов, каждый рассчитан на&nbsp;учебный год. Пунктирная линия&nbsp;— возраст, который вы выбрали в&nbsp;подборе: подсвечены курсы, которые подходят прямо сейчас.</p>
+    </div>
+    <div class="track rv">
+      <div class="t-scale" aria-hidden="true"><div></div><div class="t-ages" id="tAges"><div class="t-labw" aria-hidden="true"><span id="mkT"></span></div><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span></div></div>
+      <div class="t-lanes" id="lanes"></div>
+      <p class="t-note">После курса можно перейти на&nbsp;следующий по&nbsp;дорожке: преподаватель подскажет, куда двигаться, по&nbsp;итогам демо-дня. Можно и&nbsp;сменить направление&nbsp;— например, из&nbsp;роботов LEGO в&nbsp;электронику.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lesson" id="zanyatie" aria-labelledby="les-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="les-h">Как проходят 90&nbsp;минут занятия</h2>
+      <p class="lead">Дети не&nbsp;сидят полтора часа над теорией. Большая часть времени&nbsp;— практика: ребёнок сам пишет код и&nbsp;сразу видит результат на&nbsp;экране или в&nbsp;движении робота.</p>
+    </div>
+    <div class="ls-bar rv" aria-hidden="true">
+      <div class="k1" style="flex:10">10<span>&nbsp;мин</span></div>
+      <div class="k2" style="flex:25">25<span>&nbsp;мин</span></div>
+      <div class="k3" style="flex:40">40<span>&nbsp;мин</span></div>
+      <div class="k4" style="flex:15">15<span>&nbsp;мин</span></div>
+    </div>
+    <ol class="ls-steps">
+      <li class="k1 rv"><span class="n">1 · 10 минут</span><h3>Разминка</h3><p>Короткая логическая задачка или «отладка»: найти ошибку в&nbsp;чужой программе.</p></li>
+      <li class="k2 rv" style="--d:.06s"><span class="n">2 · 25 минут</span><h3>Новая идея</h3><p>Преподаватель показывает приём на&nbsp;живом примере: переменные, условия, датчик расстояния.</p></li>
+      <li class="k3 rv" style="--d:.12s"><span class="n">3 · 40 минут</span><h3>Свой проект</h3><p>Каждый добавляет новое в&nbsp;свою игру или робота. Преподаватель подходит к&nbsp;каждому, а&nbsp;не&nbsp;только к&nbsp;тем, кто поднял руку.</p></li>
+      <li class="k4 rv" style="--d:.18s"><span class="n">4 · 15 минут</span><h3>Показ</h3><p>Двое-трое показывают, что получилось. Учимся объяснять свою идею и&nbsp;слушать других.</p></li>
+    </ol>
+    <div class="ls-photo">
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1737228813532-9cd720824ba7?auto=format&fit=crop&w=900&h=600&q=72&crop=entropy" width="900" height="600" loading="lazy" alt="Робот, собранный из деталей LEGO"><figcaption>Робот после третьего занятия: едет и&nbsp;объезжает стену</figcaption></figure>
+      <figure class="rv" style="--d:.08s"><img src="https://images.unsplash.com/photo-1612338762643-298feee70520?auto=format&fit=crop&w=700&h=600&q=72&crop=entropy" width="700" height="600" loading="lazy" alt="Зелёная плата с микросхемами в руке"><figcaption>В&nbsp;курсе электроники собираем схемы на&nbsp;настоящих платах</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="roditelyam" aria-labelledby="par-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="par-h">Вы видите, чему научился ребёнок</h2>
+      <p class="lead">Родителям непросто понять, что происходит на&nbsp;занятии по&nbsp;программированию. Поэтому мы показываем не&nbsp;оценки, а&nbsp;сами проекты.</p>
+    </div>
+    <div class="par-grid">
+      <ul class="par-list">
+        <li class="rv"><span class="par-ic"><svg aria-hidden="true"><use href="#i-msg"/></svg></span><div><h3>Короткий отчёт после занятия</h3><p>Три строки в&nbsp;чате: что проходили, что получилось, что можно повторить дома, если ребёнку интересно.</p></div></li>
+        <li class="rv" style="--d:.06s"><span class="par-ic"><svg aria-hidden="true"><use href="#i-screen"/></svg></span><div><h3>Демо-день в&nbsp;конце модуля</h3><p>Раз в&nbsp;два месяца дети показывают свои проекты родителям. Можно прийти лично или подключиться по&nbsp;видео.</p></div></li>
+        <li class="rv" style="--d:.12s"><span class="par-ic"><svg aria-hidden="true"><use href="#i-folder"/></svg></span><div><h3>Все проекты в&nbsp;одной папке</h3><p>Игры и&nbsp;сайты ребёнка хранятся в&nbsp;личном кабинете. Их&nbsp;можно открыть дома и&nbsp;показать бабушке.</p></div></li>
+      </ul>
+      <div class="chat rv" style="--d:.1s" aria-label="Пример отчёта преподавателя">
+        <div class="chat-h"><span class="ava" aria-hidden="true">АК</span><div>Преподаватель группы «Игры на Scratch»<small>пример сообщения после занятия</small></div></div>
+        <div class="msg"><p>Сегодня добавляли в&nbsp;игру счёт и&nbsp;жизни. Миша сам догадался, как сделать, чтобы игра заканчивалась на&nbsp;нуле жизней.</p><p>Дома можно попросить показать, где в&nbsp;программе «переменная»&nbsp;— ему будет приятно объяснить.</p><div class="att"><i aria-hidden="true"><svg><use href="#i-game"/></svg></i>Космический побег, версия 3</div></div>
+        <div class="msg me"><p>Спасибо! Вечером уже играли всей семьёй.</p></div>
+        <p class="chat-note">Имена и переписка&nbsp;— пример формата отчёта</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ceny" aria-labelledby="price-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="price-h">Стоимость в&nbsp;месяц</h2>
+      <p class="lead">Оплата помесячно, без вступительных взносов. В&nbsp;месяц&nbsp;— 4 занятия по&nbsp;90 минут.</p>
+    </div>
+    <div class="prices">
+      <div class="plan rv">
+        <span class="pt">Онлайн</span>
+        <span class="pp">4 800 <small>₽/мес</small></span>
+        <p class="pd">Из дома, с&nbsp;камерой и&nbsp;демонстрацией экрана</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Группа до&nbsp;6 детей</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Все курсы, кроме робототехники и&nbsp;электроники</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Запись занятия, если пропустили</li>
+        </ul>
+        <a class="btn btn-ghost" href="#zapis" data-plan="on">Записаться</a>
+      </div>
+      <div class="plan hl rv" style="--d:.06s">
+        <span class="pt">Очно</span>
+        <span class="pp">6 400 <small>₽/мес</small></span>
+        <p class="pd">В классе на&nbsp;Шейнкмана, наши компьютеры</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Группа до&nbsp;8 детей</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Scratch, Minecraft, Python, сайты</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Демо-дни для родителей в&nbsp;классе</li>
+        </ul>
+        <a class="btn" href="#zapis" data-plan="off">Записаться</a>
+      </div>
+      <div class="plan rv" style="--d:.12s">
+        <span class="pt">Роботы и&nbsp;электроника</span>
+        <span class="pp">7 200 <small>₽/мес</small></span>
+        <p class="pd">Очно, наборы LEGO и&nbsp;Arduino выдаём на&nbsp;занятии</p>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Группа до&nbsp;6 детей</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Покупать набор домой не&nbsp;нужно</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Соревнования роботов внутри школы</li>
+        </ul>
+        <a class="btn btn-ghost" href="#zapis" data-plan="off">Записаться</a>
+      </div>
+    </div>
+    <div class="price-note rv"><span>Пробное занятие&nbsp;— бесплатно</span><span>Второй ребёнок из&nbsp;семьи&nbsp;— минус 10%</span><span>Пропуск по&nbsp;болезни переносим на&nbsp;другую группу</span></div>
+  </div>
+</section>
+
+<section id="voprosy" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 id="faq-h">Что обычно спрашивают родители</h2></div>
+    <div class="faq rv">
+      <details><summary>Нужен ли дома компьютер?<i aria-hidden="true"><svg><use href="#i-plus"/></svg></i></summary><div class="ans">Для очных занятий&nbsp;— нет, в&nbsp;классе есть всё. Для онлайна нужен ноутбук или компьютер с&nbsp;камерой; планшет подойдёт только для курса «Первые алгоритмы». Перед стартом проверим вместе, всё ли работает.</div></details>
+      <details><summary>Ребёнок ещё плохо читает. Ему рано?<i aria-hidden="true"><svg><use href="#i-plus"/></svg></i></summary><div class="ans">В курсе для 6–7 лет команды&nbsp;— это картинки и&nbsp;цветные блоки, длинных текстов нет. Чтение подтягивается само: детям хочется прочитать, что написано на&nbsp;блоке.</div></details>
+      <details><summary>А&nbsp;если через месяц станет неинтересно?<i aria-hidden="true"><svg><use href="#i-plus"/></svg></i></summary><div class="ans">Оплата помесячная, договор можно остановить в&nbsp;любой момент. Чаще помогает сменить направление: кому-то скучно рисовать спрайты, но&nbsp;интересно собирать робота. Переход внутри школы бесплатный.</div></details>
+      <details><summary>Это не&nbsp;ещё больше времени за&nbsp;экраном?<i aria-hidden="true"><svg><use href="#i-plus"/></svg></i></summary><div class="ans">Экран здесь&nbsp;— инструмент, а&nbsp;не&nbsp;развлечение: ребёнок не&nbsp;смотрит, а&nbsp;создаёт. На&nbsp;робототехнике и&nbsp;электронике половина занятия&nbsp;— сборка руками. Каждые 30 минут делаем перерыв на&nbsp;разминку.</div></details>
+      <details><summary>Как попасть на&nbsp;пробное занятие?<i aria-hidden="true"><svg><use href="#i-plus"/></svg></i></summary><div class="ans">Оставьте заявку ниже. Администратор перезвонит, уточнит возраст и&nbsp;интересы и&nbsp;предложит группу с&nbsp;подходящим временем. Пробное идёт в&nbsp;обычной группе, родителям можно остаться в&nbsp;холле.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="signup" id="zapis" aria-labelledby="su-h">
+  <div class="wrap su-grid">
+    <div class="rv">
+      <h2 id="su-h">Запишитесь на&nbsp;бесплатное пробное занятие</h2>
+      <p class="lead" style="margin-top:16px">Ребёнок попробует собрать свой первый проект, а&nbsp;вы поговорите с&nbsp;преподавателем.</p>
+      <ol class="su-steps">
+        <li>Оставляете заявку&nbsp;— это минута</li>
+        <li>Администратор звонит и&nbsp;подбирает группу</li>
+        <li>Приходите на&nbsp;занятие или подключаетесь онлайн</li>
+      </ol>
+    </div>
+    <div class="form rv" style="--d:.08s" id="formBox">
+      <form id="form" novalidate>
+        <div class="f-row">
+          <div class="fld"><label for="fName">Ваше имя</label><input id="fName" name="name" autocomplete="name" required><span class="err" id="eName"></span></div>
+          <div class="fld"><label for="fTel">Телефон</label><input id="fTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required><span class="err" id="eTel"></span></div>
+        </div>
+        <div class="f-row">
+          <div class="fld"><label for="fAge">Возраст ребёнка</label><select id="fAge" name="age"></select></div>
+          <div class="fld"><label for="fCourse">Курс</label><select id="fCourse" name="course"></select></div>
+        </div>
+        <fieldset class="fld"><legend>Формат</legend>
+          <div class="rads">
+            <label><input type="radio" name="fmt" value="Очно" checked><span>Очно</span></label>
+            <label><input type="radio" name="fmt" value="Онлайн"><span>Онлайн</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="fld"><legend>Удобное время</legend>
+          <div class="rads">
+            <label><input type="radio" name="time" value="Будни после 16:00" checked><span>Будни после 16:00</span></label>
+            <label><input type="radio" name="time" value="Суббота"><span>Суббота</span></label>
+            <label><input type="radio" name="time" value="Воскресенье"><span>Воскресенье</span></label>
+          </div>
+        </fieldset>
+        <button class="btn btn-vi" type="submit">Записаться на пробное</button>
+        <small>Это демо-форма: данные никуда не&nbsp;отправляются.</small>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#6A35E8"/><path d="M26 20l-10 12 10 12M38 20l10 12-10 12" fill="none" stroke="#FF7A1A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Код Юниор</span></a>
+        <p style="margin-top:12px;max-width:34ch">Школа программирования и&nbsp;робототехники для детей 6–14 лет.</p>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul>
+          <li><a href="tel:+73430000000">+7 (343) 000-00-00</a></li>
+          <li><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></li>
+          <li><p>Екатеринбург, ул.&nbsp;Шейнкмана,&nbsp;45, 2&nbsp;этаж</p></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Разделы</h3>
+        <ul>
+          <li><a href="#podbor">Подбор курса</a></li>
+          <li><a href="#kursy">Все курсы</a></li>
+          <li><a href="#ceny">Цены</a></li>
+          <li><a href="#zapis">Пробное занятие</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function plural(n,a,b,c){var m=n%10,h=n%100;if(m===1&&h!==11)return a;if(m>=2&&m<=4&&(h<12||h>14))return b;return c}
+  function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+
+  /* mobile menu */
+  var burger=$('.burger'), mnav=$('#mnav');
+  burger.addEventListener('click',function(){var o=mnav.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню')});
+  $$('#mnav a').forEach(function(a){a.addEventListener('click',function(){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false')})});
+
+  /* reveal */
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    $$('.rv').forEach(function(el){io.observe(el)});
+  } else { $$('.rv').forEach(function(el){el.classList.add('in')}); }
+
+  /* ---------- courses ---------- */
+  var COURSES=[
+    {id:'first',name:'Первые алгоритмы',a:[6,7],tags:['games','draw','math','robots'],on:true,c:'c3',price:{off:6400,on:4800},
+      make:'Интерактивная открытка и первая мини-игра с персонажем, которого ребёнок нарисовал сам',len:'8 месяцев',tool:'ScratchJr и роботы-мыши',note:'Команды — картинки, длинных текстов нет'},
+    {id:'scratch',name:'Игры на Scratch',a:[8,10],tags:['games','draw','math'],on:true,c:'c1',price:{off:6400,on:4800},
+      make:'Платформер с уровнями, счётом, жизнями и своей музыкой',len:'9 месяцев',tool:'Scratch 3'},
+    {id:'lego',name:'Роботы из LEGO',a:[7,10],tags:['robots','tech','math'],on:false,c:'c2',price:{off:7200},
+      make:'Робот, который сам объезжает препятствия по датчику расстояния',len:'9 месяцев',tool:'LEGO Education SPIKE'},
+    {id:'mc',name:'Код в Minecraft',a:[9,12],tags:['minecraft','games'],on:true,c:'c3',price:{off:6400,on:4800},
+      make:'Свой мод с новым мобом и мини-игра на сервере группы',len:'9 месяцев',tool:'Minecraft Education, блоки и Python'},
+    {id:'web',name:'Сайты с нуля',a:[11,14],tags:['web','draw'],on:true,c:'c1',price:{off:6400,on:4800},
+      make:'Сайт-портфолио или фан-страница, опубликованная в интернете по ссылке',len:'9 месяцев',tool:'HTML, CSS, JavaScript'},
+    {id:'py',name:'Python и первые игры',a:[12,14],tags:['games','math','web'],on:true,c:'c2',price:{off:6400,on:4800},
+      make:'Игра на Pygame и телеграм-бот с расписанием для класса',len:'9 месяцев',tool:'Python, Pygame'},
+    {id:'ard',name:'Электроника и Arduino',a:[11,14],tags:['robots','tech','math'],on:false,c:'c3',price:{off:7200},
+      make:'Умная метеостанция или сигнализация для своей комнаты',len:'9 месяцев',tool:'Arduino, датчики, пайка'}
+  ];
+  var TAGN={games:'видеоигры',robots:'роботы',draw:'рисование',minecraft:'Minecraft',tech:'техника',web:'сайты',math:'головоломки'};
+  var st={age:9,ints:['games'],f:'off'};
+  var ageIn=$('#age'), ageOut=$('#ageOut');
+
+  function score(c){
+    var s=0, fit;
+    if(st.age>=c.a[0]&&st.age<=c.a[1]){s+=10;fit='in'}
+    else if(st.age===c.a[0]-1||st.age===c.a[1]+1){s+=3;fit='near'}
+    else return null;
+    var m=c.tags.filter(function(t){return st.ints.indexOf(t)>-1});
+    s+=m.length*4;
+    if(st.f==='on'&&!c.on)s-=9;
+    return {c:c,s:s,fit:fit,m:m};
+  }
+  function ico(c){var t=c.tags[0];return {games:'i-game',robots:'i-robot',draw:'i-brush',minecraft:'i-cube',tech:'i-chip',web:'i-globe',math:'i-puzzle'}[c.id==='lego'||c.id==='ard'?'robots':t]}
+  function priceOf(c){if(st.f==='on'&&c.price.on)return c.price.on;return c.price.off}
+  function renderPick(){
+    var list=COURSES.map(score).filter(Boolean).sort(function(x,y){return y.s-x.s});
+    var box=$('#result'), alts=$('#alts');
+    if(!list.length){box.innerHTML='<div class="res-card"><div class="res-top"><h3>Подберём вместе</h3><p>Для этого возраста лучше созвониться: предложим группу после короткого знакомства.</p></div></div>';alts.innerHTML='';return}
+    var b=list[0], c=b.c, why=[];
+    why.push(b.fit==='in'?'Возраст: '+c.a[0]+'–'+c.a[1]+' лет':'Чуть за пределами возраста '+c.a[0]+'–'+c.a[1]+' — после знакомства');
+    if(b.m.length)why.push('Интересы: '+b.m.map(function(t){return TAGN[t]}).join(', '));
+    else why.push('Подходит как первый шаг');
+    var warn='';
+    if(st.f==='on'&&!c.on)warn='<li class="warn">Этот курс только очно</li>';
+    if(b.fit==='near')why[0]='<span>'+why[0]+'</span>';
+    var fmtTxt=(st.f==='on'&&c.on)?'Онлайн':'Очно';
+    box.innerHTML='<div class="res-card res-anim"><div class="res-top">'+
+      '<span class="res-badge"><svg width="16" height="16" aria-hidden="true"><use href="#i-star"/></svg>Лучше всего подходит</span>'+
+      '<h3>'+c.name+'</h3><p style="color:var(--muted)">'+c.tool+(c.note?'. '+c.note:'')+'</p>'+
+      '<ul class="res-why">'+why.map(function(w,i){return '<li'+(i===0&&b.fit==='near'?' class="warn"':'')+'>'+w+'</li>'}).join('')+warn+'</ul>'+
+      '<div class="res-make"><svg aria-hidden="true"><use href="#'+ico(c)+'"/></svg><div><b>Что сделает к концу курса</b>'+c.make+'</div></div></div>'+
+      '<div class="res-meta"><div><span>Длительность</span><strong>'+c.len+'</strong></div><div><span>Формат</span><strong>'+fmtTxt+'</strong></div><div><span>В месяц</span><strong>'+fmt(priceOf(c))+' ₽</strong></div></div>'+
+      '<div class="res-foot"><a class="btn btn-vi" href="#zapis" data-course="'+c.id+'">Записаться на пробное</a></div></div>';
+    if(reduce){var rc=box.querySelector('.res-anim');if(rc)rc.classList.remove('res-anim')}
+    var rest=list.slice(1,3);
+    alts.innerHTML=rest.length?'<p>Ещё подойдёт</p>'+rest.map(function(r){return '<button class="alt" type="button" data-alt="'+r.c.id+'">'+r.c.name+'<span>'+r.c.a[0]+'–'+r.c.a[1]+' лет'+(st.f==='on'&&!r.c.on?', очно':'')+'</span></button>'}).join(''):'';
+    $$('[data-course]',box).forEach(function(a){a.addEventListener('click',function(){prefill(c.id)})});
+    $$('.alt',alts).forEach(function(btn){btn.addEventListener('click',function(){
+      var id=btn.getAttribute('data-alt');var cc=COURSES.filter(function(x){return x.id===id})[0];
+      st.ints=cc.tags.slice(0,2);syncChips();renderPick();
+    })});
+    renderTrack();
+  }
+  function syncChips(){$$('#chips .chip').forEach(function(ch){ch.setAttribute('aria-pressed',st.ints.indexOf(ch.getAttribute('data-i'))>-1)})}
+  function setAge(v){
+    st.age=+v;ageOut.innerHTML=v+'<small>'+plural(+v,'год','года','лет')+'</small>';
+    ageIn.setAttribute('aria-valuetext',v+' '+plural(+v,'год','года','лет'));
+    ageIn.style.setProperty('--p',((v-6)/8*100)+'%');
+    var fa=d.getElementById('fAge');if(fa&&fa.options.length)fa.value=v;
+  }
+  ageIn.addEventListener('input',function(){setAge(ageIn.value);renderPick()});
+  $$('#chips .chip').forEach(function(ch){ch.addEventListener('click',function(){
+    var k=ch.getAttribute('data-i'),i=st.ints.indexOf(k);
+    if(i>-1)st.ints.splice(i,1);else st.ints.push(k);
+    syncChips();renderPick();
+  })});
+  $$('#fmt button').forEach(function(b){b.addEventListener('click',function(){
+    st.f=b.getAttribute('data-f');
+    $$('#fmt button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    renderPick();
+  })});
+
+  /* track */
+  var lanes=$('#lanes');
+  function renderTrack(){
+    var pos=(st.age-6)/8*100;
+    if(!lanes.firstChild){
+      var h='';
+      COURSES.forEach(function(c){
+        var l=(c.a[0]-6)/8*100, w=(c.a[1]-c.a[0])/8*100;
+        h+='<div class="t-row" data-id="'+c.id+'"><div class="t-name">'+c.name+'<small>'+c.tool+(c.on?'':' · только очно')+'</small></div>'+
+           '<div class="t-lane"><div class="t-bar '+c.c+'" style="left:calc('+l+'% - 2px);width:calc('+w+'% + 4px);min-width:64px">'+c.a[0]+'–'+c.a[1]+' лет</div><div class="t-mkw" aria-hidden="true"><i></i></div></div></div>';
+      });
+      lanes.innerHTML=h;
+    }
+    lanes.style.setProperty('--pos',pos);
+    $('#tAges').style.setProperty('--pos',pos);
+    $('#mkT').textContent=st.age+' '+plural(st.age,'год','года','лет');
+    $$('.t-row',lanes).forEach(function(r){
+      var c=COURSES.filter(function(x){return x.id===r.getAttribute('data-id')})[0];
+      r.classList.toggle('dim',!(st.age>=c.a[0]&&st.age<=c.a[1]));
+    });
+  }
+
+
+  /* ---------- game ---------- */
+  var LV=[
+    {start:{x:0,y:4,d:1},star:{x:4,y:4},walls:[[1,2],[2,2],[3,2],[4,1]],max:6,task:'Доведите Бипа до звезды',hint:'Звезда в 4 клетках справа. Можно поставить 4 блока «Шаг вперёд» или один и нажать на него, чтобы повторить.'},
+    {start:{x:0,y:5,d:0},star:{x:4,y:1},walls:[[2,5],[2,4],[2,3],[4,3],[5,2],[1,0],[3,4]],max:6,task:'Обойдите стену',hint:'Сначала вверх, потом поворот. Помните: «направо» — это направо для Бипа, а не для вас.'},
+    {start:{x:0,y:0,d:1},star:{x:5,y:5},walls:[[1,1],[2,1],[3,1],[4,1],[4,2],[4,3],[1,3],[2,3],[1,4],[3,5],[2,5]],max:3,task:'Не больше трёх блоков',hint:'Дорога длинная, а блоков всего три. Нажимайте на блок в программе, чтобы он повторился несколько раз.'}
+  ];
+  var DIRN=['вверх','вправо','вниз','влево'], DX=[0,1,0,-1], DY=[-1,0,1,0];
+  var g={lv:0,prog:[],running:false,bot:null,rot:0,done:[false,false,false],unlocked:1};
+  var board=$('#board'), progEl=$('#prog'), statusEl=$('#gStatus');
+  function setStatus(t,cls,icon){
+    statusEl.className='g-status'+(cls?' '+cls:'');
+    statusEl.innerHTML=(icon?'<svg aria-hidden="true"><use href="#'+icon+'"/></svg>':'')+'<span>'+t+'</span>';
+  }
+  function isWall(x,y){return LV[g.lv].walls.some(function(w){return w[0]===x&&w[1]===y})}
+  function buildBoard(){
+    var L=LV[g.lv], h='';
+    for(var y=0;y<6;y++)for(var x=0;x<6;x++)h+='<div class="cell'+(isWall(x,y)?' wall':'')+'" data-x="'+x+'" data-y="'+y+'"></div>';
+    h+='<div class="star" id="star" style="left:'+(L.star.x/6*100)+'%;top:'+(L.star.y/6*100)+'%"><svg aria-hidden="true"><use href="#i-star"/></svg></div>';
+    h+='<div class="bot" id="bot"><div class="inner"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#i-bot"/></svg></div></div>';
+    board.innerHTML=h;
+    board.setAttribute('aria-label','Игровое поле 6 на 6 клеток, уровень '+(g.lv+1)+'. Бип в клетке '+(L.start.x+1)+'-'+(L.start.y+1)+', звезда в клетке '+(L.star.x+1)+'-'+(L.star.y+1)+'.');
+    $('#starPos').textContent=(L.star.x+1)+'-'+(L.star.y+1);
+    $('#gTask').innerHTML=L.task+'<small>'+L.hint+'</small>';
+    $('#pMax').textContent=L.max;
+    placeBot(L.start.x,L.start.y,L.start.d,true);
+  }
+  function placeBot(x,y,dir,instant){
+    var b=$('#bot');
+    if(instant){b.style.transition='none';b.firstChild.style.transition='none'}
+    g.bot={x:x,y:y,d:dir};
+    if(instant)g.rot=dir*90;
+    b.style.transform='translate('+(x*100)+'%,'+(y*100)+'%)';
+    b.firstChild.style.transform='rotate('+g.rot+'deg)';
+    if(instant){b.offsetWidth;b.style.transition='';b.firstChild.style.transition=''}
+    $('#botPos').textContent='Бип: клетка '+(x+1)+'-'+(y+1)+', смотрит '+DIRN[dir];
+  }
+  function renderProg(){
+    var L=LV[g.lv];
+    progEl.innerHTML=g.prog.map(function(p,i){
+      var name=p.c==='f'?'Шаг вперёд':p.c==='l'?'Налево':'Направо', ic=p.c==='f'?'i-up':p.c==='l'?'i-left':'i-right';
+      return '<li class="'+p.c+(p.fresh?' new':'')+'" data-i="'+i+'"><button type="button" class="pb" aria-label="'+name+', повторить '+p.n+' '+plural(p.n,'раз','раза','раз')+'. Нажмите, чтобы изменить число повторов"><svg aria-hidden="true"><use href="#'+ic+'"/></svg>'+name+'<span class="rep">×'+p.n+'</span></button><button type="button" class="px" aria-label="Удалить блок '+(i+1)+'"><svg aria-hidden="true"><use href="#i-x"/></svg></button></li>';
+    }).join('');
+    g.prog.forEach(function(p){p.fresh=false});
+    $('#progEmpty').style.display=g.prog.length?'none':'';
+    $('#pCount').textContent=g.prog.length;
+    var full=g.prog.length>=L.max;
+    $$('.cmd').forEach(function(b){b.disabled=g.running||full});
+    $('#run').disabled=g.running||!g.prog.length;
+    $$('.pb,.px',progEl).forEach(function(b){b.disabled=g.running});
+  }
+  progEl.addEventListener('click',function(e){
+    if(g.running)return;
+    var li=e.target.closest('li');if(!li)return;
+    var i=+li.getAttribute('data-i');
+    if(e.target.closest('.px')){g.prog.splice(i,1);renderProg();resetBot();setStatus('Блок удалён. В программе '+g.prog.length+' '+plural(g.prog.length,'блок','блока','блоков')+'.');return}
+    if(e.target.closest('.pb')){g.prog[i].n=g.prog[i].n%5+1;renderProg();var nb=$('li[data-i="'+i+'"] .pb',progEl);if(nb)nb.focus();setStatus('Блок '+(i+1)+' повторится '+g.prog[i].n+' '+plural(g.prog[i].n,'раз','раза','раз')+'.')}
+  });
+  $$('.cmd').forEach(function(b){b.addEventListener('click',function(){
+    if(g.running||g.prog.length>=LV[g.lv].max)return;
+    g.prog.push({c:b.getAttribute('data-c'),n:1,fresh:true});renderProg();
+    if(g.prog.length>=LV[g.lv].max)setStatus('Блоки закончились. Нажмите на блок, чтобы повторить его, или удалите лишний.','', 'i-puzzle');
+    else setStatus('Добавлен блок «'+b.textContent.trim()+'». Блоков: '+g.prog.length+'.');
+  })});
+  function clearTrail(){$$('.cell.trail',board).forEach(function(c){c.classList.remove('trail')})}
+  function resetBot(){var L=LV[g.lv];clearTrail();var s=$('#star');if(s)s.classList.remove('got');placeBot(L.start.x,L.start.y,L.start.d,true)}
+  function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+  function run(){
+    if(g.running||!g.prog.length)return;
+    resetBot();
+    g.running=true;renderProg();
+    setStatus('Бип выполняет программу…','', 'i-play');
+    var steps=[];
+    g.prog.forEach(function(p,i){for(var k=0;k<p.n;k++)steps.push({c:p.c,i:i})});
+    var dt=reduce?140:420, L=LV[g.lv], idx=0, count=0;
+    function mark(i){$$('li',progEl).forEach(function(li){li.classList.toggle('now',+li.getAttribute('data-i')===i)})}
+    function finish(){g.running=false;mark(-1);renderProg()}
+    (function next(){
+      if(idx>=steps.length){
+        if(g.bot.x===L.star.x&&g.bot.y===L.star.y){win();}
+        else{setStatus('Программа закончилась, а до звезды ещё не дошли. Бип стоит в клетке '+(g.bot.x+1)+'-'+(g.bot.y+1)+'. Добавьте блоки и попробуйте снова.','bad','i-reset');}
+        finish();return;
+      }
+      var s=steps[idx++];mark(s.i);
+      if(s.c==='f'){
+        var nx=g.bot.x+DX[g.bot.d], ny=g.bot.y+DY[g.bot.d];
+        if(nx<0||ny<0||nx>5||ny>5||isWall(nx,ny)){
+          var b=$('#bot');b.classList.remove('crash');b.offsetWidth;b.classList.add('crash');
+          setStatus('Ой! На шаге '+(count+1)+' Бип упёрся '+(nx<0||ny<0||nx>5||ny>5?'в край поля':'в стену')+'. Поправьте программу и запустите ещё раз.','bad','i-x');
+          finish();return;
+        }
+        var cell=$('.cell[data-x="'+g.bot.x+'"][data-y="'+g.bot.y+'"]',board);if(cell)cell.classList.add('trail');
+        placeBot(nx,ny,g.bot.d,false);count++;
+      } else {
+        var nd=s.c==='l'?(g.bot.d+3)%4:(g.bot.d+1)%4;
+        g.rot+=s.c==='l'?-90:90;
+        placeBot(g.bot.x,g.bot.y,nd,false);
+      }
+      setTimeout(next,dt);
+    })();
+  }
+  function win(){
+    var s=$('#star');if(s)s.classList.add('got');
+    g.done[g.lv]=true;
+    var blocks=g.prog.length, steps=g.prog.reduce(function(a,p){return a+p.n},0);
+    var lv=$$('.lvl');lv[g.lv].classList.add('done');
+    if(g.lv<2){
+      g.unlocked=Math.max(g.unlocked,g.lv+2);lv[g.lv+1].disabled=false;
+      setStatus('Получилось! '+steps+' '+plural(steps,'команда','команды','команд')+' в '+blocks+' '+plural(blocks,'блоке','блоках','блоках')+'. Открыт уровень '+(g.lv+2)+'.','ok','i-check');
+      var nb=d.createElement('button');nb.type='button';nb.className='btn btn-or';nb.style.marginLeft='auto';nb.style.minHeight='44px';nb.textContent='Дальше';
+      nb.addEventListener('click',function(){setLevel(g.lv+1)});statusEl.appendChild(nb);
+    } else {
+      setStatus('Все три уровня пройдены. Вы только что написали цикл. На пробном занятии такие задачи решают уже с настоящим роботом.','ok','i-star');
+      var a=d.createElement('a');a.href='#zapis';a.className='btn btn-or';a.style.marginLeft='auto';a.style.minHeight='44px';a.textContent='На пробное';statusEl.appendChild(a);
+    }
+  }
+  function setLevel(i){
+    if(g.running)return;
+    g.lv=i;g.prog=[];
+    $$('.lvl').forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});
+    buildBoard();renderProg();
+    setStatus('Уровень '+(i+1)+'. Добавьте блоки и нажмите «Запустить».','', 'i-puzzle');
+  }
+  $$('.lvl').forEach(function(b){b.addEventListener('click',function(){if(!b.disabled)setLevel(+b.getAttribute('data-l'))})});
+  $('#run').addEventListener('click',run);
+  $('#reset').addEventListener('click',function(){if(g.running)return;g.prog=[];renderProg();resetBot();setStatus('Программа очищена. Бип вернулся на старт.','', 'i-reset')});
+
+  /* ---------- form ---------- */
+  var fAge=$('#fAge'), fCourse=$('#fCourse');
+  for(var a=6;a<=14;a++){var o=d.createElement('option');o.value=a;o.textContent=a+' '+plural(a,'год','года','лет');fAge.appendChild(o)}
+  fCourse.innerHTML='<option value="">Пока не знаем, поможете выбрать</option>'+COURSES.map(function(c){return '<option value="'+c.id+'">'+c.name+'</option>'}).join('');
+  function prefill(id){
+    fAge.value=st.age;fCourse.value=id||'';
+    var r=d.querySelector('input[name=fmt][value="'+(st.f==='on'?'Онлайн':'Очно')+'"]');if(r)r.checked=true;
+  }
+  $$('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var r=d.querySelector('input[name=fmt][value="'+(a.getAttribute('data-plan')==='on'?'Онлайн':'Очно')+'"]');if(r)r.checked=true})});
+  var tel=$('#fTel');
+  tel.addEventListener('input',function(){
+    var v=tel.value.replace(/\D/g,'');if(v[0]==='8')v='7'+v.slice(1);if(v&&v[0]!=='7')v='7'+v;v=v.slice(0,11);
+    var o='';if(v.length){o='+7';if(v.length>1)o+=' ('+v.slice(1,4);if(v.length>=4)o+=')';if(v.length>4)o+=' '+v.slice(4,7);if(v.length>7)o+='-'+v.slice(7,9);if(v.length>9)o+='-'+v.slice(9,11)}
+    tel.value=o;
+  });
+  $('#form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#fName'), ok=true;
+    if(n.value.trim().length<2){n.setAttribute('aria-invalid','true');$('#eName').textContent='Напишите, как к вам обращаться';ok=false}else{n.removeAttribute('aria-invalid');$('#eName').textContent=''}
+    if(tel.value.replace(/\D/g,'').length<11){tel.setAttribute('aria-invalid','true');$('#eTel').textContent='Нужен номер из 11 цифр';ok=false}else{tel.removeAttribute('aria-invalid');$('#eTel').textContent=''}
+    if(!ok){(n.getAttribute('aria-invalid')?n:tel).focus();return}
+    var fm=d.querySelector('input[name=fmt]:checked').value, tm=d.querySelector('input[name=time]:checked').value;
+    var cn=fCourse.value?fCourse.options[fCourse.selectedIndex].text:'Подберём на звонке';
+    var box=$('#formBox');
+    box.innerHTML='<div class="done" tabindex="-1"><div class="tick"><svg aria-hidden="true"><use href="#i-check"/></svg></div><h3>Заявка принята</h3><p>'+n.value.trim().replace(/[<>&"]/g,'')+', администратор позвонит, чтобы подобрать группу и время пробного занятия.</p>'+
+      '<dl><dt>Ребёнку</dt><dd>'+fAge.options[fAge.selectedIndex].text+'</dd><dt>Курс</dt><dd>'+cn+'</dd><dt>Формат</dt><dd>'+fm+'</dd><dt>Время</dt><dd>'+tm+'</dd></dl>'+
+      '<p style="font-size:.9rem">Это демо: заявка никуда не отправлена.</p></div>';
+    var dn=box.querySelector('.done');dn.focus();
+  });
+
+  /* init */
+  setAge(9);renderPick();setLevel(0);fAge.value=st.age;
+})();
+</script>
+</body>
+</html>

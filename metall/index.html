@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>СтальКонструкт — завод металлоконструкций: расчёт, КМД, производство, монтаж</title>
+<meta name="description" content="Изготовление металлоконструкций для строительства: каркасы зданий, фермы, лестницы, опоры. Онлайн-расчёт стоимости и срока, загрузка ТЗ, прозрачные этапы производства.">
+<meta property="og:title" content="СтальКонструкт — металлоконструкции от КМД до монтажа">
+<meta property="og:description" content="Калькулятор металлоконструкций по тоннажу, покраске и монтажу. Отправьте ТЗ — пришлём КП с графиком производства.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1e252b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231e252b'/%3E%3Cpath d='M8 8h16M8 24h16M16 8v16' stroke='%23ff5b14' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --bg:#e7eaed;
+  --paper:#f6f7f8;
+  --line:#c3cad0;
+  --line-d:#1e252b;
+  --steel:#56616b;
+  --steel-l:#8b959e;
+  --ink:#1e252b;
+  --ink2:#2b343c;
+  --ink3:#38434c;
+  --sig:#ff5b14;
+  --sig-d:#c73f04;
+  --on-dark:#e9edf0;
+  --on-dark-m:#aab4bc;
+  --ok:#2f7d4a;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --disp:"Oswald","Arial Narrow",sans-serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1360px;
+  --gut:clamp(16px,3.4vw,40px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden;font-variant-numeric:tabular-nums}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--disp);font-weight:600;line-height:1.02;letter-spacing:-.005em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--sig);outline-offset:2px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--sig);color:var(--ink);padding:10px 14px;z-index:100;font-weight:600}
+.skip:focus{top:12px}
+.num{font-family:var(--disp);font-weight:500;letter-spacing:.01em}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 26px;border:2px solid transparent;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,color .2s ease,border-color .2s ease;white-space:nowrap;border-radius:0}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-sig{background:var(--sig);color:var(--ink)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-line{border-color:currentColor;background:transparent}
+@media (hover:hover) and (pointer:fine){
+  .btn-sig:hover{background:#ff7a3d}
+  .btn-dark:hover{background:var(--ink3)}
+  .btn-line:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .dark .btn-line:hover{background:#fff;color:var(--ink);border-color:#fff}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:var(--ink);color:var(--on-dark);border-bottom:2px solid var(--sig)}
+.hdr .wrap{display:flex;align-items:center;height:64px;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:.01em;min-height:44px}
+.logo svg{width:34px;height:34px;flex:none}
+.nav{display:flex;margin-left:auto;height:100%}
+.nav a{display:flex;align-items:center;padding:0 16px;text-decoration:none;font-size:15px;color:var(--on-dark-m);border-left:1px solid var(--ink3);transition:color .2s ease,background-color .2s ease}
+.nav a:last-child{border-right:1px solid var(--ink3)}
+.hdr-ph{font-family:var(--disp);font-size:18px;text-decoration:none;letter-spacing:.02em;display:flex;align-items:center;min-height:44px}
+.hdr .btn{min-height:44px;padding:0 18px;font-size:15px}
+.burger{display:none;width:46px;height:46px;background:transparent;border:1px solid var(--ink3);cursor:pointer;align-items:center;justify-content:center;color:#fff}
+.burger svg{width:22px;height:22px}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:#fff;background:var(--ink2)}}
+.mnav{display:none}
+@media (max-width:1120px){
+  .nav,.hdr .btn{display:none}
+  .hdr-ph{margin-left:auto}
+  .burger{display:inline-flex}
+  .mnav{display:block;position:fixed;top:66px;left:0;right:0;background:var(--ink);color:#fff;z-index:49;padding:8px var(--gut) 24px;border-bottom:2px solid var(--sig);opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .2s var(--ease),transform .25s var(--ease),visibility 0s .25s}
+  .mnav.open{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity .2s var(--ease),transform .25s var(--ease)}
+  .mnav a{display:flex;align-items:center;min-height:52px;border-bottom:1px solid var(--ink3);text-decoration:none;font-family:var(--disp);font-size:22px}
+  .mnav .btn{margin-top:18px;width:100%;font-family:var(--sans);font-size:16px;border:0}
+}
+@media (max-width:560px){.hdr-ph{font-size:16px}.logo span{font-size:19px}}
+@media (max-width:400px){.hdr-ph{display:none}.burger{margin-left:auto}}
+
+/* hero */
+.hero{background:var(--ink);color:var(--on-dark);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));min-height:min(720px,calc(100vh - 166px));border-left:1px solid var(--ink3)}
+.hero-txt{grid-column:1/8;padding:clamp(40px,6vw,88px) clamp(20px,3vw,48px) 40px 0;display:flex;flex-direction:column;position:relative;z-index:2}
+.hero-tag{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--on-dark-m);margin-bottom:auto;padding-left:var(--gut)}
+.hero-tag i{width:14px;height:14px;background:var(--sig);flex:none}
+.hero h1{font-size:clamp(44px,6.1vw,112px);line-height:.92;letter-spacing:-.01em;font-weight:600;text-transform:uppercase;margin:48px 0 0;padding-left:var(--gut)}
+.hero h1 .o{display:block;color:var(--sig)}
+.hero-lead{margin-top:28px;max-width:560px;font-size:clamp(17px,1.35vw,19px);color:var(--on-dark-m);padding-left:var(--gut)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;padding-left:var(--gut)}
+.hero-cta .btn-line{color:#fff}
+.hero-photo{grid-column:8/13;position:relative;background:linear-gradient(160deg,#38434c,#1e252b 70%);overflow:hidden;border-left:1px solid var(--ink3)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,37,43,.55),transparent 40%)}
+.spark{position:absolute;right:24px;bottom:24px;z-index:2;background:var(--sig);color:var(--ink);padding:14px 18px;max-width:260px;font-size:14px;line-height:1.4;font-weight:500}
+.spark b{display:block;font-family:var(--disp);font-size:22px;font-weight:600;margin-bottom:2px}
+.hero-cols{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);pointer-events:none;z-index:1}
+.hero-cols span{border-right:1px solid rgba(255,255,255,.05)}
+.prods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink3);background:var(--ink2)}
+.prod{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:22px clamp(16px,2vw,28px);text-decoration:none;color:var(--on-dark);border-right:1px solid var(--ink3);min-height:96px;transition:background-color .2s ease;cursor:pointer;background:transparent;border-top:0;border-bottom:0;border-left:0;text-align:left;width:100%}
+.prod:last-child{border-right:0}
+.prod svg.ic{width:44px;height:44px;stroke:var(--sig);flex:none}
+.prod b{display:block;font-family:var(--disp);font-weight:500;font-size:20px;line-height:1.1}
+.prod span{display:block;font-size:13.5px;color:var(--on-dark-m);margin-top:3px}
+.prod .ar{width:20px;height:20px;stroke:var(--on-dark-m);transition:transform .2s var(--ease)}
+.prod:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.prod:hover{background:var(--ink3)}.prod:hover .ar{transform:translateX(4px);stroke:var(--sig)}}
+
+/* sections */
+.sec{padding:clamp(72px,9vw,128px) 0}
+.sec-h{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 24px;margin-bottom:clamp(36px,5vw,60px);align-items:end;border-top:2px solid var(--ink);padding-top:22px}
+.sec-h .k{grid-column:1/4;font-size:15px;color:var(--steel);display:flex;gap:10px;align-items:center;align-self:start}
+.sec-h .k i{width:12px;height:12px;background:var(--sig)}
+.sec-h h2{grid-column:4/10;font-size:clamp(36px,5vw,72px);text-transform:uppercase;letter-spacing:-.005em}
+.sec-h p{grid-column:10/13;color:var(--steel);font-size:16px}
+.dark{background:var(--ink);color:var(--on-dark)}
+.dark .sec-h{border-top-color:var(--sig)}
+.dark .sec-h .k,.dark .sec-h p{color:var(--on-dark-m)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);border:2px solid var(--ink);background:var(--paper)}
+.calc-in{border-right:2px solid var(--ink)}
+.cell{padding:clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
+.cell:last-child{border-bottom:0}
+.cell-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;margin-bottom:16px}
+.cell-h h3{font-size:22px;font-weight:500;text-transform:uppercase;letter-spacing:.01em}
+.cell-h span{font-size:14px;color:var(--steel)}
+.types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--ink)}
+.type{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:14px 12px 16px;border:0;border-right:1px solid var(--ink);background:var(--paper);cursor:pointer;text-align:left;min-height:150px;transition:background-color .2s ease,color .2s ease}
+.type:last-child{border-right:0}
+.type svg{width:46px;height:46px;stroke:var(--ink)}
+.type b{font-family:var(--disp);font-weight:500;font-size:17px;line-height:1.1}
+.type span{font-size:13px;color:var(--steel);line-height:1.35;margin-top:auto}
+.type[aria-pressed="true"]{background:var(--ink);color:#fff}
+.type[aria-pressed="true"] svg{stroke:var(--sig)}
+.type[aria-pressed="true"] span{color:var(--on-dark-m)}
+.type:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.type[aria-pressed="false"]:hover{background:#e3e7ea}}
+.ton-row{display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:center}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;margin:0}
+.range::-webkit-slider-runnable-track{height:8px;background:linear-gradient(90deg,var(--sig) var(--p,10%),var(--line) var(--p,10%))}
+.range::-moz-range-track{height:8px;background:var(--line)}
+.range::-moz-range-progress{height:8px;background:var(--sig)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;background:var(--ink);border:4px solid var(--sig);border-radius:0}
+.range::-moz-range-thumb{width:22px;height:22px;background:var(--ink);border:4px solid var(--sig);border-radius:0}
+.range:focus-visible{outline-offset:4px}
+.ton-in{display:flex;align-items:center;border:2px solid var(--ink);background:#fff;min-height:54px}
+.ton-in input{width:100%;min-width:0;border:0;background:transparent;font-family:var(--disp);font-size:24px;padding:0 0 0 14px;height:50px}
+.ton-in input:focus{outline:none}
+.ton-in span{padding:0 14px;color:var(--steel);font-size:15px}
+.ton-in:focus-within{border-color:var(--sig)}
+.scale{display:flex;justify-content:space-between;font-size:13px;color:var(--steel);margin-top:2px}
+.seg{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));border:1px solid var(--ink)}
+.seg button{min-height:52px;padding:8px 12px;border:0;border-right:1px solid var(--ink);background:var(--paper);cursor:pointer;font-size:15px;line-height:1.25;text-align:left;transition:background-color .2s ease,color .2s ease}
+.seg button:last-child{border-right:0}
+.seg button small{display:block;font-size:12.5px;color:var(--steel);margin-top:2px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg button[aria-pressed="true"] small{color:var(--on-dark-m)}
+@media (hover:hover) and (pointer:fine){.seg button[aria-pressed="false"]:hover{background:#e3e7ea}}
+.toggles{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+.tg{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:16px;cursor:pointer;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);min-height:44px;background:var(--paper);transition:background-color .2s ease}
+.tg:nth-child(2n){border-right:0}
+.tg:nth-last-child(-n+2){border-bottom:0}
+.tg input{position:absolute;opacity:0;width:1px;height:1px}
+.sw{width:44px;height:26px;background:var(--line);position:relative;flex:none;margin-top:1px;transition:background-color .2s ease}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;background:#fff;transition:transform .22s var(--ease)}
+.tg input:checked+.sw{background:var(--sig)}
+.tg input:checked+.sw::after{transform:translateX(18px);background:var(--ink)}
+.tg input:focus-visible+.sw{outline:3px solid var(--sig);outline-offset:2px}
+.tg b{display:block;font-weight:600;font-size:15.5px}
+.tg small{display:block;color:var(--steel);font-size:13.5px;line-height:1.4;margin-top:2px}
+@media (hover:hover) and (pointer:fine){.tg:hover{background:#eef0f2}}
+.km{margin-top:16px;display:none}
+.km.on{display:block}
+.km label{font-size:14px;color:var(--steel);display:block;margin-bottom:2px}
+
+.calc-out{background:var(--ink);color:var(--on-dark);display:flex;flex-direction:column}
+.tape{height:14px;background:repeating-linear-gradient(-45deg,var(--sig) 0 14px,var(--ink) 14px 28px)}
+.out-in{padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:22px;position:sticky;top:76px}
+.out-k{font-size:14px;color:var(--on-dark-m)}
+.out-total{font-family:var(--disp);font-weight:600;font-size:clamp(44px,4.8vw,72px);line-height:1;letter-spacing:-.01em;margin-top:6px;color:#fff}
+.out-total small{font-size:.4em;color:var(--on-dark-m);font-weight:400;margin-left:6px}
+.out-sub{font-size:14px;color:var(--on-dark-m);margin-top:6px}
+.kv{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink3);border-left:1px solid var(--ink3)}
+.kv div{padding:14px;border-right:1px solid var(--ink3);border-bottom:1px solid var(--ink3)}
+.kv dt{font-size:13px;color:var(--on-dark-m)}
+.kv dd{margin:4px 0 0;font-family:var(--disp);font-size:24px;font-weight:500;color:#fff}
+.bar{display:flex;height:16px;background:var(--ink3);overflow:hidden}
+.bar span{height:100%;transition:flex-grow .5s var(--ease);flex-basis:0;min-width:0}
+.legend{display:grid;gap:8px;font-size:14px}
+.legend li{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center}
+.legend i{width:12px;height:12px}
+.legend b{font-weight:500;color:#fff;font-family:var(--disp);font-size:16px;letter-spacing:.01em}
+.legend li.off{opacity:.45}
+.c1{background:#e9edf0}.c2{background:var(--sig)}.c3{background:#8b959e}.c4{background:#ffb48c}.c5{background:#4f8fb8}
+.out-note{font-size:13.5px;color:var(--on-dark-m);line-height:1.5;border-top:1px solid var(--ink3);padding-top:16px}
+.out-cta{display:grid;gap:10px}
+.out-cta .btn-line{color:#fff}
+
+/* gantt */
+.gantt{margin-top:clamp(40px,5vw,64px);border:2px solid var(--ink);background:var(--paper)}
+.gantt-h{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px clamp(16px,2.4vw,28px);border-bottom:2px solid var(--ink)}
+.gantt-h h3{font-size:24px;text-transform:uppercase;font-weight:500}
+.gantt-h p{font-size:15px;color:var(--steel)}
+.gantt-h p b{color:var(--ink);font-family:var(--disp);font-size:20px;font-weight:600}
+.g-body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.g-rows{border-right:2px solid var(--ink);position:relative}
+.g-row{display:grid;grid-template-columns:230px 1fr;align-items:stretch;border-bottom:1px solid var(--line);width:100%;background:transparent;border-top:0;border-left:0;border-right:0;padding:0;cursor:pointer;text-align:left;min-height:58px;transition:background-color .2s ease}
+.g-row:last-child{border-bottom:0}
+.g-row .gl{display:flex;align-items:center;gap:12px;padding:10px 16px;border-right:1px solid var(--line);font-size:15px;line-height:1.25}
+.g-row .gl i{font-style:normal;font-family:var(--disp);font-size:14px;width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--ink);flex:none}
+.g-row .gt{position:relative;background-image:repeating-linear-gradient(90deg,transparent 0 calc(100%/8 - 1px),var(--line) calc(100%/8 - 1px) calc(100%/8));}
+.g-row .gb{position:absolute;top:50%;height:22px;margin-top:-11px;background:var(--ink);transform-origin:left;transition:left .5s var(--ease),width .5s var(--ease)}
+.g-row .gb span{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);font-size:13px;color:var(--steel);white-space:nowrap}
+.g-row.flip .gb span{left:auto;right:calc(100% + 8px)}
+.g-row[aria-pressed="true"]{background:#e3e7ea}
+.g-row[aria-pressed="true"] .gl i{background:var(--sig);border-color:var(--sig)}
+.g-row[aria-pressed="true"] .gb{background:var(--sig)}
+.g-row.skip .gb{background:transparent;border:1.5px dashed var(--steel-l)}
+.g-row.skip .gl{color:var(--steel-l)}
+@media (hover:hover) and (pointer:fine){.g-row:hover{background:#eceff1}}
+.g-detail{padding:clamp(20px,2.4vw,30px)}
+.g-detail .gd-n{font-family:var(--disp);font-size:15px;color:var(--steel)}
+.g-detail h4{font-size:30px;text-transform:uppercase;font-weight:500;margin:6px 0 12px}
+.g-detail p{color:var(--ink3);font-size:16px}
+.g-detail ul{margin-top:18px;border-top:1px solid var(--line)}
+.g-detail li{padding:10px 0 10px 26px;border-bottom:1px solid var(--line);font-size:15px;position:relative}
+.g-detail li::before{content:"";position:absolute;left:0;top:17px;width:12px;height:2px;background:var(--sig)}
+.g-detail .gd-anim{animation:fade .35s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.g-axis{display:grid;grid-template-columns:230px 1fr;border-top:1px solid var(--line);font-size:12.5px;color:var(--steel)}
+.g-axis div:last-child{display:flex;justify-content:space-between;padding:6px 8px}
+
+/* upload */
+.up{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:2px solid var(--sig)}
+.drop{position:relative;padding:clamp(22px,3vw,40px);border-right:1px solid var(--ink3);display:flex;flex-direction:column;gap:18px}
+.dz{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;min-height:260px;border:2px dashed var(--steel-l);padding:24px;cursor:pointer;transition:border-color .2s ease,background-color .2s ease}
+.dz svg{width:56px;height:56px;stroke:var(--sig)}
+.dz b{font-family:var(--disp);font-weight:500;font-size:24px;text-transform:uppercase;color:#fff}
+.dz span{font-size:14.5px;color:var(--on-dark-m);max-width:340px}
+.dz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.dz.over{border-color:var(--sig);background:rgba(255,91,20,.08)}
+.dz:focus-within{border-color:var(--sig)}
+@media (hover:hover) and (pointer:fine){.dz:hover{border-color:#fff}}
+.files{display:grid;gap:8px}
+.file{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;padding:12px;background:var(--ink2);border:1px solid var(--ink3);animation:fade .3s var(--ease)}
+.file .ext{width:40px;height:40px;display:grid;place-items:center;background:var(--ink3);font-family:var(--disp);font-size:12px;color:var(--sig);text-transform:uppercase}
+.file .fn,.file .fs,.file .pb{display:block}
+.file .fn{font-size:14.5px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file .fs{font-size:12.5px;color:var(--on-dark-m);margin-top:2px}
+.file .pb{height:4px;background:var(--ink3);margin-top:8px;overflow:hidden}
+.file .pb i{display:block;height:100%;background:var(--sig);transform-origin:left;transform:scaleX(0);transition:transform 1.2s var(--ease)}
+.file.done .pb i{transform:scaleX(1)}
+.file .rm{width:44px;height:44px;border:0;background:transparent;color:var(--on-dark-m);cursor:pointer;display:grid;place-items:center}
+.file .rm svg{width:18px;height:18px}
+@media (hover:hover) and (pointer:fine){.file .rm:hover{color:#fff}}
+.demo-files{font-size:14px;color:var(--on-dark-m)}
+.demo-files button{background:none;border:0;color:#fff;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 0;min-height:44px}
+.uform{padding:clamp(22px,3vw,40px)}
+.uform h3{font-size:clamp(28px,2.8vw,40px);text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.uform>div>p{color:var(--on-dark-m);margin-bottom:22px;font-size:16px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.fld label{font-size:14px;color:var(--on-dark-m)}
+.fld input,.fld textarea{min-height:52px;border:1px solid var(--ink3);background:var(--ink2);color:#fff;padding:0 14px;font-size:16px;border-radius:0;width:100%}
+.fld textarea{min-height:100px;padding:12px 14px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--sig)}
+.fld .err{font-size:13.5px;color:#ffa37a}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.attach{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:14px;border:1px solid var(--ink3);margin-bottom:16px;cursor:pointer;font-size:14.5px;min-height:44px}
+.attach input{width:20px;height:20px;accent-color:var(--sig);margin:1px 0 0}
+.attach small{display:block;color:var(--on-dark-m);font-size:13.5px;margin-top:4px;line-height:1.45}
+.accepted .ok{width:64px;height:64px;background:var(--sig);display:grid;place-items:center;margin-bottom:22px}
+.accepted .ok svg{width:30px;height:30px;stroke:var(--ink)}
+.accepted h3{margin-bottom:12px}
+.accepted p{color:var(--on-dark-m)}
+.accepted ol{margin-top:22px;border-top:1px solid var(--ink3);counter-reset:a}
+.accepted li{padding:12px 0 12px 40px;border-bottom:1px solid var(--ink3);position:relative;counter-increment:a;font-size:15px}
+.accepted li::before{content:counter(a);position:absolute;left:0;top:11px;width:26px;height:26px;border:1px solid var(--sig);display:grid;place-items:center;font-family:var(--disp);font-size:14px;color:var(--sig)}
+
+/* production */
+.prod-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0;border:2px solid var(--ink)}
+.pg-ph{background:linear-gradient(160deg,#56616b,#2b343c);position:relative;overflow:hidden;min-height:280px}
+.pg-ph img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:grayscale(.15)}
+.pg-a{grid-column:1/8;grid-row:span 2;min-height:560px;border-right:2px solid var(--ink)}
+.pg-b{grid-column:8/13;border-bottom:2px solid var(--ink)}
+.pg-c{grid-column:8/13}
+.pg-ph figcaption{position:absolute;left:0;bottom:0;background:var(--ink);color:#fff;padding:10px 14px;font-size:14px}
+.caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:2px solid var(--ink);border-top:0;background:var(--paper)}
+.cap{padding:24px clamp(16px,2vw,26px) 28px;border-right:1px solid var(--line)}
+.cap:last-child{border-right:0}
+.cap svg{width:40px;height:40px;stroke:var(--ink);margin-bottom:18px}
+.cap h3{font-size:21px;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.cap p{font-size:15px;color:var(--steel)}
+
+/* docs */
+.docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink3);border-left:1px solid var(--ink3)}
+.doc{padding:26px clamp(16px,2vw,28px) 30px;border-right:1px solid var(--ink3);border-bottom:1px solid var(--ink3);display:grid;grid-template-columns:auto 1fr;gap:18px}
+.doc svg{width:36px;height:36px;stroke:var(--sig)}
+.doc h3{font-size:20px;text-transform:uppercase;font-weight:500;margin-bottom:6px;color:#fff}
+.doc p{font-size:15px;color:var(--on-dark-m)}
+
+/* contacts */
+.cont{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border:2px solid var(--ink);background:var(--paper)}
+.ct-l{grid-column:1/6;padding:clamp(22px,3vw,40px);border-right:2px solid var(--ink);display:flex;flex-direction:column;gap:26px}
+.ct-l dl{margin:0;display:grid;gap:18px}
+.ct-l dt{font-size:14px;color:var(--steel)}
+.ct-l dd{margin:4px 0 0;font-size:18px}
+.ct-l dd a{text-decoration:none;font-family:var(--disp);font-size:26px;display:inline-flex;align-items:center;min-height:44px}
+.ct-l dd a.m{font-family:var(--sans);font-size:18px;text-decoration:underline;text-underline-offset:4px}
+.ct-map{grid-column:6/13;position:relative;min-height:420px;background:#dfe3e6}
+.ct-map svg{position:absolute;inset:0;width:100%;height:100%}
+
+.foot{background:var(--ink);color:var(--on-dark-m);padding:44px 0 52px;font-size:14px;border-top:2px solid var(--sig)}
+.foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.foot .logo{color:#fff;margin-bottom:12px}
+.foot a{color:#fff}
+.foot p+p{margin-top:6px}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
+.js .hero h1 .ln{display:block;overflow:hidden}
+.js .hero h1 .ln>span{display:block;transform:translateY(105%);transition:transform .9s var(--ease)}
+.js .hero.go h1 .ln>span{transform:none}
+.js .hero.go h1 .ln:nth-child(2)>span{transition-delay:.08s}
+.js .hero.go h1 .ln:nth-child(3)>span{transition-delay:.16s}
+
+@media (max-width:1180px){
+  .types{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .type{border-bottom:1px solid var(--ink)}
+  .type:nth-child(3){border-right:0}
+  .type:nth-child(n+4){border-bottom:0}
+  .prods{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prod:nth-child(2){border-right:0}
+  .prod:nth-child(-n+2){border-bottom:1px solid var(--ink3)}
+  .g-row,.g-axis{grid-template-columns:180px 1fr}
+}
+@media (max-width:1000px){
+  .hero-txt{grid-column:1/-1;padding-right:var(--gut)}
+  .hero-photo{grid-column:1/-1;min-height:340px;border-left:0;border-top:1px solid var(--ink3)}
+  .hero-grid{min-height:0;border-left:0}
+  .hero-tag{margin-bottom:0}
+  .sec-h .k{grid-column:1/-1;margin-bottom:14px}
+  .sec-h h2{grid-column:1/-1}
+  .sec-h p{grid-column:1/-1;margin-top:16px;max-width:620px}
+  .calc{grid-template-columns:minmax(0,1fr)}
+  .calc-in{border-right:0;border-bottom:2px solid var(--ink)}
+  .out-in{position:static}
+  .g-body{grid-template-columns:1fr}
+  .g-rows{border-right:0;border-bottom:2px solid var(--ink)}
+  .up{grid-template-columns:1fr}
+  .drop{border-right:0;border-bottom:1px solid var(--ink3)}
+  .pg-a{grid-column:1/-1;border-right:0;border-bottom:2px solid var(--ink);min-height:380px}
+  .pg-b{grid-column:1/7;border-bottom:0;border-right:2px solid var(--ink)}
+  .pg-c{grid-column:7/13}
+  .caps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cap:nth-child(2){border-right:0}
+  .cap:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .docs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ct-l{grid-column:1/-1;border-right:0;border-bottom:2px solid var(--ink)}
+  .ct-map{grid-column:1/-1;min-height:320px}
+}
+@media (max-width:700px){
+  body{font-size:16px}
+  .hero h1{font-size:clamp(40px,12.4vw,64px)}
+  .spark{left:16px;right:16px;bottom:16px;max-width:none}
+  .prods{grid-template-columns:1fr}
+  .prod{border-right:0;border-bottom:1px solid var(--ink3);min-height:76px;padding:16px var(--gut)}
+  .prod:last-child{border-bottom:0}
+  .types{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .type,.type:nth-child(3){border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .type:nth-child(2n){border-right:0}
+  .type:nth-child(5){grid-column:1/-1;border-bottom:0;min-height:0}
+  .type:nth-child(n+4){border-bottom:1px solid var(--ink)}
+  .type:nth-child(5){border-bottom:0}
+  .type{min-height:128px}
+  .ton-row{grid-template-columns:1fr}
+  .seg{grid-template-columns:1fr}
+  .seg button{border-right:0;border-bottom:1px solid var(--ink)}
+  .seg button:last-child{border-bottom:0}
+  .toggles{grid-template-columns:1fr}
+  .tg,.tg:nth-child(2n){border-right:0;border-bottom:1px solid var(--ink)}
+  .tg:last-child{border-bottom:0}
+  .tg:nth-last-child(2){border-bottom:1px solid var(--ink)}
+  .g-row,.g-axis{grid-template-columns:1fr}
+  .g-row .gl{border-right:0;padding:10px 14px 4px}
+  .g-row .gt{height:34px;margin:0 14px 10px}
+  .g-axis div:first-child{display:none}
+  .g-axis div:last-child{padding:6px 14px}
+  .pg-a{min-height:300px}
+  .pg-b{grid-column:1/-1;border-right:0;border-bottom:2px solid var(--ink);min-height:220px}
+  .pg-c{grid-column:1/-1;min-height:220px}
+  .caps{grid-template-columns:1fr}
+  .cap{border-right:0;border-bottom:1px solid var(--line)}
+  .cap:last-child{border-bottom:0}
+  .docs{grid-template-columns:1fr}
+  .r2{grid-template-columns:1fr}
+  .kv dd{font-size:21px}
+  .hero-cta .btn{flex:1 1 100%}
+  .dz{min-height:200px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv{opacity:1;transform:none}
+  .js .hero h1 .ln>span{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="СтальКонструкт, на главную">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" fill="#ff5b14"/><path d="M8 9h18M8 25h18M17 9v16" stroke="#1e252b" stroke-width="4" fill="none"/></svg>
+      <span>СтальКонструкт</span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#calc">Расчёт</a>
+      <a href="#stages">Этапы</a>
+      <a href="#tz">Отправить ТЗ</a>
+      <a href="#plant">Производство</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="hdr-ph" href="tel:+74960000000">+7 (496) 000-00-00</a>
+    <a class="btn btn-sig" href="#tz">Запросить КП</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path class="b1" d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+  <a href="#calc">Расчёт стоимости</a>
+  <a href="#stages">Этапы производства</a>
+  <a href="#tz">Отправить ТЗ</a>
+  <a href="#plant">Производство</a>
+  <a href="#contacts">Контакты</a>
+  <a class="btn btn-sig" href="tel:+74960000000">Позвонить: +7 (496) 000-00-00</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-cols" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="hero-grid">
+    <div class="hero-txt">
+      <p class="hero-tag"><i aria-hidden="true"></i>Завод металлоконструкций, Ногинск, Московская область</p>
+      <h1><span class="ln"><span>Металло&shy;конструкции</span></span><span class="ln"><span>от&nbsp;чертежа</span></span><span class="ln o"><span>до&nbsp;монтажа</span></span></h1>
+      <p class="hero-lead">Каркасы зданий, фермы, лестницы и&nbsp;опоры для подрядчиков и&nbsp;застройщиков. Посчитайте бюджет и&nbsp;срок за&nbsp;минуту, загрузите ТЗ&nbsp;— инженер пришлёт КП с&nbsp;графиком производства.</p>
+      <div class="hero-cta">
+        <a class="btn btn-sig" href="#calc">Рассчитать стоимость<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line" href="#tz">Загрузить ТЗ</a>
+      </div>
+    </div>
+    <figure class="hero-photo" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&h=1100&q=72" width="900" height="1100" alt="Сварщик варит металлическую конструкцию в цеху" fetchpriority="high">
+      <figcaption class="spark"><b>КМД своими силами</b>Конструкторский отдел на&nbsp;заводе: чертежи и&nbsp;производство в&nbsp;одних руках.</figcaption>
+    </figure>
+  </div>
+  <div class="prods" aria-label="Быстрый расчёт по типу конструкции">
+    <button class="prod" type="button" data-pick="frame"><svg class="ic" viewBox="0 0 44 44" fill="none" stroke-width="2" aria-hidden="true"><path d="M6 40V14l16-8 16 8v26M6 14h32M14 40V18M30 40V18M6 26h32"/></svg><span><b>Каркасы зданий</b><span>склады, цеха, ангары</span></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+    <button class="prod" type="button" data-pick="truss"><svg class="ic" viewBox="0 0 44 44" fill="none" stroke-width="2" aria-hidden="true"><path d="M3 30h38M7 18h30M3 30l4-12M41 30l-4-12M7 18l8 12 6-12 6 12 6-12 4 12"/></svg><span><b>Фермы и&nbsp;балки</b><span>покрытия, перекрытия</span></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+    <button class="prod" type="button" data-pick="stairs"><svg class="ic" viewBox="0 0 44 44" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 40h8v-8h8v-8h8v-8h8V8h4M8 40V30M38 8v32"/></svg><span><b>Лестницы и&nbsp;площадки</b><span>обслуживание, эвакуация</span></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+    <button class="prod" type="button" data-pick="support"><svg class="ic" viewBox="0 0 44 44" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 10h36M10 10v30M34 10v30M10 18l24 12M34 18L10 30M6 40h8M30 40h8"/></svg><span><b>Опоры и&nbsp;эстакады</b><span>трубопроводы, кабели</span></span><svg class="ar" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
+
+<section class="sec" id="calc" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="k"><i aria-hidden="true"></i>Калькулятор</p>
+      <h2 id="calc-h">Бюджет и&nbsp;срок до&nbsp;запроса КП</h2>
+      <p>Укрупнённый расчёт по&nbsp;нашим ставкам за&nbsp;тонну. Итог в&nbsp;КП зависит от&nbsp;марки стали, сортамента и&nbsp;узлов&nbsp;— поэтому мы&nbsp;показываем вилку, а&nbsp;не&nbsp;одну цифру.</p>
+    </div>
+    <div class="calc rv">
+      <div class="calc-in">
+        <div class="cell">
+          <div class="cell-h"><h3>Тип конструкции</h3><span id="typeRate"></span></div>
+          <div class="types" role="group" aria-label="Тип конструкции" id="types"></div>
+        </div>
+        <div class="cell">
+          <div class="cell-h"><h3><label for="tonR">Масса металла</label></h3><span>по&nbsp;спецификации КМ или оценке</span></div>
+          <div class="ton-row">
+            <div>
+              <input class="range" id="tonR" type="range" min="1" max="300" step="1" value="40" aria-describedby="tonScale">
+              <div class="scale" id="tonScale" aria-hidden="true"><span>1 т</span><span>100 т</span><span>200 т</span><span>300 т</span></div>
+            </div>
+            <div class="ton-in"><label class="sr" for="tonN">Тонн</label><input id="tonN" type="number" inputmode="decimal" min="1" max="300" step="1" value="40"><span>тонн</span></div>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="cell-h"><h3>Сложность узлов</h3><span>влияет на&nbsp;трудоёмкость</span></div>
+          <div class="seg" style="--n:3" role="group" aria-label="Сложность" id="cx">
+            <button type="button" data-cx="1" aria-pressed="false">Простая<small>прокат, болтовые узлы</small></button>
+            <button type="button" data-cx="1.12" aria-pressed="true">Средняя<small>сварные узлы, фланцы</small></button>
+            <button type="button" data-cx="1.26" aria-pressed="false">Сложная<small>гнутьё, криволинейные</small></button>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="cell-h"><h3>Защитное покрытие</h3><span>после дробеструйной очистки</span></div>
+          <div class="seg" style="--n:4" role="group" aria-label="Покрытие" id="paint">
+            <button type="button" data-paint="0" aria-pressed="false">Без покрытия<small>для бетонирования</small></button>
+            <button type="button" data-paint="9500" aria-pressed="false">Грунт<small>один слой ГФ-021</small></button>
+            <button type="button" data-paint="17500" aria-pressed="true">Грунт и&nbsp;эмаль<small>два слоя, любой RAL</small></button>
+            <button type="button" data-paint="36000" aria-pressed="false">Огнезащита<small>грунт и&nbsp;состав R45</small></button>
+          </div>
+        </div>
+        <div class="cell">
+          <div class="cell-h"><h3>Дополнительно</h3><span>отметьте нужное</span></div>
+          <div class="toggles">
+            <label class="tg"><input type="checkbox" id="optKmd" checked><span class="sw" aria-hidden="true"></span><span><b>Разработка КМД</b><small>деталировочные чертежи по&nbsp;вашему КМ</small></span></label>
+            <label class="tg"><input type="checkbox" id="optZinc"><span class="sw" aria-hidden="true"></span><span><b>Горячее цинкование</b><small>вместо покраски, для улицы и&nbsp;агрессивной среды</small></span></label>
+            <label class="tg"><input type="checkbox" id="optDel" checked><span class="sw" aria-hidden="true"></span><span><b>Доставка на&nbsp;объект</b><small>длинномеры по&nbsp;20&nbsp;т, с&nbsp;погрузкой</small></span></label>
+            <label class="tg"><input type="checkbox" id="optMont"><span class="sw" aria-hidden="true"></span><span><b>Монтаж</b><small>бригада и&nbsp;техника, ППР за&nbsp;нами</small></span></label>
+          </div>
+          <div class="km on" id="kmBox">
+            <label for="kmR">Расстояние от&nbsp;завода до&nbsp;объекта: <b id="kmV">120 км</b></label>
+            <input class="range" id="kmR" type="range" min="10" max="1500" step="10" value="120">
+          </div>
+        </div>
+      </div>
+      <aside class="calc-out" aria-labelledby="out-h">
+        <div class="tape" aria-hidden="true"></div>
+        <div class="out-in">
+          <div aria-live="polite" aria-atomic="true">
+            <p class="out-k" id="out-h">Ориентировочная стоимость с&nbsp;НДС</p>
+            <p class="out-total" id="outTotal">—</p>
+            <p class="out-sub" id="outSub"></p>
+          </div>
+          <dl class="kv">
+            <div><dt>Цена за&nbsp;тонну</dt><dd id="kvTon">—</dd></div>
+            <div><dt>Срок до&nbsp;отгрузки</dt><dd id="kvTerm">—</dd></div>
+            <div><dt>Машин на&nbsp;доставку</dt><dd id="kvTrucks">—</dd></div>
+            <div><dt>Срок с&nbsp;монтажом</dt><dd id="kvFull">—</dd></div>
+          </dl>
+          <div>
+            <div class="bar" id="bar" aria-hidden="true"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+            <ul class="legend" id="legend" style="margin-top:14px"></ul>
+          </div>
+          <p class="out-note">Расчёт предварительный и&nbsp;не&nbsp;является офертой. Металл закупаем под заказ, цена фиксируется в&nbsp;договоре после КМД.</p>
+          <div class="out-cta">
+            <a class="btn btn-sig" href="#tz" id="toTz">Получить КП по&nbsp;этому расчёту</a>
+            <a class="btn btn-line" href="#stages">Смотреть график этапов</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="gantt rv" id="stages" aria-labelledby="g-h">
+      <div class="gantt-h">
+        <h3 id="g-h">Этапы производства вашего заказа</h3>
+        <p>График пересчитывается вместе с&nbsp;калькулятором. Всего: <b id="gTotal">—</b></p>
+      </div>
+      <div class="g-body">
+        <div>
+          <div class="g-rows" id="gRows" role="group" aria-label="Этапы, нажмите для подробностей"></div>
+          <div class="g-axis" aria-hidden="true"><div></div><div id="gAxis"></div></div>
+        </div>
+        <div class="g-detail" id="gDetail" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="tz" aria-labelledby="tz-h">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="k"><i aria-hidden="true"></i>Техническое задание</p>
+      <h2 id="tz-h">Пришлите чертежи&nbsp;— ответим КП с&nbsp;графиком</h2>
+      <p>Подойдут КМ, КМД, эскиз с&nbsp;размерами или ведомость металла. Инженер посмотрит и&nbsp;позвонит в&nbsp;течение рабочего дня.</p>
+    </div>
+    <div class="up rv">
+      <div class="drop">
+        <label class="dz" id="dz">
+          <svg viewBox="0 0 56 56" fill="none" stroke-width="2" aria-hidden="true"><path d="M14 40H10a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6h24l10 10v6"/><path d="M34 4v10h10"/><path d="M38 52V30M30 38l8-8 8 8"/></svg>
+          <b>Перетащите файлы сюда</b>
+          <span>или нажмите, чтобы выбрать. PDF, DWG, DXF, XLSX, DOCX, ZIP&nbsp;— до&nbsp;50&nbsp;МБ каждый.</span>
+          <input type="file" id="fileIn" multiple accept=".pdf,.dwg,.dxf,.xlsx,.xls,.docx,.doc,.zip,.rar,.jpg,.png" aria-label="Выбрать файлы ТЗ">
+        </label>
+        <ul class="files" id="files" aria-live="polite"></ul>
+        <p class="demo-files">Нет файлов под рукой? <button type="button" id="demoFiles">Добавить демо-файлы</button></p>
+      </div>
+      <form class="uform" id="tzForm" novalidate>
+        <div id="tzBody">
+          <h3>Запрос коммерческого предложения</h3>
+          <p>Без звонков менеджеров «просто узнать бюджет». Пишет инженер, который будет вести заказ.</p>
+          <div class="r2">
+            <div class="fld"><label for="fCo">Компания</label><input id="fCo" autocomplete="organization"><span class="err"></span></div>
+            <div class="fld"><label for="fInn">ИНН (необязательно)</label><input id="fInn" inputmode="numeric" maxlength="12"></div>
+          </div>
+          <div class="r2">
+            <div class="fld"><label for="fName">Контактное лицо</label><input id="fName" autocomplete="name"><span class="err"></span></div>
+            <div class="fld"><label for="fPhone">Телефон</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7"><span class="err"></span></div>
+          </div>
+          <div class="fld"><label for="fMail">Почта для КП</label><input id="fMail" type="email" inputmode="email" autocomplete="email"><span class="err"></span></div>
+          <div class="fld"><label for="fMsg">Комментарий</label><textarea id="fMsg" placeholder="Объект, адрес, сроки, марка стали, требования к покрытию"></textarea></div>
+          <label class="attach"><input type="checkbox" id="attCalc" checked><span>Приложить расчёт из&nbsp;калькулятора<small id="attSum">—</small></span></label>
+          <button class="btn btn-sig" type="submit" style="width:100%">Отправить запрос</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="plant" aria-labelledby="plant-h">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="k"><i aria-hidden="true"></i>Производство</p>
+      <h2 id="plant-h">Полный цикл на&nbsp;одной площадке</h2>
+      <p>От&nbsp;раскроя листа до&nbsp;упаковки на&nbsp;длинномер. Никаких субподрядчиков на&nbsp;ключевых операциях&nbsp;— поэтому срок в&nbsp;графике реальный.</p>
+    </div>
+    <div class="prod-grid rv">
+      <figure class="pg-ph pg-a" style="margin:0"><img src="https://images.unsplash.com/photo-1698664683348-f9f35b809821?auto=format&fit=crop&w=1100&h=900&q=72" width="1100" height="900" loading="lazy" alt="Сварщик работает с металлической балкой"><figcaption>Сварочный участок</figcaption></figure>
+      <figure class="pg-ph pg-b" style="margin:0"><img src="https://images.unsplash.com/photo-1564182998523-6923112e7d6b?auto=format&fit=crop&w=800&h=560&q=72" width="800" height="560" loading="lazy" alt="Рабочий зачищает металл угловой шлифмашиной, летят искры"><figcaption>Зачистка швов</figcaption></figure>
+      <figure class="pg-ph pg-c" style="margin:0"><img src="https://images.unsplash.com/photo-1609348632802-b952f368fc3a?auto=format&fit=crop&w=800&h=560&q=72" width="800" height="560" loading="lazy" alt="Мастер в цеху завода"><figcaption>Контроль перед отгрузкой</figcaption></figure>
+    </div>
+    <div class="caps">
+      <div class="cap rv"><svg viewBox="0 0 40 40" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 30h32M8 30V18h24v12M14 18V10h12v8M20 4v6"/></svg><h3>Резка</h3><p>Плазменная и&nbsp;газовая резка листа с&nbsp;ЧПУ, ленточнопильные станки для профиля.</p></div>
+      <div class="cap rv" style="--d:1"><svg viewBox="0 0 40 40" fill="none" stroke-width="2" aria-hidden="true"><path d="M6 34l12-12M18 22l6-14 8 8-14 6zM24 8l8 8"/></svg><h3>Сварка</h3><p>Полуавтоматическая сварка в&nbsp;среде защитных газов, аттестованные сварщики и&nbsp;технология.</p></div>
+      <div class="cap rv" style="--d:2"><svg viewBox="0 0 40 40" fill="none" stroke-width="2" aria-hidden="true"><path d="M8 6h16v10H8zM16 16v6M10 22h12l2 12H8z"/></svg><h3>Покраска</h3><p>Дробеструйная очистка, окраска в&nbsp;камере, контроль толщины покрытия на&nbsp;каждой партии.</p></div>
+      <div class="cap rv" style="--d:3"><svg viewBox="0 0 40 40" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 26h22V12H4zM26 18h6l4 6v2h-10M10 30a3 3 0 1 0 0 .1M30 30a3 3 0 1 0 0 .1"/></svg><h3>Отгрузка</h3><p>Маркировка по&nbsp;монтажным схемам, упаковка пакетами, погрузка краном на&nbsp;своей площадке.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" aria-labelledby="docs-h">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="k"><i aria-hidden="true"></i>Документы</p>
+      <h2 id="docs-h">Что вы получите вместе с&nbsp;металлом</h2>
+      <p>Комплект для технадзора и&nbsp;исполнительной документации&nbsp;— без отдельных запросов.</p>
+    </div>
+    <div class="docs">
+      <div class="doc rv"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><path d="M8 3h14l6 6v24H8zM22 3v6h6M13 17h10M13 23h10"/></svg><div><h3>Чертежи КМД</h3><p>В&nbsp;PDF и&nbsp;DWG, согласованные с&nbsp;вами до&nbsp;запуска в&nbsp;цех.</p></div></div>
+      <div class="doc rv" style="--d:1"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><path d="M6 6h24v24H6zM12 14h12M12 20h8M12 26h5"/></svg><div><h3>Паспорт на&nbsp;конструкции</h3><p>С&nbsp;перечнем марок, массой и&nbsp;сведениями о&nbsp;покрытии.</p></div></div>
+      <div class="doc rv" style="--d:2"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><circle cx="18" cy="15" r="9"/><path d="M13 23l-3 10 8-4 8 4-3-10"/></svg><div><h3>Документы на&nbsp;металл</h3><p>Копии сертификатов качества от&nbsp;поставщиков проката.</p></div></div>
+      <div class="doc rv"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><path d="M6 30l8-8 6 6 10-14"/><path d="M6 6v24h24"/></svg><div><h3>Контроль сварки</h3><p>Журнал сварочных работ и&nbsp;результаты контроля швов.</p></div></div>
+      <div class="doc rv" style="--d:1"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><rect x="6" y="8" width="24" height="22"/><path d="M6 14h24M12 4v8M24 4v8"/></svg><div><h3>Монтажные схемы</h3><p>С&nbsp;маркировкой каждой отправочной марки.</p></div></div>
+      <div class="doc rv" style="--d:2"><svg viewBox="0 0 36 36" fill="none" stroke-width="2" aria-hidden="true"><path d="M8 4h20v28H8zM13 12h10M13 18h10M13 24l3 3 6-6"/></svg><div><h3>Акты и&nbsp;УПД</h3><p>Закрывающие документы по&nbsp;каждой отгрузке, ЭДО.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contacts" aria-labelledby="ct-h">
+  <div class="wrap">
+    <div class="sec-h">
+      <p class="k"><i aria-hidden="true"></i>Контакты</p>
+      <h2 id="ct-h">Приезжайте на&nbsp;завод</h2>
+      <p>Покажем цех и&nbsp;ваш заказ в&nbsp;работе. Пропуск на&nbsp;территорию закажем заранее.</p>
+    </div>
+    <div class="cont rv">
+      <div class="ct-l">
+        <dl>
+          <div><dt>Отдел продаж и&nbsp;инженеры</dt><dd><a href="tel:+74960000000">+7 (496) 000-00-00</a></dd></div>
+          <div><dt>Почта для ТЗ и&nbsp;КП</dt><dd><a class="m" href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></dd></div>
+          <div><dt>Завод</dt><dd>Московская обл., г.&nbsp;Ногинск, Индустриальная ул., 7, стр.&nbsp;2</dd></div>
+          <div><dt>Режим</dt><dd>Пн–Пт 8:00–18:00, отгрузки до&nbsp;20:00</dd></div>
+        </dl>
+        <a class="btn btn-dark" href="#tz">Отправить ТЗ</a>
+      </div>
+      <div class="ct-map" role="img" aria-label="Схема: завод у Горьковского шоссе, въезд для длинномеров с Индустриальной улицы">
+        <svg viewBox="0 0 700 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="700" height="420" fill="#dfe3e6"/>
+          <g stroke="#c3cad0" stroke-width="1"><path d="M0 60h700M0 120h700M0 180h700M0 240h700M0 300h700M0 360h700M70 0v420M140 0v420M210 0v420M280 0v420M350 0v420M420 0v420M490 0v420M560 0v420M630 0v420"/></g>
+          <path d="M-10 330 L710 250" stroke="#1e252b" stroke-width="14"/>
+          <path d="M-10 330 L710 250" stroke="#e7eaed" stroke-width="2" stroke-dasharray="14 12"/>
+          <path d="M360 290 L330 40" stroke="#56616b" stroke-width="8"/>
+          <rect x="380" y="80" width="200" height="120" fill="#f6f7f8" stroke="#1e252b" stroke-width="2"/>
+          <rect x="400" y="100" width="70" height="80" fill="#ff5b14"/>
+          <rect x="480" y="100" width="80" height="35" fill="none" stroke="#1e252b" stroke-width="1.5"/>
+          <rect x="480" y="145" width="80" height="35" fill="none" stroke="#1e252b" stroke-width="1.5"/>
+          <path d="M352 210 h30" stroke="#ff5b14" stroke-width="4"/>
+          <path d="M376 204 l8 6 -8 6" fill="none" stroke="#ff5b14" stroke-width="3"/>
+          <text x="400" y="228" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#1e252b">СтальКонструкт, стр. 2</text>
+          <text x="40" y="300" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#1e252b" transform="rotate(-6 40 300)">Горьковское шоссе</text>
+          <text x="300" y="30" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#56616b">Индустриальная ул.</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" fill="#ff5b14"/><path d="M8 9h18M8 25h18M17 9v16" stroke="#1e252b" stroke-width="4" fill="none"/></svg><span>СтальКонструкт</span></a>
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+    <p>Ногинск, Индустриальная ул., 7</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document;d.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function sp(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function mln(n){if(n>=1e6){return (Math.round(n/1e5)/10).toString().replace('.',',')+' млн'}return sp(Math.round(n/1000))+' тыс.'}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function plural(n,a,b,c){n=Math.abs(n)%100;var n1=n%10;if(n>10&&n<20)return c;if(n1>1&&n1<5)return b;if(n1===1)return a;return c}
+
+  /* nav */
+  var burger=$('.burger'),mnav=$('#mnav');
+  function setNav(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');mnav.classList.toggle('open',o);$('.b1',burger).setAttribute('d',o?'M5 5l14 14M19 5L5 19':'M3 7h18M3 12h18M3 17h18')}
+  burger.addEventListener('click',function(){setNav(burger.getAttribute('aria-expanded')!=='true')});
+  $$('a',mnav).forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+
+  /* hero */
+  requestAnimationFrame(function(){setTimeout(function(){$('.hero').classList.add('go')},60)});
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window&&!reduce){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});rv.forEach(function(el){io.observe(el)})}
+  else rv.forEach(function(el){el.classList.add('in')});
+
+  /* ===== calculator ===== */
+  var TYPES=[
+    {id:'frame',n:'Каркас здания',s:'колонны, балки, связи, прогоны',rate:118000,mont:34000,
+     ic:'<path d="M5 42V16l18-9 18 9v26M5 16h36M14 42V20M32 42V20M5 29h36"/>'},
+    {id:'truss',n:'Фермы и балки',s:'стропильные, подстропильные',rate:132000,mont:38000,
+     ic:'<path d="M3 32h40M7 19h32M3 32l4-13M43 32l-4-13M7 19l8 13 8-13 8 13 8-13 4 13"/>'},
+    {id:'stairs',n:'Лестницы и площадки',s:'марши, ограждения, настилы',rate:168000,mont:52000,
+     ic:'<path d="M4 42h8v-8h8v-8h8v-8h8v-8h6M8 42V32M40 10v32"/>'},
+    {id:'support',n:'Опоры и эстакады',s:'под трубы, кабели, оборудование',rate:124000,mont:36000,
+     ic:'<path d="M4 10h38M10 10v32M36 10v32M10 18l26 13M36 18L10 31M6 42h8M32 42h8"/>'},
+    {id:'custom',n:'Нестандарт',s:'закладные, рамы, ёмкости по чертежу',rate:155000,mont:45000,
+     ic:'<rect x="6" y="10" width="34" height="26"/><circle cx="13" cy="17" r="2.5"/><circle cx="33" cy="17" r="2.5"/><circle cx="13" cy="29" r="2.5"/><circle cx="33" cy="29" r="2.5"/><path d="M23 36v6M18 42h10"/>'}
+  ];
+  var S={type:'frame',t:40,cx:1.12,paint:17500,kmd:true,zinc:false,del:true,mont:false,km:120};
+  var typesBox=$('#types');
+  typesBox.innerHTML=TYPES.map(function(t){return '<button class="type" type="button" data-type="'+t.id+'" aria-pressed="'+(S.type===t.id)+'"><svg viewBox="0 0 46 46" fill="none" stroke-width="2" aria-hidden="true">'+t.ic+'</svg><b>'+t.n+'</b><span>'+t.s+'</span></button>'}).join('');
+  function setType(id){S.type=id;$$('.type').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.type===id))});calc()}
+  $$('.type').forEach(function(b){b.addEventListener('click',function(){setType(b.dataset.type)})});
+  $$('[data-pick]').forEach(function(b){b.addEventListener('click',function(){setType(b.dataset.pick);d.getElementById('calc').scrollIntoView({behavior:reduce?'auto':'smooth'})})});
+
+  var tonR=$('#tonR'),tonN=$('#tonN');
+  function setT(v,src){v=Math.max(1,Math.min(300,Math.round(+v||1)));S.t=v;if(src!=='n')tonN.value=v;tonR.value=v;paintRange(tonR);calc()}
+  function paintRange(r){r.style.setProperty('--p',((r.value-r.min)/(r.max-r.min)*100)+'%')}
+  tonR.addEventListener('input',function(){setT(tonR.value,'r')});
+  tonN.addEventListener('input',function(){if(tonN.value!=='')setT(tonN.value,'n')});
+  tonN.addEventListener('blur',function(){setT(tonN.value)});
+  $$('#cx button').forEach(function(b){b.addEventListener('click',function(){S.cx=+b.dataset.cx;$$('#cx button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});calc()})});
+  $$('#paint button').forEach(function(b){b.addEventListener('click',function(){S.paint=+b.dataset.paint;$$('#paint button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});calc()})});
+  [['optKmd','kmd'],['optZinc','zinc'],['optDel','del'],['optMont','mont']].forEach(function(p){var el=d.getElementById(p[0]);el.addEventListener('change',function(){S[p[1]]=el.checked;$('#kmBox').classList.toggle('on',S.del||S.mont);calc()})});
+  var kmR=$('#kmR');kmR.addEventListener('input',function(){S.km=+kmR.value;$('#kmV').textContent=sp(S.km)+' км';paintRange(kmR);calc()});
+  paintRange(kmR);paintRange(tonR);
+
+  var STAGE_INFO=[
+    {n:'Договор и аванс',p:'Фиксируем объём, ставки и график в договоре. Металл бронируем у поставщика сразу после аванса.',li:['Проект договора в течение двух рабочих дней после КП','Аванс на металл, оплата работ по этапам','Назначаем инженера, который ведёт заказ до отгрузки']},
+    {n:'Разработка КМД',p:'Конструкторы деталируют КМ: каждая отправочная марка, узлы, ведомость метизов. Без согласованных КМД в цех не запускаем.',li:['Согласование чертежей с вашим проектировщиком','Оптимизация раскроя, чтобы не переплачивать за отход','Если КМД у вас есть — только проверяем их на технологичность']},
+    {n:'Закупка металла',p:'Прокат и лист закупаем под заказ у металлобаз и заводов, проверяем документы и геометрию на входе.',li:['Сертификаты качества на каждую партию','Входной контроль марки и размеров','Хранение на крытом складе завода']},
+    {n:'Резка и сварка',p:'Раскрой на станках с ЧПУ, сборка на стендах, сварка. Геометрию проверяем по каждой марке.',li:['Фотоотчёт по готовым маркам раз в неделю','Контроль швов и журнал сварочных работ','Маркировка по монтажной схеме']},
+    {n:'Покрытие',p:'Дробеструйная очистка, грунт и эмаль в окрасочной камере или горячее цинкование у партнёра.',li:['Контроль толщины покрытия','Цвет по каталогу RAL','Сушка и упаковка с прокладками, чтобы не повредить слой']},
+    {n:'Отгрузка',p:'Грузим краном на длинномеры комплектами — в той последовательности, в которой их удобно монтировать.',li:['Комплектовочные ведомости на каждую машину','Доставка нашим или вашим транспортом','УПД и паспорт на конструкции с первой машиной']},
+    {n:'Монтаж',p:'Бригада с техникой и проектом производства работ. Ведём исполнительную документацию для вашего технадзора.',li:['ППР и допуски — за нами','Геодезический контроль положения колонн','Акты скрытых работ и исполнительные схемы']}
+  ];
+  var curStage=3, lastC=null;
+  var gRows=$('#gRows'), gDetail=$('#gDetail');
+
+  function calc(){
+    var T=TYPES.filter(function(x){return x.id===S.type})[0];
+    var t=S.t;
+    var volK=t<5?1.18:t<20?1.06:t<100?1:t<200?.97:.95;
+    var fab=T.rate*S.cx*volK*t;
+    var coat=S.zinc?(46000*t):(S.paint*t);
+    var trucks=Math.ceil(t/20);
+    var del=S.del?trucks*(12000+S.km*110):0;
+    var mont=S.mont?(T.mont*S.cx*t+(S.km>300?trucks*25000:0)):0;
+    var kmd=S.kmd?Math.max(60000,5200*t*S.cx):0;
+    var total=fab+coat+del+mont+kmd;
+    var lo=Math.round(total*.94/10000)*10000, hi=Math.round(total*1.08/10000)*10000;
+    /* stages in days */
+    var st=[];
+    st.push([0,3]);
+    var kmdD=S.kmd?Math.round(Math.max(7,6+t*.12*S.cx)):3;
+    st.push([2,kmdD]);
+    var metStart=2+Math.round(kmdD*.5), metD=t>150?10:t>60?8:6;
+    st.push([metStart,metD]);
+    var fabStart=Math.max(2+kmdD,metStart+Math.round(metD*.6));
+    var fabD=Math.round(Math.max(5,t*.32*S.cx));
+    st.push([fabStart,fabD]);
+    var coatOn=S.zinc||S.paint>0;
+    var coatD=coatOn?Math.round(S.zinc?Math.max(7,t*.12)+4:Math.max(3,t*.12)):0;
+    var coatStart=fabStart+Math.round(fabD*.45);
+    st.push([coatStart,coatD]);
+    var shipStart=Math.max(fabStart+fabD,coatStart+coatD)-Math.min(2,Math.floor(trucks/3));
+    var shipD=Math.max(1,Math.ceil(trucks/3))+(S.del?Math.ceil(S.km/600):0);
+    st.push([shipStart,shipD]);
+    var montD=S.mont?Math.round(Math.max(5,t*.28*S.cx)):0;
+    var montStart=shipStart+1;
+    st.push([montStart,montD]);
+    var endShip=shipStart+shipD, endAll=S.mont?Math.max(endShip,montStart+montD):endShip;
+    lastC={T:T,lo:lo,hi:hi,total:total,perT:total/t,trucks:trucks,st:st,endShip:endShip,endAll:endAll,coatOn:coatOn,
+      parts:[['Металл и изготовление',fab,'c1'],['Покрытие',coat,'c2'],['КМД',kmd,'c3'],['Доставка',del,'c4'],['Монтаж',mont,'c5']]};
+    render();
+  }
+  function wk(days){var w=Math.round(days/5*10)/10;var r=Math.max(1,Math.round(days/5));return r+' '+plural(r,'неделя','недели','недель')}
+  function render(){
+    var c=lastC;
+    $('#typeRate').textContent='от '+sp(Math.round(c.T.rate/1000))+' тыс. ₽ за тонну';
+    $('#outTotal').innerHTML=mln(c.lo).replace(' млн','')+'–'+mln(c.hi)+'<small>₽</small>';
+    $('#outSub').textContent=c.T.n+', '+S.t+' т'+(S.zinc?', цинкование':S.paint===0?', без покрытия':S.paint===9500?', грунт':S.paint===17500?', грунт и эмаль':', огнезащита')+(S.mont?', с монтажом':'');
+    $('#kvTon').textContent=sp(Math.round(c.perT/1000))+' тыс. ₽';
+    $('#kvTerm').textContent=wk(c.endShip);
+    $('#kvTrucks').textContent=S.del?String(c.trucks):'самовывоз';
+    $('#kvFull').textContent=S.mont?wk(c.endAll):'без монтажа';
+    var bar=$('#bar').children;
+    c.parts.forEach(function(p,i){bar[i].style.flexGrow=String(Math.max(0,p[1]))});
+    $('#legend').innerHTML=c.parts.map(function(p){return '<li'+(p[1]?'':' class="off"')+'><i class="'+p[2]+'"></i><span>'+p[0]+'</span><b>'+(p[1]?mln(p[1]):'—')+'</b></li>'}).join('');
+    $('#attSum').textContent=c.T.n+', '+S.t+' т, '+mln(c.lo).replace(' млн','')+'–'+mln(c.hi)+' ₽, отгрузка через '+wk(c.endShip);
+    renderGantt();
+  }
+  function renderGantt(){
+    var c=lastC, span=Math.max(10,Math.ceil(c.endAll/5)*5+2);
+    $('#gTotal').textContent=c.endAll+' раб. '+plural(c.endAll,'день','дня','дней')+' ≈ '+wk(c.endAll);
+    var skip=[false,false,false,false,!c.coatOn,false,!S.mont];
+    if(!gRows.children.length){
+      gRows.innerHTML=STAGE_INFO.map(function(s,i){return '<button class="g-row" type="button" data-st="'+i+'" aria-pressed="'+(i===curStage)+'"><span class="gl"><i>'+(i+1)+'</i>'+s.n+'</span><span class="gt"><span class="gb"><span></span></span></span></button>'}).join('');
+      $$('.g-row',gRows).forEach(function(b){b.addEventListener('click',function(){curStage=+b.dataset.st;$$('.g-row',gRows).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});detail(true)})});
+    }
+    $$('.g-row',gRows).forEach(function(row,i){
+      var s=c.st[i], bar=$('.gb',row), lab=$('.gb span',row);
+      var len=skip[i]?3:s[1];
+      var l=s[0]/span*100, w=Math.max(1.5,len/span*100);
+      bar.style.left=l+'%';bar.style.width=w+'%';
+      row.classList.toggle('skip',skip[i]);
+      row.classList.toggle('flip',l+w>72);
+      lab.textContent=skip[i]?'не входит':s[1]+' '+plural(s[1],'день','дня','дней');
+      row.setAttribute('aria-label',STAGE_INFO[i].n+': '+(skip[i]?'не входит в заказ':'с '+(s[0]+1)+'-го дня, '+s[1]+' '+plural(s[1],'день','дня','дней')));
+    });
+    var ax=[];for(var k=0;k<=4;k++)ax.push('<span>'+Math.round(span*k/4)+(k===4?' дн.':'')+'</span>');
+    $('#gAxis').innerHTML=ax.join('');
+    detail(false);
+  }
+  function detail(anim){
+    var s=STAGE_INFO[curStage], c=lastC, st=c.st[curStage];
+    var skip=(curStage===4&&!c.coatOn)||(curStage===6&&!S.mont);
+    gDetail.innerHTML='<div'+(anim?' class="gd-anim"':'')+'><p class="gd-n">Этап '+(curStage+1)+' из 7, '+(skip?'не входит в текущий расчёт':'дни '+(st[0]+1)+'–'+(st[0]+st[1]))+'</p><h4>'+s.n+'</h4><p>'+s.p+'</p><ul>'+s.li.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
+  }
+  calc();
+  $('#toTz').addEventListener('click',function(){$('#attCalc').checked=true});
+
+  /* ===== upload ===== */
+  var fileIn=$('#fileIn'),dz=$('#dz'),list=$('#files'),FILES=[];
+  function fsz(b){if(b>1048576)return (b/1048576).toFixed(1).replace('.',',')+' МБ';return Math.max(1,Math.round(b/1024))+' КБ'}
+  function addFiles(arr){
+    arr.forEach(function(f){
+      var ext=(f.name.split('.').pop()||'').slice(0,4).toLowerCase();
+      var item={name:f.name,size:f.size,ext:ext,id:Math.random().toString(36).slice(2),big:f.size>50*1048576};
+      FILES.push(item);
+      var li=d.createElement('li');li.className='file';li.dataset.id=item.id;
+      li.innerHTML='<span class="ext">'+esc(ext)+'</span><span style="min-width:0"><span class="fn">'+esc(f.name)+'</span><span class="fs">'+(item.big?'Файл больше 50 МБ — пришлём ссылку для загрузки':fsz(f.size)+' · загружается…')+'</span><span class="pb"><i></i></span></span><button type="button" class="rm" aria-label="Удалить файл '+esc(f.name)+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+      list.appendChild(li);
+      $('.rm',li).addEventListener('click',function(){FILES=FILES.filter(function(x){return x.id!==item.id});li.remove()});
+      if(!item.big){requestAnimationFrame(function(){requestAnimationFrame(function(){li.classList.add('done')})});setTimeout(function(){var fs=$('.fs',li);if(fs)fs.textContent=fsz(f.size)+' · загружен'},reduce?0:1200)}
+    });
+  }
+  fileIn.addEventListener('change',function(){addFiles(Array.prototype.slice.call(fileIn.files));fileIn.value=''});
+  ['dragenter','dragover'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add('over')})});
+  ['dragleave','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove('over')})});
+  dz.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)addFiles(Array.prototype.slice.call(e.dataTransfer.files))});
+  $('#demoFiles').addEventListener('click',function(){addFiles([{name:'Склад_Ногинск_КМ_лист1-14.pdf',size:8420000},{name:'Ведомость_металла.xlsx',size:96000},{name:'Узлы_колонн.dwg',size:2310000}])});
+
+  var tzForm=$('#tzForm');
+  tzForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var co=$('#fCo'),nm=$('#fName'),ph=$('#fPhone'),ml=$('#fMail'),ok=true,first=null;
+    [co,nm,ph,ml].forEach(function(f){f.nextElementSibling.textContent=''});
+    function bad(f,m){f.nextElementSibling.textContent=m;ok=false;if(!first)first=f}
+    if(!co.value.trim())bad(co,'Укажите компанию — КП оформим на неё.');
+    if(!nm.value.trim())bad(nm,'Кому звонить по заказу?');
+    if(ph.value.replace(/\D/g,'').length<10)bad(ph,'Нужен телефон: 10 цифр после +7.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ml.value.trim()))bad(ml,'Проверьте адрес почты: на него придёт КП.');
+    if(!ok){first.focus();return}
+    var no='СК-'+new Date().getFullYear()+'-'+String(Math.floor(1000+Math.random()*8999));
+    var fl=FILES.length?FILES.length+' '+plural(FILES.length,'файл','файла','файлов'):'без файлов';
+    $('#tzBody').innerHTML='<div class="accepted"><div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Заявка принята</h3><p>Номер запроса <b style="color:#fff">'+no+'</b>, '+fl+($('#attCalc').checked?', расчёт приложен':'')+'. Ответ придёт на '+esc(ml.value.trim())+'.</p><ol><li>Инженер изучит ТЗ и позвонит в течение рабочего дня</li><li>Уточним марку стали, узлы и требования к покрытию</li><li>Пришлём КП и график этапов по вашему объекту</li></ol></div>';
+  });
+})();
+</script>
+</body>
+</html>

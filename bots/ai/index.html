@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Секретарь — ИИ-ассистент для команды в Telegram · демо YSD DEV</title>
+<meta name="description" content="Живое демо Telegram-бота с ИИ для малого бизнеса: ответы на отзывы, посты, пересказ договоров, переводы, КП и поиск по базе знаний компании. Рядом — панель руководителя с журналом запросов и лимитами.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Секретарь — ИИ-ассистент для команды в Telegram">
+<meta property="og:description" content="Попробуйте бота прямо в браузере: перескажет договор, найдёт ответ в регламентах и напишет ответ на отзыв в тоне компании.">
+<meta name="theme-color" content="#E8EAF4">
+<link rel="icon" href="/bots/favicon.ico" sizes="32x32"><link rel="icon" type="image/png" sizes="48x48" href="/bots/favicon-48.png"><link rel="icon" type="image/png" sizes="96x96" href="/bots/icon-96.png"><link rel="icon" type="image/png" sizes="192x192" href="/bots/icon-192.png"><link rel="apple-touch-icon" href="/bots/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8EAF4;--paper:#fff;--paper2:#F3F4FA;--ink:#161A42;--ink2:#454B7C;--ink3:#575D8A;--line:#D6D9EA;--line2:#E7E9F4;
+  --ultra:#3A3EE0;--ultra2:#2B2FC4;--hi:#F6E46B;--ok:#0A7A60;--okbg:#DDF2EB;
+  --c-bg:#121638;--c-head:#1A1F4B;--c-in:#252B5E;--c-out:#4347E8;--c-text:#EEF0FF;--c-meta:#A6ACE0;--c-link:#B6BBFF;
+  --c-btn:rgba(41,48,108,.88);--c-btn-h:rgba(66,74,156,.96);--c-field:#252B5E;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --f:'Geologica',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --cjk:'PingFang SC','Noto Sans CJK SC','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:disabled{cursor:default}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--ultra);outline-offset:2px}
+.screen :focus-visible{outline-color:var(--hi)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:-1px}
+
+/* layout */
+.mbar{display:none}
+.stage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(36px,4.2vw,72px);max-width:1440px;margin:0 auto;padding:16px clamp(20px,3vw,44px) 0}
+.phone-col{position:sticky;top:16px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:12px}
+.phone-col::before{content:"";position:absolute;left:-8%;right:-8%;top:8%;bottom:4%;background:radial-gradient(closest-side,rgba(74,78,240,.24),rgba(74,78,240,.08) 60%,transparent);pointer-events:none;z-index:-1}
+.phone{--ph:min(880px,max(600px,calc(100vh - 62px)));height:var(--ph);width:calc(var(--ph)*.4615);padding:11px;border-radius:calc(var(--ph)*.07);background:linear-gradient(150deg,#41467C 0%,#181B44 42%,#0D0F2B 100%);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.14),inset 0 0 0 5px #0B0D25,0 60px 90px -46px rgba(22,26,66,.65),0 24px 44px -26px rgba(22,26,66,.5);position:relative}
+.phone::before,.phone::after{content:"";position:absolute;width:4px;border-radius:2px;background:#23275A}
+.phone::before{left:-3px;top:18%;height:9%;box-shadow:0 calc(var(--ph)*.12) 0 #23275A}
+.phone::after{right:-3px;top:24%;height:13%}
+.ph-note{margin:0;font-size:12.5px;color:var(--ink3);display:flex;align-items:center;gap:8px}
+.ph-note::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--hi);box-shadow:0 0 0 1px rgba(22,26,66,.15)}
+
+/* screen */
+.screen{container-type:inline-size;position:relative;height:100%;border-radius:calc(var(--ph)*.07 - 11px);overflow:hidden;background:var(--c-bg);display:flex;flex-direction:column;color:var(--c-text);isolation:isolate}
+.sb{flex:none;height:46px;display:flex;align-items:center;justify-content:space-between;padding:4px 26px 0 34px;background:var(--c-head);font-weight:600;font-size:14.5px;color:#fff;position:relative}
+.island{position:absolute;left:50%;top:10px;width:31%;height:30px;border-radius:20px;background:#04050F;transform:translateX(-50%)}
+.sbi{display:flex;gap:6px;align-items:center}
+.tgh{flex:none;display:flex;align-items:center;gap:6px;padding:4px 6px 8px 10px;background:var(--c-head);position:relative;z-index:6}
+.tgh-id{flex:1;min-width:0;display:flex;align-items:center;gap:11px;padding:4px;border:0;background:none;border-radius:14px;text-align:left;min-height:48px;transition:background .2s}
+.tgh-id:hover{background:rgba(255,255,255,.05)}
+.av{flex:none;display:grid;place-items:center;border-radius:50%;position:relative}
+.av-bot{width:42px;height:42px;background:radial-gradient(120% 120% at 20% 10%,#6B6FFF 0%,#3A3EE0 55%,#2A2CA8 100%)}
+.av-bot::after{content:"";position:absolute;right:1px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--hi);box-shadow:0 0 0 2px var(--c-head)}
+.av-bot.sm{width:36px;height:36px}
+.av-bot.sm::after{width:9px;height:9px}
+.tgh-t{display:flex;flex-direction:column;min-width:0}
+.nm{font-weight:600;font-size:16.5px;line-height:1.2;color:#fff}
+.st{font-size:13px;line-height:1.3;color:var(--c-meta)}
+.st.on{color:var(--c-link)}
+.ell i{font-style:normal;animation:ell 1.2s infinite;opacity:.2}
+.ell i:nth-child(2){animation-delay:.2s}.ell i:nth-child(3){animation-delay:.4s}
+@keyframes ell{0%,100%{opacity:.2}40%{opacity:1}}
+.ib{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:transparent;display:grid;place-items:center;color:var(--c-meta);transition:background .2s,color .2s}
+.ib:hover{background:rgba(255,255,255,.07);color:#fff}
+.ib[aria-pressed=true]{color:var(--hi)}
+.pop{position:absolute;right:10px;top:54px;min-width:210px;padding:6px;border-radius:16px;background:#2A3066;box-shadow:0 20px 40px -14px rgba(0,0,0,.6);z-index:25;transform-origin:top right;animation:popin .22s var(--ease)}
+.pop button{display:block;width:100%;min-height:44px;padding:0 14px;text-align:left;border:0;background:none;border-radius:11px;font-size:14.5px;color:var(--c-text)}
+.pop button:hover{background:rgba(255,255,255,.08)}
+@keyframes popin{from{opacity:0;transform:scale(.94) translateY(-4px)}}
+.pin{flex:none;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-height:46px;padding:6px 14px 7px 24px;border:0;border-top:1px solid rgba(255,255,255,.05);background:var(--c-head);text-align:left;position:relative;z-index:5;box-shadow:0 8px 16px -12px rgba(0,0,0,.7)}
+.pin::before{content:"";position:absolute;left:12px;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--hi)}
+.pin:hover{background:#1F2556}
+.pin-l{font-size:13px;font-weight:600;color:var(--c-link)}
+.pin-t{font-size:13px;color:var(--c-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+
+.feed{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 10px 14px;background-color:var(--c-bg);
+  background-image:radial-gradient(120% 55% at 100% 0%,rgba(91,95,245,.30),transparent 62%),radial-gradient(90% 45% at 0% 100%,rgba(140,144,245,.16),transparent 62%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' fill='none' stroke='%23B6BBFF' stroke-opacity='.09' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 14h18l8 8v26H18zM36 14v8h8M24 30h14M24 37h10M24 43h12'/%3E%3Cpath d='M122 22l3 8 8 3-8 3-3 8-3-8-8-3 8-3z'/%3E%3Cellipse cx='130' cy='122' rx='9' ry='13' transform='rotate(30 130 122)'/%3E%3Cpath d='M124 112c6 6 6 14 12 20'/%3E%3Cpath d='M28 116c0-6 4-10 9-10M28 116v8h8v-8h-8M44 116c0-6 4-10 9-10M44 116v8h8v-8h-8'/%3E%3Cpath d='M80 76l12-12a5 5 0 017 7L85 85a3 3 0 01-4-4l11-11'/%3E%3C/svg%3E");
+  background-size:auto,auto,170px 170px;scrollbar-width:thin;scrollbar-color:rgba(182,187,255,.25) transparent}
+.row{display:flex;margin-top:4px}
+.row.tail{margin-bottom:6px}
+.row.bot{justify-content:flex-start}
+.row.me{justify-content:flex-end}
+.row.sys{justify-content:center;margin:10px 0}
+.sysp{font-size:12.5px;font-weight:500;padding:4px 11px;border-radius:12px;background:rgba(24,29,72,.78);color:#DADDFF;backdrop-filter:blur(6px)}
+.blk{display:flex;flex-direction:column;max-width:87%;min-width:0}
+.me .blk{max-width:82%;align-items:flex-end}
+.blk.haskb{width:87%;max-width:340px}
+.bub{position:relative;padding:7px 11px 7px 12px;border-radius:17px;font-size:14.5px;line-height:1.43;overflow-wrap:anywhere;min-width:56px}
+.bot .bub{background:var(--c-in);color:var(--c-text)}
+.me .bub{background:var(--c-out);color:#fff}
+.tail.bot .bub{border-bottom-left-radius:5px}
+.tail.me .bub{border-bottom-right-radius:5px}
+.tail .bub::before{content:"";position:absolute;bottom:0;width:11px;height:16px;background:inherit}
+.tail.bot .bub::before{left:-6px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 16'%3E%3Cpath d='M11 0C11 8 7.5 13.5 0 16h11z'/%3E%3C/svg%3E");mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 16'%3E%3Cpath d='M11 0C11 8 7.5 13.5 0 16h11z'/%3E%3C/svg%3E")}
+.tail.me .bub::before{right:-6px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 16'%3E%3Cpath d='M0 0C0 8 3.5 13.5 11 16H0z'/%3E%3C/svg%3E");mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 16'%3E%3Cpath d='M0 0C0 8 3.5 13.5 11 16H0z'/%3E%3C/svg%3E")}
+.haskb .bub{border-bottom-left-radius:8px!important}
+.haskb .bub::before{display:none}
+.txt b{font-weight:600;color:#fff}
+.txt i{font-style:normal;color:var(--c-meta);font-size:13.5px}
+.txt mark{background:var(--hi);color:#1B1D45;border-radius:3px;padding:0 3px;font-weight:500}
+.txt blockquote{margin:5px 0 3px;padding:5px 10px 6px;border-left:3px solid var(--c-link);background:rgba(182,187,255,.08);border-radius:4px 10px 10px 4px}
+.txt blockquote.zh{font-family:var(--cjk);line-height:1.6}
+.txt .tag{color:var(--c-link)}
+.txt .cite{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--c-link)}
+.txt .stars{color:var(--hi);letter-spacing:1px}
+.meta{float:right;display:inline-flex;align-items:center;gap:3px;margin:8px -3px -4px 12px;font-size:11.5px;line-height:1;color:var(--c-meta);font-variant-numeric:tabular-nums;white-space:nowrap}
+.me .meta{color:rgba(255,255,255,.82)}
+.tk{width:17px;height:11px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tk .t2{opacity:0;transition:opacity .25s}
+.tk.rd .t2{opacity:1}
+.fwd{font-size:13px;color:#DCDDFF;margin:0 0 3px;line-height:1.3}
+.fwd b{font-weight:600}
+.file{display:flex;gap:11px;align-items:center;min-width:200px;padding:2px 0}
+.fi{flex:none;width:44px;height:48px;border-radius:9px 15px 9px 9px;display:grid;place-items:center;font-size:10.5px;font-weight:700;letter-spacing:.04em;color:#fff;background:#D9434B;position:relative}
+.fi::after{content:"";position:absolute;right:0;top:0;width:13px;height:13px;border-radius:0 0 0 6px;background:rgba(255,255,255,.35)}
+.fi-doc{background:#3C74E8}.fi-xls{background:#1E8E57}
+.fmeta{display:flex;flex-direction:column;min-width:0}
+.fmeta b{font-weight:600;font-size:14px;overflow-wrap:anywhere}
+.fmeta small{font-size:12.5px;color:var(--c-meta)}
+.me .fmeta small{color:rgba(255,255,255,.8)}
+.me.in .fmeta::after{content:"";display:block;height:3px;border-radius:2px;background:#fff;margin-top:5px;animation:upl 1s var(--ease) forwards}
+@keyframes upl{from{width:0}80%{width:100%;opacity:1}to{width:100%;opacity:0}}
+.ph{margin:-3px -7px 7px -8px;border-radius:13px;overflow:hidden;line-height:0}
+.ph svg{width:100%;height:auto;display:block}
+.t-photo,.t-invoice{width:100%}
+.inv-p{display:flex;align-items:baseline;gap:8px;margin-top:8px}
+.inv-p b{font-size:22px;letter-spacing:-.02em}
+.inv-p small{font-size:12px;padding:2px 7px;border-radius:6px;background:rgba(246,228,107,.18);color:var(--hi)}
+.prog{display:flex;flex-direction:column;gap:7px;min-width:220px}
+.prog i{display:block;height:4px;border-radius:2px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.prog i::after{content:"";position:absolute;inset:0;width:calc(var(--p)*100%);background:var(--hi);border-radius:2px;transition:width .5s var(--ease)}
+.kp{background:#F7F8FC;color:var(--ink);border-radius:12px;padding:12px 12px 10px;margin:2px -5px 6px -6px;font-size:12.5px;line-height:1.4}
+.kp-h{display:flex;flex-direction:column;gap:2px;padding-bottom:9px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.kp-h span{font-size:11.5px;color:var(--ink3)}
+.kp-h strong{font-size:14px;font-weight:600;color:var(--ink)}
+.kp table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.kp th{font-weight:500;color:var(--ink3);font-size:11px;text-align:right;padding:4px 0 4px 6px}
+.kp th:first-child,.kp td:first-child{text-align:left;padding-left:0}
+.kp td{padding:5px 0 5px 6px;text-align:right;border-top:1px solid var(--line2);vertical-align:top}
+.kp dl{margin:8px 0 6px;display:grid;gap:2px}
+.kp dl div{display:flex;justify-content:space-between}
+.kp dt,.kp dd{margin:0}
+.kp .tot{font-weight:600;font-size:14px;padding-top:4px;margin-top:2px;border-top:1px dashed var(--line)}
+.kp .tot dd{background:var(--hi);padding:0 4px;border-radius:3px}
+.kp p{margin:4px 0 0;color:var(--ink2)}
+.kp .kp-f{color:var(--ink3);font-size:11.5px;margin-top:8px}
+.kp .warn{color:#9A3412}
+.caret{display:inline-block;width:7px;height:15px;margin-left:2px;vertical-align:-2px;border-radius:2px;background:var(--hi);animation:blink .9s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.sx{display:none!important}
+.row.streaming .meta,.row.streaming .ikb{visibility:hidden}
+.row.kbin .ikb{animation:kbin .35s var(--ease) both}
+@keyframes kbin{from{opacity:0;transform:translateY(-4px)}}
+.row.in{animation:pop .34s var(--ease) both}
+.row.bot.in{transform-origin:left bottom}.row.me.in{transform-origin:right bottom}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}}
+.typing .bub{padding:10px 14px}
+.dots{display:inline-flex;gap:4px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--c-meta);animation:dot 1.1s infinite}
+.dots i:nth-child(2){animation-delay:.14s}.dots i:nth-child(3){animation-delay:.28s}
+@keyframes dot{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+
+/* inline keyboard */
+.ikb{display:flex;flex-direction:column;gap:5px;margin-top:5px;width:100%}
+.ikr{display:flex;gap:5px}
+.ikr>*{flex:1 1 0;min-width:0;min-height:44px;padding:8px 10px;border:0;border-radius:12px;background:var(--c-btn);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:13.5px;font-weight:500;line-height:1.25;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s,transform .18s var(--ease),box-shadow .3s}
+.ikr>*:hover{background:var(--c-btn-h)}
+.ikr>*:active{transform:scale(.97)}
+.ikr>.picked{box-shadow:inset 0 0 0 1.5px rgba(182,187,255,.4)}
+.ikr>a::after{content:"";width:12px;height:12px;flex:none;background:currentColor;opacity:.85;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l5-5M4.5 3.5h4v4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l5-5M4.5 3.5h4v4'/%3E%3C/svg%3E") center/contain no-repeat}
+.ikr>.busy::after{content:"";width:12px;height:12px;flex:none;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hint{animation:hint 1.7s var(--ease) infinite;box-shadow:0 0 0 2px var(--hi)!important}
+@keyframes hint{0%{box-shadow:0 0 0 2px var(--hi),0 0 0 0 rgba(246,228,107,.55)}70%,100%{box-shadow:0 0 0 2px var(--hi),0 0 0 9px rgba(246,228,107,0)}}
+
+.down{position:absolute;right:12px;bottom:78px;width:44px;height:44px;border-radius:50%;border:0;background:#2A3066;color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.6);z-index:4}
+.down[hidden]{display:none}
+
+/* composer */
+.cmp{flex:none;display:flex;align-items:center;gap:4px;padding:7px 6px calc(7px + env(safe-area-inset-bottom));background:var(--c-head);position:relative;z-index:7}
+.menu-b{flex:none;height:40px;margin:0 2px;padding:0 13px 0 10px;border:0;border-radius:20px;background:var(--c-out);color:#fff;font-weight:600;font-size:14px;display:flex;gap:6px;align-items:center;transition:background .2s,transform .18s var(--ease)}
+.menu-b:hover{background:#5458F2}.menu-b:active{transform:scale(.96)}
+.menu-b[aria-expanded=true]{background:#5B5FF5}
+.field{flex:1;min-width:0;display:flex;align-items:center;background:var(--c-field);border-radius:22px;padding-left:14px}
+.field input{flex:1;min-width:0;height:44px;border:0;background:transparent;color:#fff;font-size:16px;outline:none}
+.field input::placeholder{color:#9298CF}
+.field:focus-within{box-shadow:0 0 0 1.5px rgba(182,187,255,.45)}
+.field .ib{width:40px;height:40px}
+.send{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--c-out);color:#fff;display:grid;place-items:center;transition:transform .2s var(--ease),background .2s,opacity .2s}
+.send:disabled{background:#2B3168;color:#8288C2}
+.send:not(:disabled):hover{background:#5458F2}
+.send:not(:disabled):active{transform:scale(.92)}
+.cmds{position:absolute;left:8px;right:8px;bottom:64px;z-index:12;max-height:60%;overflow:auto;padding:6px;border-radius:18px;background:#262C62;box-shadow:0 -10px 40px -10px rgba(0,0,0,.6);transform-origin:bottom left;animation:popin .24s var(--ease)}
+.cmds button{display:flex;width:100%;gap:12px;align-items:baseline;min-height:46px;padding:8px 12px;border:0;background:none;border-radius:12px;text-align:left}
+.cmds button:hover{background:rgba(255,255,255,.07)}
+.cmds code{font-family:var(--mono);font-size:13px;color:var(--c-link);min-width:92px}
+.cmds span{font-size:14px;color:var(--c-text)}
+.rkb{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px;background:#161A40;position:relative;z-index:6}
+.rkb button{min-height:46px;border:0;border-radius:12px;background:#2A3068;color:#fff;font-size:13.5px;font-weight:500;padding:6px 8px;transition:background .2s,transform .16s var(--ease)}
+.rkb button:hover{background:#363D82}.rkb button:active{transform:scale(.97)}
+
+/* push + sheet */
+.push{position:absolute;left:8px;right:8px;top:52px;z-index:20;display:flex;gap:11px;align-items:center;padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:20px;background:rgba(40,46,100,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--c-text);text-align:left;transform:translateY(-140%);opacity:0;transition:transform .5s var(--ease),opacity .3s;box-shadow:0 18px 34px -14px rgba(0,0,0,.7)}
+.push.on{transform:none;opacity:1}
+.push-t{flex:1;min-width:0;display:flex;flex-direction:column;font-size:13px;line-height:1.35}
+.push-t b{font-size:14px;font-weight:600}
+.push-t span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#D5D8FF}
+.push time{align-self:flex-start;font-size:11.5px;color:var(--c-meta)}
+.sheet-w{position:absolute;inset:0;z-index:30}
+.sheet-w[hidden]{display:none}
+.sheet-bg{position:absolute;inset:0;background:rgba(6,8,26,.6);opacity:0;transition:opacity .3s}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:84%;display:flex;flex-direction:column;background:#F6F7FC;color:var(--ink);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .45s var(--ease);box-shadow:0 -20px 40px -20px rgba(0,0,0,.5)}
+.open .sheet-bg{opacity:1}.open .sheet{transform:none}
+.sh-h{flex:none;display:flex;gap:10px;align-items:flex-start;padding:16px 10px 12px 20px;border-bottom:1px solid var(--line2)}
+.sh-h>div{flex:1;min-width:0}
+.sh-h h3{margin:4px 0 2px;font-size:16px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.sh-h p{margin:0;font-size:12.5px;color:var(--ink3)}
+.sh-x{color:var(--ink2)}
+.sh-x:hover{background:var(--line2);color:var(--ink)}
+.sh-b{overflow:auto;padding:16px 20px calc(22px + env(safe-area-inset-bottom));font-size:14px;line-height:1.55}
+.sh-b p{margin:0 0 10px}
+.docv{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 16px 6px;box-shadow:0 10px 24px -18px rgba(22,26,66,.4)}
+.docv h4{margin:0 0 8px;font-size:13.5px;font-weight:600}
+.docv p{font-size:13.5px;line-height:1.62;color:#2C315F}
+.docv mark,.sh-b mark{background:linear-gradient(transparent 6%,var(--hi) 6%,var(--hi) 94%,transparent 94%);color:inherit;padding:0 2px;border-radius:2px}
+.docv-f{font-size:12.5px;color:var(--ink3);margin-top:12px!important}
+.sh-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sh-list li{display:flex;gap:10px;align-items:flex-start}
+.sh-list li::before{content:"";flex:none;width:10px;height:6px;margin-top:.6em;border-radius:2px;background:var(--hi);box-shadow:0 0 0 1px rgba(22,26,66,.12)}
+.attach-f{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left;transition:border-color .2s,transform .18s var(--ease)}
+.attach-f:hover{border-color:var(--ultra)}.attach-f:active{transform:scale(.98)}
+.attach-f .fmeta small{color:var(--ink3)}
+.pay-r{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line2);font-size:14px}
+.pay-r span{color:var(--ink3)}
+.pay-n{font-size:13px;color:var(--ink3);margin:14px 0!important}
+.pay-b{width:100%;min-height:52px;border:0;border-radius:14px;background:var(--ultra);color:#fff;font-weight:600;font-size:15.5px;transition:background .2s,transform .18s var(--ease)}
+.pay-b:hover{background:var(--ultra2)}.pay-b:active{transform:scale(.98)}
+.pay-b:disabled{background:#8C8FE8}
+
+/* business side */
+.biz{min-width:0;padding:6px 0 36px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:4px 0 34px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand .mk{flex:none;width:42px;height:42px;border-radius:13px;background:#1D2155;display:grid;place-items:center}
+.brand b{display:block;font-weight:600;font-size:15px;line-height:1.25}
+.brand small{display:block;font-size:13px;color:var(--ink3)}
+.bar-a{display:flex;align-items:center;gap:8px}
+.btn-g{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);font-weight:500;font-size:14px;text-decoration:none;color:var(--ink);transition:border-color .2s,background .2s,transform .18s var(--ease)}
+.btn-g:hover{border-color:#B9BDE0;background:#FAFAFE}
+.btn-g:active{transform:scale(.97)}
+.intro h1{font-size:clamp(32px,3.5vw,54px);line-height:1.03;letter-spacing:-.032em;font-weight:600;margin:0 0 18px;max-width:16ch;text-wrap:balance}
+.lead{font-size:17px;line-height:1.56;color:var(--ink2);max-width:60ch;margin:0}
+.tries{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;margin:26px 0 30px}
+.tries p{margin:0;font-size:14px;color:var(--ink3)}
+.tries p b{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 15px;border:1px solid var(--line);border-radius:22px;background:var(--paper);font-size:14px;font-weight:500;color:var(--ink);transition:border-color .2s,background .25s,transform .18s var(--ease)}
+.chip:hover{border-color:var(--ultra)}
+.chip:active{transform:scale(.97)}
+.chip.ok{background:var(--hi);border-color:#E6D24E}
+.chip svg{width:14px;height:14px}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:24px 26px 26px;box-shadow:0 40px 70px -50px rgba(22,26,66,.35)}
+.p-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line2)}
+.p-head h2{font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-.02em;margin:0}
+.p-head p{margin:5px 0 0;color:var(--ink3);font-size:14px;max-width:52ch}
+.live{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ok);padding:6px 12px;border-radius:99px;background:var(--okbg);white-space:nowrap}
+.live i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:live 1.8s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(10,122,96,.45)}70%,100%{box-shadow:0 0 0 7px rgba(10,122,96,0)}}
+.p-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.p-log{padding:20px 24px 0 0;border-right:1px solid var(--line2);min-width:0;display:flex;flex-direction:column}
+.p-side{padding:20px 0 0 24px;min-width:0}
+.p-sub{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.p-sub h3{margin:0;font-size:15.5px;font-weight:600}
+.p-sub span{font-size:12.5px;color:var(--ink3);text-align:right}
+.log{list-style:none;margin:0 -8px;padding:0 0 24px;flex:1 1 0;min-height:420px;overflow:auto;scrollbar-width:thin;-webkit-mask-image:linear-gradient(#000 calc(100% - 56px),transparent);mask-image:linear-gradient(#000 calc(100% - 56px),transparent)}
+.le{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;padding:11px 8px;border-radius:14px;position:relative}
+.le+.le::before{content:"";position:absolute;left:56px;right:8px;top:0;border-top:1px solid var(--line2)}
+.le.fresh{animation:fresh 3s var(--ease)}
+@keyframes fresh{0%{background:var(--hi);opacity:0;transform:translateY(-10px)}10%{opacity:1;transform:none;background:var(--hi)}100%{background:rgba(246,228,107,0)}}
+.av-e{width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;font-size:12.5px;font-weight:600;display:grid;place-items:center;letter-spacing:.02em}
+.le-h{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap}
+.le-h b{font-weight:600;font-size:14px}
+.tg{font-size:12px;line-height:1.5;padding:1px 8px;border-radius:99px;background:var(--paper2);color:var(--ink2)}
+.tg-rv{background:#FBE3EA;color:#8E2245}.tg-po{background:#FCEBD2;color:#7A4508}.tg-dc{background:#E3E4FD;color:#2B2FC4}.tg-tr{background:#D8F1EA;color:#0A6450}.tg-kp{background:#ECE3FB;color:#5B2DB3}.tg-kb{background:#FBF4C4;color:#5E5208}.tg-pay{background:#DDF2EB;color:#0A6450}
+.le-h time{margin-left:auto;font:400 12px var(--mono);color:var(--ink3)}
+.le p{margin:2px 0 3px;font-size:14px;line-height:1.42;overflow-wrap:anywhere}
+.le-f{font-size:12.5px;color:var(--ink3)}
+.le-f .src{color:var(--ultra)}
+.lim{padding-bottom:20px;border-bottom:1px solid var(--line2)}
+.lim-num{display:flex;align-items:baseline;gap:10px;margin:6px 0 12px;flex-wrap:wrap}
+.lim-num b{font-size:46px;font-weight:600;letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.lim-num span{color:var(--ink3);font-size:15px}
+.lim-num em{margin-left:auto;font-style:normal;font-size:13px;font-weight:600;padding:3px 9px;border-radius:8px;background:var(--paper2);color:var(--ink2)}
+.lim-num em.w{background:#FDE7DC;color:#9A3412}
+.lim-bar{display:flex;height:14px;border-radius:7px;background:var(--paper2);overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px var(--line2)}
+.lim-bar i{height:100%;flex:none;transition:width .7s var(--ease);box-shadow:inset -2px 0 0 #fff}
+.lim-bar::after{content:"";position:absolute;left:80%;top:-3px;bottom:-3px;border-left:2px dashed rgba(22,26,66,.35)}
+.lim-leg{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;font-size:13px;color:var(--ink2)}
+.lim-leg li{display:flex;align-items:center;gap:7px;min-width:0}
+.lim-leg i{flex:none;width:9px;height:9px;border-radius:3px;background:var(--c)}
+.lim-leg b{margin-left:auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+.lim-note{margin:12px 0 0;font-size:13px;color:var(--ink3)}
+.lim-note.w{color:#9A3412}
+.lim-buy{margin-top:14px;min-height:44px;font-size:13.5px}
+.lim-buy[hidden]{display:none}
+.set{padding-top:18px}
+.set h3{margin:0 0 12px;font-size:15.5px;font-weight:600}
+.set fieldset{border:0;margin:0 0 16px;padding:0;min-width:0}
+.set legend{font-size:13px;color:var(--ink3);margin-bottom:7px;padding:0}
+.segm{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:14px;background:var(--paper2)}
+.segm label{flex:1 1 auto;position:relative}
+.segm input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.segm span{display:flex;align-items:center;justify-content:center;min-height:38px;padding:0 10px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--ink2);transition:background .2s,color .2s,box-shadow .2s;text-align:center}
+.segm input:checked+span{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(22,26,66,.14)}
+.segm input:focus-visible+span{outline:2.5px solid var(--ultra);outline-offset:1px}
+.segm label:hover span{color:var(--ink)}
+.docs{display:grid;gap:2px}
+.doc{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:11px;min-height:52px;padding:6px 8px;margin:0 -8px;border-radius:12px;cursor:pointer;transition:background .2s,opacity .25s}
+.doc:hover{background:var(--paper2)}
+.doc input{appearance:none;-webkit-appearance:none;width:22px;height:22px;margin:0;border-radius:7px;border:1.6px solid #A9AED3;background:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.doc input::after{content:"";width:11px;height:6px;border:solid #fff;border-width:0 0 2.2px 2.2px;transform:translateY(-1px) rotate(-45deg) scale(0);transition:transform .25s var(--ease)}
+.doc input:checked{background:var(--ultra);border-color:var(--ultra)}
+.doc input:checked::after{transform:translateY(-1px) rotate(-45deg) scale(1)}
+.doc .fi{width:30px;height:34px;font-size:8px;border-radius:6px 10px 6px 6px}
+.doc .fi::after{width:9px;height:9px}
+.doc-t{display:flex;flex-direction:column;min-width:0}
+.doc-t b{font-size:13.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.doc-t small{font-size:12px;color:var(--ink3)}
+.doc.off .fi,.doc.off .doc-t{opacity:.45}
+.set-n{margin:4px 0 0;font-size:12.5px;color:var(--ink3);min-height:20px}
+.set-n.flash{color:var(--ok)}
+
+.about{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:44px;margin-top:48px}
+.about h2{font-size:22px;font-weight:600;letter-spacing:-.02em;margin:0 0 16px}
+.can-l{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.can-l li{position:relative;padding-left:26px;color:var(--ink2);max-width:58ch}
+.can-l li::before{content:"";position:absolute;left:0;top:.6em;width:13px;height:7px;border-radius:2px;background:var(--hi);box-shadow:0 0 0 1px rgba(22,26,66,.1)}
+.can-l b{color:var(--ink);font-weight:600}
+.stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 22px}
+.stack li{padding:7px 12px;border-radius:10px;background:var(--paper);border:1px solid var(--line);font-size:13.5px}
+.term{font-size:18px;line-height:1.45;margin:0 0 18px}
+.term b{font-weight:600}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:16px;background:var(--ultra);color:#fff;text-decoration:none;font-weight:600;transition:transform .2s var(--ease),background .2s}
+.cta:hover{background:var(--ultra2)}.cta:active{transform:scale(.98)}
+.foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--ink3)}
+.foot a{color:var(--ink);font-weight:500}
+
+@media (max-width:1279px){
+  .p-grid{grid-template-columns:1fr}
+  .p-log{padding-right:0;border-right:0;padding-bottom:16px;border-bottom:1px solid var(--line2)}
+  .log{flex:none;min-height:0;max-height:440px}
+  .p-side{padding-left:0}
+  .about{grid-template-columns:1fr;gap:34px}
+}
+@media (max-width:859px){
+  html,body{height:100%}
+  body{overflow:hidden;display:flex;flex-direction:column;height:100vh;height:100dvh}
+  .mbar{flex:none;display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:8px;align-items:center;padding:8px 12px 7px;background:var(--bg);position:relative;z-index:5}
+  .seg-v{display:grid;grid-template-columns:1fr 1fr;background:#D8DBEE;border-radius:15px;padding:3px}
+  .vbtn{min-height:44px;border:0;border-radius:12px;background:transparent;font-weight:600;font-size:14px;color:var(--ink2);display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s,color .2s;white-space:nowrap}
+  .vbtn[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(22,26,66,.14)}
+  .bdg{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--ultra);color:#fff;font-size:11px;line-height:18px;text-align:center}
+  .bdg[hidden]{display:none}
+  .mreset{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--ink2)}
+  .mhint{grid-column:1/-1;margin:1px 2px 0;font-size:12.5px;line-height:1.35;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mhint b{color:var(--ink);font-weight:600}
+  .stage{flex:1;min-height:0;min-width:0;width:100%;display:block;padding:0;max-width:none}
+  .phone-col{position:static;height:100%;gap:0}
+  .phone{height:100%;width:100%;padding:0;border-radius:0;background:none;box-shadow:none}
+  .phone::before,.phone::after,.phone-col::before,.ph-note,.sb{display:none}
+  .screen{border-radius:0}
+  .push{top:8px}
+  .biz{height:100%;overflow-y:auto;padding:18px 16px 30px;-webkit-overflow-scrolling:touch}
+  .bar{padding-bottom:22px}
+  .bar-a .btn-g[data-reset]{display:none}
+  body[data-view=chat] .biz{display:none}
+  body[data-view=biz] .phone-col{display:none}
+  .panel{padding:18px 16px 20px;border-radius:22px}
+  .p-head{flex-direction:column;gap:10px}
+  .intro h1{font-size:30px}
+  .lead{font-size:15.5px}
+  .tries{margin:20px 0 24px}
+}
+@container (max-width:345px){
+  .menu-b span{display:none}
+  .menu-b{padding:0 10px;width:44px;justify-content:center}
+  .ikr>*{font-size:13px;padding:7px 8px}
+}
+@media (max-width:380px){
+  .blk,.blk.haskb{max-width:92%;width:92%}
+  .me .blk{max-width:88%;width:auto}
+  .lim-leg{grid-template-columns:1fr}
+  .vbtn{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .hint{box-shadow:0 0 0 2px var(--hi)!important}
+}
+</style>
+<meta property="og:image" content="https://ysddev.com/og/bots-ai.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://ysddev.com/og/bots-ai.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ru_RU"></head>
+<body data-view="chat">
+<div class="mbar">
+  <div class="seg-v" role="group" aria-label="Что показать">
+    <button type="button" class="vbtn" data-view="chat" aria-pressed="true">Чат<span class="bdg" id="bdgChat" hidden></span></button>
+    <button type="button" class="vbtn" data-view="biz" aria-pressed="false">Панель бизнеса<span class="bdg" id="bdgBiz" hidden></span></button>
+  </div>
+  <button type="button" class="mreset" data-reset aria-label="Начать демо заново"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></svg></button>
+  <p class="mhint" id="mhint" aria-live="polite"></p>
+</div>
+
+<main class="stage">
+  <section class="phone-col" aria-label="Чат с ботом Секретарь">
+    <div class="phone">
+      <div class="screen" id="screen">
+        <div class="sb" aria-hidden="true"><span id="clock">12:00</span><span class="island"></span><span class="sbi"><svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 4.2a9.5 9.5 0 0 1 13 0M4 7a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.2" fill="#fff" stroke="none"/></svg><svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x=".7" y=".7" width="21.6" height="10.6" rx="3.2" stroke="#fff" stroke-opacity=".5" stroke-width="1.3"/><rect x="2.4" y="2.4" width="15" height="7.2" rx="1.8" fill="#fff"/><path d="M24 4.2v3.6" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"/></svg></span></div>
+        <header class="tgh">
+          <button class="tgh-id" type="button" id="botInfo" aria-label="Описание бота Секретарь">
+            <span class="av av-bot" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M17.5 6.6a7.5 7.5 0 1 0 0 10.8"/></svg></span>
+            <span class="tgh-t"><span class="nm">Секретарь</span><span class="st" id="st">бот</span></span>
+          </button>
+          <button class="ib" type="button" id="kebab" aria-label="Ещё" aria-haspopup="menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5.5" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="12" cy="18.5" r="1.9"/></svg></button>
+          <div class="pop" id="kpop" role="menu" hidden>
+            <button role="menuitem" type="button" data-reset>Начать заново</button>
+            <button role="menuitem" type="button" id="aboutDemo">Как устроено демо</button>
+          </div>
+        </header>
+        <button class="pin" type="button" id="pin" aria-label="Закреплённое сообщение: как устроено демо"><span class="pin-l">Закреплённое сообщение</span><span class="pin-t">Демо: ответы подготовлены сценарием, но работают как у живого ИИ</span></button>
+        <button class="push" type="button" id="push" hidden></button>
+        <div class="feed" id="feed" role="log" aria-live="polite" aria-label="Сообщения"></div>
+        <button class="down" id="down" type="button" aria-label="К последним сообщениям" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="cmds" id="cmds" role="menu" aria-label="Команды бота" hidden></div>
+        <div class="rkb" id="rkb" hidden></div>
+        <form class="cmp" id="cmp" autocomplete="off">
+          <button type="button" class="menu-b" id="menuB" aria-expanded="false" aria-controls="cmds"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span>Меню</span></button>
+          <label class="sr" for="msg">Сообщение боту</label>
+          <div class="field">
+            <input id="msg" type="text" placeholder="Сообщение" enterkeyhint="send" maxlength="600">
+            <button type="button" class="ib" id="attach" aria-label="Прикрепить файл"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M20 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg></button>
+          </div>
+          <button type="button" class="ib" id="kbT" aria-label="Клавиатура с задачами" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="3"/><path d="M7 9.5h.01M10.5 9.5h.01M14 9.5h.01M17 9.5h.01M8 14.5h8"/></svg></button>
+          <button type="submit" class="send" id="send" aria-label="Отправить" disabled><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.2 19.6 5.1c.6-.3 1.2.3.9.9l-7.1 15.1c-.3.6-1.2.5-1.3-.2l-1.2-6.1-6.1-1.2c-.7-.1-.8-1-.3-1.4z" fill="currentColor"/></svg></button>
+        </form>
+        <div class="sheet-w" id="sheetW" hidden>
+          <div class="sheet-bg" data-close></div>
+          <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shT">
+            <div class="sh-h"><div><h3 id="shT">Документ</h3><p id="shS"></p></div><button type="button" class="ib sh-x" data-close aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+            <div class="sh-b" id="shB"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="ph-note">Демо: ответы сценарные, ИИ не подключён</p>
+  </section>
+
+  <div class="biz" id="biz">
+    <div class="bar">
+      <div class="brand"><span class="mk" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="6.6" ry="9" transform="rotate(32 12 12)" fill="#F6E46B"/><path d="M8.6 5.6c2.6 2.8 1.6 6.9 6.8 12.8" stroke="#1D2155" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><b>Сорок зёрен</b><small>обжарочная и три кофейни, Ярославль</small></span></div>
+      <div class="bar-a"><button type="button" class="btn-g" data-reset><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></svg>Начать заново</button><a class="btn-g" href="https://ysddev.com" target="_blank" rel="noopener">Сделано в YSD DEV</a></div>
+    </div>
+    <header class="intro">
+      <h1>Секретарь, который прочитал все документы компании</h1>
+      <p class="lead">ИИ-ассистент в Telegram для сотрудников: отвечает на отзывы в тоне бренда, пишет посты и КП, пересказывает договоры и ищет ответы в регламентах — со ссылкой на пункт документа.</p>
+      <div class="tries"><p>Попробуйте в чате · <b id="triesN">0 из 6</b></p><div class="chips" id="chips"></div></div>
+    </header>
+
+    <section class="panel" aria-labelledby="pT">
+      <div class="p-head">
+        <div><h2 id="pT">Что видит бизнес</h2><p>Панель руководителя «Сорок зёрен»: запросы из чата появляются здесь сразу, а настройки меняют ответы бота.</p></div>
+        <span class="live"><i></i>в реальном времени</span>
+      </div>
+      <div class="p-grid">
+        <div class="p-log">
+          <div class="p-sub"><h3>Журнал запросов</h3><span id="logN"></span></div>
+          <ol class="log" id="log" aria-live="polite"></ol>
+        </div>
+        <div class="p-side">
+          <div class="lim">
+            <div class="p-sub"><h3>Лимит запросов</h3><span>октябрь · тариф «Команда»</span></div>
+            <div class="lim-num"><b id="limUsed">0</b><span>из <span id="limTotal">0</span></span><em id="limPct">0%</em></div>
+            <div class="lim-bar" id="limBar" role="img" aria-label="Расход лимита по сотрудникам"></div>
+            <ul class="lim-leg" id="limLeg"></ul>
+            <p class="lim-note" id="limNote"></p>
+            <button type="button" class="btn-g lim-buy" id="limBuy">Выставить счёт на пакет в чат</button>
+          </div>
+          <div class="set">
+            <h3>Настройки ассистента</h3>
+            <fieldset><legend>Тон компании</legend><div class="segm" id="toneG"></div></fieldset>
+            <fieldset><legend>Языковая модель</legend><div class="segm" id="modelG"></div></fieldset>
+            <fieldset><legend id="docsL">База знаний</legend><div class="docs" id="docsG"></div></fieldset>
+            <p class="set-n" id="setN" aria-live="polite">Подключите «Стандарты сервиса» — бот сообщит об этом в чате.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" aria-label="О боте">
+      <div>
+        <h2>Что умеет бот</h2>
+        <ul class="can-l">
+          <li><b>Отвечает на отзывы</b> — три варианта в тоне компании, можно смягчить или сократить.</li>
+          <li><b>Пересказывает договоры</b>, отмечает рискованные пункты и готовит протокол разногласий.</li>
+          <li><b>Ищет ответы в базе знаний</b> — регламенты, прайсы, политики — и даёт ссылку на пункт.</li>
+          <li><b>Пишет посты, КП и переводы</b> по шаблонам и актуальным ценам компании.</li>
+          <li><b>Пускает только своих</b>: вход по приглашению, роли и лимиты для каждого сотрудника.</li>
+          <li><b>Руководитель видит всё</b>: журнал запросов, расход лимита и подключённые документы.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Как устроен</h2>
+        <ul class="stack"><li>Python</li><li>aiogram 3</li><li>YandexGPT или GigaChat — на выбор</li><li>RAG по документам компании</li><li>PostgreSQL + pgvector</li><li>Redis</li><li>Docker</li></ul>
+        <p class="term">Срок разработки: <b>14 дней</b> · от <b>55 000 ₽</b></p>
+        <a class="cta" href="https://ysddev.com" target="_blank" rel="noopener">Обсудить такого бота</a>
+      </div>
+    </section>
+    <footer class="foot"><span>Демо · дизайн-концепт студии YSD DEV. Компания и данные вымышлены.</span><a href="https://ysddev.com" target="_blank" rel="noopener">Сделано в YSD DEV</a></footer>
+  </div>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOB=matchMedia('(max-width: 859px)');
+const KEY='ysd-demo-bot-secretary-v2';
+const pad=n=>String(n).padStart(2,'0');
+const hhmm=d=>{d=d||new Date();return pad(d.getHours())+':'+pad(d.getMinutes());};
+const nf=n=>Math.round(n).toLocaleString('ru-RU');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const strip=h=>{const d=document.createElement('div');d.innerHTML=String(h).replace(/<br\s*\/?>/gi,' ');return d.textContent.replace(/\s+/g,' ').trim();};
+const plural=(n,a,b,c)=>{n=Math.abs(n)%100;const m=n%10;return n>10&&n<20?c:m>1&&m<5?b:m===1?a:c;};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---------- data ---------- */
+const EMP={anna:{n:'Анна Белова',r:'управляющая',c:'#3A3EE0',i:'АБ'},vera:{n:'Вера Миронова',r:'SMM',c:'#B4365E',i:'ВМ'},kirill:{n:'Кирилл Соколов',r:'опт',c:'#0A7A60',i:'КС'},oleg:{n:'Олег Дьячков',r:'закупки',c:'#94560B',i:'ОД'},nina:{n:'Нина Петрова',r:'бухгалтерия',c:'#6A40C2',i:'НП'}};
+const EMP_ORDER=['vera','kirill','anna','oleg','nina'];
+const SEED=[[6,'vera','Пост','Анонс мастер-класса 1 ноября — три варианта заголовка',2,'Карта сортов и обжарок.pdf'],[19,'kirill','КП','Кофейня «Дрова», 25 кг в месяц, скидка 5%',3,'Прайс-лист опт 2026.xlsx'],[34,'oleg','Перевод','Письмо поставщику фильтров, RU → EN',1,''],[52,'nina','База знаний','«Как оформить возврат по браку?»',1,'Политика возврата v3.pdf'],[71,'vera','Ответ на отзыв','★★★☆☆ · «Долго ждали заказ у окна»',2,'']];
+const TYPEC={'Ответ на отзыв':'rv','Пост':'po','Пересказ документа':'dc','Перевод':'tr','КП':'kp','База знаний':'kb','Оплата':'pay'};
+const TONE={friendly:'дружелюбный',biz:'деловой',exp:'экспертный'};
+const DOCS={
+  ret:{name:'Политика возврата v3.pdf',meta:'12 стр. · обновлён 3 октября',ext:'PDF'},
+  price:{name:'Прайс-лист опт 2026.xlsx',meta:'4 листа · обновлён 1 октября',ext:'XLS'},
+  deliv:{name:'Регламент доставки.docx',meta:'6 стр. · обновлён 22 сентября',ext:'DOC'},
+  staff:{name:'Регламент для сотрудников.docx',meta:'18 стр. · обновлён 15 сентября',ext:'DOC'},
+  sorts:{name:'Карта сортов и обжарок.pdf',meta:'9 стр. · обновлён 7 октября',ext:'PDF'},
+  serv:{name:'Стандарты сервиса.pdf',meta:'7 стр. · загружен сегодня',ext:'PDF'}
+};
+const MENU=[['review','💬','Ответить на отзыв','m_review'],['post','✍️','Пост для соцсетей','m_post'],['doc','📄','Пересказать документ','m_doc'],['tr','🌐','Перевести','m_tr'],['kp','🧾','Составить КП','m_kp'],['kb','📚','Спросить базу знаний','m_kb']];
+const CH=[['review','Ответ на отзыв','m_review'],['post','Пост','m_post'],['doc','Пересказ договора','m_doc'],['tr','Перевод','m_tr'],['kp','КП','m_kp'],['kb','База знаний','m_kb']];
+const CMD=[['start','Главное меню','menu0'],['review','Ответить на отзыв','m_review'],['post','Пост для соцсетей','m_post'],['summary','Пересказать документ','m_doc'],['translate','Перевести текст','m_tr'],['kp','Составить КП','m_kp'],['ask','Спросить базу знаний','m_kb'],['limit','Остаток лимита','limit']];
+const GUIDE=['review','doc','kb'];
+const HINTS={m_review:'Начните с кнопки <b>«Ответить на отзыв»</b>',rv:'Выберите <b>отзыв на две звезды</b>',rv_soft:'Попросите <b>сделать ответ мягче</b>',more:'Нажмите <b>«Другие задачи»</b>',m_doc:'Теперь — <b>«Пересказать документ»</b>',doc_send:'Отправьте боту <b>демо-договор</b>',m_kb:'Спросите <b>базу знаний</b>',kb:'Спросите <b>про срок возврата</b>',src:'Откройте <b>источник ответа</b>',free:'Пишите боту или выбирайте в <b>«Меню»</b>',biz:'Здесь — <b>запросы из чата</b> и настройки'};
+
+const REV=[
+ {st:2,name:'Ксения Р.',src:'Ксения Р. · отзыв на картах',sh:'доставка опоздала на два дня',
+  text:'Заказывала на сайте «Эфиопию Иргачеффе» — доставка опоздала на два дня, пачка пришла помятой. Сам кофе вкусный, но осадок остался.',
+  sum:'Недовольна доставкой и упаковкой, к самому кофе претензий нет.',
+  v:['Ксения, спасибо, что написали, и простите за такой опыт. Посылка шла на два дня дольше, а пачка пришла помятой — так быть не должно. Мы уже разбираемся со службой доставки. В личных сообщениях ждёт промокод на бесплатную доставку и 200 г «Эфиопии» в подарок к следующему заказу. Очень рады, что сам кофе понравился!',
+     'Ксения, здравствуйте. Приносим извинения за задержку и повреждённую упаковку. Мы проверили заказ: посылка задержалась на сортировочном пункте перевозчика. Компенсацию — бесплатную доставку следующего заказа — направили вам в личные сообщения. Спасибо, что помогаете нам становиться лучше.',
+     'Ксения, простите за задержку и помятую пачку 🙏 Промокод на бесплатную доставку и подарок уже у вас в личных сообщениях. Рады, что кофе понравился!'],
+  soft:'Ксения, нам правда очень жаль. Вы ждали кофе, а получили задержку и помятую пачку — понимаем, как это обидно. Спасибо, что всё равно оценили вкус. Мы написали вам в личные сообщения: там промокод на бесплатную доставку и небольшой подарок. Хочется, чтобы следующий заказ принёс только радость.',
+  short:['Простите за задержку и помятую пачку — промокод и подарок уже в личных сообщениях 🙏','Извините за доставку. Компенсация — в личных сообщениях.','Спасибо, что написали! Исправимся — подарок ждёт вас в личке.']},
+ {st:5,name:'Дмитрий Л.',src:'Дмитрий Л. · отзыв на картах',sh:'лучший раф, бариста Егор',
+  text:'Лучший раф в городе! Бариста Егор запомнил, что я пью на овсяном, и в следующий раз сделал без напоминаний. Спасибо!',
+  sum:'Восторженный отзыв, отмечает конкретного бариста — стоит поблагодарить и упомянуть Егора.',
+  v:['Дмитрий, спасибо за такие тёплые слова! Передали Егору — он очень обрадовался. Внимание к гостям для нас важнее любого рецепта. Кстати, в кофейнях новый сезонный бленд «Листопад» — попробуйте его в рафе на овсяном 🍂',
+     'Дмитрий, здравствуйте! Благодарим за высокую оценку и за то, что отметили работу Егора. Обязательно передадим команде. Ждём вас снова.',
+     'Спасибо, Дмитрий! Егор передаёт привет — овсяный раф будет ждать вас ☕'],
+  soft:'Дмитрий, вы нас растрогали 🧡 Егор весь день улыбался после вашего отзыва. Приходите ещё — ваш раф на овсяном мы помним.',
+  short:['Спасибо! Егор передаёт привет ☕','Спасибо за отзыв — передали Егору!','Рады стараться — ждём вас снова 🧡']},
+ {st:3,name:'Ирина С.',src:'Ирина С. · отзыв в соцсети',sh:'долго ждали капучино',
+  text:'Атмосфера отличная, но в субботу днём ждали капучино 15 минут, а столики у окна были не убраны.',
+  sum:'Смешанный отзыв: хвалит атмосферу, недовольна скоростью и чистотой в часы пик.',
+  v:['Ирина, спасибо за честный отзыв и тёплые слова об атмосфере! 15 минут на капучино — слишком долго, а неубранные столики — наша недоработка. По субботам с 12 до 16 теперь выходит дополнительный бариста. Будем рады угостить вас капучино в следующий визит — просто покажите этот ответ.',
+     'Ирина, здравствуйте. Благодарим за обратную связь. Мы проанализировали загрузку в выходные и усилили смену в часы пик. Вопрос с уборкой столов передали администратору кофейни.',
+     'Ирина, спасибо! Субботнюю смену уже усилили, а капучино в следующий раз — за наш счёт ☕'],
+  soft:'Ирина, спасибо, что заметили хорошее, и простите за долгое ожидание. Понимаем: в выходной хочется отдыхать, а не ждать. Мы усилили субботнюю смену и попросили администратора внимательнее следить за залом. Капучино в следующий визит — от нас.',
+  short:['Спасибо! Субботнюю смену усилили — капучино за нами ☕','Извините за ожидание, уже исправили.','Спасибо за отзыв — учли и исправились!']}
+];
+
+const POSTS=[
+ {topic:'Осенний бленд «Листопад»',art:'leaf',src:'Карта сортов и обжарок.pdf',
+  h:['«Листопад» уже в обжарке: орех, печёное яблоко и немного корицы','Кофе, который пахнет октябрём','Новый сезонный бленд — только до конца ноября'],
+  alt:['Пахнет октябрём: встречайте «Листопад»','Сезонный бленд, который хочется пить под пледом','Орех, яблоко, карамель — в одной чашке'],
+  body:'Мы собрали «Листопад» из бразильского и колумбийского зерна и обжарили его чуть темнее обычного. В чашке — грецкий орех, печёное яблоко и мягкая карамельная сладость. Хорош в эспрессо, с молоком и в фильтре.\n\n☕ Во всех трёх кофейнях — уже сегодня\n📦 На сайте — пачки 250 г и 1 кг\n🍂 Только до 30 ноября\n\nВ субботу с 12:00 наливаем фильтр на пробу — приходите!\n\n#сороказёрен #листопад #кофеярославль',
+  exp:'Профиль: Бразилия Моджиана 60% и Колумбия Уила 40%, обжарка чуть темнее средней. Для эспрессо — 18 г на 38 г за 28 секунд.',
+  short:'«Листопад» — наш осенний бленд: орех, печёное яблоко, карамель. Уже в кофейнях и на сайте, только до 30 ноября 🍂'},
+ {topic:'Мастер-класс по воронке 1 ноября',art:'funnel',src:'Карта сортов и обжарок.pdf',
+  h:['Учимся заваривать воронку как бариста — за два часа','Мастер-класс: идеальный фильтр дома','8 мест на субботу, 1 ноября'],
+  alt:['Сварите кофе лучше, чем в кофейне','Два часа — и вы на «ты» с воронкой','Суббота, 14:00: альтернатива для начинающих'],
+  body:'1 ноября проводим мастер-класс по альтернативе: разберём помол, температуру воды и пропорции, заварим три сорта и сравним вкус.\n\n🕑 1 ноября, 14:00–16:00\n📍 Кофейня на набережной\n💳 1 500 ₽, оборудование дадим\n👥 8 мест\n\nКаждый участник уносит пачку зерна 250 г. Записаться — в личных сообщениях.\n\n#сороказёрен #мастеркласс #воронка',
+  exp:'В программе: конические и плоскодонные воронки, помол 600–800 мкм, вода 93 °C, пропорция 1:16.',
+  short:'1 ноября — мастер-класс по воронке: 2 часа, 3 сорта, 1 500 ₽. Всего 8 мест — пишите в личные сообщения ☕'},
+ {topic:'Скидка 20% на дрип-пакеты',art:'drip',src:'Прайс-лист опт 2026.xlsx',
+  h:['Дрип-пакеты −20% до конца октября','Кофе в дорогу: минус 20% на дрип-пакеты','Свежий фильтр без кофемашины — и дешевле'],
+  alt:['−20% на кофе, который заваривается прямо в чашке','Офисный кофе стал вкуснее и дешевле','Дрип-пакеты по осенней цене'],
+  body:'До 31 октября все дрип-пакеты — со скидкой 20%. Внутри 11 г свежеобжаренного кофе: надорвите, повесьте на чашку, залейте водой. Три минуты — и у вас хороший фильтр в офисе, поезде или на даче.\n\n🎒 Наборы по 10 и 25 штук\n🏷 Скидка уже в цене на сайте и в кофейнях\n⏳ До 31 октября\n\n#сороказёрен #дрип #кофевдорогу',
+  exp:'Как заваривать: 11 г среднего помола на 180 мл воды 92–94 °C, 2,5–3 минуты.',
+  short:'Дрип-пакеты −20% до 31 октября. Три минуты — и хороший фильтр где угодно ☕'}
+];
+
+const CONTRACT={
+ sum:'<b>Договор поставки № 47/26 от 2 октября 2026</b><br>Поставщик — ООО «Зелёный караван», покупатель — «Сорок зёрен». 14 страниц, 11 разделов.<br><br><b>Коротко</b><br>• Предмет: зелёная арабика, 1 200 кг в квартал партиями по 400 кг.<br>• Цена: 1 180 ₽/кг, фиксирована до 31.12.2026.<br>• Оплата: 50% предоплата, остаток — в течение 10 банковских дней.<br>• Приёмка по качеству: 3 рабочих дня.<br>• Срок: до 31.12.2027, с автопролонгацией.<br><br><b>Риски</b><br>⚠️ <mark>п. 4.2</mark> — поставщик может поднять цену при росте биржевых котировок на 8%, предупредив всего за 5 рабочих дней. Права расторгнуть договор при этом нет.<br>⚠️ <mark>п. 7.1</mark> — неустойка несимметрична: у нас 0,5% в день, у поставщика — 0,1%.<br>⚠️ <mark>п. 9.3</mark> — споры рассматривает суд по месту поставщика, в Новороссийске.<br><br>Рекомендую до подписания отправить протокол разногласий по этим трём пунктам.',
+ proto:'<b>Протокол разногласий к договору № 47/26</b><br><br><b>п. 4.2 · изменение цены</b><br>Редакция поставщика: уведомление за 5 рабочих дней.<br>Наша редакция: уведомление за 30 календарных дней и право покупателя расторгнуть договор без штрафов.<br><br><b>п. 7.1 · неустойка</b><br>Редакция поставщика: 0,5% в день для покупателя.<br>Наша редакция: 0,1% в день для обеих сторон, но не более 10% суммы партии.<br><br><b>п. 9.3 · подсудность</b><br>Редакция поставщика: суд по месту поставщика.<br>Наша редакция: Арбитражный суд Ярославской области.'
+};
+const DOCQ=[
+ {k:['неусто','штраф','пени','пеня','просроч'],a:'По <mark>п. 7.1</mark> за просрочку оплаты мы платим <b>0,5% в день</b>, а поставщик за срыв поставки — только <b>0,1% в день</b> (п. 7.2). Предлагаю выровнять до 0,1% для обеих сторон.'},
+ {k:['расторг','расторж','выйти из','отказат'],a:'По <mark>п. 10.2</mark> расторгнуть договор в одностороннем порядке можно, предупредив за <b>60 дней</b>. Если поставщик поднимет цену по п. 4.2, отдельного права на расторжение нет — его стоит добавить.'},
+ {k:['оплат','плат','предоплат','деньг'],a:'По <mark>п. 5.1–5.2</mark>: <b>50% предоплаты</b> при заказе партии, остальные 50% — в течение <b>10 банковских дней</b> после поставки.'},
+ {k:['цен','стоим','подорож','котиров'],a:'Цена — <b>1 180 ₽/кг</b>, фиксирована до 31.12.2026 (п. 4.1). Но по <mark>п. 4.2</mark> поставщик может её поднять при росте котировок больше чем на 8%, предупредив за 5 рабочих дней.'},
+ {k:['качеств','приёмк','приемк','претензи','брак'],a:'Претензии по качеству — в течение <b>3 рабочих дней</b> после приёмки, с актом и фото (<mark>п. 6.3</mark>). Для зелёного зерна это мало: лучше 10 дней, чтобы успеть сделать пробную обжарку.'},
+ {k:['срок','действ','пролонг','продлев'],a:'Договор действует до <b>31.12.2027</b> и продлевается на год автоматически, если никто не откажется за 30 дней (<mark>п. 11.1</mark>).'},
+ {k:['суд','спор','арбитраж'],a:'Споры — в арбитражном суде по месту нахождения поставщика, в Новороссийске (<mark>п. 9.3</mark>). Удобнее — Арбитражный суд Ярославской области.'},
+ {k:['объём','объем','кг','сколько зерна','парти'],a:'Объём — <b>1 200 кг</b> зелёного зерна в квартал, партиями по 400 кг; график поставок — в приложении № 2 (<mark>п. 2.1</mark>).'}
+];
+const DQ_BTN=['Какая неустойка?','Можно ли расторгнуть?','Когда платить?'];
+
+const KB=[
+ {id:'ret',doc:'ret',k:['возврат','вернуть','вернут','возвращ'],q:'Какой у нас срок возврата?',cite:'п. 2.1–2.3',page:'стр. 4',match:94,
+  a:'<b>14 дней</b> с момента получения — для нераспечатанного зерна, дрип-пакетов и аксессуаров. Вскрытые пачки обратно не принимаем, кроме брака: тогда срок <b>30 дней</b>, нужны фото и номер партии.<br><br>Деньги возвращаем тем же способом, что и оплата, в течение <b>7 дней</b> после того, как товар вернётся на склад.',
+  x:'<h4>2. Возврат товара надлежащего качества</h4><p>2.1. <mark>Покупатель вправе вернуть нераспечатанный товар (зерно, дрип-пакеты, аксессуары) в течение 14 (четырнадцати) календарных дней с момента получения.</mark></p><p>2.2. Товар во вскрытой упаковке возврату не подлежит, за исключением случаев, предусмотренных разделом 3.</p><p>2.3. <mark>Денежные средства возвращаются тем же способом, которым была произведена оплата, в течение 7 (семи) дней</mark> с момента поступления товара на склад.</p><h4>3. Товар ненадлежащего качества</h4><p>3.1. При обнаружении брака покупатель вправе обратиться в течение 30 дней, приложив фото упаковки и номер партии.</p>'},
+ {id:'brak',doc:'ret',k:['брак','бракован','испорч','плесен','повреж'],q:'Что делать, если пачка с браком?',cite:'п. 3.1–3.3',page:'стр. 5',match:91,
+  a:'Если пачка с браком, у клиента <b>30 дней</b> на обращение. Нужны фото пачки и номер партии — он на клапане. Дальше по выбору клиента: замена или возврат денег. Обратную доставку в этом случае оплачиваем мы.',
+  x:'<h4>3. Товар ненадлежащего качества</h4><p>3.1. <mark>При обнаружении брака покупатель вправе обратиться в течение 30 (тридцати) дней с момента получения, приложив фотографии упаковки и номер партии.</mark></p><p>3.2. <mark>По выбору покупателя продавец заменяет товар или возвращает денежные средства.</mark></p><p>3.3. <mark>Расходы на обратную доставку товара ненадлежащего качества несёт продавец.</mark></p>'},
+ {id:'deliv',doc:'deliv',k:['доставк','доставля','курьер','привез','отгруз'],q:'Сколько стоит доставка опта?',cite:'п. 1.2–1.4',page:'стр. 1',match:92,
+  a:'Оптовым клиентам доставка по Ярославлю <b>бесплатная от 20 кг</b>, при меньшем объёме — <b>350 ₽</b> за отгрузку. Отгружаем по вторникам и пятницам, заказ принимаем до 16:00 накануне. В другие города — транспортной компанией по её тарифу, обычно 2–5 дней.',
+  x:'<h4>1. Оптовые отгрузки</h4><p>1.1. Отгрузки оптовым клиентам осуществляются по вторникам и пятницам.</p><p>1.2. <mark>Доставка по г. Ярославлю бесплатна при объёме отгрузки от 20 кг. При меньшем объёме стоимость доставки составляет 350 ₽.</mark></p><p>1.3. <mark>Заказы принимаются до 16:00 дня, предшествующего отгрузке.</mark></p><p>1.4. <mark>Доставка в другие населённые пункты осуществляется транспортной компанией по тарифам перевозчика.</mark></p><h4>3. Задержки</h4><p>3.2. При задержке доставки более чем на 1 день по вине компании клиенту предоставляется бесплатная доставка следующего заказа.</p>'},
+ {id:'perk',doc:'staff',k:['сотрудник','персонал','для своих','бариста'],q:'Какая скидка у сотрудников?',cite:'п. 6.2',page:'стр. 12',match:89,
+  a:'Сотрудникам — скидка <b>30%</b> на зерно и аксессуары и <b>два напитка</b> за смену бесплатно. Скидка не суммируется с акциями.',
+  x:'<h4>6. Льготы сотрудникам</h4><p>6.1. Сотрудникам предоставляется бесплатное обучение в школе бариста компании.</p><p>6.2. <mark>Сотрудники получают скидку 30% на зерно и аксессуары, а также два напитка за смену бесплатно. Скидка не суммируется с акциями.</mark></p>'},
+ {id:'opt',doc:'price',k:['опт','скидк','прайс','цен','стоимост'],q:'Какие скидки у нас для опта?',cite:'лист «Условия»',page:'лист 2',match:93,
+  a:'Базовые оптовые цены за 1 кг: «База» — <b>1 450 ₽</b>, Колумбия Уила — <b>1 890 ₽</b>, «Листопад» — <b>1 690 ₽</b>. Скидки: от 30 кг в месяц — до <b>7%</b>, от 60 кг — до <b>10%</b>. Больше 10% — только по согласованию с собственником.',
+  x:'<h4>Лист «Условия»</h4><p>Цены указаны за 1 кг обжаренного зерна, с НДС.</p><p><mark>«База» (Бразилия Моджиана) — 1 450 ₽; Колумбия Уила — 1 890 ₽; «Листопад» (сезонный) — 1 690 ₽.</mark></p><p><mark>Объём от 30 кг в месяц — скидка до 7%. Объём от 60 кг в месяц — скидка до 10%.</mark></p><p>Скидка свыше 10% согласуется с собственником компании.</p>'},
+ {id:'store',doc:'sorts',k:['хран','вскры','свеж','годн','холодильн'],q:'Как хранить зерно после вскрытия?',cite:'раздел «Хранение»',page:'стр. 3',match:95,
+  a:'После вскрытия закройте пачку зажимом на клапане и храните при комнатной температуре — без холодильника и солнца. Лучший вкус — <b>4 недели</b> после обжарки, срок годности — <b>12 месяцев</b>. Молотый кофе — до <b>7 дней</b>.',
+  x:'<h4>Хранение</h4><p><mark>Вскрытую пачку плотно закрывайте зажимом на клапане и храните при комнатной температуре, вдали от солнца. Холодильник не подходит: зерно впитывает влагу и запахи.</mark></p><p><mark>Пик вкуса — первые 4 недели после обжарки. Срок годности зерна — 12 месяцев, молотого кофе после вскрытия — 7 дней.</mark></p>'},
+ {id:'vac',doc:'staff',k:['отпуск'],q:'Как оформить отпуск?',cite:'п. 4.1–4.3',page:'стр. 7',match:90,
+  a:'Заявление на отпуск подаётся управляющей минимум за <b>14 дней</b>. График отпусков на 2027 год собираем до <b>1 декабря 2026</b>. Летом в каждой кофейне одновременно в отпуске может быть не больше одного бариста.',
+  x:'<h4>4. Отпуска</h4><p>4.1. <mark>Заявление на отпуск подаётся управляющей не позднее чем за 14 календарных дней.</mark></p><p>4.2. <mark>График отпусков на следующий год формируется до 1 декабря.</mark></p><p>4.3. <mark>В период с июня по август в каждой кофейне одновременно в отпуске может находиться не более одного бариста.</mark></p>'},
+ {id:'serv',doc:'serv',k:['приветств','гост','стандарт','дресс','фартук','внешн'],q:'Как приветствовать гостя?',cite:'п. 1.1–1.3',page:'стр. 2',match:93,
+  a:'Гостя приветствуем в первые <b>10 секунд</b> — с улыбкой и зрительным контактом: «Добрый день! Вам как обычно или подсказать что-то новое?». Постоянных гостей, которые представились, называем по имени.<br><br>Внешний вид — фирменный фартук и однотонная одежда без надписей.',
+  x:'<h4>1. Встреча гостя</h4><p>1.1. <mark>Бариста приветствует гостя в течение 10 секунд после входа: улыбка, зрительный контакт, фраза «Добрый день! Вам как обычно или подсказать что-то новое?».</mark></p><p>1.2. <mark>Постоянных гостей, которые представились, называем по имени.</mark></p><p>1.3. <mark>Внешний вид: фирменный фартук, однотонная одежда без надписей, волосы собраны.</mark></p>'},
+ {id:'shift',doc:'staff',k:['смен','график','выходн','расписан'],q:'Как поменяться сменой?',cite:'п. 2.3',page:'стр. 3',match:88,
+  a:'Смены — по <b>12 часов</b> (8:00–20:00), график 2/2. Поменяться сменой можно, если договориться с коллегой и предупредить управляющую не позже чем за <b>48 часов</b> — в общем чате смен.',
+  x:'<h4>2. Рабочее время</h4><p>2.1. Продолжительность смены — 12 часов, с 8:00 до 20:00, график 2/2.</p><p>2.3. <mark>Обмен сменами допускается по договорённости сотрудников при уведомлении управляющей не позднее чем за 48 часов в общем чате смен.</mark></p>'}
+];
+
+const TR={
+ ru:'Добрый день, Ли Вэй! Подтверждаем заказ: две кофемолки G-60 и 40 упаковок фильтров. Просим отгрузить до 1 ноября и прислать трек-номер. Спасибо!',
+ en:'Good afternoon, Li Wei! We confirm our order: two G-60 coffee grinders and 40 packs of filters. Please ship by November 1 and send us the tracking number. Thank you!',
+ zh:'李伟，您好！我们确认订单：两台 G-60 咖啡磨豆机和 40 包滤纸。请于 11 月 1 日前发货，并告知物流单号。谢谢！',
+ enF:'Dear Mr. Li,<br><br>We hereby confirm our order for two (2) G-60 coffee grinders and forty (40) packs of paper filters. We kindly ask you to dispatch the goods no later than November 1, 2026, and to provide the tracking number.<br><br>Best regards,<br>Anna Belova, Operations Manager',
+ zhF:'尊敬的李伟先生：<br>您好！我方确认订购 G-60 咖啡磨豆机两台及滤纸四十包。烦请于 2026 年 11 月 1 日前安排发货，并提供物流跟踪号。<br>此致<br>敬礼！<br>安娜·别洛娃，运营经理'
+};
+const KP=[
+ {client:'кофейни «Утро на Волге»',short:'Утро на Волге',person:'Ольга',vol:40,no:118,file:'КП-118_Утро_на_Волге.pdf',
+  items:[['«База», Бразилия',25,1450],['Колумбия Уила',10,1890],['«Листопад»',5,1690]],opts:[[5,'5%'],[7,'7% · рекомендую'],[10,'10%']],
+  q:'Для 40 кг в месяц прайс разрешает скидку до 7%. Какую закладываем?'},
+ {client:'офиса «Северный код»',short:'Северный код',person:'Максим',vol:12,no:119,file:'КП-119_Северный_код.pdf',
+  items:[['«База», Бразилия',8,1450],['Колумбия Уила',4,1890]],opts:[[0,'Без скидки · рекомендую'],[5,'5%']],
+  q:'Для 12 кг в месяц скидка по прайсу не положена. Делаем без скидки или 5% в виде исключения?'}
+];
+
+/* ---------- art ---------- */
+const LEAF='M0-13C8-8 9 6 0 13C-9 6-8-8 0-13Z';
+const ART={
+ leaf:id=>'<svg viewBox="0 0 320 190" role="img" aria-label="Обложка поста: пачка кофе «Листопад» среди осенних листьев"><defs><linearGradient id="lg'+id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2B65C"/><stop offset="1" stop-color="#963C1C"/></linearGradient></defs><rect width="320" height="190" fill="url(#lg'+id+')"/>'+[[42,40,-30,1.4,'#FCD9A0'],[74,146,40,1.1,'#7A2C14'],[262,46,20,1.6,'#FFE6B5'],[286,152,-50,1.2,'#C2561F'],[232,112,70,.9,'#FCD9A0'],[30,100,10,1,'#E58B3A'],[110,24,60,.8,'#8E3417']].map(l=>'<g transform="translate('+l[0]+' '+l[1]+') rotate('+l[2]+') scale('+l[3]+')"><path d="'+LEAF+'" fill="'+l[4]+'"/><path d="M0-12V12" stroke="rgba(60,20,8,.22)" stroke-width="1"/></g>').join('')+'<g transform="translate(160 20)"><path d="M-46 0h92l8 16v136a8 8 0 0 1-8 8h-92a8 8 0 0 1-8-8V16z" fill="#F1E5D1"/><path d="M-54 16h108" stroke="#D5C2A3" stroke-width="2"/><rect x="-38" y="44" width="76" height="72" rx="7" fill="#1D2155"/><text x="0" y="66" text-anchor="middle" fill="#F6E46B" font-family="Geologica,sans-serif" font-size="7.5" letter-spacing="1.4">СОРОК ЗЁРЕН</text><text x="0" y="90" text-anchor="middle" fill="#fff" font-family="Geologica,sans-serif" font-size="15" font-weight="600">Листопад</text><text x="0" y="106" text-anchor="middle" fill="#BFC3F7" font-family="Geologica,sans-serif" font-size="7.5">сезонный бленд · 250 г</text></g></svg>',
+ funnel:id=>'<svg viewBox="0 0 320 190" role="img" aria-label="Обложка поста: воронка для кофе над чашкой"><rect width="320" height="190" fill="#173F37"/><circle cx="250" cy="40" r="90" fill="#1F5247"/><g transform="translate(206 30)"><path d="M-44 0h88l-26 58h-36z" fill="#EFE6D6"/><path d="M-36 8h72" stroke="#C9BBA2" stroke-width="2"/><path d="M-18 58h36v8h-36z" fill="#D9CCB4"/><path d="M0 70v14" stroke="#C8762E" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 6"/><path d="M-40 96h80l-8 46a10 10 0 0 1-10 8h-44a10 10 0 0 1-10-8z" fill="#F6E46B"/><path d="M40 106h10a10 10 0 0 1 0 20h-12" fill="none" stroke="#F6E46B" stroke-width="6"/></g><text x="26" y="62" fill="#F6E46B" font-family="Geologica,sans-serif" font-size="12" font-weight="500">1 ноября · 14:00</text><text x="26" y="92" fill="#fff" font-family="Geologica,sans-serif" font-size="21" font-weight="600">Мастер-класс</text><text x="26" y="116" fill="#fff" font-family="Geologica,sans-serif" font-size="21" font-weight="600">по воронке</text><text x="26" y="148" fill="#A9CFC4" font-family="Geologica,sans-serif" font-size="11">8 мест · 1 500 ₽</text></svg>',
+ drip:id=>'<svg viewBox="0 0 320 190" role="img" aria-label="Обложка поста: дрип-пакет на чашке и скидка 20%"><rect width="320" height="190" fill="#EDB64C"/><circle cx="70" cy="170" r="110" fill="#F3C76A"/><text x="24" y="88" fill="#1D2155" font-family="Geologica,sans-serif" font-size="54" font-weight="700" letter-spacing="-2">−20%</text><text x="28" y="116" fill="#1D2155" font-family="Geologica,sans-serif" font-size="13" font-weight="500">на дрип-пакеты до 31 октября</text><g transform="translate(232 40)"><rect x="-30" y="0" width="60" height="70" rx="5" fill="#fff"/><rect x="-30" y="0" width="60" height="14" rx="5" fill="#1D2155"/><text x="0" y="45" text-anchor="middle" fill="#1D2155" font-family="Geologica,sans-serif" font-size="8.5" font-weight="600">СОРОК</text><text x="0" y="56" text-anchor="middle" fill="#1D2155" font-family="Geologica,sans-serif" font-size="8.5" font-weight="600">ЗЁРЕН</text><path d="M-46 70h92l-8 62a10 10 0 0 1-10 8h-56a10 10 0 0 1-10-8z" fill="#1D2155"/><path d="M46 82h8a12 12 0 0 1 0 24h-10" fill="none" stroke="#1D2155" stroke-width="7"/></g></svg>',
+ gen:id=>'<svg viewBox="0 0 320 190" role="img" aria-label="Обложка поста в фирменных цветах"><rect width="320" height="190" fill="#3A3EE0"/><circle cx="270" cy="30" r="80" fill="#4A4EF0"/><path d="M34 46c0-14 9-22 21-22v10c-6 0-10 4-10 10h10v20H34zM70 46c0-14 9-22 21-22v10c-6 0-10 4-10 10h10v20H70z" fill="#F6E46B"/><text x="34" y="122" fill="#fff" font-family="Geologica,sans-serif" font-size="22" font-weight="600">Новости</text><text x="34" y="150" fill="#fff" font-family="Geologica,sans-serif" font-size="22" font-weight="600">«Сорок зёрен»</text><ellipse cx="262" cy="134" rx="22" ry="30" transform="rotate(32 262 134)" fill="#F6E46B"/><path d="M252 110c8 9 4 24 20 46" stroke="#3A3EE0" stroke-width="4" stroke-linecap="round" fill="none"/></svg>',
+ inv:id=>'<svg viewBox="0 0 320 150" role="img" aria-label="Пакет плюс тысяча запросов"><defs><linearGradient id="ig'+id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B5FF5"/><stop offset="1" stop-color="#2A2CA8"/></linearGradient></defs><rect width="320" height="150" fill="url(#ig'+id+')"/><path d="M262 30l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="#F6E46B"/><path d="M228 92l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#F6E46B" opacity=".7"/><text x="24" y="86" fill="#fff" font-family="Geologica,sans-serif" font-size="48" font-weight="700" letter-spacing="-2">+1 000</text><text x="26" y="114" fill="#D5D8FF" font-family="Geologica,sans-serif" font-size="13">запросов к ассистенту</text></svg>'
+};
+const AVSVG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M17.5 6.6a7.5 7.5 0 1 0 0 10.8"/></svg>';
+const TICK='<svg class="tk" viewBox="0 0 18 11" aria-hidden="true"><path d="M1 5.8l3.3 3.3L11 2.3"/><path class="t2" d="M8.2 8l1.1 1.1L16 2.3"/></svg>';
+const CHECK='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+
+/* ---------- state ---------- */
+function greetHTML(s){const h=new Date().getHours();const g=h<5?'Доброй ночи':h<12?'Доброе утро':h<18?'Добрый день':'Добрый вечер';const n=Object.values(s.docs).filter(Boolean).length;return g+', Анна! Я <b>Секретарь</b> — ассистент команды «Сорок зёрен».<br>Подключён к базе знаний: '+n+' '+plural(n,'документ','документа','документов')+' — регламенты, прайс, политика возврата.<br><br>Выберите задачу или просто напишите, что нужно сделать.';}
+function menuKb(s){s=s||S;const b=MENU.map(m=>({t:(s.done.indexOf(m[0])>-1?'✓ ':m[1]+' ')+m[2],a:m[3]}));return [[b[0],b[1]],[b[2],b[3]],[b[4],b[5]]];}
+function fresh(){
+  const t=Date.now();
+  const s={v:1,seq:0,msgs:[],used:2392,limit:3000,paid:0,limPushed:0,tone:'friendly',model:'YandexGPT',docs:{ret:1,price:1,deliv:1,staff:1,sorts:1,serv:0},log:[],done:[],finale:0,mode:null,ctx:{},hint:'m_review',emp:{vera:862,kirill:641,anna:455,oleg:268,nina:166}};
+  SEED.forEach(e=>s.log.push({t:t-e[0]*60000,who:e[1],type:e[2],q:e[3],cost:e[4],src:e[5],model:'YandexGPT',ms:2+((e[0]*7)%25)/10}));
+  const t1=hhmm(new Date(t-60000));
+  s.msgs.push({id:++s.seq,who:'sys',type:'sys',html:'Сегодня'});
+  s.msgs.push({id:++s.seq,who:'me',type:'text',html:'/start',t:t1,read:1});
+  s.msgs.push({id:++s.seq,who:'bot',type:'text',html:greetHTML(s),kb:menuKb(s),t:t1});
+  return s;
+}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.v===1&&Array.isArray(s.msgs)&&s.docs&&s.emp)return s;}catch(e){}return null;}
+let S=load()||fresh();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}updatePh();}
+
+/* ---------- async engine ---------- */
+let GEN=0;const TIMERS=new Set();const CANCEL={c:1};
+function later(fn,ms){const g=GEN;const id=setTimeout(()=>{TIMERS.delete(id);if(g===GEN)fn();},ms);TIMERS.add(id);return id;}
+function wait(ms){const g=GEN;return new Promise((res,rej)=>{const id=setTimeout(()=>{TIMERS.delete(id);g===GEN?res():rej(CANCEL);},RM?Math.min(ms,60):ms);TIMERS.add(id);});}
+let Q=Promise.resolve();
+function run(fn){const g=GEN;const p=Q.then(()=>{if(g===GEN)return fn();}).catch(e=>{if(e!==CANCEL&&window.console)console.warn(e);});Q=p;return p;}
+
+const feed=$('#feed');
+let typRow=null,view='chat';
+function nearBottom(){return feed.scrollHeight-feed.scrollTop-feed.clientHeight<170;}
+function toBottom(force){if(force||nearBottom())feed.scrollTop=feed.scrollHeight;}
+function setStatus(l){const st=$('#st');if(l){st.innerHTML=esc(l)+'<span class="ell" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span>';st.classList.add('on');}else{st.textContent='бот';st.classList.remove('on');}}
+async function typing(label,ms){setStatus(label);if(!typRow){typRow=document.createElement('div');typRow.className='row bot typing'+(RM?'':' in');typRow.dataset.who='typing';typRow.innerHTML='<div class="blk"><div class="bub"><span class="dots" role="img" aria-label="Бот печатает"><i></i><i></i><i></i></span></div></div>';feed.appendChild(typRow);toBottom(true);}await wait(ms);}
+function untype(){if(typRow){typRow.remove();typRow=null;}}
+
+function metaHTML(m){return '<span class="meta">'+m.t+(m.who==='me'?TICK.replace('class="tk"','class="tk'+(m.read?' rd':'')+'"'):'')+'</span>';}
+function docHTML(x){return '<div class="file"><span class="fi fi-'+x.ext.toLowerCase()+'" aria-hidden="true">'+x.ext+'</span><span class="fmeta"><b>'+esc(x.name)+'</b><small>'+esc(x.size)+'</small></span></div>';}
+function bodyHTML(m){
+  switch(m.type){
+    case 'fwd':return '<div class="fwd">Переслано от <b>'+esc(m.x.from)+'</b></div><div class="txt">'+m.html+'</div>';
+    case 'doc':return docHTML(m.x)+(m.html?'<div class="txt">'+m.html+'</div>':'');
+    case 'photo':return '<div class="ph">'+(ART[m.x.art]||ART.gen)(m.id)+'</div><div class="txt">'+m.html+'</div>';
+    case 'invoice':return '<div class="ph">'+ART.inv(m.id)+'</div><div class="txt">'+m.html+'</div>';
+    default:return '<div class="txt">'+m.html+'</div>';
+  }
+}
+function kbEl(m){
+  const k=document.createElement('div');k.className='ikb';
+  m.kb.forEach(row=>{const r=document.createElement('div');r.className='ikr';
+    row.forEach(b=>{let el;
+      if(b.url){el=document.createElement('a');el.href=b.url;el.target='_blank';el.rel='noopener';}
+      else{el=document.createElement('button');el.type='button';el.dataset.a=b.a;el.dataset.m=m.id;if(m.picked&&m.picked.indexOf(b.a)>-1)el.classList.add('picked');}
+      el.textContent=b.t;r.appendChild(el);});
+    k.appendChild(r);});
+  return k;
+}
+function rowEl(m,anim){
+  const r=document.createElement('div');r.dataset.who=m.who;r.id='m'+m.id;
+  if(m.type==='sys'){r.className='row sys';r.innerHTML='<span class="sysp">'+m.html+'</span>';return r;}
+  r.className='row '+(m.who==='me'?'me':'bot')+' tail'+(anim&&!RM?' in':'');
+  const blk=document.createElement('div');blk.className='blk'+(m.kb?' haskb':'');
+  const b=document.createElement('div');b.className='bub t-'+m.type;b.innerHTML=bodyHTML(m)+metaHTML(m);
+  blk.appendChild(b);if(m.kb)blk.appendChild(kbEl(m));r.appendChild(blk);return r;
+}
+function attach(row,who,before){const prev=before?before.previousElementSibling:feed.lastElementChild;if(prev&&prev.dataset.who===who)prev.classList.remove('tail');before?feed.insertBefore(row,before):feed.appendChild(row);}
+function renderAll(){feed.innerHTML='';typRow=null;S.msgs.forEach(m=>attach(rowEl(m,false),m.who));applyHint();feed.scrollTop=feed.scrollHeight;}
+
+async function stream(el,html){
+  el.innerHTML=html;
+  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const ns=[];while(w.nextNode())ns.push(w.currentNode);
+  const full=ns.map(n=>n.nodeValue);ns.forEach(n=>{n.nodeValue='';});
+  const hid=$$('blockquote,div,table,.cite',el);hid.forEach(x=>x.classList.add('sx'));
+  const caret=document.createElement('span');caret.className='caret';caret.setAttribute('aria-hidden','true');
+  feed.setAttribute('aria-busy','true');
+  try{
+    for(let i=0;i<ns.length;i++){const n=ns[i],t=full[i];
+      let p=n.parentNode;while(p&&p!==el){if(p.classList)p.classList.remove('sx');p=p.parentNode;}
+      n.parentNode.insertBefore(caret,n.nextSibling);
+      let k=0;while(k<t.length){k=Math.min(t.length,k+3+(Math.random()*5|0));n.nodeValue=t.slice(0,k);toBottom();await wait(17);}
+    }
+  }finally{caret.remove();hid.forEach(x=>x.classList.remove('sx'));feed.removeAttribute('aria-busy');}
+}
+async function botSay(o){
+  await typing(o.typing||'печатает',o.delay==null?650:o.delay);
+  const m={id:++S.seq,who:'bot',type:o.type||'text',html:o.html,kb:o.kb||null,t:hhmm(),x:o.x||null};
+  const row=rowEl(m,true);
+  const doStream=o.stream!==false&&!RM&&(m.type==='text'||m.type==='photo');
+  untype();
+  if(doStream){row.classList.add('streaming');row.querySelector('.txt').innerHTML='';}
+  attach(row,'bot');toBottom(true);
+  S.msgs.push(m);
+  if(doStream){setStatus(o.typing||'печатает');await stream(row.querySelector('.txt'),m.html);row.classList.remove('streaming');if(m.kb)row.classList.add('kbin');}
+  setStatus();save();applyHint();toBottom();
+  if(o.push)showPush(m);
+  bump('chat');
+  return m;
+}
+function meSay(o){
+  if(typeof o==='string')o={html:esc(o)};
+  const m={id:++S.seq,who:'me',type:o.type||'text',html:o.html||'',x:o.x||null,t:hhmm(),read:0};
+  const row=rowEl(m,true);attach(row,'me',typRow);toBottom(true);
+  S.msgs.push(m);save();
+  later(()=>{m.read=1;const t=row.querySelector('.tk');if(t)t.classList.add('rd');save();},RM?10:500);
+  return m;
+}
+function sysSay(html){const m={id:++S.seq,who:'sys',type:'sys',html};attach(rowEl(m,true),'sys',typRow);S.msgs.push(m);save();toBottom(true);}
+
+/* ---------- hints ---------- */
+function guideNext(){return GUIDE.some(k=>S.done.indexOf(k)<0)?'more':null;}
+function setHint(h){S.hint=h;save();applyHint();}
+function applyHint(){
+  $$('.hint').forEach(e=>e.classList.remove('hint'));
+  const h=S.hint;
+  if(h){const els=$$('[data-a="'+h+'"]',feed);const el=els[els.length-1];if(el)el.classList.add('hint');}
+  const key=view==='biz'&&MOB.matches?'biz':h?h.split(':')[0]:'free';
+  $('#mhint').innerHTML='💡 '+(HINTS[key]||HINTS.free);
+}
+
+/* ---------- business panel ---------- */
+function renderLog(flash){
+  const ol=$('#log');
+  ol.innerHTML=S.log.slice(0,12).map((e,i)=>{const p=EMP[e.who]||EMP.anna;const c=e.cost?e.cost+' '+plural(e.cost,'запрос','запроса','запросов'):'платёж';
+    return '<li class="le'+(flash&&i===0&&!RM?' fresh':'')+'"><span class="av-e" style="--c:'+p.c+'" aria-hidden="true">'+p.i+'</span><div><div class="le-h"><b>'+p.n+'</b><span class="tg tg-'+(TYPEC[e.type]||'x')+'">'+e.type+'</span><time>'+hhmm(new Date(e.t))+'</time></div><p>'+esc(e.q)+'</p><div class="le-f">'+c+(e.cost?' · '+String((e.ms||2.4).toFixed(1)).replace('.',',')+' с · '+e.model:'')+(e.src?' · <span class="src">'+esc(e.src)+'</span>':'')+'</div></div></li>';}).join('');
+  const sum=S.log.reduce((a,e)=>a+(e.cost||0),0);
+  $('#logN').textContent='сегодня · '+sum+' '+plural(sum,'запрос','запроса','запросов');
+}
+let limShown=null;
+function renderLimit(){
+  const from=limShown==null?S.used:limShown;limShown=S.used;
+  const el=$('#limUsed');
+  if(RM||from===S.used)el.textContent=nf(S.used);
+  else{const t0=performance.now(),d=600;const step=t=>{const k=Math.min(1,(t-t0)/d);el.textContent=nf(from+(S.used-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);}
+  $('#limTotal').textContent=nf(S.limit);
+  const pct=S.used/S.limit;const pe=$('#limPct');pe.textContent=Math.floor(pct*100)+'%';pe.classList.toggle('w',pct>=.8&&!S.paid);
+  $('#limBar').innerHTML=EMP_ORDER.map(k=>'<i style="width:'+(S.emp[k]/S.limit*100).toFixed(2)+'%;background:'+EMP[k].c+'"></i>').join('');
+  $('#limBar').setAttribute('aria-label','Использовано '+nf(S.used)+' из '+nf(S.limit)+' запросов');
+  $('#limLeg').innerHTML=EMP_ORDER.map(k=>'<li><i style="--c:'+EMP[k].c+'"></i>'+EMP[k].n.split(' ')[0]+(k==='anna'?' (вы)':'')+'<b>'+nf(S.emp[k])+'</b></li>').join('');
+  $('#limBuy').hidden=!!S.paid;
+  const n=$('#limNote');
+  if(S.paid){n.textContent='Пакет +1 000 запросов оплачен — хватит до конца месяца с запасом.';n.classList.remove('w');}
+  else if(pct>=.8){n.textContent='Использовано больше 80%: при текущем темпе лимит закончится 30 октября.';n.classList.add('w');}
+  else{n.textContent='Пунктир — порог 80%: бот предупредит в чате и предложит пакет.';n.classList.remove('w');}
+}
+function renderSettings(){
+  $('#toneG').innerHTML=Object.keys(TONE).map(k=>'<label><input type="radio" name="tone" value="'+k+'"'+(S.tone===k?' checked':'')+'><span>'+cap(TONE[k])+'</span></label>').join('');
+  $('#modelG').innerHTML=['YandexGPT','GigaChat'].map(k=>'<label><input type="radio" name="model" value="'+k+'"'+(S.model===k?' checked':'')+'><span>'+k+'</span></label>').join('');
+  $('#docsG').innerHTML=Object.keys(DOCS).map(k=>{const d=DOCS[k];return '<label class="doc'+(S.docs[k]?'':' off')+'"><input type="checkbox" data-doc="'+k+'"'+(S.docs[k]?' checked':'')+'><span class="fi fi-'+d.ext.toLowerCase()+'" aria-hidden="true">'+d.ext+'</span><span class="doc-t"><b>'+d.name+'</b><small>'+d.meta+'</small></span></label>';}).join('');
+  const n=Object.values(S.docs).filter(Boolean).length;$('#docsL').textContent='База знаний · подключено '+n+' из '+Object.keys(DOCS).length;
+}
+function renderChips(){
+  $('#chips').innerHTML=CH.map(c=>{const ok=S.done.indexOf(c[0])>-1;return '<button type="button" class="chip'+(ok?' ok':'')+'" data-go="'+c[2]+'">'+(ok?CHECK:'')+c[1]+'</button>';}).join('');
+  $('#triesN').textContent=S.done.length+' из 6';
+}
+function setNote(t){const n=$('#setN');n.textContent=t;n.classList.add('flash');clearTimeout(setNote.t);setNote.t=setTimeout(()=>n.classList.remove('flash'),2200);}
+function log(e){
+  S.log.unshift({t:Date.now(),who:'anna',type:e.type,q:e.q,cost:e.cost||0,src:e.src||'',model:S.model,ms:1.6+Math.random()*3});
+  if(S.log.length>40)S.log.pop();
+  if(e.cost){S.used+=e.cost;S.emp.anna+=e.cost;}
+  renderLog(true);renderLimit();save();bump('biz');
+  if(!S.limPushed&&!S.paid&&S.used>=S.limit*.8){S.limPushed=1;save();later(()=>run(limitPush),2400);}
+}
+function done(k,e){
+  log(e);
+  if(S.done.indexOf(k)<0){S.done.push(k);renderChips();}
+  save();
+  if(S.done.length>=3&&!S.finale){S.finale=1;save();later(()=>run(finale),4600);}
+}
+
+/* ---------- mobile view ---------- */
+const badges={chat:0,biz:0};
+function setView(v){view=v;document.body.dataset.view=v;$$('.vbtn').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===v)));badges[v]=0;paintBadges();applyHint();if(v==='chat')requestAnimationFrame(()=>toBottom(true));}
+function bump(w){if(!MOB.matches||view===w)return;badges[w]++;paintBadges();}
+function paintBadges(){[['chat','#bdgChat'],['biz','#bdgBiz']].forEach(([k,s])=>{const b=$(s);b.hidden=!badges[k];b.textContent=badges[k];});}
+
+/* ---------- sheets, popovers, push ---------- */
+let lastFocus=null,sheetOnClose=null,pushT=0;
+function openSheet(t,s,html,onClose){closePops();$('#shT').textContent=t;$('#shS').textContent=s||'';$('#shB').innerHTML=html;const w=$('#sheetW');w.hidden=false;lastFocus=document.activeElement;sheetOnClose=onClose||null;requestAnimationFrame(()=>requestAnimationFrame(()=>{w.classList.add('open');const x=$('.sh-x',w);if(x)x.focus({preventScroll:true});}));}
+function closeSheet(){const w=$('#sheetW');if(w.hidden)return;w.classList.remove('open');setTimeout(()=>{if(!w.classList.contains('open'))w.hidden=true;},RM?0:320);if(lastFocus&&lastFocus.focus&&document.contains(lastFocus))lastFocus.focus({preventScroll:true});const f=sheetOnClose;sheetOnClose=null;if(f)f();}
+function closePops(){$('#kpop').hidden=true;$('#kebab').setAttribute('aria-expanded','false');$('#cmds').hidden=true;$('#menuB').setAttribute('aria-expanded','false');}
+function showPush(m){const p=$('#push');p.innerHTML='<span class="av av-bot sm" aria-hidden="true">'+AVSVG+'</span><span class="push-t"><b>Секретарь</b><span>'+esc(strip(m.html)).slice(0,120)+'</span></span><time>сейчас</time>';p.dataset.m=m.id;p.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>p.classList.add('on')));clearTimeout(pushT);pushT=setTimeout(hidePush,4600);}
+function hidePush(){const p=$('#push');p.classList.remove('on');setTimeout(()=>{if(!p.classList.contains('on'))p.hidden=true;},RM?0:500);}
+function aboutDemo(){openSheet('Как устроено демо','Секретарь · сценарный режим','<p>Это интерактивный макет: ответы подготовлены заранее и выводятся потоково, как у живой языковой модели. Свободный текст бот разбирает по ключевым словам.</p><p>В рабочей версии бот подключается к YandexGPT или GigaChat и ищет ответы в документах вашей компании — регламентах, прайсах, договорах.</p><ul class="sh-list"><li>Ответьте на отзыв и попросите сделать мягче.</li><li>Отправьте договор — бот найдёт риски.</li><li>Спросите базу знаний про срок возврата, а потом отключите этот документ в панели и спросите снова.</li></ul>');}
+function botInfo(){openSheet('Секретарь','бот · ассистент команды «Сорок зёрен»','<p>Помогает сотрудникам с текстами и документами: отвечает на отзывы, пишет посты и КП, пересказывает договоры, переводит письма и отвечает на вопросы по базе знаний.</p><p>Доступ — только для сотрудников по приглашению. Каждый запрос попадает в журнал руководителя.</p><ul class="sh-list">'+CMD.map(c=>'<li><span><b>/'+c[0]+'</b> — '+c[1].toLowerCase()+'</span></li>').join('')+'</ul>');}
+
+/* ---------- scenarios ---------- */
+const stars=n=>'★'.repeat(n)+'☆'.repeat(5-n);
+function curRev(){return S.ctx.rv==='c'?S.ctx.cr:REV[S.ctx.rv||0];}
+async function sayMenu(t){await botSay({html:t,kb:menuKb(),delay:450});}
+async function startReview(){S.mode='review';await botSay({html:'Пришлите текст отзыва или перешлите его сюда. Можно взять пример:',kb:[[{t:'★★☆☆☆ Ксения: «доставка опоздала»',a:'rv:0'}],[{t:'★★★★★ Дмитрий: «лучший раф»',a:'rv:1'}],[{t:'★★★☆☆ Ирина: «ждали 15 минут»',a:'rv:2'}]]});if(S.hint==='m_review')setHint('rv:0');}
+async function answerReview(r,n){
+  const rec=S.tone==='friendly'?0:1;
+  const delivNote=n===0&&S.docs.deliv?' Компенсацию взял из «Регламента доставки», п. 3.2.':'';
+  const html='<b>Отзыв '+r.st+'★.</b> '+r.sum+'<br><br><b>1 · Тёплый</b><br>'+r.v[0]+'<br><br><b>2 · Деловой</b><br>'+r.v[1]+'<br><br><b>3 · Коротко</b><br>'+r.v[2]+'<br><br><i>Тон компании — '+TONE[S.tone]+', ему ближе вариант '+(rec+1)+'.'+delivNote+'</i>';
+  await botSay({typing:'пишет ответ',delay:900,html,kb:[[{t:'🤍 Сделать мягче',a:'rv_soft'},{t:'✂️ Короче',a:'rv_short'}],[{t:'↩️ Другие задачи',a:'more'}]]});
+  done('review',{type:'Ответ на отзыв',q:stars(r.st)+' · '+r.name+' — '+r.sh,cost:2,src:delivNote?'Регламент доставки.docx':''});
+  if(S.hint&&S.hint.indexOf('rv')===0||S.hint==='m_review')setHint('rv_soft');else if(!S.hint)setHint(guideNext());
+}
+function rvAct(n){n=+n||0;const r=REV[n];S.ctx.rv=n;S.mode=null;meSay({type:'fwd',x:{from:r.src},html:'<span class="stars">'+stars(r.st)+'</span><br>'+r.text});return run(()=>answerReview(r,n));}
+const NEG=/долг|плох|ужас|холодн|грязн|опозд|невкусн|хам|дорог|не понрав|разочар|медлен|забыл|ошиб|сломал|кисл|горьк|груб|задерж|не приш|испорч|не вкус/i;
+const POS=/спасиб|вкусн|отличн|лучш|класс|люблю|уютн|рекоменд|супер|прекрасн|приятн|нравит|обожа|восторг|молодц/i;
+function customReview(text){
+  const neg=NEG.test(text),pos=POS.test(text);
+  const q=text.replace(/\s+/g,' ').split(' ').slice(0,7).join(' ').replace(/[.,!?;:]+$/,'');
+  let r;
+  if(neg&&pos)r={st:3,sum:'Смешанный отзыв: есть и похвала, и претензия — поблагодарим и решим проблему.',v:['Спасибо, что отметили хорошее и честно написали о том, что не понравилось. «'+q+'…» — мы прочитали это внимательно и уже разбираемся с командой. Напишите нам в личные сообщения: хотим всё исправить и угостить вас кофе.','Здравствуйте! Благодарим за подробный отзыв. Мы передали замечания управляющей и вернёмся с решением в течение дня.','Спасибо за честность 🙏 Хорошее сохраним, остальное исправим — напишем вам в личные сообщения.'],soft:'Спасибо вам за тёплые слова — и простите за то, что подпортило впечатление. Нам важно, чтобы каждый визит был приятным. Мы уже разбираемся и будем рады угостить вас кофе в следующий раз.',short:['Спасибо! Учли замечания — кофе за нами ☕','Благодарим, уже исправляем.','Спасибо за отзыв — исправимся!']};
+  else if(neg)r={st:2,sum:'Негативный отзыв — извиняемся, объясняем, что делаем, и предлагаем компенсацию.',v:['Спасибо, что написали, и простите, что так вышло. «'+q+'…» — мы прочитали это внимательно и уже разбираемся с командой. Напишите нам в личные сообщения, пожалуйста: хотим всё исправить и пригласить вас на кофе за наш счёт.','Здравствуйте! Благодарим за обратную связь. Мы передали ваш отзыв управляющей и проверим ситуацию в течение дня. Свяжемся с вами в личных сообщениях, чтобы предложить решение.','Простите за этот опыт 🙏 Уже разбираемся — напишем вам в личные сообщения.'],soft:'Нам правда очень жаль, что вы столкнулись с этим. Понимаем, как это неприятно. Мы уже разбираемся и очень хотим, чтобы следующий визит всё исправил — напишите нам, пожалуйста.',short:['Простите! Уже разбираемся — напишем вам 🙏','Извините, исправим.','Спасибо, что сказали — исправимся.']};
+  else r={st:5,sum:'Позитивный отзыв — благодарим и приглашаем вернуться.',v:['Спасибо за такие тёплые слова! Передадим команде — для бариста это лучшая мотивация. Ждём вас снова: в кофейнях новый сезонный бленд «Листопад», попробуйте 🍂','Здравствуйте! Благодарим за высокую оценку. Рады, что вам понравилось, — будем держать планку.','Спасибо! Очень приятно 🧡 Ждём снова.'],soft:'Спасибо огромное — вы сделали нам день! Приходите ещё, будем рады видеть вас снова.',short:['Спасибо! Ждём снова ☕','Благодарим за отзыв!','Очень приятно — до встречи 🧡']};
+  r.name='гостя';r.sh='«'+q.slice(0,40)+'…»';
+  S.ctx.cr=r;S.ctx.rv='c';S.mode=null;
+  return answerReview(r,-1);
+}
+function toneTx(p){
+  let lines=p.body.split('\n');
+  if(S.tone==='biz'){lines=lines.map(l=>/^\p{Extended_Pictographic}/u.test(l)?'— '+l.replace(/(\p{Extended_Pictographic}|️|‍)+\s?/gu,'').trim():l.replace(/\s?(\p{Extended_Pictographic}|️|‍)+/gu,'').replace(/!/g,'.'));}
+  let t=lines.join('\n');if(S.tone==='exp')t=t.replace(/\n\n(#[^\n]*)$/,'\n\n'+p.exp+'\n\n$1');
+  return esc(t).replace(/\n/g,'<br>').replace(/#[a-zа-яё0-9_]+/gi,'<span class="tag">$&</span>');
+}
+async function startPost(){S.mode='post';await botSay({html:'О чём пост? Напишите тему своими словами или выберите:',kb:[[{t:'🍂 Осенний бленд «Листопад»',a:'post:0'}],[{t:'🎓 Мастер-класс по воронке 1 ноября',a:'post:1'}],[{t:'🏷 Скидка 20% на дрип-пакеты',a:'post:2'}]]});}
+function customPost(topic){topic=topic.replace(/\s+/g,' ').trim().replace(/[.!?]+$/,'').slice(0,80);const T=cap(topic);return {topic:T,art:'gen',src:'',h:[T+': коротко о главном','Новости «Сорок зёрен»: '+topic,T+' — рассказываем подробности'],alt:['Есть новость: '+topic,T+' — что важно знать','Коротко и по делу: '+topic],body:'Делимся новостью: '+topic+'.\n\nПодробности расскажем в кофейнях и в сторис — заходите, ответим на вопросы за чашкой кофе.\n\n☕ Все три кофейни — ежедневно с 8:00 до 22:00\n📲 Вопросы — в личные сообщения\n\n#сороказёрен #кофеярославль',exp:'Совет: добавьте к посту живое фото из кофейни — такие публикации собирают больше откликов.',short:T+' — подробности в кофейнях и в личных сообщениях ☕'};}
+async function makePost(p){
+  S.ctx.post=p;S.mode=null;
+  await botSay({typing:'пишет пост',delay:800,html:'Тема: <b>'+esc(p.topic)+'</b><br><br><b>Варианты заголовка</b><br>1. '+esc(p.h[0])+'<br>2. '+esc(p.h[1])+'<br>3. '+esc(p.h[2])});
+  await botSay({type:'photo',x:{art:p.art},typing:'готовит обложку',delay:600,html:toneTx(p),kb:[[{t:'🔁 Другие заголовки',a:'post_h'},{t:'✂️ Короче',a:'post_s'}],[{t:'↩️ Другие задачи',a:'more'}]]});
+  done('post',{type:'Пост',q:p.topic+' · тон: '+TONE[S.tone],cost:2,src:p.src});
+  if(S.hint!=='src'&&(!S.hint||S.hint.indexOf('m_')===0))setHint(guideNext());
+}
+async function startDoc(){S.mode='docwait';await botSay({html:'Пришлите файл — PDF, DOCX или скан до 20 МБ. Сделаю краткое содержание и отмечу рискованные пункты.',kb:[[{t:'📎 Отправить договор_поставки.pdf',a:'doc_send'}]]});if(S.hint==='m_doc'||S.hint==='more')setHint('doc_send');}
+async function progressMsg(){
+  await typing('читает документ',500);untype();
+  const m={id:++S.seq,who:'bot',type:'text',html:'',t:hhmm()};const row=rowEl(m,true);const txt=$('.txt',row);
+  row.classList.add('streaming');attach(row,'bot');setStatus('читает документ');
+  const steps=['Извлекаю текст — 14 страниц','Разбиваю на фрагменты — 38','Сверяю с типовым договором компании','Ищу рискованные условия'];
+  for(let i=0;i<steps.length;i++){txt.innerHTML='<span class="prog"><span>'+steps[i]+'…</span><i style="--p:'+((i+1)/steps.length).toFixed(2)+'"></i></span>';toBottom(true);await wait(620);}
+  m.html='📄 Прочитал 14 страниц за 2,5 с · 38 фрагментов · 3 риска';txt.innerHTML=m.html;row.classList.remove('streaming');setStatus();S.msgs.push(m);save();
+}
+function docSend(){
+  meSay({type:'doc',x:{name:'договор_поставки.pdf',size:'412 КБ · 14 страниц',ext:'PDF'}});
+  return run(async()=>{await progressMsg();
+    await botSay({typing:'пишет пересказ',delay:350,html:CONTRACT.sum,kb:[[{t:'📝 Протокол разногласий',a:'doc_proto'}],[{t:'❓ Вопрос по договору',a:'doc_ask'},{t:'↩️ Другие задачи',a:'more'}]]});
+    S.mode='docq';done('doc',{type:'Пересказ документа',q:'договор_поставки.pdf · 14 страниц, найдено 3 риска',cost:5});
+    if(!S.hint||['doc_send','m_doc','more'].indexOf(S.hint)>-1)setHint(guideNext());
+  });
+}
+function docQ(t){return DOCQ.find(d=>d.k.some(k=>has(t,k)));}
+async function startTr(){S.mode='tr';await botSay({html:'Пришлите текст — переведу на английский или китайский с учётом глоссария компании. Или возьмите пример:',kb:[[{t:'✉️ Пример: письмо поставщику',a:'tr_ex'}]]});}
+async function trOut(lang,formal){
+  S.ctx.lang=lang;
+  const en=formal?TR.enF:TR.en,zh=formal?TR.zhF:TR.zh;
+  let html=formal?'Официальная версия — для деловой переписки:':'Готово. Глоссарий компании: «трек-номер» → tracking number, «фильтры» → paper filters.';
+  if(lang!=='zh')html+='<br><br><b>🇬🇧 Английский</b><blockquote>'+en+'</blockquote>';
+  if(lang!=='en')html+='<br><b>🇨🇳 Китайский</b><blockquote class="zh">'+zh+'</blockquote>';
+  await botSay({typing:'переводит',delay:700,html,kb:formal?[[{t:'🔁 Другой язык',a:'tr_ex'},{t:'↩️ Другие задачи',a:'more'}]]:[[{t:'🎩 Официальнее',a:'tr_formal'}],[{t:'🔁 Другой язык',a:'tr_ex'},{t:'↩️ Другие задачи',a:'more'}]]});
+  done('tr',{type:'Перевод',q:'Письмо поставщику, RU → '+(lang==='both'?'EN + ZH':lang.toUpperCase())+(formal?', официально':''),cost:lang==='both'?2:1});
+}
+async function startKp(){S.mode='kp';await botSay({html:'Для кого готовим КП? Цены возьму из прайса, условия — из регламента доставки.',kb:[[{t:'☕ Кофейня «Утро на Волге» · 40 кг/мес',a:'kp:0'}],[{t:'🏢 Офис «Северный код» · 12 кг/мес',a:'kp:1'}]]});}
+function kpCalc(k,pct){const sum=k.items.reduce((a,i)=>a+i[1]*i[2],0);const disc=Math.round(sum*pct/100);return {sum,disc,tot:sum-disc};}
+async function makeKp(pct){
+  const n=S.ctx.kp||0,k=KP[n];S.ctx.pct=pct;S.mode=null;
+  if(!S.docs.price){await botSay({typing:'ищет прайс',delay:900,html:'⚠️ Документ «Прайс-лист опт 2026.xlsx» отключён в базе знаний — без него не могу подставить актуальные цены. Включите его в настройках или пришлите прайс файлом.',kb:[[{t:'✅ Подключить прайс-лист',a:'en:price'}],[{t:'↩️ Другие задачи',a:'more'}]]});S.ctx.kpPending=1;return;}
+  const c=kpCalc(k,pct);const free=k.vol>=20;
+  const deliv=S.docs.deliv?(free?'Доставка по Ярославлю — бесплатно (заказ от 20 кг).':'Доставка — 350 ₽ за отгрузку, бесплатно от 20 кг.'):'<span class="warn">Условия доставки — уточните: регламент доставки отключён.</span>';
+  await botSay({typing:'собирает КП',delay:800,html:'Готово — КП № '+k.no+' для '+k.client+'. Цены — из «Прайс-листа опт 2026»'+(S.docs.deliv?', доставка — по «Регламенту доставки».':'. Регламент доставки отключён, условия доставки впишите вручную.')+(pct>7?' Скидка выше 7% — отметил, что нужно согласование.':'')});
+  const rows=k.items.map(i=>'<tr><td>'+i[0]+'</td><td>'+i[1]+'</td><td>'+nf(i[2])+'</td><td>'+nf(i[1]*i[2])+'</td></tr>').join('');
+  const html='<div class="kp"><div class="kp-h"><span>Коммерческое предложение № '+k.no+'</span><strong>Поставка кофе для '+k.client+'</strong></div><table><thead><tr><th>Позиция</th><th>кг</th><th>₽/кг</th><th>Сумма, ₽</th></tr></thead><tbody>'+rows+'</tbody></table><dl><div><dt>Итого</dt><dd>'+nf(c.sum)+' ₽</dd></div>'+(pct?'<div><dt>Скидка '+pct+'%'+(pct>7?' · на согласовании':'')+'</dt><dd>−'+nf(c.disc)+' ₽</dd></div>':'')+'<div class="tot"><dt>В месяц</dt><dd>'+nf(c.tot)+' ₽</dd></div></dl><p>'+deliv+' Обжарка под заказ, отгрузки по вторникам и пятницам. Тестовые 2 кг — бесплатно.</p><p class="kp-f">Действует до 15 ноября 2026 · Анна Белова, «Сорок зёрен»</p></div>';
+  await botSay({type:'card',stream:false,delay:400,typing:'оформляет документ',html,kb:[[{t:'📄 Скачать PDF',a:'kp_pdf'},{t:'✉️ Письмо клиенту',a:'kp_mail'}],[{t:'↩️ Другие задачи',a:'more'}]]});
+  done('kp',{type:'КП',q:k.short+', '+k.vol+' кг/мес'+(pct?', скидка '+pct+'%':'')+' — '+nf(c.tot)+' ₽',cost:3,src:'Прайс-лист опт 2026.xlsx'});
+}
+async function startKb(){S.mode='kb';await botSay({html:'Спросите что угодно о работе компании — отвечу по документам из базы знаний и дам ссылку на пункт.',kb:[[{t:'Какой у нас срок возврата?',a:'kb:ret'}],[{t:'Сколько стоит доставка опта?',a:'kb:deliv'}],[{t:'Как хранить зерно после вскрытия?',a:'kb:store'}]]});if(S.hint==='m_kb'||S.hint==='more')setHint('kb:ret');}
+const has=(t,k)=>new RegExp('(^|[^а-яёa-z])'+k).test(t);
+function kbMatch(t){let best=null,bs=0;KB.forEach(e=>{const s=e.k.reduce((a,k)=>a+(has(t,k)?1:0),0);if(s>bs){bs=s;best=e;}});return best;}
+async function kbAnswer(e,q){
+  S.mode='kb';
+  if(!S.docs[e.doc]){
+    await botSay({typing:'ищет в документах',delay:1100,html:'Не нашёл ответа в подключённых документах. Похоже, нужный — «'+DOCS[e.doc].name+'» — отключён в настройках базы знаний.',kb:[[{t:'✅ Подключить документ',a:'en:'+e.doc+':'+e.id}]]});
+    log({type:'База знаний',q:'«'+(q||e.q)+'» — источник отключён',cost:1});return;
+  }
+  await botSay({typing:'ищет в документах',delay:1200,html:e.a+'<br><br><span class="cite">📄 Источник: '+DOCS[e.doc].name+', '+e.cite+'</span>',kb:[[{t:'Открыть источник · '+e.cite,a:'src:'+e.id}],[{t:'↩️ Другие задачи',a:'more'}]]});
+  done('kb',{type:'База знаний',q:'«'+(q||e.q)+'»',cost:1,src:DOCS[e.doc].name});
+  if(S.hint&&(S.hint.indexOf('kb')===0||S.hint==='m_kb'||S.hint==='more'))setHint('src:'+e.id);
+}
+function openSrc(id){const e=KB.find(x=>x.id===id);if(!e)return;const d=DOCS[e.doc];
+  openSheet(d.name,e.page+' · '+e.cite+' · совпадение '+e.match+'%','<div class="docv">'+e.x+'</div><p class="docv-f">Фрагмент найден в базе знаний «Сорок зёрен» · '+d.meta+'. Жёлтым — то, на чём основан ответ.</p>',()=>{if(S.hint&&S.hint.indexOf('src')===0)setHint(guideNext());});}
+async function limitPush(){
+  await botSay({push:true,delay:300,stream:false,html:'⚠️ <b>Использовано 80% лимита</b> на октябрь: '+nf(S.used)+' из '+nf(S.limit)+' запросов. При текущем темпе лимит закончится 30 октября — за день до конца месяца.'});
+  await sayInvoice();
+}
+async function sayInvoice(){await botSay({type:'invoice',delay:600,stream:false,html:'<b>Пакет «+1 000 запросов»</b><br>Добавится к лимиту текущего месяца. Счёт для юрлица — в панели руководителя.<span class="inv-p"><b>1 490 ₽</b><small>демо-счёт</small></span>',kb:[[{t:'💳 Оплатить 1 490 ₽',a:'pay'}]]});}
+function payFlow(){
+  if(S.paid){run(()=>botSay({html:'Пакет «+1 000 запросов» уже оплачен — лимит на октябрь: '+nf(S.limit)+'.',delay:400}));return;}
+  openSheet('Оплата · демо','Секретарь · пакет запросов','<div class="pay-r"><span>Пакет «+1 000 запросов»</span><b>1 490 ₽</b></div><div class="pay-r"><span>Тариф</span><b>«Команда», октябрь</b></div><div class="pay-r"><span>Плательщик</span><b>«Сорок зёрен»</b></div><p class="pay-n">Это демо: деньги не списываются, данные карты не нужны.</p><button type="button" class="pay-b" id="payGo">Оплатить 1 490 ₽</button>');
+  $('#payGo').addEventListener('click',e=>{const b=e.currentTarget;b.disabled=true;b.textContent='Проводим платёж…';
+    later(()=>{closeSheet();S.paid=1;S.limit=4000;renderLimit();log({type:'Оплата',q:'Пакет «+1 000 запросов» · 1 490 ₽',cost:0});
+      run(async()=>{sysSay('Платёж 1 490 ₽ прошёл · демо');await botSay({delay:500,html:'✅ Готово — лимит на октябрь увеличен до <b>4 000 запросов</b>. Осталось '+nf(S.limit-S.used)+': хватит до конца месяца с запасом.'});});},RM?50:1100);});
+}
+async function finale(){
+  const n=S.done.length;
+  await botSay({delay:700,html:'🎉 <b>Вы попробовали '+n+' '+plural(n,'сценарий','сценария','сценариев')+' из 6.</b><br>В «Сорок зёрен» Секретарь закрывает около 2 400 запросов в месяц — это примерно 90 часов работы команды.<br><br>Такого же ассистента можно собрать для вашей компании за две недели: на ваших документах и в вашем тоне.',kb:[[{t:'Обсудить проект в YSD DEV',url:'https://ysddev.com'}],[{t:'Попробовать остальное',a:'more'}]]});
+  if(!S.hint||S.hint==='more')setHint(null);
+}
+
+const ACT={
+  menu0:()=>run(async()=>{S.mode=null;await botSay({html:greetHTML(S),kb:menuKb(),delay:500});}),
+  more:()=>run(async()=>{S.mode=null;await sayMenu('Что ещё сделаем?');if(S.hint==='more'||!S.hint){const k=GUIDE.find(g=>S.done.indexOf(g)<0);setHint(k?'m_'+k:null);}}),
+  m_review:()=>run(startReview),
+  rv:a=>rvAct(a),
+  rv_soft:()=>run(async()=>{const r=curRev();await botSay({typing:'переписывает',html:'Сделал мягче — больше сочувствия, меньше официальности:<br><br>'+r.soft,kb:[[{t:'✂️ Короче',a:'rv_short'},{t:'↩️ Другие задачи',a:'more'}]]});log({type:'Ответ на отзыв',q:'Сделать мягче · '+r.name,cost:1});if(!S.hint||S.hint==='rv_soft')setHint(guideNext());}),
+  rv_short:()=>run(async()=>{const r=curRev();await botSay({typing:'сокращает',html:'Коротко, в одну строку:<br><br>1. '+r.short[0]+'<br>2. '+r.short[1]+'<br>3. '+r.short[2],kb:[[{t:'🤍 Сделать мягче',a:'rv_soft'},{t:'↩️ Другие задачи',a:'more'}]]});log({type:'Ответ на отзыв',q:'Короче · '+r.name,cost:1});if(S.hint==='rv_soft')setHint(guideNext());}),
+  m_post:()=>run(startPost),
+  post:a=>run(()=>makePost(POSTS[+a||0])),
+  post_h:()=>run(async()=>{const p=S.ctx.post||POSTS[0];await botSay({typing:'подбирает заголовки',html:'Ещё три заголовка:<br><br>1. '+esc(p.alt[0])+'<br>2. '+esc(p.alt[1])+'<br>3. '+esc(p.alt[2]),kb:[[{t:'✂️ Короче',a:'post_s'},{t:'↩️ Другие задачи',a:'more'}]]});log({type:'Пост',q:'Другие заголовки · '+p.topic,cost:1});}),
+  post_s:()=>run(async()=>{const p=S.ctx.post||POSTS[0];await botSay({typing:'сокращает',html:'Короткая версия — для сторис или канала:<br><br>'+esc(p.short),kb:[[{t:'🔁 Другие заголовки',a:'post_h'},{t:'↩️ Другие задачи',a:'more'}]]});log({type:'Пост',q:'Короткая версия · '+p.topic,cost:1});}),
+  m_doc:()=>run(startDoc),
+  doc_send:()=>docSend(),
+  doc_proto:()=>run(async()=>{await botSay({typing:'готовит протокол',html:CONTRACT.proto});await botSay({type:'doc',stream:false,delay:500,x:{name:'Протокол_разногласий_47-26.docx',size:'38 КБ',ext:'DOC'},html:'Файл готов — можно отправлять поставщику.'});log({type:'Пересказ документа',q:'Протокол разногласий к договору № 47/26',cost:2});
+    later(()=>run(()=>botSay({push:true,stream:false,delay:300,html:'🔔 <b>Напоминание</b><br>Подписание договора № 47/26 с «Зелёным караваном» — 28 октября. Протокол разногласий лучше отправить до 27 октября.',kb:[[{t:'⏰ Напомнить завтра',a:'snooze'}]]})),9000);}),
+  doc_ask:()=>run(async()=>{S.mode='docq';await botSay({html:'Спрашивайте — про цену, оплату, неустойку, приёмку или расторжение. Например:',kb:DQ_BTN.map((q,i)=>[{t:q,a:'dq:'+i}])});}),
+  dq:a=>{const q=DQ_BTN[+a||0];meSay(q);return run(()=>docAnswer(docQ(q.toLowerCase())));},
+  m_tr:()=>run(startTr),
+  tr_ex:()=>{meSay(TR.ru);return run(async()=>{S.mode=null;await botSay({html:'На какой язык переводим?',delay:450,kb:[[{t:'🇬🇧 Английский',a:'tr:en'},{t:'🇨🇳 Китайский',a:'tr:zh'}],[{t:'Оба языка',a:'tr:both'}]]});});},
+  tr:a=>run(()=>trOut(a||'en',false)),
+  tr_formal:()=>run(()=>trOut(S.ctx.lang||'en',true)),
+  m_kp:()=>run(startKp),
+  kp:a=>run(async()=>{const n=+a||0;S.ctx.kp=n;const k=KP[n];await botSay({html:k.q,delay:500,kb:[k.opts.map(o=>({t:o[1],a:'kpd:'+o[0]}))]});}),
+  kpd:a=>run(()=>makeKp(+a||0)),
+  kp_pdf:()=>run(async()=>{const k=KP[S.ctx.kp||0];await botSay({type:'doc',stream:false,delay:700,typing:'отправляет файл',x:{name:k.file,size:'186 КБ · 2 страницы',ext:'PDF'},html:'С логотипом и реквизитами компании.'});}),
+  kp_mail:()=>run(async()=>{const k=KP[S.ctx.kp||0],pct=S.ctx.pct||0,c=kpCalc(k,pct);await botSay({typing:'пишет письмо',html:'<b>Тема:</b> Коммерческое предложение — поставка кофе для «'+k.short+'»<br><br>Здравствуйте, '+k.person+'!<br><br>Как и договаривались, отправляем предложение на поставку '+k.vol+' кг кофе в месяц.'+(pct?' С учётом скидки '+pct+'%':' Итого')+' — '+nf(c.tot)+' ₽ в месяц. Можем привезти 2 кг на тест уже в эту пятницу — просто ответьте на письмо.<br><br>Анна Белова<br>«Сорок зёрен»',kb:[[{t:'↩️ Другие задачи',a:'more'}]]});log({type:'КП',q:'Письмо клиенту · '+k.short,cost:1});}),
+  m_kb:()=>run(startKb),
+  kb:a=>{const e=KB.find(x=>x.id===a)||KB[0];meSay(e.q);return run(()=>kbAnswer(e));},
+  src:a=>openSrc(a),
+  en:a=>{const p=String(a||'').split(':');const d=p[0];if(!DOCS[d])return;S.docs[d]=1;renderSettings();save();setNote('Документ «'+DOCS[d].name+'» подключён');
+    return run(async()=>{await botSay({delay:400,html:'Подключил «'+DOCS[d].name+'». Повторяю…'});if(p[1]){const e=KB.find(x=>x.id===p[1]);if(e)await kbAnswer(e);}else if(d==='price'&&S.ctx.kpPending){S.ctx.kpPending=0;await makeKp(S.ctx.pct||0);}});},
+  limit:()=>run(async()=>{const p=Math.round(S.used/S.limit*100);await botSay({html:'Лимит на октябрь: использовано <b>'+nf(S.used)+' из '+nf(S.limit)+'</b> запросов ('+p+'%). Больше всего — у Веры (SMM): '+nf(S.emp.vera)+'.',kb:S.paid?null:[[{t:'➕ Пополнить лимит',a:'buy'}]]});}),
+  buy:()=>run(sayInvoice),
+  pay:()=>payFlow(),
+  snooze:()=>run(()=>botSay({html:'Хорошо, напомню завтра в 10:00.',delay:400}))
+};
+async function docAnswer(d){S.mode='docq';await botSay({typing:'ищет в договоре',delay:900,html:d?d.a:'В договоре нет прямого ответа на этот вопрос. Могу рассказать про предмет, цену, оплату, приёмку, ответственность или расторжение.'});if(d)log({type:'Пересказ документа',q:'Вопрос по договору № 47/26',cost:1});}
+function act(a){if(!a)return;const i=a.indexOf(':');const k=i>-1?a.slice(0,i):a,arg=i>-1?a.slice(i+1):'';const f=ACT[k];closePops();if(f)return f(arg);}
+function sendCmd(label,a){meSay(label);act(a);}
+
+/* ---------- free text ---------- */
+function onText(raw){
+  const text=raw.trim();if(!text)return;meSay(text);
+  const t=text.toLowerCase();
+  if(t[0]==='/'){const c=CMD.find(c=>t.split(/[\s@]/)[0]==='/'+c[0]);if(c){act(c[2]);return;}run(()=>botSay({html:'Не знаю такой команды. Все команды — в кнопке «Меню» слева от поля ввода.'}));return;}
+  if(S.mode==='review'&&text.length>=15){run(()=>customReview(text));return;}
+  if(S.mode==='post'&&text.length>=3&&!/^(отзыв|договор|перевед|кп)\b/.test(t)){run(()=>makePost(customPost(text)));return;}
+  const kb=kbMatch(t),dq=docQ(t);
+  if(S.mode==='docq'&&dq&&(!kb||/договор|поставщик/.test(t))){run(()=>docAnswer(dq));return;}
+  if(S.mode==='tr'&&/[а-яё]/i.test(text)&&text.length>8&&!kb){run(()=>botSay({html:'В демо я перевожу подготовленный пример. В рабочей версии здесь будет перевод любого текста — через YandexGPT или GigaChat, с глоссарием компании.',kb:[[{t:'✉️ Перевести пример',a:'tr_ex'}]]}));return;}
+  if(S.mode==='kp'&&!kb){run(()=>botSay({html:'Для демо выберите клиента кнопкой — в рабочей версии бот возьмёт данные из CRM или прямо из вашего сообщения.',kb:[[{t:'☕ «Утро на Волге» · 40 кг/мес',a:'kp:0'}],[{t:'🏢 «Северный код» · 12 кг/мес',a:'kp:1'}]]}));return;}
+  const question=/\?|^(как|какой|какая|какие|сколько|где|когда|можно|что|кто|почему|зачем|есть ли)\b/.test(t);
+  if(kb&&(S.mode==='kb'||question)){run(()=>kbAnswer(kb,text.slice(0,80)));return;}
+  if(/^(привет|здравств|добр(ый|ое|ого)|доброе|хай|hello|hi)\b/.test(t)){run(()=>botSay({html:'Здравствуйте, Анна! Чем помочь?',kb:menuKb()}));return;}
+  if(/спасиб|благодар/.test(t)){run(()=>botSay({html:'Пожалуйста! Если нужно что-то ещё — я здесь.'}));return;}
+  if(/что (ты )?умеешь|кто ты|помощь|help|как работа/.test(t)){run(()=>botSay({html:'Я умею отвечать на отзывы, писать посты, пересказывать договоры, переводить письма, собирать КП и искать ответы в документах компании. С чего начнём?',kb:menuKb()}));return;}
+  if(/лимит|расход/.test(t)){act('limit');return;}
+  if(/отзыв/.test(t)&&text.length<60){run(startReview);return;}
+  if(/пост|соцсет|сторис|публикац|анонс/.test(t)){run(startPost);return;}
+  if(/договор|документ|pdf|пересказ|резюм|прочита/.test(t)){run(startDoc);return;}
+  if(/перев|англ|китай|english|chinese/.test(t)){run(startTr);return;}
+  if(/(^|\s)кп(\s|$|\W)|коммерческ|предложени/.test(t)){run(startKp);return;}
+  if(kb){run(()=>kbAnswer(kb,text.slice(0,80)));return;}
+  if(text.length>40&&(NEG.test(text)||POS.test(text))){run(()=>customReview(text));return;}
+  run(()=>botSay({delay:700,html:'Не до конца понял задачу. В демо я отвечаю по сценариям — выберите, что сделать, или спросите базу знаний: про возврат, доставку, скидки, хранение зерна, отпуск или смены.',kb:menuKb()}));
+}
+const PH={review:'Текст отзыва…',post:'Тема поста…',docq:'Ваш вопрос…',docwait:'Сообщение',kb:'Ваш вопрос…',tr:'Текст…',kp:'Сообщение'};
+function updatePh(){const i=$('#msg');if(i)i.placeholder=PH[S.mode]||'Сообщение';}
+
+/* ---------- wiring ---------- */
+function reset(){
+  GEN++;TIMERS.forEach(id=>clearTimeout(id));TIMERS.clear();Q=Promise.resolve();
+  try{localStorage.removeItem(KEY);}catch(e){}
+  S=fresh();save();limShown=null;closeSheet();closePops();hidePush();setStatus();untype();
+  $('#rkb').hidden=true;$('#kbT').setAttribute('aria-pressed','false');
+  renderAll();renderLog(false);renderLimit();renderSettings();renderChips();badges.chat=badges.biz=0;paintBadges();
+  if(MOB.matches)setView('chat');
+}
+feed.addEventListener('click',e=>{
+  const b=e.target.closest('.ikb button');if(!b)return;
+  const m=S.msgs.find(x=>String(x.id)===b.dataset.m);if(m){m.picked=m.picked||[];if(m.picked.indexOf(b.dataset.a)<0)m.picked.push(b.dataset.a);}
+  b.classList.add('picked','busy');setTimeout(()=>b.classList.remove('busy'),RM?50:650);
+  act(b.dataset.a);
+});
+feed.addEventListener('scroll',()=>{$('#down').hidden=feed.scrollHeight-feed.scrollTop-feed.clientHeight<320;},{passive:true});
+$('#down').addEventListener('click',()=>{feed.scrollTo({top:feed.scrollHeight,behavior:RM?'auto':'smooth'});});
+const inp=$('#msg'),sendB=$('#send');
+inp.addEventListener('input',()=>{sendB.disabled=!inp.value.trim();});
+$('#cmp').addEventListener('submit',e=>{e.preventDefault();const v=inp.value;if(!v.trim())return;inp.value='';sendB.disabled=true;closePops();onText(v);});
+$('#menuB').addEventListener('click',e=>{e.stopPropagation();const c=$('#cmds');const open=c.hidden;closePops();if(open){c.innerHTML=CMD.map(x=>'<button type="button" role="menuitem" data-cmd="'+x[0]+'"><code>/'+x[0]+'</code><span>'+x[1]+'</span></button>').join('');c.hidden=false;$('#menuB').setAttribute('aria-expanded','true');const f=$('button',c);if(f)f.focus({preventScroll:true});}});
+$('#cmds').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(!b)return;const c=CMD.find(x=>x[0]===b.dataset.cmd);closePops();inp.focus({preventScroll:true});if(c)sendCmd('/'+c[0],c[2]);});
+$('#kebab').addEventListener('click',e=>{e.stopPropagation();const p=$('#kpop');const open=p.hidden;closePops();if(open){p.hidden=false;$('#kebab').setAttribute('aria-expanded','true');const f=$('button',p);if(f)f.focus({preventScroll:true});}});
+$('#aboutDemo').addEventListener('click',()=>{closePops();aboutDemo();});
+$('#pin').addEventListener('click',aboutDemo);
+$('#botInfo').addEventListener('click',botInfo);
+$('#attach').addEventListener('click',()=>{openSheet('Отправить файл','Демо: доступен один документ','<button type="button" class="attach-f" id="attF">'+docHTML({name:'договор_поставки.pdf',size:'412 КБ · 14 страниц',ext:'PDF'})+'</button><p class="docv-f">В рабочей версии бот принимает PDF, DOCX, XLSX и сканы до 20 МБ.</p>');$('#attF').addEventListener('click',()=>{closeSheet();act('doc_send');});});
+$('#kbT').addEventListener('click',()=>{const r=$('#rkb');const open=r.hidden;r.hidden=!open;$('#kbT').setAttribute('aria-pressed',String(open));if(open){r.innerHTML=MENU.map(m=>'<button type="button" data-a="'+m[3]+'" data-label="'+m[2]+'">'+m[1]+' '+m[2]+'</button>').join('');}toBottom(true);});
+$('#rkb').addEventListener('click',e=>{const b=e.target.closest('button');if(b)sendCmd(b.dataset.label,b.dataset.a);});
+$('#push').addEventListener('click',()=>{const el=$('#m'+$('#push').dataset.m);hidePush();if(MOB.matches)setView('chat');if(el)el.scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});});
+$('#sheetW').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeSheet();});
+document.addEventListener('click',e=>{if(!e.target.closest('#kpop,#kebab,#cmds,#menuB'))closePops();if(e.target.closest('[data-reset]'))reset();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('#sheetW').hidden)closeSheet();else closePops();}});
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const m=MENU.find(x=>x[3]===b.dataset.go);if(MOB.matches)setView('chat');sendCmd(m?m[2]:'Меню',b.dataset.go);});
+$$('.vbtn').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+$('#toneG').addEventListener('change',e=>{S.tone=e.target.value;save();setNote('Тон «'+TONE[S.tone]+'» — применится к следующему ответу');});
+$('#modelG').addEventListener('change',e=>{S.model=e.target.value;save();setNote('Модель '+S.model+' — новые запросы пойдут через неё');});
+$('#docsG').addEventListener('change',e=>{const k=e.target.dataset.doc;if(!k)return;S.docs[k]=e.target.checked?1:0;e.target.closest('.doc').classList.toggle('off',!S.docs[k]);save();const n=Object.values(S.docs).filter(Boolean).length;$('#docsL').textContent='База знаний · подключено '+n+' из '+Object.keys(DOCS).length;setNote(S.docs[k]?'«'+DOCS[k].name+'» подключён — бот сообщил команде в чате':'«'+DOCS[k].name+'» отключён — бот не будет на него ссылаться');docNotice(k);});
+function docNotice(k){clearTimeout(docNotice.t[k]);const g=GEN;docNotice.t[k]=setTimeout(()=>{if(g!==GEN)return;const on=S.docs[k];run(()=>botSay({push:true,stream:false,delay:300,html:on?'📚 <b>База знаний обновлена</b><br>Руководитель подключил «'+DOCS[k].name+'» — теперь отвечаю и по нему.'+(k==='serv'?' Спросите, например, как приветствовать гостя.':''):'📚 <b>База знаний обновлена</b><br>«'+DOCS[k].name+'» отключён — больше не ссылаюсь на него в ответах.',kb:on&&k==='serv'?[[{t:'Как приветствовать гостя?',a:'kb:serv'}]]:null}));},700);}
+docNotice.t={};
+$('#limBuy').addEventListener('click',()=>{if(S.paid)return;if(MOB.matches)setView('chat');run(async()=>{await botSay({push:true,stream:false,delay:300,html:'💼 Руководитель предлагает пополнить лимит на октябрь — счёт ниже.'});await sayInvoice();});});
+MOB.addEventListener&&MOB.addEventListener('change',()=>{setView(MOB.matches?view:'chat');});
+function tick(){$('#clock').textContent=hhmm();}
+tick();setInterval(tick,20000);
+
+renderAll();renderLog(false);renderLimit();renderSettings();renderChips();updatePh();applyHint();
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3de65751054e4e4fa4a90bed90d3aebe","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Танцевальная студия «Па» — расписание и пробное занятие, Новосибирск</title>
+<meta name="description" content="Танцевальная студия «Па» в Новосибирске: хип-хоп, контемпорари, high heels, вог, k-pop, стретчинг, балет и брейкинг для детей и взрослых. Расписание недели с фильтрами и запись на пробное занятие.">
+<meta property="og:title" content="Студия «Па» — найди свой стиль за одно пробное">
+<meta property="og:description" content="Расписание на неделю с фильтрами по направлению, уровню и возрасту. Пробное занятие — 500 ₽.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cpath d='M7 25V8h12v17M19 25' stroke='%23FF3D9A' stroke-width='3.4' fill='none'/%3E%3Ccircle cx='25' cy='23' r='2.6' fill='%23FF3D9A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Commissioner:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bk:#000000;
+  --pan:#121014;
+  --pan-2:#1C1820;
+  --line:#2E2833;
+  --line-2:#4A4150;
+  --txt:#F4EEF6;
+  --mut:#A9A0B2;
+  --pink:#FF3D9A;
+  --pink-2:#FF7DBB;
+  --pink-d:#C2186B;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --wrap:1320px;
+  --pad:clamp(16px,3.6vw,48px);
+  --f-d:"Unbounded",system-ui,sans-serif;
+  --f-b:"Commissioner",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bk);color:var(--txt);font:400 17px/1.55 var(--f-b);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);margin:0;line-height:1;letter-spacing:-.03em;font-weight:800}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--pink);color:#000;padding:10px 16px;z-index:100;text-decoration:none;font-weight:600}
+.skip:focus{top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border:2px solid transparent;border-radius:0;font:600 15px/1 var(--f-d);letter-spacing:-.01em;text-decoration:none;white-space:nowrap;transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .16s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--pink);color:#000}
+.btn-o{border-color:var(--txt);color:var(--txt);background:transparent}
+@media (hover:hover) and (pointer:fine){
+  .btn-p:hover{background:var(--txt)}
+  .btn-o:hover{background:var(--txt);color:#000}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:baseline;gap:3px;font:800 30px/1 var(--f-d);letter-spacing:-.06em;text-decoration:none}
+.logo i{width:9px;height:9px;background:var(--pink);border-radius:50%;display:inline-block}
+.nav{display:flex;margin-left:auto}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--mut);font-weight:500;font-size:15px;transition:color .15s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--pink)}}
+.hdr .btn{min-height:44px;padding:0 18px;font-size:13px}
+.burger{display:none;width:48px;height:48px;border:2px solid var(--txt);background:transparent;align-items:center;justify-content:center;margin-left:auto}
+.burger svg{width:20px;height:20px}
+.mnav{display:none}
+@media (max-width:980px){
+  .nav,.hdr .btn{display:none}
+  .burger{display:inline-flex}
+  .mnav{display:block;position:fixed;inset:72px 0 auto 0;background:var(--pink);color:#000;padding:10px var(--pad) 26px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease);z-index:39}
+  .mnav.open{opacity:1;transform:none;pointer-events:auto}
+  .mnav a{display:flex;align-items:center;min-height:58px;font:800 28px/1 var(--f-d);letter-spacing:-.04em;text-decoration:none;border-bottom:2px solid #000}
+  .mnav .btn{margin-top:20px;width:100%;background:#000;color:var(--pink)}
+}
+
+/* hero */
+.hero{position:relative;padding:clamp(28px,4vw,56px) 0 0;overflow:hidden}
+.beat{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.beat span{font:600 13px/1 var(--f-d);color:var(--mut);padding:12px 0 12px 12px;border-left:1px solid var(--line);position:relative}
+.beat span:first-child{border-left:0;padding-left:0}
+.beat span::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--pink);opacity:0;animation:beat 4s steps(1) infinite}
+.beat span:nth-child(2)::after{animation-delay:.5s}.beat span:nth-child(3)::after{animation-delay:1s}.beat span:nth-child(4)::after{animation-delay:1.5s}.beat span:nth-child(5)::after{animation-delay:2s}.beat span:nth-child(6)::after{animation-delay:2.5s}.beat span:nth-child(7)::after{animation-delay:3s}.beat span:nth-child(8)::after{animation-delay:3.5s}
+@keyframes beat{0%{opacity:1}12.5%{opacity:0}100%{opacity:0}}
+.hero-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0;align-items:stretch;min-height:min(640px,calc(100svh - 190px))}
+.hero-txt{grid-column:1/6;padding:clamp(28px,4vw,56px) clamp(20px,3vw,40px) clamp(28px,4vw,56px) 0;display:flex;flex-direction:column;justify-content:space-between;gap:32px;position:relative;z-index:2}
+.hero h1{font-size:clamp(40px,6.4vw,98px);line-height:.92;letter-spacing:-.055em;max-width:10.5ch}
+.hero h1 b{color:var(--pink);font-weight:800}
+.hero-low{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.hero-low p{color:var(--mut);max-width:40ch;font-size:clamp(16px,1.3vw,18.5px)}
+.hero-low p strong{color:var(--txt);font-weight:600}
+.hero-cta{display:flex;flex-direction:column;gap:8px}
+.hero-pic{grid-column:6/9;position:relative;background:var(--pink-d);overflow:hidden;border-left:1px solid var(--line)}
+.hero-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);mix-blend-mode:multiply}
+.hero-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.7))}
+.hero-pic .big{position:absolute;left:-.06em;bottom:-.17em;font:800 clamp(140px,19vw,300px)/1 var(--f-d);letter-spacing:-.08em;color:var(--txt);z-index:2;pointer-events:none}
+.h-in{animation:hin .8s var(--ease) both}
+.h-in.d1{animation-delay:.1s}.h-in.d2{animation-delay:.2s}
+@keyframes hin{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero-pic.h-in{animation-name:wipe;animation-duration:1s}
+@keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+
+.band{background:var(--pink);color:#000;overflow:hidden;border-top:1px solid #000}
+.band-in{display:flex;width:max-content;animation:mq 30s linear infinite}
+.band-in span{font:800 clamp(22px,2.6vw,34px)/1 var(--f-d);letter-spacing:-.04em;padding:18px 26px;border-right:2px solid #000;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+.sec{padding:clamp(72px,9vw,140px) 0}
+.sh{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0 20px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.sh .cnt{grid-column:1/2;font:600 13px/1 var(--f-d);color:var(--pink);align-self:start;padding-top:10px}
+.sh h2{grid-column:2/6;font-size:clamp(38px,5.4vw,84px);line-height:.92;letter-spacing:-.055em}
+.sh p{grid-column:6/9;color:var(--mut);max-width:40ch}
+
+/* styles */
+.styles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.st{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 22px 22px;display:flex;flex-direction:column;gap:12px;min-height:300px;position:relative;background:var(--bk);transition:background-color .2s ease}
+.st .no{font:600 12px/1 var(--f-d);color:var(--mut)}
+.st h3{font-size:clamp(22px,2vw,30px);letter-spacing:-.045em;line-height:1}
+.st p{color:var(--mut);font-size:15.5px}
+.st .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.st .meta span{font-size:12.5px;font-weight:600;border:1px solid var(--line-2);padding:4px 9px;color:var(--txt)}
+.st button{align-self:flex-start;min-height:44px;padding:0;border:0;background:none;color:var(--pink);font:600 14px/1 var(--f-d);display:inline-flex;align-items:center;gap:8px}
+.st button svg{width:18px;height:18px;transition:transform .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.st:hover{background:var(--pan)}.st button:hover svg{transform:translateX(4px)}}
+.st-cta{background:var(--pink);color:#000}
+.st-cta p{color:#2A0016}
+.st-cta .btn{margin-top:auto;background:#000;color:var(--pink);align-self:stretch}
+@media (hover:hover) and (pointer:fine){.st-cta:hover{background:var(--pink-2)}}
+.st.ph{padding:0;overflow:hidden;background:var(--pan-2)}
+.st.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
+.st.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(255,61,154,.55),rgba(255,61,154,0) 60%);mix-blend-mode:normal}
+.st.ph span{position:absolute;left:20px;bottom:18px;z-index:1;font:800 14px/1.2 var(--f-d);letter-spacing:-.02em;color:#fff}
+
+/* schedule */
+.sched-sec{background:var(--pan);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr) minmax(0,1fr);gap:16px 28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.fg h3{font:600 13px/1.2 var(--f-d);letter-spacing:0;color:var(--mut);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:42px;padding:0 14px;border:1px solid var(--line-2);background:transparent;color:var(--txt);font-size:14.5px;font-weight:500;transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .16s var(--ease)}
+.chip:active{transform:scale(.97)}
+.chip[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:#000;font-weight:600}
+@media (hover:hover) and (pointer:fine){.chip[aria-pressed="false"]:hover{border-color:var(--pink)}}
+.sbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 0}
+.sbar p{font-size:15px;color:var(--mut)}
+.sbar p b{color:var(--txt);font-weight:600}
+.sbar button{min-height:44px;padding:0 4px;border:0;background:none;color:var(--pink);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.dtabs{display:none}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-left:1px solid var(--line);border-top:1px solid var(--line)}
+.day{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0;display:flex;flex-direction:column}
+.dh{padding:12px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.dh b{font:800 18px/1 var(--f-d);letter-spacing:-.03em}
+.dh small{font-size:12.5px;color:var(--mut)}
+.day.today .dh{background:var(--pink);color:#000}
+.day.today .dh small{color:#000}
+.dl{padding:8px;display:flex;flex-direction:column;gap:8px;flex:1;min-height:120px}
+.cls{width:100%;text-align:left;border:1px solid var(--line-2);background:var(--bk);padding:10px 10px 12px;display:flex;flex-direction:column;gap:4px;transition:border-color .15s ease,transform .16s var(--ease);animation:cin .35s var(--ease) both}
+@keyframes cin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cls:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.cls:hover{border-color:var(--pink)}}
+.cls time{font:800 17px/1 var(--f-d);letter-spacing:-.03em}
+.cls time small{font:500 12px/1 var(--f-b);color:var(--mut);letter-spacing:0;margin-left:4px}
+.cls strong{font:600 14px/1.2 var(--f-d);letter-spacing:-.02em}
+.cls span{font-size:12.5px;color:var(--mut);line-height:1.35}
+.cls .lv{display:inline-flex;align-self:flex-start;font-size:11.5px;font-weight:600;padding:2px 7px;margin-top:4px;border:1px solid var(--line-2);color:var(--txt)}
+.cls .lv.n{background:var(--pink);border-color:var(--pink);color:#000}
+.cls.picked{border-color:var(--pink);box-shadow:inset 0 0 0 1px var(--pink)}
+.empty-d{font-size:13px;color:var(--mut);padding:6px 4px}
+.legend{margin-top:16px;display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--mut)}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;background:var(--pink)}
+.legend i.c{background:transparent;border:1px solid var(--line-2)}
+.noresult{grid-column:1/-1;padding:40px 20px;text-align:left}
+.noresult h3{font-size:24px}
+.noresult p{margin-top:8px;color:var(--mut)}
+
+/* drawer */
+dialog.dr{margin:0 0 0 auto;height:100%;max-height:100%;width:min(480px,100vw);border:0;padding:0;background:var(--pan-2);color:var(--txt);border-left:2px solid var(--pink)}
+dialog.dr[open]{animation:drin .3s var(--ease) both}
+dialog.dr::backdrop{background:rgba(0,0,0,.7)}
+@keyframes drin{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+.dr-in{padding:24px clamp(20px,4vw,32px) 32px;display:flex;flex-direction:column;gap:18px;min-height:100%}
+.dr-top{display:flex;justify-content:space-between;align-items:center}
+.dr-top small{font:600 13px/1 var(--f-d);color:var(--pink)}
+.x{width:48px;height:48px;border:2px solid var(--txt);background:transparent;display:inline-flex;align-items:center;justify-content:center}
+.x svg{width:18px;height:18px}
+.dr h2{font-size:clamp(32px,6vw,46px);letter-spacing:-.055em;line-height:.95}
+.dr .when{font:600 18px/1.3 var(--f-d);letter-spacing:-.02em}
+.dr dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0}
+.dr dt,.dr dd{padding:10px 0;border-top:1px solid var(--line)}
+.dr dt{color:var(--mut);font-size:14.5px;padding-right:20px}
+.dr dd{margin:0;font-size:15.5px}
+.dr p{color:var(--mut)}
+.dr .btn{margin-top:auto;width:100%}
+
+/* steps */
+.counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.counts li{list-style:none;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 22px 28px}
+.counts b{display:block;font:800 clamp(80px,9vw,140px)/.8 var(--f-d);letter-spacing:-.08em;color:var(--pink)}
+.counts h3{margin-top:22px;font-size:20px;letter-spacing:-.035em}
+.counts p{margin-top:10px;color:var(--mut);font-size:15.5px}
+
+/* prices */
+.ptog{display:inline-flex;border:2px solid var(--txt);margin-bottom:24px}
+.ptog button{min-height:46px;padding:0 20px;border:0;background:transparent;font:600 14px/1 var(--f-d)}
+.ptog button[aria-pressed="true"]{background:var(--txt);color:#000}
+.prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.pc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 22px;display:flex;flex-direction:column;gap:10px;min-height:260px}
+.pc h3{font-size:18px;letter-spacing:-.03em}
+.pc .sum{margin-top:auto;font:800 clamp(30px,3.2vw,44px)/1 var(--f-d);letter-spacing:-.05em}
+.pc .per{font-size:14px;color:var(--mut)}
+.pc p{color:var(--mut);font-size:15px}
+.pc.hl{background:var(--pink);color:#000}
+.pc.hl p,.pc.hl .per{color:#2A0016}
+.pc.hl .btn{background:#000;color:var(--pink);margin-top:8px}
+.pnote{margin-top:16px;font-size:14px;color:var(--mut)}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.tm{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px;display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 14px;align-items:start}
+.tm .ini{width:56px;height:56px;background:var(--pink);color:#000;display:flex;align-items:center;justify-content:center;font:800 18px/1 var(--f-d);letter-spacing:-.04em;grid-row:span 2}
+.tm:nth-child(2n) .ini{background:var(--txt)}
+.tm h3{font-size:17px;letter-spacing:-.03em;line-height:1.15}
+.tm span{font-size:13.5px;color:var(--pink);font-weight:600}
+.tm p{grid-column:1/-1;margin-top:12px;color:var(--mut);font-size:15px}
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:72px;padding:14px 0;cursor:pointer;font:600 clamp(16px,1.6vw,21px)/1.3 var(--f-d);letter-spacing:-.03em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{width:40px;height:40px;border:2px solid var(--txt);flex-shrink:0;position:relative;transition:transform .2s var(--ease),background-color .15s ease}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:10px;right:10px;top:17px;height:2px;background:var(--txt)}
+.faq summary i::after{transform:rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--pink);border-color:var(--pink)}
+.faq details[open] summary i::before,.faq details[open] summary i::after{background:#000}
+.faq details p{padding:0 56px 24px 0;color:var(--mut);max-width:72ch}
+.faq details[open] p{animation:hin .35s var(--ease) both}
+@media (hover:hover) and (pointer:fine){.faq summary:hover{color:var(--pink)}}
+@media (max-width:1180px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.team{grid-template-columns:minmax(0,1fr)}.faq details p{padding-right:0}}
+
+/* halls */
+.halls{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.hall{background:var(--bk);display:flex;flex-direction:column}
+.hall figure{margin:0;position:relative;background:var(--pan-2);aspect-ratio:16/10;overflow:hidden}
+.hall:nth-child(2) figure{aspect-ratio:auto;flex:1;min-height:260px}
+.hall img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.6) contrast(1.05)}
+.hall div{padding:22px}
+.hall h3{font-size:24px;letter-spacing:-.045em}
+.hall p{margin-top:8px;color:var(--mut);font-size:15.5px}
+
+/* trial form */
+.trial-sec{background:var(--pink);color:#000}
+.trial{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.trial h2{font-size:clamp(44px,6.4vw,104px);line-height:.88;letter-spacing:-.06em}
+.trial-side p{margin-top:22px;max-width:36ch;font-size:17px}
+.trial-side ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.trial-side li{display:flex;gap:10px;font-weight:500}
+.trial-side li svg{width:20px;height:20px;flex-shrink:0;margin-top:2px}
+.tf{background:#000;color:var(--txt);padding:clamp(20px,3vw,36px)}
+.picked-c{border:1px solid var(--line-2);padding:16px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.picked-c small{display:block;font-size:13px;color:var(--mut)}
+.picked-c b{display:block;font:800 18px/1.2 var(--f-d);letter-spacing:-.03em;margin-top:4px}
+.picked-c span{display:block;font-size:14px;color:var(--pink);margin-top:4px}
+.picked-c a{min-height:44px;display:inline-flex;align-items:center;color:var(--mut);font-size:14px;white-space:nowrap}
+.f+.f{margin-top:18px}
+.f label,.f legend{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:var(--txt)}
+.f select,.f input[type=text],.f input[type=tel]{width:100%;min-height:54px;border:1px solid var(--line-2);border-radius:0;background:var(--bk);padding:0 14px;font-size:16.5px;outline:none;transition:border-color .15s ease}
+.f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF3D9A' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
+.f select:focus,.f input:focus{border-color:var(--pink)}
+.f input[aria-invalid="true"],.f select[aria-invalid="true"]{border-color:#FF8A8A}
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.who label{display:flex;align-items:center;justify-content:center;min-height:50px;border:1px solid var(--line-2);margin:0;cursor:pointer;font-weight:500}
+.who input{position:absolute;opacity:0;pointer-events:none}
+.who label:has(input:checked){background:var(--txt);color:#000;border-color:var(--txt)}
+.who label:has(input:focus-visible){outline:3px solid var(--pink);outline-offset:2px}
+fieldset.f{border:0;padding:0;margin:18px 0 0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.err{display:block;color:#FF8A8A;font-size:13.5px;margin-top:6px}
+.err:empty{display:none}
+.agree{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mut);cursor:pointer}
+.agree input{width:20px;height:20px;accent-color:var(--pink);flex-shrink:0;margin-top:2px}
+.tf .btn{width:100%;margin-top:22px}
+.child[hidden]{display:none}
+.ok{padding:20px 0}
+.ok .big{font:800 clamp(40px,6vw,76px)/.9 var(--f-d);letter-spacing:-.06em;color:var(--pink);animation:hin .5s var(--ease) both}
+.ok p{margin-top:16px;color:var(--mut);max-width:44ch}
+.ok ul{margin:18px 0 0;padding-left:18px;color:var(--txt)}
+.ok li{margin:4px 0}
+.ok .btn{margin-top:22px;width:auto}
+
+/* contacts */
+.ct{border-top:1px solid var(--line)}
+.ct-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-left:1px solid var(--line)}
+.ct-grid>div{border-right:1px solid var(--line);padding:28px 22px}
+.ct h3{font:600 13px/1.2 var(--f-d);letter-spacing:0;color:var(--mut)}
+.ct p{margin-top:10px;font-size:17px}
+.ct a{color:var(--txt);text-decoration-color:var(--pink);text-underline-offset:4px}
+.ftr{border-top:1px solid var(--line);padding:22px 0 30px;font-size:14px;color:var(--mut)}
+.ftr .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ftr a{color:var(--txt)}
+.huge{font:800 clamp(120px,30vw,460px)/.78 var(--f-d);letter-spacing:-.09em;color:var(--pink);padding:30px var(--pad) 0;overflow:hidden;white-space:nowrap;user-select:none}
+
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:1180px){
+  .styles,.prices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .filters .fg:first-child{grid-column:1/-1}
+  .week{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .counts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ct-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ct-grid>div{border-bottom:1px solid var(--line)}
+}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-txt{grid-column:1;padding-right:0}
+  .hero-pic{grid-column:1;min-height:420px;border-left:0;margin:0 calc(var(--pad)*-1)}
+  .sh{grid-template-columns:minmax(0,1fr);gap:14px}
+  .sh .cnt,.sh h2,.sh p{grid-column:1}
+  .halls,.trial{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .hdr .wrap{height:64px}
+  .mnav{inset:64px 0 auto 0}
+  .beat span{padding-left:6px;font-size:11px}
+  .hero h1{font-size:clamp(36px,11.4vw,54px)}
+  .hero-low{grid-template-columns:minmax(0,1fr)}
+  .hero-cta .btn{width:100%}
+  .hero-pic{min-height:380px}
+  .styles,.prices,.counts{grid-template-columns:minmax(0,1fr)}
+  .st{min-height:0}
+  .st.ph{min-height:220px}
+  .st.ph:not(.keep){display:none}
+  .filters{grid-template-columns:minmax(0,1fr)}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--pad)*-1);padding:0 var(--pad) 6px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;white-space:nowrap}
+  .dtabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:12px}
+  .dtabs button{min-height:58px;border:1px solid var(--line-2);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0}
+  .dtabs b{font:800 14px/1 var(--f-d)}
+  .dtabs small{font-size:11.5px;color:var(--mut)}
+  .dtabs button[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:#000}
+  .dtabs button[aria-pressed="true"] small{color:#000}
+  .week{grid-template-columns:minmax(0,1fr);border:0}
+  .day{display:none;border:0}
+  .day.show{display:flex}
+  .dh{display:none}
+  .dl{padding:0;min-height:0}
+  .cls{padding:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px}
+  .cls time{grid-row:span 3;font-size:20px}
+  .cls time small{display:block;margin:6px 0 0}
+  .counts li{padding:20px 18px}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .picked-c{flex-direction:column;align-items:flex-start}
+  .ct-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+  .beat span::after{opacity:0}
+  .beat span:first-child::after{opacity:1}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#schedule">К расписанию</a>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Танцевальная студия «Па», наверх">Па<i aria-hidden="true"></i></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#schedule">Расписание</a>
+      <a href="#styles">Направления</a>
+      <a href="#prices">Цены</a>
+      <a href="#team">Педагоги</a>
+      <a href="#halls">Залы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn btn-p" href="#trial">Пробное занятие</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h18M3 16h18"/></svg></button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Меню">
+    <a href="#schedule">Расписание</a>
+    <a href="#styles">Направления</a>
+    <a href="#prices">Цены</a>
+    <a href="#halls">Залы</a>
+    <a href="#contacts">Контакты</a>
+    <a class="btn" href="#trial">Пробное занятие</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="beat" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+    <div class="hero-grid">
+      <div class="hero-txt">
+        <h1 class="h-in">Найди свой стиль за&nbsp;одно пробное</h1>
+        <div class="hero-low h-in d1">
+          <p>Восемь направлений для детей с&nbsp;4&nbsp;лет, подростков и&nbsp;взрослых. Выберите класс в&nbsp;расписании&nbsp;— <strong>первое занятие стоит 500&nbsp;₽</strong>, абонемент покупать не&nbsp;нужно.</p>
+          <div class="hero-cta">
+            <a class="btn btn-p" href="#schedule">Открыть расписание</a>
+            <a class="btn btn-o" href="#styles">Направления</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-pic h-in d1">
+        <img src="https://images.unsplash.com/photo-1586211070543-61ae1ad4a665?auto=format&fit=crop&w=900&h=1100&q=72" width="900" height="1100" alt="Девушка в чёрной спортивной форме танцует в студии" fetchpriority="high">
+        <span class="big" aria-hidden="true">Па</span>
+      </div>
+    </div>
+  </div>
+  <div class="band" aria-hidden="true"><div class="band-in"><span>хип-хоп</span><span>контемпорари</span><span>high heels</span><span>вог</span><span>k-pop</span><span>стретчинг</span><span>балет</span><span>брейкинг</span><span>хип-хоп</span><span>контемпорари</span><span>high heels</span><span>вог</span><span>k-pop</span><span>стретчинг</span><span>балет</span><span>брейкинг</span></div></div>
+</section>
+
+<section class="sec" id="styles" aria-labelledby="st-h">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">1&nbsp;—&nbsp;2</span><h2 id="st-h" class="rv">Восемь направлений</h2><p class="rv">Если не&nbsp;знаете, что выбрать, начните с&nbsp;хип-хопа или стретчинга: там нет «неправильного» тела и&nbsp;сложной хореографии на&nbsp;первом занятии.</p></div>
+    <div class="styles" id="stylesGrid"></div>
+  </div>
+</section>
+
+<section class="sec sched-sec" id="schedule" aria-labelledby="sc-h">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">3&nbsp;—&nbsp;4</span><h2 id="sc-h" class="rv">Расписание недели</h2><p class="rv">Отфильтруйте по&nbsp;направлению, уровню и&nbsp;возрасту. Нажмите на&nbsp;занятие, чтобы увидеть детали и&nbsp;записаться на&nbsp;пробное.</p></div>
+    <div class="filters">
+      <div class="fg"><h3 id="fS">Направление</h3><div class="chips" id="fStyle" role="group" aria-labelledby="fS"></div></div>
+      <div class="fg"><h3 id="fL">Уровень</h3><div class="chips" id="fLevel" role="group" aria-labelledby="fL">
+        <button type="button" class="chip" data-v="all" aria-pressed="true">Любой</button><button type="button" class="chip" data-v="n" aria-pressed="false">С нуля</button><button type="button" class="chip" data-v="c" aria-pressed="false">Продолжающие</button></div></div>
+      <div class="fg"><h3 id="fA">Возраст</h3><div class="chips" id="fAge" role="group" aria-labelledby="fA">
+        <button type="button" class="chip" data-v="all" aria-pressed="true">Все</button><button type="button" class="chip" data-v="k4" aria-pressed="false">4–7</button><button type="button" class="chip" data-v="k8" aria-pressed="false">8–12</button><button type="button" class="chip" data-v="teen" aria-pressed="false">13–17</button><button type="button" class="chip" data-v="adult" aria-pressed="false">18+</button></div></div>
+    </div>
+    <div class="sbar"><p id="scount" aria-live="polite"></p><button type="button" id="freset" hidden>Сбросить фильтры</button></div>
+    <div class="dtabs" id="dtabs" role="group" aria-label="День недели"></div>
+    <div class="week" id="week"></div>
+    <div class="legend"><span><i aria-hidden="true"></i>можно прийти с нуля</span><span><i class="c" aria-hidden="true"></i>для продолжающих: нужен опыт от полугода</span></div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="ct-h2">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">5&nbsp;—&nbsp;8</span><h2 id="ct-h2" class="rv">Как попасть на&nbsp;пробное</h2><p class="rv">Танцоры считают восьмёрками. Вот ваша первая: от&nbsp;выбора класса до&nbsp;первого движения.</p></div>
+    <ol class="counts" style="margin:0;padding:0">
+      <li class="rv"><b>5</b><h3>Выберите класс</h3><p>В расписании отметьте направление, уровень и&nbsp;возраст. С&nbsp;розовой меткой можно прийти без опыта.</p></li>
+      <li class="rv"><b>6</b><h3>Оставьте заявку</h3><p>Администратор перезвонит, подтвердит место в&nbsp;группе и&nbsp;пришлёт адрес с&nbsp;входом.</p></li>
+      <li class="rv"><b>7</b><h3>Приходите за&nbsp;15&nbsp;минут</h3><p>Удобная одежда, вода, чистая сменная обувь или носки. Для high heels&nbsp;— каблук, если есть.</p></li>
+      <li class="rv"><b>8</b><h3>Танцуйте</h3><p>Оплата 500&nbsp;₽ на&nbsp;месте. Если решите продолжить, стоимость пробного вычтем из&nbsp;абонемента.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="prices" style="padding-top:0" aria-labelledby="pr-h">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">1&nbsp;—&nbsp;2</span><h2 id="pr-h" class="rv">Абонементы</h2><p class="rv">Абонемент действует на&nbsp;любые направления своей возрастной группы. Пропуск по&nbsp;болезни переносим по&nbsp;справке.</p></div>
+    <div class="ptog" role="group" aria-label="Цены для"><button type="button" data-v="adult" aria-pressed="true">Взрослым</button><button type="button" data-v="kids" aria-pressed="false">Детям и подросткам</button></div>
+    <div class="prices" id="prices-grid"></div>
+    <p class="pnote">Цены демонстрационные. Абонемент действует 30 дней с&nbsp;первого занятия.</p>
+  </div>
+</section>
+
+
+<section class="sec" id="team" aria-labelledby="tm-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">3&nbsp;—&nbsp;4</span><h2 id="tm-h" class="rv">Педагоги</h2><p class="rv">У&nbsp;каждого направления свой педагог&nbsp;— он ведёт группу от&nbsp;пробного занятия до&nbsp;отчётного выступления.</p></div>
+    <div class="team" id="teamGrid"></div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0" aria-labelledby="fq-h">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">5&nbsp;—&nbsp;6</span><h2 id="fq-h" class="rv">Частые вопросы</h2><p class="rv">Если вашего вопроса нет&nbsp;— позвоните, администратор на&nbsp;связи в&nbsp;часы работы студии.</p></div>
+    <div class="faq">
+      <details class="rv" open><summary>Мне за 30 и я никогда не танцевал. Не поздно?<i aria-hidden="true"></i></summary><p>Нет. Группы «с нуля» для взрослых собраны как раз для этого: первые занятия разбирают базовые шаги медленно и по счёту. Возраст в группах самый разный.</p></details>
+      <details class="rv"><summary>С какого возраста можно ребёнку?<i aria-hidden="true"></i></summary><p>Балет — с 4 лет, брейкинг и k-pop — с 8. Если ребёнку 7, а хочется в брейкинг, приходите на пробное: педагог посмотрит и подскажет группу.</p></details>
+      <details class="rv"><summary>Что если пропущу занятие?<i aria-hidden="true"></i></summary><p>Занятие можно отработать в другой группе того же уровня в течение срока абонемента. При болезни со справкой продлеваем абонемент на пропущенные дни.</p></details>
+      <details class="rv"><summary>Можно ли смотреть занятие родителям?<i aria-hidden="true"></i></summary><p>Да, через окно из зоны ожидания. Внутри зала родители не присутствуют — так дети меньше отвлекаются.</p></details>
+      <details class="rv"><summary>Бывают ли выступления?<i aria-hidden="true"></i></summary><p>Два раза в год студия делает отчётный концерт. Участие добровольное: можно заниматься для себя и не выходить на сцену.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="halls" style="padding-top:0" aria-labelledby="h-h">
+  <div class="wrap">
+    <div class="sh"><span class="cnt" aria-hidden="true">7&nbsp;—&nbsp;8</span><h2 id="h-h" class="rv">Два зала</h2><p class="rv">Между залами раздевалки с&nbsp;душем и&nbsp;зона ожидания для родителей&nbsp;— с&nbsp;окном в&nbsp;детский зал.</p></div>
+    <div class="halls">
+      <article class="hall rv"><figure><img src="https://images.unsplash.com/photo-1649591833478-15cd1060e137?auto=format&fit=crop&w=1200&h=750&q=72" width="1200" height="750" alt="Светлый зал с деревянным полом" loading="lazy"></figure><div><h3>Большой зал</h3><p>Деревянный пол на&nbsp;амортизирующей подложке&nbsp;— для прыжков и&nbsp;брейкинга. Здесь проходят взрослые группы и&nbsp;хип-хоп.</p></div></article>
+      <article class="hall rv"><figure><img src="https://images.unsplash.com/photo-1567667867244-2eed283cb70a?auto=format&fit=crop&w=700&h=800&q=72" width="700" height="800" alt="Пустой зал с зеркалами во всю стену" loading="lazy"></figure><div><h3>Зеркальный зал</h3><p>Зеркала во&nbsp;всю стену и&nbsp;станок&nbsp;— для балета, стретчинга и&nbsp;детских групп.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec trial-sec" id="trial" aria-labelledby="tr-h">
+  <div class="wrap trial">
+    <div class="trial-side">
+      <h2 id="tr-h">Запись на&nbsp;пробное</h2>
+      <p>Пробное занятие&nbsp;— 500&nbsp;₽, оплата на&nbsp;месте. Если не&nbsp;понравится направление, второе пробное в&nbsp;другом стиле&nbsp;— по&nbsp;той&nbsp;же цене.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Без абонемента и предоплаты</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Родители могут посмотреть занятие через окно</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Перенести можно за 3 часа до начала</li>
+      </ul>
+    </div>
+    <div class="tf" id="tfBox">
+      <form id="tf" novalidate>
+        <div class="picked-c" id="pickedC"></div>
+        <div class="f"><label for="cls">Занятие</label><select id="cls" aria-describedby="eC"></select><span class="err" id="eC"></span></div>
+        <fieldset class="f"><legend>Кто будет заниматься</legend><div class="who"><label><input type="radio" name="who" value="me" checked>Я</label><label><input type="radio" name="who" value="kid">Ребёнок</label></div></fieldset>
+        <div class="f child" id="childF" hidden><label for="kid">Имя и возраст ребёнка</label><input type="text" id="kid" placeholder="Например: Маша, 7 лет" aria-describedby="eK"><span class="err" id="eK"></span></div>
+        <div class="f two">
+          <div><label for="nm" id="nmL">Ваше имя</label><input type="text" id="nm" autocomplete="given-name" aria-describedby="eN"><span class="err" id="eN"></span></div>
+          <div><label for="ph">Телефон</label><input type="tel" id="ph" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="eP"><span class="err" id="eP"></span></div>
+        </div>
+        <div class="f"><label class="agree"><input type="checkbox" id="ag" aria-describedby="eA"><span>Согласен на обработку персональных данных. Это демо: данные никуда не отправляются.</span></label><span class="err" id="eA"></span></div>
+        <button class="btn btn-p" type="submit">Записаться на пробное</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="ct" id="contacts" aria-label="Контакты">
+  <div class="wrap">
+    <div class="ct-grid">
+      <div><h3>Адрес</h3><p>Новосибирск, Красный проспект, 157, 3 этаж</p></div>
+      <div><h3>Телефон</h3><p><a href="tel:+73830000000">+7 (383) 000-00-00</a></p></div>
+      <div><h3>Почта</h3><p><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></p></div>
+      <div><h3>Работаем</h3><p>Пн–Пт 16:00–22:30<br>Сб–Вс 10:30–18:00</p></div>
+    </div>
+  </div>
+  <div class="huge" aria-hidden="true">Па.</div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+    <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+  </div>
+</footer>
+
+<dialog class="dr" id="dr" aria-labelledby="drT"><div class="dr-in" id="drIn"></div></dialog>
+
+<script>
+(function(){
+"use strict";
+var D=document;D.documentElement.classList.add('js');
+function $(s,r){return (r||D).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||D).querySelectorAll(s))}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function plural(n,a,b,c){var m=n%10,mm=n%100;if(m===1&&mm!==11)return a;if(m>=2&&m<=4&&(mm<10||mm>=20))return b;return c}
+
+/* ---------- data ---------- */
+var STY={
+  hh:{n:'Хип-хоп',t:'Тимур Аксёнов',d:'Грув, базовые шаги и связки под современный бит. Отличный старт, если никогда не танцевали.',ages:'8+ и взрослые',wear:'Свободная одежда, чистые кроссовки'},
+  cn:{n:'Контемпорари',t:'Лиза Кравец',d:'Работа с весом тела, полом и дыханием. Много импровизации и мягкой акробатики.',ages:'13+ и взрослые',wear:'Облегающая одежда, носки или босиком'},
+  hl:{n:'High Heels',t:'Вика Никонова',d:'Хореография на каблуках: пластика, уверенность и походка. Первые занятия — можно в кроссовках.',ages:'18+',wear:'Каблук 7–10 см на устойчивой подошве, наколенники'},
+  vg:{n:'Вог',t:'Даня Рябов',d:'Подиумная манера, руки, дакволк и позы. Танец про характер и подачу.',ages:'18+',wear:'Удобная одежда, наколенники'},
+  kp:{n:'K-pop',t:'Соня Мельник',d:'Каверы на хореографию корейских групп. Учим целые номера и снимаем видео в конце месяца.',ages:'8–17',wear:'Удобная одежда, кроссовки'},
+  sr:{n:'Стретчинг',t:'Аня Лосева',d:'Растяжка и мобильность без боли: шпагаты, спина, тазобедренные суставы. Подходит как дополнение к любому стилю.',ages:'18+',wear:'Облегающая одежда, носки'},
+  bl:{n:'Балет',t:'Ольга Дёмина',d:'Классический экзерсис у станка и на середине. Для детей — основа осанки, для взрослых — техника с нуля.',ages:'4+ и взрослые',wear:'Купальник или футболка, балетки'},
+  br:{n:'Брейкинг',t:'Макс Филин',d:'Топрок, футворк, фризы. Сила, координация и умение падать безопасно.',ages:'8–12',wear:'Спортивная одежда, кроссовки, шапка для вращений'}
+};
+var SORDER=['hh','cn','hl','vg','kp','sr','bl','br'];
+var AGE={k4:'дети 4–7',k8:'дети 8–12',teen:'13–17 лет',adult:'18+'};
+var LV={n:'с нуля',c:'продолжающие'};
+var HALL={b:'Большой зал',m:'Зеркальный зал'};
+/* day(0=пн) | start | dur | style | level | age | hall */
+var RAW='0|17:00|45|bl|n|k4|m;0|18:00|60|br|n|k8|b;0|19:00|60|hh|n|adult|b;0|19:15|60|sr|n|adult|m;0|20:30|60|hl|c|adult|b;'+
+'1|16:30|60|kp|n|k8|b;1|18:00|60|hh|n|teen|b;1|19:00|90|cn|n|adult|m;1|20:00|60|vg|n|adult|b;1|20:45|60|sr|n|adult|m;'+
+'2|17:00|60|bl|c|k8|m;2|18:00|60|kp|n|teen|b;2|19:00|60|hh|c|adult|b;2|19:30|60|hl|n|adult|m;2|21:00|60|sr|n|adult|m;'+
+'3|16:30|60|br|c|k8|b;3|17:30|45|bl|n|k4|m;3|19:00|90|cn|c|adult|m;3|19:30|60|vg|c|adult|b;3|20:45|60|hh|c|teen|b;'+
+'4|18:00|60|kp|c|teen|b;4|19:00|60|hl|n|adult|m;4|19:15|60|hh|n|adult|b;4|20:30|90|cn|n|adult|m;'+
+'5|11:00|45|bl|n|k4|m;5|11:00|60|sr|n|adult|b;5|12:00|60|br|n|k8|b;5|13:15|60|kp|n|k8|m;5|14:30|60|hh|n|teen|b;5|15:45|60|vg|n|adult|b;5|16:00|90|bl|n|adult|m;'+
+'6|11:00|60|sr|n|adult|m;6|12:00|90|cn|n|teen|b;6|13:30|60|hl|c|adult|m;6|15:00|60|hh|n|adult|b';
+var CLS=RAW.split(';').map(function(r,i){var a=r.split('|');return{id:i,d:+a[0],t:a[1],dur:+a[2],s:a[3],l:a[4],a:a[5],h:a[6]}});
+CLS.sort(function(x,y){return x.d-y.d||x.t.localeCompare(y.t)});
+var DN=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+var DS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+var DACC=['в понедельник','во вторник','в среду','в четверг','в пятницу','в субботу','в воскресенье'];
+function endT(c){var p=c.t.split(':'),m=+p[0]*60+ +p[1]+c.dur;return Math.floor(m/60)+':'+(m%60<10?'0':'')+m%60}
+
+/* dates for the coming week */
+var now=new Date(),todayIdx=(now.getDay()+6)%7;
+function dateFor(d){var off=(d-todayIdx+7)%7;var x=new Date(now.getFullYear(),now.getMonth(),now.getDate()+off);return x}
+var MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function dlabel(d){var x=dateFor(d);return x.getDate()+' '+MON[x.getMonth()]}
+
+/* ---------- styles grid ---------- */
+var PH={cn:['1524594152303-9fd13543fe6e','Девушки танцуют у зеркала'],bl:['1758671914469-1aa30cc38d1e','Балерины на репетиции'],hl:['1537365587684-f490102e1225','Танцовщица в чёрном']};
+var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+var sg='';
+SORDER.forEach(function(k,i){
+  var s=STY[k],cnt=CLS.filter(function(c){return c.s===k}).length,ages={};
+  CLS.forEach(function(c){if(c.s===k)ages[AGE[c.a]]=1});
+  sg+='<article class="st rv"><span class="no">'+(i+1)+' / 8</span><h3>'+s.n+'</h3><p>'+s.d+'</p><div class="meta"><span>'+cnt+' '+plural(cnt,'занятие','занятия','занятий')+' в неделю</span><span>'+Object.keys(ages).join(', ')+'</span></div><button type="button" data-style="'+k+'">В расписании '+arrow+'</button></article>';
+  if(i===1||i===4||i===6){var pk=i===1?'cn':i===4?'hl':'bl';sg+='<div class="st ph rv'+(i===1?' keep':'')+'"><img src="https://images.unsplash.com/photo-'+PH[pk][0]+'?auto=format&fit=crop&w=700&h=700&q=72" width="700" height="700" alt="'+PH[pk][1]+'" loading="lazy"><span>'+STY[pk].n+'</span></div>'}
+});
+sg+='<div class="st st-cta rv"><h3>Не знаете, с чего начать?</h3><p>Приходите на пробное в любое направление «с нуля». Не подойдёт стиль — второе пробное в другом по той же цене.</p><a class="btn" href="#trial">Записаться на пробное</a></div>';
+$('#stylesGrid').innerHTML=sg;
+
+/* ---------- team ---------- */
+var APPR={hh:'Начинает каждое занятие с грува: сначала почувствовать бит, потом учить связку.',cn:'Много работы на полу и импровизации — учит не бояться своего тела.',hl:'Ставит технику походки и баланса прежде, чем хореографию.',vg:'Разбирает каждую позу по счёту и снимает прогоны на видео для разбора.',kp:'Учит целые номера: группа выбирает трек, к концу месяца — съёмка кавера.',sr:'Работает без боли и рывков: прогресс за счёт регулярности, а не усилия.',bl:'Классический экзерсис с объяснением, зачем нужно каждое движение.',br:'Сначала учит безопасно падать и стоять на руках, потом — элементы.'};
+$('#teamGrid').innerHTML=SORDER.map(function(k){var t=STY[k].t,p=t.split(' ');return '<article class="tm rv"><span class="ini" aria-hidden="true">'+p[0].charAt(0)+p[1].charAt(0)+'</span><h3>'+t+'</h3><span>'+STY[k].n+'</span><p>'+APPR[k]+'</p></article>'}).join('');
+
+/* ---------- schedule ---------- */
+var st={s:'all',l:'all',a:'all',day:todayIdx,picked:null};
+$('#fStyle').innerHTML='<button type="button" class="chip" data-v="all" aria-pressed="true">Все</button>'+SORDER.map(function(k){return '<button type="button" class="chip" data-v="'+k+'" aria-pressed="false">'+STY[k].n+'</button>'}).join('');
+function match(c){return (st.s==='all'||c.s===st.s)&&(st.l==='all'||c.l===st.l)&&(st.a==='all'||c.a===st.a)}
+function clsCard(c){
+  return '<button type="button" class="cls'+(st.picked===c.id?' picked':'')+'" data-id="'+c.id+'" aria-label="'+esc(STY[c.s].n+', '+DACC[c.d]+' '+c.t+', '+AGE[c.a]+', '+LV[c.l])+'"><time>'+c.t+'<small>'+c.dur+' мин</small></time><strong>'+STY[c.s].n+'</strong><span>'+AGE[c.a]+' · '+HALL[c.h].split(' ')[0].toLowerCase()+' зал</span><span class="lv '+c.l+'">'+LV[c.l]+'</span></button>';
+}
+function render(){
+  var list=CLS.filter(match),h='',tabs='';
+  for(var k=0;k<7;k++){
+    var d=(todayIdx+k)%7;
+    var dl=list.filter(function(c){return c.d===d});
+    h+='<div class="day'+(d===todayIdx?' today':'')+(d===st.day?' show':'')+'"><div class="dh"><b>'+DS[d]+'</b><small>'+(d===todayIdx?'сегодня':dlabel(d))+'</small></div><div class="dl">'+(dl.length?dl.map(clsCard).join(''):'<p class="empty-d">Нет занятий по фильтру</p>')+'</div></div>';
+    tabs+='<button type="button" data-d="'+d+'" aria-pressed="'+(d===st.day)+'" aria-label="'+DN[d]+', занятий: '+dl.length+'"><b>'+DS[d]+'</b><small>'+dl.length+'</small></button>';
+  }
+  if(!list.length)h='<div class="noresult"><h3>Таких занятий пока нет</h3><p>Попробуйте другой уровень или возраст&nbsp;— или оставьте заявку, мы сообщим, когда откроем группу.</p></div>';
+  $('#week').innerHTML=h;$('#dtabs').innerHTML=tabs;
+  var desc=[];if(st.s!=='all')desc.push(STY[st.s].n.toLowerCase());if(st.l!=='all')desc.push(LV[st.l]);if(st.a!=='all')desc.push(AGE[st.a]);
+  $('#scount').innerHTML='<b>'+list.length+' '+plural(list.length,'занятие','занятия','занятий')+'</b> в неделю'+(desc.length?' · '+esc(desc.join(', ')):'');
+  $('#freset').hidden=st.s==='all'&&st.l==='all'&&st.a==='all';
+  fillSelect();
+}
+function bindChips(id,key){$('#'+id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;st[key]=b.dataset.v;$$('.chip',this).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  if(window.innerWidth<=720){var list=CLS.filter(match);if(list.length&&!list.some(function(c){return c.d===st.day})){st.day=list[0].d;var best=99;list.forEach(function(c){var o=(c.d-todayIdx+7)%7;if(o<best){best=o;st.day=c.d}})}}
+  render()})}
+bindChips('fStyle','s');bindChips('fLevel','l');bindChips('fAge','a');
+function setFilter(id,v){$$('#'+id+' .chip').forEach(function(x){x.setAttribute('aria-pressed',String(x.dataset.v===v))})}
+$('#freset').addEventListener('click',function(){st.s=st.l=st.a='all';setFilter('fStyle','all');setFilter('fLevel','all');setFilter('fAge','all');render()});
+$('#dtabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.day=+b.dataset.d;render();var nb=$('#dtabs [data-d="'+st.day+'"]');if(nb)nb.focus()});
+$('#stylesGrid').addEventListener('click',function(e){var b=e.target.closest('[data-style]');if(!b)return;st.s=b.dataset.style;setFilter('fStyle',st.s);
+  var list=CLS.filter(match);if(list.length&&!list.some(function(c){return c.d===st.day})){var best=99;list.forEach(function(c){var o=(c.d-todayIdx+7)%7;if(o<best){best=o;st.day=c.d}})}
+  render();$('#schedule').scrollIntoView({behavior:reduce?'auto':'smooth'})});
+
+/* ---------- drawer ---------- */
+var dr=$('#dr'),drIn=$('#drIn'),lastF=null;
+var xI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+function openDr(c,src){
+  lastF=src;var s=STY[c.s];
+  drIn.innerHTML='<div class="dr-top"><small>'+DN[c.d]+', '+dlabel(c.d)+'</small><button class="x" type="button" data-close aria-label="Закрыть">'+xI+'</button></div>'+
+   '<h2 id="drT">'+s.n+'</h2><p class="when">'+c.t+'–'+endT(c)+', '+HALL[c.h].toLowerCase()+'</p><p>'+s.d+'</p>'+
+   '<dl><dt>Уровень</dt><dd>'+LV[c.l]+(c.l==='c'?' — нужен опыт от полугода':' — опыт не нужен')+'</dd><dt>Возраст</dt><dd>'+AGE[c.a]+'</dd><dt>Педагог</dt><dd>'+s.t+'</dd><dt>Что взять</dt><dd>'+s.wear+', вода</dd><dt>Пробное</dt><dd>500 ₽, оплата на месте</dd></dl>'+
+   '<button class="btn btn-p" type="button" data-pick="'+c.id+'">Записаться на пробное</button>';
+  if(typeof dr.showModal==='function')dr.showModal();else dr.setAttribute('open','');
+  var cb=$('[data-close]',drIn);if(cb)cb.focus();
+}
+$('#week').addEventListener('click',function(e){var b=e.target.closest('.cls');if(!b)return;var c=CLS.filter(function(x){return x.id===+b.dataset.id})[0];openDr(c,b)});
+dr.addEventListener('click',function(e){
+  if(e.target===dr||e.target.closest('[data-close]')){dr.close();return}
+  var p=e.target.closest('[data-pick]');if(p){pick(+p.dataset.pick);lastF=null;dr.close();$('#trial').scrollIntoView({behavior:reduce?'auto':'smooth'});setTimeout(function(){$('#nm').focus({preventScroll:true})},reduce?0:600)}
+});
+dr.addEventListener('close',function(){if(lastF&&D.body.contains(lastF))lastF.focus()});
+
+/* ---------- trial form ---------- */
+function fillSelect(){
+  var sel=$('#cls'),list=CLS.filter(match);if(st.picked!==null&&!list.some(function(c){return c.id===st.picked}))list=CLS;
+  sel.innerHTML='<option value="">Выберите занятие из расписания</option>'+list.map(function(c){return '<option value="'+c.id+'"'+(c.id===st.picked?' selected':'')+'>'+DS[c.d]+' '+c.t+' — '+STY[c.s].n+', '+AGE[c.a]+', '+LV[c.l]+'</option>'}).join('');
+  renderPicked();
+}
+function renderPicked(){
+  var c=CLS.filter(function(x){return x.id===st.picked})[0],box=$('#pickedC');
+  if(!c){box.innerHTML='<div><small>Занятие не выбрано</small><b>Выберите класс в списке ниже</b><span>или нажмите на занятие в расписании</span></div><a href="#schedule">К расписанию</a>';return}
+  box.innerHTML='<div><small>Пробное занятие</small><b>'+STY[c.s].n+', '+AGE[c.a]+'</b><span>'+DN[c.d]+', '+dlabel(c.d)+', '+c.t+'–'+endT(c)+'</span></div><a href="#schedule">Изменить</a>';
+  var kidAge=c.a!=='adult';$$('input[name=who]').forEach(function(r){r.checked=kidAge?r.value==='kid':r.value==='me'});toggleKid();
+}
+function pick(id){st.picked=id;$('#eC').textContent='';$('#cls').removeAttribute('aria-invalid');render()}
+$('#cls').addEventListener('change',function(){st.picked=this.value===''?null:+this.value;$('#eC').textContent='';this.removeAttribute('aria-invalid');renderPicked();$$('.cls').forEach(function(b){b.classList.toggle('picked',+b.dataset.id===st.picked)})});
+function toggleKid(){var kid=$('input[name=who]:checked').value==='kid';$('#childF').hidden=!kid;$('#nmL').textContent=kid?'Имя родителя':'Ваше имя'}
+$$('input[name=who]').forEach(function(r){r.addEventListener('change',toggleKid)});
+$('#ph').addEventListener('input',function(e){var v=e.target.value.replace(/\D/g,'');if(v.charAt(0)==='8')v='7'+v.slice(1);if(v&&v.charAt(0)!=='7')v='7'+v;v=v.slice(0,11);var o=v?'+7':'';if(v.length>1)o+=' ('+v.slice(1,4);if(v.length>=4)o+=')';if(v.length>4)o+=' '+v.slice(4,7);if(v.length>7)o+='-'+v.slice(7,9);if(v.length>9)o+='-'+v.slice(9,11);e.target.value=o});
+$$('#tf input').forEach(function(i){i.addEventListener('input',function(){i.removeAttribute('aria-invalid');var e=i.getAttribute('aria-describedby');if(e)$('#'+e).textContent=''})});
+$('#tf').addEventListener('submit',function(e){
+  e.preventDefault();var bad=null,nm=$('#nm'),ph=$('#ph'),ag=$('#ag'),sel=$('#cls'),kid=$('#kid'),isKid=$('input[name=who]:checked').value==='kid';
+  if(st.picked===null){sel.setAttribute('aria-invalid','true');$('#eC').textContent='Выберите занятие';bad=bad||sel}
+  if(isKid&&kid.value.trim().length<2){kid.setAttribute('aria-invalid','true');$('#eK').textContent='Укажите имя и возраст ребёнка';bad=bad||kid}
+  if(nm.value.trim().length<2){nm.setAttribute('aria-invalid','true');$('#eN').textContent='Как к вам обращаться?';bad=bad||nm}
+  if(ph.value.replace(/\D/g,'').length<11){ph.setAttribute('aria-invalid','true');$('#eP').textContent='Нужен номер из 11 цифр';bad=bad||ph}
+  if(!ag.checked){$('#eA').textContent='Отметьте согласие';bad=bad||ag}else $('#eA').textContent='';
+  if(bad){bad.focus();return}
+  var c=CLS.filter(function(x){return x.id===st.picked})[0],s=STY[c.s];
+  $('#tfBox').innerHTML='<div class="ok" role="status" tabindex="-1"><p class="big">Заявка принята</p><p>'+esc(nm.value.trim())+', '+(isKid?'записали ребёнка ('+esc(kid.value.trim())+')':'вы записаны')+' на пробное: '+s.n+', '+DACC[c.d]+', '+dlabel(c.d)+', '+c.t+'. Администратор позвонит, чтобы подтвердить место в группе.</p><ul><li>'+s.wear+'</li><li>Вода и полотенце</li><li>Прийти за 15 минут, оплата 500 ₽ на месте</li></ul><a class="btn btn-o" href="#schedule">Вернуться к расписанию</a></div>';
+  $('#tfBox .ok').focus({preventScroll:true});
+});
+
+/* ---------- prices ---------- */
+var PRC={
+  adult:[['Пробное','500','за занятие','Одно занятие в любом направлении для взрослых.'],['4 занятия','3 200','800 ₽ за занятие','Раз в неделю — чтобы понять, ваш ли это стиль.'],['8 занятий','5 600','700 ₽ за занятие','Два раза в неделю: так появляется прогресс.',1],['Безлимит','8 900','любые группы 18+','Сколько угодно занятий за 30 дней, все направления.']],
+  kids:[['Пробное','500','за занятие','Родитель может посмотреть занятие через окно.'],['4 занятия','2 800','700 ₽ за занятие','Подходит для балета 4–7 лет: раз в неделю.'],['8 занятий','4 800','600 ₽ за занятие','Стандартный график детских групп.',1],['Две группы','8 400','16 занятий','Например, k-pop и брейкинг, или две группы для двоих детей.']]
+};
+function renderPrices(k){$('#prices-grid').innerHTML=PRC[k].map(function(p){return '<div class="pc'+(p[4]?' hl':'')+'"><h3>'+p[0]+'</h3><p>'+p[3]+'</p><div class="sum">'+p[1]+' ₽</div><div class="per">'+p[2]+'</div>'+(p[4]?'<a class="btn" href="#trial">Начать с пробного</a>':'')+'</div>'}).join('')}
+$$('.ptog button').forEach(function(b){b.addEventListener('click',function(){$$('.ptog button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});renderPrices(b.dataset.v)})});
+renderPrices('adult');
+
+/* ---------- header ---------- */
+var burger=$('.burger'),mnav=$('#mnav');
+burger.addEventListener('click',function(){var o=burger.getAttribute('aria-expanded')!=='true';burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');mnav.classList.toggle('open',o)});
+$$('a',mnav).forEach(function(a){a.addEventListener('click',function(){burger.setAttribute('aria-expanded','false');mnav.classList.remove('open')})});
+D.addEventListener('keydown',function(e){if(e.key==='Escape'&&mnav.classList.contains('open')){burger.click();burger.focus()}});
+
+/* ---------- reveal ---------- */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.05});
+  $$('.rv').forEach(function(el){var i=Array.prototype.indexOf.call(el.parentElement.children,el);el.style.transitionDelay=Math.min(i,7)*60+'ms';io.observe(el)});
+}else $$('.rv').forEach(function(el){el.classList.add('in')});
+
+render();
+})();
+</script>
+</body>
+</html>

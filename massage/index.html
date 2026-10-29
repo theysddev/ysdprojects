@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Массаж «Тонус» — сеанс по карте тела, Санкт-Петербург</title>
+<meta name="description" content="Студия массажа «Тонус» в Петербурге. Отметьте на карте тела, где тянет и болит, — программа, длительность и цена соберутся сами. Классический, спортивный, расслабляющий и лимфодренажный массаж.">
+<meta property="og:title" content="Массаж «Тонус» — сеанс, собранный по карте тела">
+<meta property="og:description" content="Выберите зоны на фигуре и цель — получите программу, время и цену, затем запишитесь онлайн.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E140F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231E140F'/%3E%3Cpath d='M9 22c3-9 11-9 14 0' fill='none' stroke='%23C9A465' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='11' r='3' fill='%23C9A465'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --choc:#1E140F;
+  --choc-2:#271A13;
+  --cocoa:#3A291F;
+  --cocoa-2:#4A3528;
+  --brass:#C9A465;
+  --brass-2:#E2C690;
+  --brass-d:#9C7A3E;
+  --cream:#F2E7D7;
+  --muted:#BDAA93;
+  --line:rgba(201,164,101,.24);
+  --line-2:rgba(201,164,101,.42);
+  --err:#F0A58A;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --slow:cubic-bezier(0.45,0.05,0.25,1);
+  --wrap:1280px;
+  --pad:clamp(20px,4vw,56px);
+  --f-d:"Cormorant Garamond","Times New Roman",serif;
+  --f-b:"Jost",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--choc);color:var(--cream);font:300 18px/1.65 var(--f-b);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-d);font-weight:500;margin:0;letter-spacing:-.005em;line-height:1.02}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--brass-2);outline-offset:4px;border-radius:4px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--brass);color:var(--choc);padding:10px 16px;z-index:100;text-decoration:none;border-radius:999px}
+.skip:focus{top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 30px;border-radius:999px;border:1px solid transparent;font:400 16px/1 var(--f-b);letter-spacing:.02em;text-decoration:none;white-space:nowrap;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .16s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-b{background:var(--brass);color:var(--choc)}
+.btn-o{border-color:var(--line-2);color:var(--cream);background:transparent}
+@media (hover:hover) and (pointer:fine){
+  .btn-b:hover{background:var(--brass-2)}
+  .btn-o:hover{border-color:var(--brass)}
+}
+
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:40;transition:background-color .4s ease,border-color .4s ease;border-bottom:1px solid transparent}
+.hdr.solid{background:rgba(30,20,15,.94);border-bottom-color:var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hdr .wrap{display:flex;align-items:center;gap:32px;height:80px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream)}
+.logo svg{width:34px;height:34px}
+.logo b{font:500 28px/1 var(--f-d);letter-spacing:.02em}
+.nav{display:flex;gap:6px;margin-left:auto}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--muted);font-size:15.5px;transition:color .3s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--cream)}}
+.hdr .btn{min-height:46px;padding:0 22px;font-size:15px}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:transparent;align-items:center;justify-content:center;margin-left:auto}
+.burger svg{width:22px;height:22px}
+.mnav{display:none}
+@media (max-width:980px){
+  .nav,.hdr .btn{display:none}
+  .burger{display:inline-flex}
+  .mnav{display:block;position:fixed;inset:80px 0 auto 0;background:var(--choc-2);border-bottom:1px solid var(--line);padding:8px var(--pad) 28px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease);z-index:39}
+  .mnav.open{opacity:1;transform:none;pointer-events:auto}
+  .mnav a{display:flex;align-items:center;min-height:56px;border-bottom:1px solid var(--line);text-decoration:none;font:500 26px/1 var(--f-d)}
+  .mnav .btn{margin-top:20px;width:100%;font:400 16px/1 var(--f-b)}
+}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;padding:120px 0 72px;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;width:900px;height:900px;left:-300px;top:-200px;background:radial-gradient(closest-side,rgba(201,164,101,.16),transparent);animation:breathe 9s var(--slow) infinite alternate;pointer-events:none}
+@keyframes breathe{from{opacity:.5;transform:scale(.92)}to{opacity:1;transform:scale(1.06)}}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px);align-items:center;position:relative}
+.hero h1{font-size:clamp(46px,7.2vw,112px);font-weight:400;line-height:.95;letter-spacing:-.02em;max-width:11ch}
+.hero h1 span{display:block;color:var(--brass)}
+.hero-lead{margin-top:32px;font-size:clamp(17px,1.45vw,20px);color:var(--muted);max-width:42ch}
+.hero-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-facts{margin-top:56px;display:flex;flex-wrap:wrap;gap:12px 40px;color:var(--muted);font-size:15px}
+.hero-facts b{display:block;font:500 26px/1.1 var(--f-d);color:var(--cream)}
+.arch{position:relative;justify-self:end;width:100%;max-width:460px}
+.arch-frame{position:relative;aspect-ratio:3/4.2;border-radius:999px 999px 18px 18px;overflow:hidden;background:linear-gradient(170deg,#5A4030,#2E2018)}
+.arch-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) sepia(.15)}
+.arch-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,15,0) 55%,rgba(30,20,15,.55))}
+.arch-line{position:absolute;inset:-14px -14px 14px 14px;border:1px solid var(--line-2);border-radius:999px 999px 22px 22px;pointer-events:none}
+.arch-note{position:absolute;left:-28px;bottom:36px;background:var(--cream);color:var(--choc);border-radius:16px;padding:16px 20px;max-width:240px;font-size:14.5px;line-height:1.45;box-shadow:0 30px 50px -30px rgba(0,0,0,.8)}
+.arch-note b{display:block;font:600 21px/1.1 var(--f-d);margin-bottom:4px}
+.h-in{animation:hIn 1.4s var(--ease) both}
+.h-in.d1{animation-delay:.15s}.h-in.d2{animation-delay:.3s}.h-in.d3{animation-delay:.45s}
+@keyframes hIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.arch.h-in{animation-name:archIn;animation-duration:1.8s}
+@keyframes archIn{from{opacity:0;clip-path:inset(30% 0 0 0)}to{opacity:1;clip-path:inset(-20px -20px -20px -40px)}}
+
+/* section */
+.sec{padding:clamp(80px,10vw,150px) 0}
+.sh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:32px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.sh h2{font-size:clamp(40px,5.2vw,80px);font-weight:400;letter-spacing:-.015em;max-width:13ch}
+.sh p{color:var(--muted);max-width:44ch}
+
+/* map */
+.map-sec{background:var(--choc-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bm{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,4vw,64px);align-items:start}
+.fig{position:sticky;top:100px;border:1px solid var(--line);border-radius:28px;padding:24px 24px 20px;background:radial-gradient(70% 60% at 50% 40%,rgba(201,164,101,.08),transparent),var(--choc)}
+.fig-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.view{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:4px}
+.view button{min-height:40px;padding:0 18px;border-radius:999px;border:0;background:transparent;color:var(--muted);font-size:15px;transition:background-color .4s ease,color .4s ease}
+.view button[aria-pressed="true"]{background:var(--brass);color:var(--choc)}
+.fig-clear{min-height:44px;padding:0 14px;border:0;background:none;color:var(--muted);font-size:15px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-2)}
+.stage{position:relative;margin:8px auto 0;max-width:330px}
+@media (min-width:1101px){.stage{max-width:min(310px,calc((100vh - 300px) * .4545));min-width:220px}}
+@media (hover:hover) and (pointer:fine){.zl button{min-height:36px;font-size:14px;padding:0 12px}}
+.stage svg{display:block;width:100%;height:auto;overflow:visible}
+.sil{fill:var(--cocoa)}
+.sil-l{fill:none;stroke:var(--brass);stroke-width:1.1;opacity:.8}
+.det{fill:none;stroke:var(--brass);stroke-width:1;opacity:.45;stroke-linecap:round}
+.sep{stroke:var(--choc);stroke-width:2}
+.views>g{transition:opacity .9s var(--slow)}
+.views>g.off{opacity:0;pointer-events:none}
+.z{fill:var(--brass);opacity:0;cursor:pointer;transition:opacity .9s var(--slow);outline:none}
+@media (hover:hover) and (pointer:fine){.z:hover{opacity:.28}}
+.z:focus-visible{opacity:.4}
+.z.on{opacity:.82;animation:zb 3.6s var(--slow) infinite alternate}
+@keyframes zb{from{opacity:.62}to{opacity:.92}}
+.cap{margin-top:10px;text-align:center;min-height:28px;font:500 21px/1.3 var(--f-d);color:var(--brass-2)}
+.cap small{font:300 14px/1 var(--f-b);color:var(--muted)}
+.zl{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.zl button{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:14.5px;transition:background-color .5s ease,color .5s ease,border-color .5s ease,transform .16s var(--ease)}
+.zl button:active{transform:scale(.97)}
+.zl button[aria-pressed="true"]{background:rgba(201,164,101,.16);border-color:var(--brass);color:var(--cream)}
+.zl button[hidden]{display:none}
+
+.ctrl h3{font:400 15px/1.3 var(--f-b);color:var(--muted);margin:0 0 12px}
+.ctrl-b+.ctrl-b{margin-top:30px}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button{min-height:44px;padding:0 16px;border-radius:999px;border:1px dashed var(--line-2);background:transparent;color:var(--cream);font-size:15px;transition:border-color .3s ease,transform .16s var(--ease)}
+.presets button:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.presets button:hover{border-color:var(--brass)}}
+.goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.goal{position:relative;display:block;cursor:pointer}
+.goal input{position:absolute;opacity:0;pointer-events:none}
+.goal span{display:block;height:100%;border:1px solid var(--line);border-radius:18px;padding:16px 18px;transition:border-color .5s ease,background-color .5s ease}
+.goal b{display:block;font:500 22px/1.15 var(--f-d);color:var(--cream)}
+.goal em{display:block;font-style:normal;font-size:14px;line-height:1.45;color:var(--muted);margin-top:4px}
+.goal input:checked+span{border-color:var(--brass);background:rgba(201,164,101,.1)}
+.goal input:focus-visible+span{outline:2px solid var(--brass-2);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.goal:hover span{border-color:var(--line-2)}}
+.press{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line-2);border-radius:999px;padding:4px;gap:4px}
+.press button{min-height:44px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-size:15px;transition:background-color .5s ease,color .5s ease}
+.press button[aria-pressed="true"]{background:var(--cream);color:var(--choc)}
+.press button:disabled{opacity:.4;cursor:not-allowed}
+.adds{display:grid;gap:8px}
+.add{display:flex;align-items:center;gap:14px;min-height:52px;padding:8px 16px;border:1px solid var(--line);border-radius:14px;cursor:pointer;font-size:15.5px}
+.add input{width:20px;height:20px;accent-color:var(--brass);flex-shrink:0}
+.add i{margin-left:auto;font-style:normal;color:var(--brass);white-space:nowrap}
+.add:has(input:checked){border-color:var(--line-2);background:rgba(201,164,101,.06)}
+
+.res{margin-top:34px;border-radius:24px;background:var(--cream);color:var(--choc);padding:clamp(22px,3vw,34px);position:relative;overflow:hidden}
+.res-k{font-size:14px;color:#6B5444}
+.res h3{margin-top:6px;font:500 clamp(32px,3.2vw,44px)/1.02 var(--f-d)}
+.res-sub{margin-top:6px;font-size:15.5px;color:#5C4636}
+.res-nums{display:flex;gap:36px;margin-top:22px;align-items:baseline;flex-wrap:wrap}
+.res-nums div{font-size:14px;color:#6B5444}
+.res-nums b{display:block;font:500 46px/1 var(--f-d);color:var(--choc);font-variant-numeric:lining-nums}
+.tl{margin-top:22px;display:flex;height:12px;border-radius:999px;overflow:hidden;background:#E3D4BE;gap:2px}
+.tl i{display:block;height:100%;background:var(--brass-d);transform-origin:left;animation:grow 1s var(--slow) both}
+.tl i.pre{background:#B9A285}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.comp{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 24px}
+.comp li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #DCCAB1;font-size:15px}
+.comp li span:last-child{color:#6B5444;white-space:nowrap}
+.res-note{margin-top:14px;font-size:14px;color:#7A3F1E}
+.res-note:empty{display:none}
+.res .btn{margin-top:24px;width:100%;background:var(--choc);color:var(--cream)}
+@media (hover:hover) and (pointer:fine){.res .btn:hover{background:var(--cocoa)}}
+.res .btn:disabled{opacity:.45;cursor:not-allowed}
+.res-empty{font:500 26px/1.2 var(--f-d);color:#5C4636;margin-top:8px}
+.res-fade{animation:fadeUp .9s var(--slow) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* techniques */
+.tech{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,88px);align-items:start}
+.tech-pic{position:sticky;top:110px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:linear-gradient(170deg,#4A3528,#2A1C14)}
+.tech-pic img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) sepia(.12)}
+.tlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tlist li{padding:30px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 28px}
+.tlist h3{font-size:clamp(30px,3vw,42px);font-weight:400}
+.tlist p{grid-column:1/-1;color:var(--muted);max-width:56ch;font-size:16.5px}
+.tlist .pr{text-align:right;font-size:14px;color:var(--muted);white-space:nowrap}
+.tlist .pr b{display:block;font:500 26px/1 var(--f-d);color:var(--brass)}
+.tlist .for{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tlist .for span{font-size:13.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--cream)}
+
+/* session */
+.ses-sec{background:var(--cream);color:var(--choc)}
+.ses-sec .sh p{color:#5C4636}
+.ses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #CDB9A0;counter-reset:s}
+.ses li{list-style:none;padding:28px 28px 0 0;position:relative}
+.ses li+li{padding-left:28px;border-left:1px solid #CDB9A0}
+.ses time{font:500 54px/1 var(--f-d);color:var(--brass-d)}
+.ses time small{font:400 15px/1 var(--f-b);color:#6B5444;margin-left:6px}
+.ses h3{margin-top:16px;font-size:28px;font-weight:500}
+.ses p{margin-top:10px;font-size:16px;color:#5C4636}
+.ses-pic{margin-top:64px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px;align-items:end}
+.ses-pic figure{margin:0;border-radius:18px;overflow:hidden;background:#D9C6AA;aspect-ratio:16/9}
+.ses-pic img{width:100%;height:100%;object-fit:cover}
+.ses-pic blockquote{margin:0;font:400 clamp(24px,2.4vw,34px)/1.2 var(--f-d);color:var(--choc)}
+.ses-pic blockquote p+p{margin-top:16px;font:300 15px/1.5 var(--f-b);color:#5C4636}
+
+/* contra */
+.contra{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,88px)}
+.contra h2{font-size:clamp(38px,4.4vw,64px);font-weight:400;max-width:12ch}
+.contra>div>p{margin-top:20px;color:var(--muted);max-width:40ch}
+.cl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.cl section{padding:24px 0;border-top:1px solid var(--line)}
+.cl h3{font-size:26px;font-weight:500;color:var(--brass-2)}
+.cl ul{margin:12px 0 0;padding:0;list-style:none}
+.cl li{padding:6px 0 6px 22px;position:relative;color:var(--muted);font-size:16px}
+.cl li::before{content:"";position:absolute;left:0;top:17px;width:10px;height:1px;background:var(--brass)}
+
+/* prices */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.pack{border:1px solid var(--line);border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:14px;min-height:340px}
+.pack h3{font-size:34px;font-weight:400}
+.pack p{color:var(--muted);font-size:16px}
+.pack .amt{margin-top:auto;font:500 40px/1 var(--f-d);color:var(--brass)}
+.pack .amt small{display:block;font:300 14px/1.4 var(--f-b);color:var(--muted);margin-top:6px}
+.pack.img{padding:0;overflow:hidden;position:relative;background:linear-gradient(170deg,#4A3528,#2A1C14);border:0}
+.pack.img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8) sepia(.2)}
+.pack.img div{position:relative;margin-top:auto;padding:26px 30px;background:linear-gradient(180deg,transparent,rgba(30,20,15,.92) 40%)}
+.cert{display:flex;gap:8px;flex-wrap:wrap}
+.cert button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--cream);font-size:15px;transition:background-color .4s ease,color .4s ease}
+.cert button[aria-pressed="true"]{background:var(--brass);color:var(--choc);border-color:var(--brass)}
+
+/* booking */
+.book-sec{background:var(--choc-2);border-top:1px solid var(--line)}
+.book{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,88px);align-items:start}
+.book h2{font-size:clamp(40px,5vw,72px);font-weight:400;max-width:10ch}
+.book-side>p{margin-top:20px;color:var(--muted);max-width:38ch}
+.chosen{margin-top:32px;border:1px solid var(--line-2);border-radius:20px;padding:22px}
+.chosen small{display:block;font-size:14px;color:var(--muted)}
+.chosen b{display:block;margin-top:4px;font:500 28px/1.1 var(--f-d);color:var(--cream)}
+.chosen span{display:block;margin-top:6px;color:var(--brass);font-size:16px}
+.chosen a{display:inline-flex;min-height:44px;align-items:center;color:var(--muted);font-size:14.5px;text-underline-offset:4px}
+.form{border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3vw,38px);background:var(--choc)}
+.fg+.fg{margin-top:24px}
+.fl{display:block;font-size:15px;color:var(--muted);margin-bottom:10px}
+.dates{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.dates button{min-height:66px;border-radius:14px;border:1px solid var(--line);background:transparent;color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;transition:background-color .4s ease,color .4s ease,border-color .4s ease}
+.dates b{font:500 22px/1 var(--f-d)}
+.dates button[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:var(--choc)}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px}
+.times button{min-height:46px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--cream);font-size:15px;transition:background-color .4s ease,color .4s ease}
+.times button:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.times button[aria-pressed="true"]{background:var(--cream);color:var(--choc)}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.who label{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid var(--line);border-radius:12px;cursor:pointer;font-size:15px;text-align:center;padding:0 6px}
+.who input{position:absolute;opacity:0;pointer-events:none}
+.who label:has(input:checked){border-color:var(--brass);background:rgba(201,164,101,.12)}
+.who label:has(input:focus-visible){outline:2px solid var(--brass-2);outline-offset:2px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.inp label{display:block;font-size:15px;color:var(--muted);margin-bottom:8px}
+.inp input{width:100%;min-height:52px;border-radius:12px;border:1px solid var(--line-2);background:transparent;padding:0 16px;font-size:17px;outline:none;transition:border-color .3s ease}
+.inp input:focus{border-color:var(--brass)}
+.inp input[aria-invalid="true"]{border-color:var(--err)}
+.err{display:block;font-size:13.5px;color:var(--err);margin-top:6px}
+.err:empty{display:none}
+.agree{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);cursor:pointer}
+.agree input{width:20px;height:20px;accent-color:var(--brass);flex-shrink:0;margin-top:2px}
+.form .btn{width:100%;margin-top:26px}
+.sumline{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:15px;flex-wrap:wrap}
+.sumline b{color:var(--cream);font:500 24px/1 var(--f-d)}
+.ok{text-align:center;padding:30px 10px}
+.ok svg{width:72px;height:72px;margin:0 auto;color:var(--brass)}
+.ok svg circle{stroke-dasharray:210;stroke-dashoffset:210;animation:draw 1.4s var(--slow) forwards}
+.ok svg path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .8s .9s var(--slow) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ok h3{margin-top:22px;font-size:44px;font-weight:400}
+.ok p{margin:12px auto 0;color:var(--muted);max-width:42ch}
+.ok .btn{width:auto;margin-top:26px}
+
+/* contacts/footer */
+.ct{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-top:56px;padding-bottom:56px}
+#contacts{border-top:1px solid var(--line)}
+.ct h3{font:400 15px/1.3 var(--f-b);color:var(--muted)}
+.ct p{margin-top:8px;font:500 24px/1.3 var(--f-d)}
+.ct a{text-decoration-color:var(--line-2);text-underline-offset:5px}
+.ftr{padding:32px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+.ftr .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ftr a{color:var(--cream)}
+.big-word{font:400 clamp(90px,22vw,340px)/.8 var(--f-d);color:transparent;-webkit-text-stroke:1px var(--line-2);letter-spacing:-.02em;text-align:center;padding:40px 0 .08em;user-select:none;overflow:hidden}
+
+.mbar{display:none}
+@media (max-width:1100px){
+  .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:30;align-items:center;gap:12px;background:var(--cream);color:var(--choc);border-radius:18px;padding:10px 10px 10px 18px;box-shadow:0 20px 40px -16px rgba(0,0,0,.7);opacity:0;transform:translateY(120%);pointer-events:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .mbar.show{opacity:1;transform:none;pointer-events:auto}
+  .mbar p{flex:1;min-width:0;font-size:14px;line-height:1.3}
+  .mbar b{display:block;font:600 21px/1.1 var(--f-d)}
+  .mbar button{min-height:46px;padding:0 18px;border-radius:12px;border:0;background:var(--choc);color:var(--cream);font-size:15px;white-space:nowrap}
+}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity 1.2s var(--slow),transform 1.2s var(--slow)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .bm{grid-template-columns:minmax(0,1fr)}
+  .fig{position:relative;top:0}
+  .tech{grid-template-columns:minmax(0,1fr)}
+  .tech-pic{position:relative;top:0;aspect-ratio:16/10}
+  .ses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ses li:nth-child(3){padding-left:0;border-left:0}
+  .ses li{padding-bottom:28px}
+}
+@media (max-width:900px){
+  .hero-grid,.contra,.book,.sh{grid-template-columns:minmax(0,1fr)}
+  .arch{justify-self:center;max-width:380px;margin-top:20px}
+  .packs{grid-template-columns:minmax(0,1fr)}
+  .pack{min-height:0}
+  .pack.img{min-height:320px}
+  .ses-pic{grid-template-columns:minmax(0,1fr)}
+  .ct{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .hdr .wrap{height:68px}
+  .mnav{inset:68px 0 auto 0}
+  .hero{padding-top:100px;min-height:0}
+  .hero h1{font-size:clamp(44px,13vw,60px)}
+  .hero-cta .btn{flex:1 1 100%}
+  .hero-facts{gap:16px 28px}
+  .arch-note{left:-6px;bottom:20px;max-width:200px;font-size:13.5px}
+  .arch-line{inset:-10px -10px 10px 10px}
+  .fig{padding:16px 12px}
+  .stage{max-width:260px}
+  .goals{grid-template-columns:minmax(0,1fr)}
+  .comp{grid-template-columns:minmax(0,1fr)}
+  .res-nums{gap:24px}
+  .res-nums b{font-size:38px}
+  .tlist li{grid-template-columns:minmax(0,1fr)}
+  .tlist .pr{text-align:left}
+  .ses{grid-template-columns:minmax(0,1fr)}
+  .ses li+li{padding-left:0;border-left:0;border-top:1px solid #CDB9A0}
+  .cl{grid-template-columns:minmax(0,1fr)}
+  .dates{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .who label{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+  .z.on{opacity:.82}
+  .ok svg circle,.ok svg path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#karta">К карте тела</a>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Массаж «Тонус», наверх">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16.25" fill="none" stroke="#C9A465" stroke-width="1.2"/><path d="M9 24c3-9.5 13-9.5 16 0" fill="none" stroke="#C9A465" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="11.5" r="3.2" fill="#C9A465"/></svg>
+      <b>Тонус</b>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#karta">Карта тела</a>
+      <a href="#tech">Техники</a>
+      <a href="#seans">Как проходит</a>
+      <a href="#prices">Абонементы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn btn-b" href="#book">Записаться</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Меню">
+    <a href="#karta">Карта тела</a>
+    <a href="#tech">Техники</a>
+    <a href="#seans">Как проходит сеанс</a>
+    <a href="#prices">Абонементы</a>
+    <a href="#contacts">Контакты</a>
+    <a class="btn btn-b" href="#book">Записаться</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="h-in">Покажите, где тяжело<span>— соберём сеанс</span></h1>
+      <p class="hero-lead h-in d1">Отметьте на&nbsp;карте тела зоны, которые тянет и&nbsp;зажимает. Программа, длительность и&nbsp;цена сложатся сами&nbsp;— мастер начнёт именно с&nbsp;них, а&nbsp;не с&nbsp;общего шаблона.</p>
+      <div class="hero-cta h-in d2">
+        <a class="btn btn-b" href="#karta">Собрать свой сеанс</a>
+        <a class="btn btn-o" href="#tech">Готовые программы</a>
+      </div>
+      <div class="hero-facts h-in d3">
+        <div><b>30–120 минут</b>длительность сеанса</div>
+        <div><b>4 техники</b>от мягкой до глубокой</div>
+        <div><b>10:00–22:00</b>каждый день</div>
+      </div>
+    </div>
+    <div class="arch h-in d1">
+      <span class="arch-line" aria-hidden="true"></span>
+      <div class="arch-frame">
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=900&h=1260&q=72" width="900" height="1260" alt="Мастер делает массаж спины в полутёмном кабинете" fetchpriority="high">
+      </div>
+      <p class="arch-note"><b>Тишина и тепло</b>Кабинеты без музыки по&nbsp;умолчанию&nbsp;— включим, если попросите</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec map-sec" id="karta" aria-labelledby="map-h">
+  <div class="wrap">
+    <div class="sh">
+      <h2 id="map-h" class="rv">Карта тела</h2>
+      <p class="rv">Нажмите на&nbsp;зоны фигуры или выберите их списком. Переключайте вид спереди и&nbsp;сзади&nbsp;— выбранное сохраняется. Справа сразу видно, сколько это займёт и&nbsp;сколько стоит.</p>
+    </div>
+    <div class="bm">
+      <div class="fig">
+        <div class="fig-top">
+          <div class="view" role="group" aria-label="Вид фигуры">
+            <button type="button" data-view="b" aria-pressed="true">Сзади</button>
+            <button type="button" data-view="f" aria-pressed="false">Спереди</button>
+          </div>
+          <button class="fig-clear" type="button" id="clear">Снять выбор</button>
+        </div>
+        <div class="stage">
+          <svg viewBox="0 0 300 660" role="group" aria-label="Фигура человека: выберите зоны для массажа">
+            <defs><clipPath id="bc"><path d="M150 22C144 22 136.8 24 132 28C127.2 32 123.2 39.7 121 46C118.8 52.3 118.5 59.7 119 66C119.5 72.3 121.5 79 124 84C126.5 89 131.8 92 134 96C136.2 100 137 104 137 108C137 112 137.8 116.7 134 120C130.2 123.3 120.7 125.3 114 128C107.3 130.7 99 132.3 94 136C89 139.7 87 142.7 84 150C81 157.3 78.3 169.2 76 180C73.7 190.8 72.3 202.5 70 215C67.7 227.5 65 240.8 62 255C59 269.2 55 285 52 300C49 315 46.7 333 44 345C41.3 357 37.7 362.8 36 372C34.3 381.2 32.3 393.7 34 400C35.7 406.3 42.7 411.3 46 410C49.3 408.7 51.7 401.7 54 392C56.3 382.3 57.3 366.5 60 352C62.7 337.5 66.3 320 70 305C73.7 290 78.3 275.8 82 262C85.7 248.2 88.7 232.7 92 222C95.3 211.3 99.3 195 102 198C104.7 201 106 226 108 240C110 254 113.7 268.7 114 282C114.3 295.3 112.2 307 110 320C107.8 333 102 343.3 101 360C100 376.7 101.8 398.3 104 420C106.2 441.7 112.7 473.3 114 490C115.3 506.7 112.7 508.3 112 520C111.3 531.7 109 546.7 110 560C111 573.3 117 590.3 118 600C119 609.7 118 612.3 116 618C114 623.7 102.3 631 106 634C109.7 637 132.3 639.7 138 636C143.7 632.3 139.3 624.7 140 612C140.7 599.3 142 577.8 142 560C142 542.2 139.7 525 140 505C140.3 485 142.3 458.8 144 440C145.7 421.2 148 392 150 392C152 392 154.3 421.2 156 440C157.7 458.8 159.7 485 160 505C160.3 525 158 542.2 158 560C158 577.8 159.3 599.3 160 612C160.7 624.7 156.3 632.3 162 636C167.7 639.7 190.3 637 194 634C197.7 631 186 623.7 184 618C182 612.3 181 609.7 182 600C183 590.3 189 573.3 190 560C191 546.7 188.7 531.7 188 520C187.3 508.3 184.7 506.7 186 490C187.3 473.3 193.8 441.7 196 420C198.2 398.3 200 376.7 199 360C198 343.3 192.2 333 190 320C187.8 307 185.7 295.3 186 282C186.3 268.7 190 254 192 240C194 226 195.3 201 198 198C200.7 195 204.7 211.3 208 222C211.3 232.7 214.3 248.2 218 262C221.7 275.8 226.3 290 230 305C233.7 320 237.3 337.5 240 352C242.7 366.5 243.7 382.3 246 392C248.3 401.7 250.7 408.7 254 410C257.3 411.3 264.3 406.3 266 400C267.7 393.7 265.7 381.2 264 372C262.3 362.8 258.7 357 256 345C253.3 333 251 315 248 300C245 285 241 269.2 238 255C235 240.8 232.3 227.5 230 215C227.7 202.5 226.3 190.8 224 180C221.7 169.2 219 157.3 216 150C213 142.7 211 139.7 206 136C201 132.3 192.7 130.7 186 128C179.3 125.3 169.8 123.3 166 120C162.2 116.7 163 112 163 108C163 104 163.8 100 166 96C168.2 92 173.5 89 176 84C178.5 79 180.5 72.3 181 66C181.5 59.7 181.2 52.3 179 46C176.8 39.7 172.8 32 168 28C163.2 24 156 22 150 22Z"/></clipPath></defs>
+            <path class="sil" d="M150 22C144 22 136.8 24 132 28C127.2 32 123.2 39.7 121 46C118.8 52.3 118.5 59.7 119 66C119.5 72.3 121.5 79 124 84C126.5 89 131.8 92 134 96C136.2 100 137 104 137 108C137 112 137.8 116.7 134 120C130.2 123.3 120.7 125.3 114 128C107.3 130.7 99 132.3 94 136C89 139.7 87 142.7 84 150C81 157.3 78.3 169.2 76 180C73.7 190.8 72.3 202.5 70 215C67.7 227.5 65 240.8 62 255C59 269.2 55 285 52 300C49 315 46.7 333 44 345C41.3 357 37.7 362.8 36 372C34.3 381.2 32.3 393.7 34 400C35.7 406.3 42.7 411.3 46 410C49.3 408.7 51.7 401.7 54 392C56.3 382.3 57.3 366.5 60 352C62.7 337.5 66.3 320 70 305C73.7 290 78.3 275.8 82 262C85.7 248.2 88.7 232.7 92 222C95.3 211.3 99.3 195 102 198C104.7 201 106 226 108 240C110 254 113.7 268.7 114 282C114.3 295.3 112.2 307 110 320C107.8 333 102 343.3 101 360C100 376.7 101.8 398.3 104 420C106.2 441.7 112.7 473.3 114 490C115.3 506.7 112.7 508.3 112 520C111.3 531.7 109 546.7 110 560C111 573.3 117 590.3 118 600C119 609.7 118 612.3 116 618C114 623.7 102.3 631 106 634C109.7 637 132.3 639.7 138 636C143.7 632.3 139.3 624.7 140 612C140.7 599.3 142 577.8 142 560C142 542.2 139.7 525 140 505C140.3 485 142.3 458.8 144 440C145.7 421.2 148 392 150 392C152 392 154.3 421.2 156 440C157.7 458.8 159.7 485 160 505C160.3 525 158 542.2 158 560C158 577.8 159.3 599.3 160 612C160.7 624.7 156.3 632.3 162 636C167.7 639.7 190.3 637 194 634C197.7 631 186 623.7 184 618C182 612.3 181 609.7 182 600C183 590.3 189 573.3 190 560C191 546.7 188.7 531.7 188 520C187.3 508.3 184.7 506.7 186 490C187.3 473.3 193.8 441.7 196 420C198.2 398.3 200 376.7 199 360C198 343.3 192.2 333 190 320C187.8 307 185.7 295.3 186 282C186.3 268.7 190 254 192 240C194 226 195.3 201 198 198C200.7 195 204.7 211.3 208 222C211.3 232.7 214.3 248.2 218 262C221.7 275.8 226.3 290 230 305C233.7 320 237.3 337.5 240 352C242.7 366.5 243.7 382.3 246 392C248.3 401.7 250.7 408.7 254 410C257.3 411.3 264.3 406.3 266 400C267.7 393.7 265.7 381.2 264 372C262.3 362.8 258.7 357 256 345C253.3 333 251 315 248 300C245 285 241 269.2 238 255C235 240.8 232.3 227.5 230 215C227.7 202.5 226.3 190.8 224 180C221.7 169.2 219 157.3 216 150C213 142.7 211 139.7 206 136C201 132.3 192.7 130.7 186 128C179.3 125.3 169.8 123.3 166 120C162.2 116.7 163 112 163 108C163 104 163.8 100 166 96C168.2 92 173.5 89 176 84C178.5 79 180.5 72.3 181 66C181.5 59.7 181.2 52.3 179 46C176.8 39.7 172.8 32 168 28C163.2 24 156 22 150 22Z"/>
+            <g class="views" clip-path="url(#bc)">
+              <g id="vb">
+                <rect class="z" data-z="head" x="100" y="10" width="100" height="86"/>
+                <rect class="z" data-z="neck" x="110" y="96" width="80" height="26"/>
+                <rect class="z" data-z="shoulders" x="60" y="122" width="180" height="40"/>
+                <rect class="z" data-z="upback" x="98" y="162" width="104" height="90"/>
+                <rect class="z" data-z="lowback" x="98" y="252" width="104" height="80"/>
+                <path class="z" data-z="arms" d="M0 162H101L104 198 96 230 84 262 70 305 58 352 52 400 48 430H0ZM300 162H199L196 198 204 230 216 262 230 305 242 352 248 400 252 430H300Z"/>
+                <rect class="z" data-z="hips" x="88" y="375" width="124" height="125"/>
+                <rect class="z" data-z="legs" x="88" y="500" width="124" height="102"/>
+                <rect class="z" data-z="feet" x="88" y="602" width="124" height="44"/>
+              </g>
+              <g id="vf" class="off">
+                <rect class="z" data-z="face" x="100" y="10" width="100" height="86"/>
+                <rect class="z" data-z="neck" x="110" y="96" width="80" height="26"/>
+                <rect class="z" data-z="shoulders" x="60" y="122" width="180" height="40"/>
+                <rect class="z" data-z="abdomen" x="98" y="252" width="104" height="80"/>
+                <path class="z" data-z="arms" d="M0 162H101L104 198 96 230 84 262 70 305 58 352 52 400 48 430H0ZM300 162H199L196 198 204 230 216 262 230 305 242 352 248 400 252 430H300Z"/>
+                <rect class="z" data-z="hips" x="88" y="375" width="124" height="125"/>
+                <rect class="z" data-z="legs" x="88" y="500" width="124" height="102"/>
+                <rect class="z" data-z="feet" x="88" y="602" width="124" height="44"/>
+              </g>
+              <g aria-hidden="true">
+                <path class="sep" d="M110 96H190M60 122H240M0 162H300M96 252H204M96 332H204M80 375H220M80 500H220M80 602H220"/>
+              </g>
+            </g>
+            <path class="sil-l" d="M150 22C144 22 136.8 24 132 28C127.2 32 123.2 39.7 121 46C118.8 52.3 118.5 59.7 119 66C119.5 72.3 121.5 79 124 84C126.5 89 131.8 92 134 96C136.2 100 137 104 137 108C137 112 137.8 116.7 134 120C130.2 123.3 120.7 125.3 114 128C107.3 130.7 99 132.3 94 136C89 139.7 87 142.7 84 150C81 157.3 78.3 169.2 76 180C73.7 190.8 72.3 202.5 70 215C67.7 227.5 65 240.8 62 255C59 269.2 55 285 52 300C49 315 46.7 333 44 345C41.3 357 37.7 362.8 36 372C34.3 381.2 32.3 393.7 34 400C35.7 406.3 42.7 411.3 46 410C49.3 408.7 51.7 401.7 54 392C56.3 382.3 57.3 366.5 60 352C62.7 337.5 66.3 320 70 305C73.7 290 78.3 275.8 82 262C85.7 248.2 88.7 232.7 92 222C95.3 211.3 99.3 195 102 198C104.7 201 106 226 108 240C110 254 113.7 268.7 114 282C114.3 295.3 112.2 307 110 320C107.8 333 102 343.3 101 360C100 376.7 101.8 398.3 104 420C106.2 441.7 112.7 473.3 114 490C115.3 506.7 112.7 508.3 112 520C111.3 531.7 109 546.7 110 560C111 573.3 117 590.3 118 600C119 609.7 118 612.3 116 618C114 623.7 102.3 631 106 634C109.7 637 132.3 639.7 138 636C143.7 632.3 139.3 624.7 140 612C140.7 599.3 142 577.8 142 560C142 542.2 139.7 525 140 505C140.3 485 142.3 458.8 144 440C145.7 421.2 148 392 150 392C152 392 154.3 421.2 156 440C157.7 458.8 159.7 485 160 505C160.3 525 158 542.2 158 560C158 577.8 159.3 599.3 160 612C160.7 624.7 156.3 632.3 162 636C167.7 639.7 190.3 637 194 634C197.7 631 186 623.7 184 618C182 612.3 181 609.7 182 600C183 590.3 189 573.3 190 560C191 546.7 188.7 531.7 188 520C187.3 508.3 184.7 506.7 186 490C187.3 473.3 193.8 441.7 196 420C198.2 398.3 200 376.7 199 360C198 343.3 192.2 333 190 320C187.8 307 185.7 295.3 186 282C186.3 268.7 190 254 192 240C194 226 195.3 201 198 198C200.7 195 204.7 211.3 208 222C211.3 232.7 214.3 248.2 218 262C221.7 275.8 226.3 290 230 305C233.7 320 237.3 337.5 240 352C242.7 366.5 243.7 382.3 246 392C248.3 401.7 250.7 408.7 254 410C257.3 411.3 264.3 406.3 266 400C267.7 393.7 265.7 381.2 264 372C262.3 362.8 258.7 357 256 345C253.3 333 251 315 248 300C245 285 241 269.2 238 255C235 240.8 232.3 227.5 230 215C227.7 202.5 226.3 190.8 224 180C221.7 169.2 219 157.3 216 150C213 142.7 211 139.7 206 136C201 132.3 192.7 130.7 186 128C179.3 125.3 169.8 123.3 166 120C162.2 116.7 163 112 163 108C163 104 163.8 100 166 96C168.2 92 173.5 89 176 84C178.5 79 180.5 72.3 181 66C181.5 59.7 181.2 52.3 179 46C176.8 39.7 172.8 32 168 28C163.2 24 156 22 150 22Z"/>
+            <g class="views" aria-hidden="true">
+              <g id="db"><path class="det" d="M150 128V330" stroke-dasharray="1 7"/><path class="det" d="M120 176c6 22 14 36 24 42M180 176c-6 22-14 36-24 42"/><path class="det" d="M128 356c8 8 16 10 22 10s14-2 22-10"/></g>
+              <g id="df" class="off"><path class="det" d="M116 130c12 6 24 6 32 3M184 130c-12 6-24 6-32 3"/><circle class="det" cx="150" cy="300" r="2"/><path class="det" d="M138 70h0M162 70h0" stroke-width="3"/></g>
+            </g>
+          </svg>
+        </div>
+        <p class="cap" id="cap" aria-live="polite">Выберите зону</p>
+        <div class="zl" id="zl" role="group" aria-label="Зоны списком"></div>
+      </div>
+
+      <div class="ctrl">
+        <div class="ctrl-b">
+          <h3>Быстрый старт</h3>
+          <div class="presets">
+            <button type="button" data-p="office">Офисная шея</button>
+            <button type="button" data-p="sport">После тренировки</button>
+            <button type="button" data-p="legs">Тяжёлые ноги</button>
+            <button type="button" data-p="all">Всё тело</button>
+          </div>
+        </div>
+        <div class="ctrl-b">
+          <h3 id="goalL">Чего хочется после сеанса</h3>
+          <div class="goals" role="radiogroup" aria-labelledby="goalL">
+            <label class="goal"><input type="radio" name="goal" value="classic" checked><span><b>Снять напряжение</b><em>Классический массаж: разминает зажимы, возвращает подвижность</em></span></label>
+            <label class="goal"><input type="radio" name="goal" value="sport"><span><b>Восстановиться</b><em>Спортивный: глубокая работа с мышцами после нагрузок</em></span></label>
+            <label class="goal"><input type="radio" name="goal" value="relax"><span><b>Отключиться</b><em>Расслабляющий на тёплом масле, медленный ритм</em></span></label>
+            <label class="goal"><input type="radio" name="goal" value="lymph"><span><b>Убрать отёки</b><em>Лимфодренаж: лёгкие движения по ходу лимфы</em></span></label>
+          </div>
+        </div>
+        <div class="ctrl-b">
+          <h3 id="prL">Давление</h3>
+          <div class="press" id="press" role="group" aria-labelledby="prL">
+            <button type="button" data-v="soft" aria-pressed="false">Мягко</button>
+            <button type="button" data-v="mid" aria-pressed="true">Средне</button>
+            <button type="button" data-v="deep" aria-pressed="false">Глубоко</button>
+          </div>
+        </div>
+        <div class="ctrl-b">
+          <h3>Добавить к сеансу</h3>
+          <div class="adds">
+            <label class="add"><input type="checkbox" value="bags" data-p="700">Прогрев травяными мешочками<i>+700 ₽</i></label>
+            <label class="add"><input type="checkbox" value="stones" data-p="900">Тёплые камни на спину и стопы<i>+900 ₽</i></label>
+          </div>
+        </div>
+
+        <div class="res" id="res" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mbar" id="mbar" aria-hidden="true"><p><b id="mbT"></b><span id="mbS"></span></p><button type="button" id="mbB" tabindex="-1">Программа</button></div>
+
+<section class="sec" id="tech" aria-labelledby="tech-h">
+  <div class="wrap">
+    <div class="sh">
+      <h2 id="tech-h" class="rv">Четыре техники</h2>
+      <p class="rv">Если не&nbsp;хочется собирать сеанс по&nbsp;зонам, выберите технику&nbsp;— мастер спросит о&nbsp;самочувствии перед началом и&nbsp;сам распределит время.</p>
+    </div>
+    <div class="tech">
+      <div class="tech-pic rv">
+        <img src="https://images.unsplash.com/photo-1757689314932-bec6e9c39e51?auto=format&fit=crop&w=900&h=1125&q=72" width="900" height="1125" alt="Руки мастера во время массажа, тёплый свет" loading="lazy">
+      </div>
+      <ul class="tlist">
+        <li class="rv"><h3>Классический</h3><div class="pr"><b>2 700 ₽</b>60 минут</div><p>Поглаживание, растирание, разминание. Подходит, если сидите за&nbsp;компьютером, спите с&nbsp;затёкшей шеей или просто давно не&nbsp;были на&nbsp;массаже.</p><div class="for"><span>шея и плечи</span><span>спина</span><span>первый визит</span></div></li>
+        <li class="rv"><h3>Спортивный</h3><div class="pr"><b>3 300 ₽</b>60 минут</div><p>Глубокая проработка крупных мышц и&nbsp;растяжка после бега, зала, лыж. Лучше приходить на&nbsp;следующий день после тренировки, а&nbsp;не в&nbsp;тот&nbsp;же вечер.</p><div class="for"><span>бёдра и икры</span><span>поясница</span><span>после нагрузок</span></div></li>
+        <li class="rv"><h3>Расслабляющий</h3><div class="pr"><b>3 000 ₽</b>60 минут</div><p>Длинные медленные движения на&nbsp;тёплом масле, приглушённый свет. Для тех, кто устал не&nbsp;мышцами, а&nbsp;головой.</p><div class="for"><span>всё тело</span><span>стопы</span><span>вечером</span></div></li>
+        <li class="rv"><h3>Лимфодренажный</h3><div class="pr"><b>3 300 ₽</b>60 минут</div><p>Мягкое ритмичное давление по&nbsp;ходу лимфотока. Помогает при отёках и&nbsp;ощущении тяжести в&nbsp;ногах к&nbsp;концу дня. Всегда только мягкое давление.</p><div class="for"><span>ноги</span><span>живот</span><span>курсом</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec ses-sec" id="seans" aria-labelledby="ses-h">
+  <div class="wrap">
+    <div class="sh">
+      <h2 id="ses-h" class="rv">Как проходит сеанс</h2>
+      <p class="rv">Время на&nbsp;разговор и&nbsp;отдых входит в&nbsp;длительность&nbsp;— поэтому шестидесятиминутный сеанс не&nbsp;заканчивается на&nbsp;пятидесятой минуте.</p>
+    </div>
+    <ol class="ses" style="padding:0;margin:0">
+      <li class="rv"><time>0<small>мин</small></time><h3>Разговор</h3><p>Мастер уточняет зоны с&nbsp;карты, самочувствие, привычное давление. Если есть противопоказания&nbsp;— скажет прямо.</p></li>
+      <li class="rv"><time>5<small>мин</small></time><h3>Разогрев</h3><p>Поверхностные движения и&nbsp;тепло, чтобы мышцы перестали защищаться и&nbsp;отозвались на&nbsp;работу.</p></li>
+      <li class="rv"><time>10<small>мин</small></time><h3>Работа по&nbsp;зонам</h3><p>В&nbsp;том порядке и&nbsp;с&nbsp;тем временем, что вы собрали. Давление можно менять в&nbsp;любой момент&nbsp;— просто скажите.</p></li>
+      <li class="rv"><time>−5<small>мин до конца</small></time><h3>Тишина и&nbsp;чай</h3><p>Несколько минут полежать под пледом, потом травяной чай. Торопиться к&nbsp;выходу не&nbsp;нужно.</p></li>
+    </ol>
+    <div class="ses-pic">
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1745327883508-b6cd32e5dde5?auto=format&fit=crop&w=1200&h=675&q=72" width="1200" height="675" alt="Массажист готовит кабинет к сеансу" loading="lazy"></figure>
+      <blockquote class="rv"><p>Каждый сеанс мастер записывает в&nbsp;карточку: какие зоны, какое давление, что помогло.</p><p>В следующий раз не&nbsp;придётся объяснять всё заново&nbsp;— даже если придёте к&nbsp;другому мастеру.</p></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contra" aria-labelledby="contra-h">
+  <div class="wrap contra">
+    <div>
+      <h2 id="contra-h" class="rv">Когда массаж лучше отложить</h2>
+      <p class="rv">Честный список&nbsp;— чтобы не&nbsp;приходить зря. Если сомневаетесь, сначала покажитесь врачу, а&nbsp;потом приходите с&nbsp;его рекомендацией.</p>
+    </div>
+    <div class="cl">
+      <section class="rv"><h3>Перенесите сеанс</h3><ul><li>температура, ОРВИ, общее недомогание</li><li>острая боль после травмы в первые дни</li><li>воспаление или повреждения кожи в зоне массажа</li><li>алкоголь в тот же день</li></ul></section>
+      <section class="rv"><h3>Нужно разрешение врача</h3><ul><li>беременность&nbsp;— только специальный массаж</li><li>варикоз и тромбоз, особенно для ног</li><li>гипертония, болезни сердца</li><li>онкологические заболевания</li></ul></section>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="prices" style="padding-top:0" aria-labelledby="pr-h">
+  <div class="wrap">
+    <div class="sh">
+      <h2 id="pr-h" class="rv">Абонементы и&nbsp;подарки</h2>
+      <p class="rv">Курс из&nbsp;пяти сеансов работает лучше одного длинного: мышцы привыкают к&nbsp;новому состоянию постепенно.</p>
+    </div>
+    <div class="packs">
+      <article class="pack rv"><h3>Курс из&nbsp;5 сеансов</h3><p>Скидка 10% на&nbsp;любую программу с&nbsp;карты. Действует 3 месяца, можно переносить без штрафа за&nbsp;сутки.</p><div class="amt">−10%<small>к цене каждого сеанса</small></div></article>
+      <article class="pack rv"><h3>Подарочный сертификат</h3><p>На&nbsp;сумму&nbsp;— получатель сам соберёт сеанс на&nbsp;карте. Электронный или в&nbsp;конверте.</p>
+        <div class="cert" role="group" aria-label="Номинал сертификата"><button type="button" aria-pressed="false" data-c="3000">3 000 ₽</button><button type="button" aria-pressed="true" data-c="5000">5 000 ₽</button><button type="button" aria-pressed="false" data-c="8000">8 000 ₽</button></div>
+        <div class="amt" id="certTxt">5 000 ₽<small>хватит на 90 минут классического массажа</small></div></article>
+      <article class="pack img rv"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&h=900&q=72" width="800" height="900" alt="Флакон янтарного массажного масла в руке" loading="lazy"><div><h3>Масла без отдушек</h3><p>Базовое масло миндаля и&nbsp;виноградной косточки. Ароматическое добавим, только если захотите.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec book-sec" id="book" aria-labelledby="book-h">
+  <div class="wrap book">
+    <div class="book-side">
+      <h2 id="book-h" class="rv">Запись на&nbsp;сеанс</h2>
+      <p class="rv">Выберите день и&nbsp;время. Администратор перезвонит, чтобы подтвердить запись и&nbsp;уточнить пожелания.</p>
+      <div class="chosen rv" id="chosen"></div>
+    </div>
+    <div class="form rv" id="formBox">
+      <form id="bf" novalidate>
+        <div class="fg"><span class="fl" id="dL">День</span><div class="dates" id="dates" role="group" aria-labelledby="dL"></div></div>
+        <div class="fg"><span class="fl" id="tL">Время начала</span><div class="times" id="times" role="group" aria-labelledby="tL"></div><span class="err" id="eT"></span></div>
+        <fieldset class="fg" style="border:0;padding:0;margin:24px 0 0"><legend class="fl">Мастер</legend><div class="who"><label><input type="radio" name="m" value="неважно" checked>Неважно</label><label><input type="radio" name="m" value="женщина">Женщина</label><label><input type="radio" name="m" value="мужчина">Мужчина</label></div></fieldset>
+        <div class="fg two">
+          <div class="inp"><label for="nm">Имя</label><input id="nm" autocomplete="given-name" aria-describedby="eN"><span class="err" id="eN"></span></div>
+          <div class="inp"><label for="ph">Телефон</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="eP"><span class="err" id="eP"></span></div>
+        </div>
+        <div class="fg"><label class="agree"><input type="checkbox" id="ag" aria-describedby="eA"><span>Согласен на обработку персональных данных. Демо-форма: данные никуда не отправляются.</span></label><span class="err" id="eA"></span></div>
+        <div class="sumline" id="sumline"></div>
+        <button class="btn btn-b" type="submit">Записаться</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" aria-label="Контакты">
+  <div class="wrap ct">
+    <div><h3>Адрес</h3><p>Санкт-Петербург, ул. Рубинштейна, 27, второй этаж, домофон 12</p></div>
+    <div><h3>Телефон и почта</h3><p><a href="tel:+78120000000">+7 (812) 000-00-00</a><br><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></p></div>
+    <div><h3>Часы работы</h3><p>Каждый день, 10:00–22:00<br>последняя запись в 20:30</p></div>
+  </div>
+  <div class="big-word" aria-hidden="true">Тонус</div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+    <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var D=document;D.documentElement.classList.add('js');
+function $(s,r){return (r||D).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||D).querySelectorAll(s))}
+function rub(n){return n.toLocaleString('ru-RU').replace(/ /g,' ')+' ₽'}
+function plural(n,a,b,c){var m=n%10,mm=n%100;if(m===1&&mm!==11)return a;if(m>=2&&m<=4&&(mm<10||mm>=20))return b;return c}
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- data ---------- */
+var Z={
+  head:{n:'Голова и затылок',m:10,v:'b'},
+  face:{n:'Лицо',m:15,v:'f'},
+  neck:{n:'Шея',m:10,v:'bf'},
+  shoulders:{n:'Плечи и трапеция',m:15,v:'bf'},
+  upback:{n:'Верх спины и лопатки',m:20,v:'b'},
+  lowback:{n:'Поясница',m:15,v:'b'},
+  abdomen:{n:'Живот',m:10,v:'f'},
+  arms:{n:'Руки и кисти',m:15,v:'bf'},
+  hips:{n:'Бёдра',m:15,v:'bf'},
+  legs:{n:'Голени и икры',m:15,v:'bf'},
+  feet:{n:'Стопы',m:15,v:'bf'}
+};
+var ORDER=['face','head','neck','shoulders','upback','arms','lowback','abdomen','hips','legs','feet'];
+var G={
+  classic:{n:'Классический массаж',rate:45},
+  sport:{n:'Спортивный массаж',rate:55},
+  relax:{n:'Расслабляющий массаж на масле',rate:50},
+  lymph:{n:'Лимфодренажный массаж',rate:55}
+};
+var PRESS={soft:'мягкое давление',mid:'среднее давление',deep:'глубокое давление'};
+var TIERS=[30,45,60,75,90,120];
+var PRESETS={
+  office:{z:['neck','shoulders','head','upback'],g:'classic',p:'mid'},
+  sport:{z:['lowback','hips','legs'],g:'sport',p:'deep'},
+  legs:{z:['hips','legs','feet'],g:'lymph',p:'soft'},
+  all:{z:['head','neck','shoulders','upback','lowback','arms','hips','legs','feet'],g:'relax',p:'mid'}
+};
+
+var st={sel:{},view:'b',goal:'classic',press:'mid',adds:{}};
+var plan=null;
+
+/* ---------- zones UI ---------- */
+var zl=$('#zl'),cap=$('#cap');
+zl.innerHTML=ORDER.map(function(k){return '<button type="button" data-z="'+k+'" aria-pressed="false">'+Z[k].n+'</button>'}).join('');
+$$('.z').forEach(function(el){
+  var k=el.getAttribute('data-z');
+  el.setAttribute('tabindex','0');el.setAttribute('role','checkbox');el.setAttribute('aria-checked','false');el.setAttribute('aria-label',Z[k].n);
+});
+function syncZones(){
+  $$('.z').forEach(function(el){var on=!!st.sel[el.getAttribute('data-z')];el.classList.toggle('on',on);el.setAttribute('aria-checked',String(on))});
+  $$('button',zl).forEach(function(b){var k=b.dataset.z;b.setAttribute('aria-pressed',String(!!st.sel[k]));b.hidden=Z[k].v.indexOf(st.view)<0&&!st.sel[k]});
+}
+function toggle(k){if(st.sel[k])delete st.sel[k];else st.sel[k]=1;syncZones();showCap(k);calc()}
+function showCap(k){if(!k){cap.textContent='Выберите зону';return}cap.innerHTML=Z[k].n+' <small>'+(st.sel[k]?'· выбрано, '+Z[k].m+' мин':'· не выбрано')+'</small>'}
+$$('.z').forEach(function(el){
+  var k=el.getAttribute('data-z');
+  el.addEventListener('click',function(){toggle(k)});
+  el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(k)}});
+  el.addEventListener('mouseenter',function(){showCap(k)});
+  el.addEventListener('focus',function(){showCap(k)});
+});
+zl.addEventListener('click',function(e){var b=e.target.closest('button');if(b)toggle(b.dataset.z)});
+$$('.view button').forEach(function(b){b.addEventListener('click',function(){
+  st.view=b.dataset.view;
+  $$('.view button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  $('#vb').classList.toggle('off',st.view!=='b');$('#db').classList.toggle('off',st.view!=='b');
+  $('#vf').classList.toggle('off',st.view!=='f');$('#df').classList.toggle('off',st.view!=='f');
+  $$('#vb .z').forEach(function(z){z.setAttribute('tabindex',st.view==='b'?'0':'-1')});
+  $$('#vf .z').forEach(function(z){z.setAttribute('tabindex',st.view==='f'?'0':'-1')});
+  syncZones();
+})});
+$$('#vf .z').forEach(function(z){z.setAttribute('tabindex','-1')});
+$('#clear').addEventListener('click',function(){st.sel={};syncZones();showCap();calc()});
+
+/* ---------- controls ---------- */
+$$('input[name=goal]').forEach(function(r){r.addEventListener('change',function(){st.goal=r.value;lastPressTry=null;if(st.goal==='lymph')setPress('soft');calc()})});
+function setPress(v){st.press=v;$$('#press button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v))})}
+var lastPressTry=null;
+$('#press').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;lastPressTry=b.dataset.v;setPress(b.dataset.v);calc()});
+$$('.add input').forEach(function(c){c.addEventListener('change',function(){if(c.checked)st.adds[c.value]=+c.dataset.p;else delete st.adds[c.value];calc()})});
+$$('.presets button').forEach(function(b){b.addEventListener('click',function(){
+  var p=PRESETS[b.dataset.p];st.sel={};p.z.forEach(function(k){st.sel[k]=1});
+  st.goal=p.g;$$('input[name=goal]').forEach(function(r){r.checked=r.value===p.g});setPress(p.p);
+  syncZones();showCap();calc();
+})});
+
+/* ---------- calculation ---------- */
+function progName(keys){
+  var S=function(arr){return keys.every(function(k){return arr.indexOf(k)>-1})};
+  if(keys.length>=8)return 'Всё тело';
+  if(keys.length===1&&keys[0]==='face')return 'Массаж лица';
+  if(S(['head','face','neck','shoulders']))return 'Шея и плечи';
+  if(S(['neck','shoulders','upback','lowback','head'])&&keys.indexOf('upback')>-1&&keys.indexOf('lowback')>-1)return 'Спина целиком';
+  if(S(['hips','legs','feet']))return 'Лёгкие ноги';
+  if(S(['neck','shoulders','upback','head']))return 'Офисная шея и спина';
+  if(S(['lowback','hips','legs','feet']))return 'Поясница и ноги';
+  return 'Сеанс по '+keys.length+' '+(keys.length===1?'зоне':'зонам');
+}
+function calc(){
+  var keys=ORDER.filter(function(k){return st.sel[k]});
+  var res=$('#res');
+  if(!keys.length){
+    plan=null;
+    res.innerHTML='<p class="res-k">Ваша программа</p><p class="res-empty">Отметьте зоны на&nbsp;фигуре или начните с&nbsp;быстрого старта&nbsp;— здесь появятся длительность, цена и&nbsp;ход сеанса.</p><button class="btn" type="button" disabled>Записаться на эту программу</button>';
+    renderChosen();return;
+  }
+  var lymFix=false;if(st.goal==='lymph'&&st.press!=='soft'){setPress('soft');lymFix=true}
+  var intro=10,outro=st.goal==='relax'?10:5;
+  var sum=keys.reduce(function(a,k){return a+Z[k].m},0);
+  var need=intro+sum+outro,tier=TIERS[TIERS.length-1];
+  for(var i=0;i<TIERS.length;i++){if(TIERS[i]>=need){tier=TIERS[i];break}}
+  var avail=tier-intro-outro;
+  var mins=keys.map(function(k){return Math.max(5,Math.round(Z[k].m*avail/sum/5)*5)});
+  var diff=avail-mins.reduce(function(a,b){return a+b},0),guard=0;
+  while(diff!==0&&guard++<50){var j=mins.indexOf(Math.max.apply(null,mins));if(diff<0&&mins[j]<=5)break;mins[j]+=diff>0?5:-5;diff+=diff>0?-5:5}
+  var addSum=Object.keys(st.adds).reduce(function(a,k){return a+st.adds[k]},0);
+  var price=Math.round(tier*G[st.goal].rate*(st.press==='deep'?1.1:1)/100)*100;
+  var total=price+addSum;
+  var note='';
+  if(lymFix||(st.goal==='lymph'&&st.press==='soft'&&lastPressTry&&lastPressTry!=='soft')){note='Лимфодренаж делаем только мягко: сильное давление пережимает лимфатические сосуды. Давление изменено на мягкое.'}
+  else if(need>120){note='Зон больше, чем помещается в 120 минут, — время распределили пропорционально. Можно разбить на два сеанса.'}
+  else if(st.sel.face&&st.press==='deep'){note='Лицо мастер всё равно массирует мягко — глубокое давление только для тела.'}
+  plan={name:progName(keys),goal:G[st.goal].n,press:PRESS[st.press],tier:tier,price:total,keys:keys};
+  var tl='<i class="pre" style="width:'+(intro/tier*100)+'%"></i>'+mins.map(function(m,ix){return '<i style="width:'+(m/tier*100)+'%;animation-delay:'+(ix*80)+'ms;opacity:'+(1-ix*0.06)+'"></i>'}).join('')+'<i class="pre" style="width:'+(outro/tier*100)+'%"></i>';
+  var comp='<li><span>Разговор и разогрев</span><span>'+intro+' мин</span></li>'+keys.map(function(k,ix){return '<li><span>'+Z[k].n+'</span><span>'+mins[ix]+' мин</span></li>'}).join('')+'<li><span>'+(st.goal==='relax'?'Тишина под пледом и чай':'Отдых и чай')+'</span><span>'+outro+' мин</span></li>';
+  Object.keys(st.adds).forEach(function(k){comp+='<li><span>'+(k==='bags'?'Травяные мешочки':'Тёплые камни')+'</span><span>+'+rub(st.adds[k])+'</span></li>'});
+  res.innerHTML='<div class="res-fade"><p class="res-k">Ваша программа</p><h3>'+plan.name+'</h3><p class="res-sub">'+plan.goal+', '+plan.press+'</p>'+
+    '<div class="res-nums"><div><b>'+tier+'</b>минут</div><div><b>'+rub(total)+'</b>за сеанс'+(addSum?', с дополнениями':'')+'</div></div>'+
+    '<div class="tl" aria-hidden="true">'+tl+'</div><ul class="comp" aria-label="Ход сеанса">'+comp+'</ul><p class="res-note">'+note+'</p>'+
+    '<button class="btn" type="button" id="toBook">Записаться на эту программу</button></div>';
+  renderChosen();renderTimes();if(mbar)updBar();
+}
+$('#res').addEventListener('click',function(e){if(e.target.closest('#toBook')){$('#book').scrollIntoView({behavior:reduce?'auto':'smooth'});setTimeout(function(){var b=$('#dates button[aria-pressed=true]');if(b)b.focus({preventScroll:true})},reduce?0:700)}});
+
+/* ---------- certificate ---------- */
+$$('.cert button').forEach(function(b){b.addEventListener('click',function(){
+  $$('.cert button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  var v=+b.dataset.c,min=0;TIERS.forEach(function(t){if(Math.round(t*45/100)*100<=v)min=t});
+  $('#certTxt').innerHTML=rub(v)+'<small>'+(min?'хватит на '+min+' минут классического массажа':'')+'</small>';
+})});
+
+/* ---------- booking ---------- */
+var WD=['вс','пн','вт','ср','чт','пт','сб'],MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var now=new Date(),days=[];for(var d=0;d<7;d++)days.push(new Date(now.getFullYear(),now.getMonth(),now.getDate()+d));
+var bk={day:now.getHours()>=17?1:0,time:null};
+function hash(n){n=(n^61)^(n>>>16);n=n+(n<<3);n=n^(n>>>4);n=Math.imul(n,0x27d4eb2d);n=n^(n>>>15);return n>>>0}
+function hm(m){return Math.floor(m/60)+':'+(m%60<10?'0':'')+m%60}
+function renderDates(){
+  $('#dates').innerHTML=days.map(function(dt,i){return '<button type="button" data-d="'+i+'" aria-pressed="'+(bk.day===i)+'" aria-label="'+(i===0?'Сегодня':i===1?'Завтра':'')+' '+dt.getDate()+' '+MON[dt.getMonth()]+'"><span>'+(i===0?'сегодня':i===1?'завтра':WD[dt.getDay()])+'</span><b>'+dt.getDate()+'</b></button>'}).join('');
+}
+function renderTimes(){
+  var len=plan?plan.tier:60,dt=days[bk.day],dn=dt.getDate()+dt.getMonth()*31,nm=now.getHours()*60+now.getMinutes();
+  var h='';for(var t=600;t+len<=1320;t+=30){
+    var busy=hash(dn*97+t)%10<3||(bk.day===0&&t<nm+60);
+    if(busy&&bk.time===t)bk.time=null;
+    h+='<button type="button" data-t="'+t+'" aria-pressed="'+(bk.time===t)+'"'+(busy?' disabled aria-label="'+hm(t)+', занято"':'')+'>'+hm(t)+'</button>';
+  }
+  $('#times').innerHTML=h||'<p class="fl">На этот день свободного времени нет.</p>';
+  renderSum();
+}
+function renderSum(){
+  var dt=days[bk.day];
+  $('#sumline').innerHTML='<span>'+(bk.day===0?'Сегодня':bk.day===1?'Завтра':WD[dt.getDay()])+', '+dt.getDate()+' '+MON[dt.getMonth()]+(bk.time!==null?' в '+hm(bk.time):', время не выбрано')+'</span><b>'+rub(plan?plan.price:2700)+'</b>';
+}
+function renderChosen(){
+  var c=$('#chosen');
+  c.innerHTML=plan?'<small>Программа с карты тела</small><b>'+plan.name+'</b><span>'+plan.tier+' минут · '+rub(plan.price)+'</span><a href="#karta">Изменить на карте</a>':'<small>Программа</small><b>Подберём на месте</b><span>Классический массаж, 60 минут · '+rub(2700)+'</span><a href="#karta">Собрать по карте тела</a>';
+  renderSum();
+}
+$('#dates').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;bk.day=+b.dataset.d;bk.time=null;renderDates();renderTimes();$('#dates [data-d="'+bk.day+'"]').focus()});
+$('#times').addEventListener('click',function(e){var b=e.target.closest('button');if(!b||b.disabled)return;bk.time=+b.dataset.t;$$('#times button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});$('#eT').textContent='';renderSum()});
+$('#ph').addEventListener('input',function(e){
+  var v=e.target.value.replace(/\D/g,'');if(v.charAt(0)==='8')v='7'+v.slice(1);if(v&&v.charAt(0)!=='7')v='7'+v;v=v.slice(0,11);
+  var o=v?'+7':'';if(v.length>1)o+=' ('+v.slice(1,4);if(v.length>=4)o+=')';if(v.length>4)o+=' '+v.slice(4,7);if(v.length>7)o+='-'+v.slice(7,9);if(v.length>9)o+='-'+v.slice(9,11);e.target.value=o;
+});
+$$('#bf input').forEach(function(i){i.addEventListener('input',function(){i.removeAttribute('aria-invalid');var e=i.getAttribute('aria-describedby');if(e)$('#'+e).textContent=''})});
+$('#bf').addEventListener('submit',function(e){
+  e.preventDefault();var bad=null;
+  var nm=$('#nm'),ph=$('#ph'),ag=$('#ag');
+  if(bk.time===null){$('#eT').textContent='Выберите время начала';bad=bad||$('#times button:not(:disabled)')}
+  if(nm.value.trim().length<2){nm.setAttribute('aria-invalid','true');$('#eN').textContent='Как к вам обращаться?';bad=bad||nm}
+  if(ph.value.replace(/\D/g,'').length<11){ph.setAttribute('aria-invalid','true');$('#eP').textContent='Нужен номер из 11 цифр';bad=bad||ph}
+  if(!ag.checked){$('#eA').textContent='Отметьте согласие';bad=bad||ag}
+  if(bad){bad.focus();return}
+  var dt=days[bk.day];
+  $('#formBox').innerHTML='<div class="ok" role="status" tabindex="-1"><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="36" cy="36" r="33"/><path d="m23 37 9 9 17-19"/></svg><h3>Заявка принята</h3><p>'+nm.value.trim().replace(/</g,'')+', ждём вас '+(bk.day===0?'сегодня':bk.day===1?'завтра':WD[dt.getDay()]+', '+dt.getDate()+' '+MON[dt.getMonth()])+' в '+hm(bk.time)+'. '+(plan?'Программа «'+plan.name+'», '+plan.tier+' минут.':'Классический массаж, 60 минут.')+' Администратор перезвонит в течение часа, чтобы подтвердить.</p><p>Приходите за 10 минут: успеете переодеться и выпить воды.</p><a class="btn btn-o" href="#top">Вернуться наверх</a></div>';
+  var ok=$('#formBox .ok');ok.focus({preventScroll:true});
+});
+
+/* ---------- header / menu ---------- */
+var hdr=$('#hdr'),burger=$('.burger'),mnav=$('#mnav');
+function onS(){hdr.classList.toggle('solid',scrollY>40||mnav.classList.contains('open'))}
+addEventListener('scroll',onS,{passive:true});onS();
+burger.addEventListener('click',function(){var o=burger.getAttribute('aria-expanded')!=='true';burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');mnav.classList.toggle('open',o);onS()});
+$$('a',mnav).forEach(function(a){a.addEventListener('click',function(){burger.setAttribute('aria-expanded','false');mnav.classList.remove('open');onS()})});
+D.addEventListener('keydown',function(e){if(e.key==='Escape'&&mnav.classList.contains('open')){burger.click();burger.focus()}});
+
+/* ---------- reveal ---------- */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
+  var groups={};
+  $$('.rv').forEach(function(el){var p=el.parentElement;var i=Array.prototype.indexOf.call(p.children,el);el.style.transitionDelay=Math.min(i,5)*120+'ms';io.observe(el)});
+}else $$('.rv').forEach(function(el){el.classList.add('in')});
+
+/* mobile summary bar */
+var mbar=$('#mbar'),mapIn=false,resIn=false;
+function updBar(){var on=mapIn&&!resIn&&!!plan;mbar.classList.toggle('show',on);mbar.setAttribute('aria-hidden',String(!on));$('#mbB').tabIndex=on?0:-1;if(plan){$('#mbT').textContent=plan.tier+' мин · '+rub(plan.price);$('#mbS').textContent=plan.name}}
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){mapIn=es[0].isIntersecting;updBar()},{threshold:0}).observe($('#karta .bm'));
+  new IntersectionObserver(function(es){resIn=es[0].isIntersecting;updBar()},{threshold:.25}).observe($('#res'));
+}
+$('#mbB').addEventListener('click',function(){$('#res').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})});
+
+syncZones();renderDates();calc();renderTimes();
+})();
+</script>
+</body>
+</html>

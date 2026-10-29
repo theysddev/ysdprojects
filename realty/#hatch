@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЖК «Речной квартал» — квартиры у Камы в Перми</title>
+<meta name="description" content="Жилой квартал у набережной Камы в Перми, Ленинский район: 3 дома 9–16 этажей, потолки 2,9 м, квартиры 28–118 м², закрытый двор без машин, тёплый подземный паркинг. Шахматка и планировки, ипотечный калькулятор, запись на показ. Демо-сайт.">
+<meta property="og:title" content="ЖК «Речной квартал» — квартиры у Камы, Пермь">
+<meta property="og:description" content="3 дома, 9–16 этажей, потолки 2,9 м, квартиры 28–118 м². Набережная Камы в 300 метрах. Выберите квартиру в шахматке и запишитесь на показ.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://ysddev.com/og/realty.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://ysddev.com/og/realty.jpg">
+<link rel="icon" href="/realty/favicon.ico" sizes="32x32"><link rel="icon" type="image/png" sizes="48x48" href="/realty/favicon-48.png"><link rel="icon" type="image/png" sizes="96x96" href="/realty/icon-96.png"><link rel="icon" type="image/png" sizes="192x192" href="/realty/icon-192.png"><link rel="apple-touch-icon" href="/realty/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1624204386084-dd8c05e32226?auto=format&fit=crop&w=1000&h=1250&q=72&crop=entropy">
+<style>
+:root{--navy:#0F2742;--navy2:#15325A;--navy3:#0B1D33;--white:#fff;--sand:#E9DFCF;--sand2:#F4EEE4;--sand3:#D8CBB5;--copper:#C8875A;--copper2:#8A5430;--ink:#0F2742;--mute:#4A5A70;--line:rgba(15,39,66,.18);--line2:rgba(15,39,66,.1);--ld:rgba(255,255,255,.2);--ld2:rgba(255,255,255,.08);--ease:cubic-bezier(.23,1,.32,1);--hh:76px;--focus:#0F2742;--r:4px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 12px);-webkit-text-size-adjust:100%}
+body{font-family:Onest,system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--ink);background:var(--white);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+svg{display:block}
+h1,h2,h3,.disp{font-family:Unbounded,Onest,sans-serif;font-weight:500;letter-spacing:-.01em;line-height:1.12}
+h1{font-size:clamp(1.85rem,4.4vw,3.75rem);line-height:1.06}
+h2{font-size:clamp(1.5rem,2.9vw,2.5rem);max-width:22ch}
+h3{font-size:1.12rem;font-weight:500}
+.o{color:inherit}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+.sec{padding:clamp(64px,8.5vw,116px) 0;position:relative}
+.dark{background:var(--navy);color:#fff;--focus:#C8875A;--mute:rgba(255,255,255,.72);--line:rgba(255,255,255,.22);--line2:rgba(255,255,255,.1)}
+.sand{background:var(--sand)}
+.sand2{background:var(--sand2)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.sh{max-width:760px;margin-bottom:clamp(32px,4vw,56px)}
+.sheet{display:inline-grid;grid-template-columns:auto auto;border:1px solid var(--line);font-size:12.5px;letter-spacing:.02em;color:var(--mute);margin-bottom:18px;border-radius:2px}
+.sheet span{padding:4px 12px}
+.sheet span+span{border-left:1px solid var(--line);color:inherit}
+.dark .sheet span+span{color:#fff}
+.lead{color:var(--mute);margin-top:14px;max-width:62ch;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:var(--r);font-weight:600;font-size:15px;line-height:1.2;border:1px solid transparent;transition:transform .25s var(--ease),background-color .25s ease,color .25s ease;white-space:nowrap}
+.btn svg{width:16px;height:16px;flex:none;transition:transform .35s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-c{background:var(--copper);color:var(--navy)}
+.btn-w{background:#fff;color:var(--navy)}
+.btn-o{border-color:currentColor;color:inherit}
+.btn-s{min-height:44px;padding:0 18px;font-size:14px}
+@media(hover:hover) and (pointer:fine){.btn:hover svg{transform:translate(3px,-3px)}.btn-c:hover{background:#d6976a}.btn-w:hover{background:var(--sand2)}.btn-o:hover{background:rgba(255,255,255,.08)}.light .btn-o:hover,.sand .btn-o:hover,.sand2 .btn-o:hover{background:rgba(15,39,66,.06)}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+/* header */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--hh);color:#fff;transition:background-color .35s ease,transform .35s var(--ease)}
+.hdr.sc{background:rgba(15,39,66,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 -1px 0 rgba(255,255,255,.1)}
+.hdr-in{height:100%;display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;min-height:44px;flex:none}
+.logo svg{width:38px;height:38px}
+.logo-t{font-family:Unbounded,sans-serif;font-weight:500;font-size:15px;line-height:1.1;display:flex;flex-direction:column;gap:3px;white-space:nowrap}
+.logo-t small{font-family:Onest,sans-serif;font-weight:400;font-size:11.5px;color:rgba(255,255,255,.72);letter-spacing:.01em}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{padding:10px 9px;font-size:14px;color:rgba(255,255,255,.86);border-radius:var(--r);transition:color .2s ease;position:relative}
+.nav a::after{content:"";position:absolute;left:9px;right:9px;bottom:6px;height:1px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+@media(hover:hover) and (pointer:fine){.nav a:hover{color:#fff}.nav a:hover::after{transform:scaleX(1)}}
+.hdr-tel{font-weight:600;font-size:15px;padding:10px 4px;white-space:nowrap}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;position:relative;margin-left:auto}
+.burger span,.burger span::before,.burger span::after{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .35s var(--ease),opacity .2s}
+.burger span{position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded=true] span::after{transform:translateY(-7px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:40;background:var(--navy);padding:calc(var(--hh) + 24px) 24px 40px;display:none;flex-direction:column;gap:6px;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .4s var(--ease);color:#fff;overflow:auto}
+.mnav.vis{opacity:1;transform:none}
+.mnav a{font-family:Unbounded,sans-serif;font-size:clamp(1.25rem,6vw,1.7rem);padding:12px 0;border-bottom:1px solid var(--ld);display:flex;justify-content:space-between;align-items:center}
+.mnav a small{font-family:Onest,sans-serif;font-size:12px;color:var(--copper)}
+.mnav .btn{margin-top:24px;align-self:flex-start}
+.mnav .mtel{font-family:Onest,sans-serif;font-size:1.3rem;border:0;margin-top:18px}
+.fab{display:none;position:fixed;right:16px;bottom:18px;z-index:45;width:56px;height:56px;border-radius:50%;background:var(--copper);color:var(--navy);align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(15,39,66,.3)}
+.fab svg{width:24px;height:24px}
+.fab:active{transform:scale(.95)}
+@media(max-width:1240px){.hdr-tel{display:none}}
+@media(max-width:1100px){.nav{display:none}.burger{display:flex}.hdr .btn{display:none}}
+@media(max-width:900px){.hdr-tel{display:none}.mnav{display:flex}.mnav[hidden]{display:none}.fab{display:flex}}
+/* hero */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:calc(var(--hh) + 44px) 0 72px;min-height:100svh;display:flex;align-items:center;--focus:#C8875A}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.hero-in{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(32px,4vw,64px);align-items:center}
+.live{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.78);margin-bottom:22px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--copper);position:relative}
+.live i::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--copper);animation:pulse 2.2s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1 .o{color:transparent;-webkit-text-stroke:1.2px #fff}
+.hero p.sub{margin-top:22px;max-width:52ch;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(255,255,255,.8)}
+.hero-a{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(36px,5vw,64px);padding-top:24px;border-top:1px solid var(--ld);counter-reset:none}
+.fact{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:rgba(255,255,255,.86)}
+.fact svg{width:28px;height:28px;flex:none;color:var(--copper)}
+.fact b{display:block;font-weight:600;color:#fff;font-size:15px}
+.hero-ph{position:relative;aspect-ratio:4/5;max-height:74vh;margin-inline:auto;width:100%}
+.hero-ph .frame{position:absolute;inset:0;overflow:hidden;border-radius:6px;background:var(--navy2)}
+.hero-ph img{width:100%;height:112%;object-fit:cover;will-change:transform}
+.hero-ph .dimv{position:absolute;top:0;bottom:0;right:-26px;width:1px;background:var(--ld)}
+.hero-ph .dimv::before,.hero-ph .dimv::after{content:"";position:absolute;left:-5px;width:11px;height:1px;background:var(--ld)}
+.hero-ph .dimv::before{top:0}.hero-ph .dimv::after{bottom:0}
+.hero-ph .dimv span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);white-space:nowrap;font-size:11px;color:rgba(255,255,255,.6);background:var(--navy);padding:0 8px}
+.plate{position:absolute;background:#fff;color:var(--navy);border-radius:6px;padding:12px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 18px 50px rgba(0,0,0,.28);animation:float 6s ease-in-out infinite;will-change:transform}
+.plate b{font-family:Unbounded,sans-serif;font-weight:500;font-size:1.3rem;line-height:1}
+.plate span{font-size:12.5px;line-height:1.3;color:var(--mute)}
+.plate.p1{left:-28px;top:14%}
+.plate.p2{right:-20px;bottom:15%;animation-duration:7.5s;animation-delay:-2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(max-width:960px){.hero{min-height:0;padding-top:calc(var(--hh) + 28px)}.hero-in{grid-template-columns:1fr}.hero-ph{max-height:none;aspect-ratio:5/4;max-width:640px}.hero-ph .dimv{display:none}.plate.p1{left:12px;top:12px}.plate.p2{right:12px;bottom:12px}.facts{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:600px){.facts{grid-template-columns:1fr;gap:12px}.fact{align-items:center}.fact b{display:inline}.fact span{display:block}.hero-a .btn{flex:1 1 100%}}
+/* marquee */
+.mq{background:var(--copper);color:var(--navy);overflow:hidden;padding:14px 0;font-weight:600;font-size:14.5px}
+.mq-track{display:flex;width:max-content;animation:mq 34s linear infinite;will-change:transform}
+.mq-track span{display:flex;align-items:center;gap:22px;padding-right:22px;white-space:nowrap}
+.mq-track svg{width:8px;height:8px}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(hover:hover) and (pointer:fine){.mq:hover .mq-track{animation-play-state:paused}}
+/* dims strip */
+.dims{display:grid;grid-template-columns:repeat(5,1fr);gap:28px 24px;margin-bottom:clamp(44px,5vw,72px)}
+.dim b{display:block;font-family:Unbounded,sans-serif;font-weight:400;font-size:clamp(1.7rem,3vw,2.6rem);line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.dl{position:relative;height:1px;background:var(--line);margin-top:18px}
+.dl::before,.dl::after{content:"";position:absolute;top:-5px;width:1px;height:11px;background:var(--line)}
+.dl::before{left:0}.dl::after{right:0}
+.dl i{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sand);padding:0 10px;font-style:normal;font-size:12.5px;color:var(--mute);white-space:nowrap}
+.light .dl i{background:#fff}
+@media(max-width:900px){.dims{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.dims{grid-template-columns:1fr 1fr;gap:26px 18px}.dl i{font-size:11.5px;padding:0 6px}}
+/* flats */
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.type{background:#fff;border:1px solid var(--line2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .45s var(--ease)}
+.type .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--sand2)}
+.type img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.cap{position:absolute;left:10px;bottom:10px;font-size:11px;background:rgba(15,39,66,.7);color:#fff;padding:3px 8px;border-radius:3px;backdrop-filter:blur(4px)}
+.type-b{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.type-b h3{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.type-b h3 small{font-family:Onest,sans-serif;font-weight:500;font-size:13px;color:var(--mute)}
+.type-b ul{margin:14px 0 18px;display:grid;gap:7px;font-size:14px;color:var(--mute)}
+.type-b li{padding-left:16px;position:relative}
+.type-b li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--copper2)}
+.price{margin-top:auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 10px;padding-top:16px;border-top:1px solid var(--line2)}
+.price b{font-family:Unbounded,sans-serif;font-weight:500;font-size:1.05rem;white-space:nowrap}
+.price small{display:block;font-family:Onest,sans-serif;font-weight:400;font-size:12px;color:var(--mute)}
+.lnk{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 4px;font-weight:600;font-size:14px;color:var(--copper2)}
+.lnk svg{width:14px;height:14px;transition:transform .35s var(--ease)}
+@media(hover:hover) and (pointer:fine){.type:hover{transform:translateY(-4px)}.type:hover img{transform:scale(1.04)}.lnk:hover svg{transform:translate(3px,-3px)}}
+@media(max-width:1000px){.types{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.types{grid-template-columns:1fr}}
+/* chooser */
+.filters{display:grid;grid-template-columns:1.2fr 1fr 1fr .9fr;gap:22px 28px;align-items:end;padding:24px;border:1px solid var(--line);border-radius:6px;background:var(--sand2);margin-bottom:28px}
+.fl{font-size:13px;color:var(--mute);display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}
+.fl output{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:var(--r);background:#fff;font-weight:500;font-size:14px;transition:background-color .2s ease,color .2s ease,transform .2s var(--ease)}
+.chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip:active{transform:scale(.97)}
+.rng{position:relative;height:44px}
+.rng input{position:absolute;left:0;top:0;width:100%;height:44px;margin:0;background:none;-webkit-appearance:none;appearance:none;pointer-events:none}
+.rng1 input{pointer-events:auto}
+.rng input::-webkit-slider-runnable-track{height:2px;background:transparent}
+.rng input::-moz-range-track{height:2px;background:transparent}
+.rng input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);border:3px solid #fff;box-shadow:0 0 0 1px var(--navy);pointer-events:auto;cursor:pointer;margin-top:-10px}
+.rng input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--navy);border:3px solid #fff;box-shadow:0 0 0 1px var(--navy);pointer-events:auto;cursor:pointer}
+.rng input:focus-visible{outline:none}
+.rng input:focus-visible::-webkit-slider-thumb{outline:2px solid var(--copper);outline-offset:2px}
+.rng input:focus-visible::-moz-range-thumb{outline:2px solid var(--copper);outline-offset:2px}
+.rng-t{position:absolute;left:0;right:0;top:21px;height:2px;background:var(--line);border-radius:2px}
+.rng-f{position:absolute;top:21px;height:2px;background:var(--copper)}
+.rng-s{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mute);margin-top:-6px}
+.fres{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px;font-size:14px;color:var(--mute)}
+.fres b{color:var(--ink);font-family:Unbounded,sans-serif;font-weight:500;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.apt{text-align:left;background:#fff;border:1px solid var(--line2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s var(--ease),opacity .25s ease,border-color .25s ease;will-change:transform}
+.apt.out{opacity:0;transform:scale(.95)}
+.apt-pl{aspect-ratio:4/3;padding:12px 14px 6px;background:var(--sand2);display:flex;align-items:center;justify-content:center}
+.fp{width:100%;height:100%;overflow:visible}
+.fp text{font-family:Onest,sans-serif;fill:var(--ink);text-anchor:middle}
+.fp-r{fill:#fff;stroke:var(--navy);stroke-width:.6}
+.fp-rb{fill:var(--sand)}
+.fp-l{fill:none;stroke:var(--navy);stroke-width:.5;stroke-dasharray:1.6 1.2}
+.fp-o{fill:none;stroke:var(--navy);stroke-width:2}
+.fp-w{stroke:var(--copper);stroke-width:2.2}
+.fp-m{fill:var(--copper2)}
+.fp-d{stroke:var(--navy);stroke-width:.35;opacity:.6}
+.fp-s{fill:var(--mute);opacity:.9}
+.apt-b{padding:14px 16px 16px;display:grid;gap:4px}
+.apt-r{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.apt-r b{font-weight:600;font-size:15px}
+.apt-r span{font-family:Unbounded,sans-serif;font-weight:500;font-size:1rem;white-space:nowrap}
+.apt-m{font-size:13px;color:var(--mute);display:flex;gap:10px;flex-wrap:wrap}
+.apt-m span+span{position:relative;padding-left:10px}
+.apt-m span+span::before{content:"";position:absolute;left:0;top:5px;width:1px;height:12px;background:var(--line)}
+.apt-p{margin-top:8px;font-family:Unbounded,sans-serif;font-weight:500;font-size:1.05rem;color:var(--copper2);display:flex;justify-content:space-between;align-items:center}
+.apt-p svg{width:16px;height:16px;color:var(--ink);transition:transform .35s var(--ease)}
+@media(hover:hover) and (pointer:fine){.apt:hover{border-color:var(--navy)}.apt:hover .apt-p svg{transform:translate(3px,-3px)}}
+.empty{display:none;padding:48px 20px;text-align:center;color:var(--mute);border:1px dashed var(--line);border-radius:6px}
+.empty.show{display:block}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.filters{grid-template-columns:1fr;padding:18px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.apt{display:grid;grid-template-columns:44% 1fr}.apt-pl{aspect-ratio:auto;height:100%;padding:10px}.apt-b{padding:12px 14px}}
+/* modal */
+.modal{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal[hidden]{display:none}
+.modal-bg{position:absolute;inset:0;background:rgba(11,29,51,.7);opacity:0;transition:opacity .25s ease}
+.modal-c{position:relative;background:#fff;color:var(--ink);border-radius:8px;width:min(960px,100%);max-height:calc(100dvh - 32px);overflow:auto;display:grid;grid-template-columns:1.1fr .9fr;opacity:0;transform:translateY(16px) scale(.97);transition:opacity .25s ease,transform .3s var(--ease)}
+.modal.vis .modal-bg{opacity:1}
+.modal.vis .modal-c{opacity:1;transform:none}
+.modal-pl{background:var(--sand2);padding:40px 36px 28px;display:flex;align-items:center;justify-content:center;min-height:360px}
+.modal-pl .fp{max-height:460px}
+.modal-i{padding:36px 32px 28px}
+.modal-i h3{font-size:1.45rem;margin:10px 0 18px}
+.modal-i dl{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:14.5px}
+.modal-i dt{color:var(--mute)}
+.modal-i dd{font-weight:600;text-align:right}
+.modal-a{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.note{font-size:12.5px;color:var(--mute);margin-top:16px;line-height:1.5}
+.x{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;border:1px solid var(--line2)}
+.x svg{width:18px;height:18px}
+@media(max-width:760px){.modal{padding:0;align-items:flex-end}.modal-c{grid-template-columns:1fr;max-height:100dvh;border-radius:12px 12px 0 0}.modal-pl{min-height:0;padding:40px 20px 16px}.modal-pl .fp{max-height:260px}.modal-i{padding:20px 20px 28px}.modal-a .btn{flex:1 1 100%}}
+/* genplan + chess */
+.gp{display:grid;grid-template-columns:1.18fr 1fr;gap:clamp(24px,3.2vw,44px);align-items:start}
+.gp>*{min-width:0}
+.gp-l{position:sticky;top:calc(var(--hh) + 20px)}
+.gp-svg{width:100%;height:auto;border:1px solid var(--ld);border-radius:6px;background:var(--navy3)}
+.gp-svg text{font-family:Onest,sans-serif;fill:#fff}
+.gp-svg .hs{cursor:pointer}
+.gp-svg .hs path,.gp-svg .hs rect.b{fill:rgba(255,255,255,.12);stroke:#fff;stroke-width:1.2;transition:fill .3s ease}
+.gp-svg>text{font-size:13px}
+.gp-svg .hs .lbl{font-size:19px;font-weight:600}
+.gp-svg .hs .sub{font-size:13px;fill:rgba(255,255,255,.7)}
+.gp-svg .hs.on path,.gp-svg .hs.on rect.b{fill:var(--copper)}
+.gp-svg .hs.on text{fill:var(--navy)}
+.gp-svg .hs.on .sub{fill:var(--copper2)}
+.gp-svg .m{transform-box:fill-box;transform-origin:center;animation:pulse 2.6s var(--ease) infinite;fill:none;stroke:var(--copper);stroke-width:1.5}
+@media(hover:hover) and (pointer:fine){.gp-svg .hs:hover path,.gp-svg .hs:hover rect.b{fill:rgba(200,135,90,.45)}}
+.gp-facts{display:grid;grid-template-columns:repeat(5,auto);justify-content:space-between;gap:18px 22px;margin-top:24px;padding-top:20px;border-top:1px solid var(--ld)}
+.gp-facts dt{font-size:12.5px;color:var(--mute);line-height:1.3}
+.gp-facts dd{font-family:Unbounded,sans-serif;font-weight:400;font-size:clamp(1rem,1.5vw,1.25rem);margin-top:6px;white-space:nowrap}
+.gp-facts.chg dd{animation:fadeup .45s var(--ease)}
+@keyframes fadeup{from{opacity:0;transform:translateY(6px)}}
+.gp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.gp-tabs .chip{background:transparent;color:#fff;border-color:var(--ld)}
+.gp-tabs .chip[aria-pressed=true]{background:var(--copper);color:var(--navy);border-color:var(--copper)}
+.ch-title{font-size:1.35rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-bottom:14px}
+.ch-title small{font-family:Onest,sans-serif;font-size:13px;font-weight:400;color:var(--mute)}
+.chess{--k:6;display:grid;gap:3px;padding:12px 12px 12px 0;border:1px solid var(--ld);border-radius:6px;background:var(--navy3);position:relative}
+.ch-row{display:grid;grid-template-columns:40px 1fr;align-items:stretch;height:26px;position:relative}
+.ch-row::before{content:"";position:absolute;inset:-2px -6px -2px 4px;border-radius:4px;background:rgba(200,135,90,.2);box-shadow:inset 0 0 0 1px rgba(200,135,90,.55);opacity:0;transition:opacity .22s ease;pointer-events:none}
+.ch-row.on::before{opacity:1}
+.ch-f{align-self:center;font-size:11.5px;color:var(--mute);text-align:right;padding-right:12px;font-variant-numeric:tabular-nums;transition:color .2s ease;position:relative}
+.ch-row.on .ch-f{color:var(--copper)}
+.ch-c{display:grid;grid-template-columns:repeat(var(--k),minmax(0,1fr));gap:3px;position:relative}
+.cl{display:flex;align-items:center;justify-content:center;border-radius:2px;font-size:11px;font-weight:600;line-height:1;min-width:0;padding:0;font-family:Onest,sans-serif}
+.cl.sold{background:rgba(255,255,255,.13);color:rgba(255,255,255,.42)}
+.cl.book{box-shadow:inset 0 0 0 1px rgba(200,135,90,.8);color:#E0A57A;background:repeating-linear-gradient(135deg,rgba(200,135,90,.16) 0 2px,transparent 2px 6px)}
+.cl.later{border:1px dashed rgba(255,255,255,.22);color:rgba(255,255,255,.3)}
+.cl.free{background:var(--copper);color:var(--navy);cursor:pointer;transition:transform .2s var(--ease),background-color .2s ease}
+.cl.free:active{transform:scale(.92)}
+.cl.free:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(hover:hover) and (pointer:fine){.cl.free:hover{background:#E3A273;transform:scale(1.1)}}
+.ch-lobby .ch-c{display:flex}
+.ch-lobby span.lb1{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mute);border-radius:2px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 2px,transparent 2px 8px)}
+.chess.rise .ch-row{animation:rise .55s var(--ease) both;animation-delay:calc(var(--r) * 26ms)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+.ch-lg{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:12.5px;color:var(--mute)}
+.ch-lg li{display:flex;align-items:center;gap:8px}
+.ch-lg .cl{width:18px;height:12px;display:inline-block}
+.ch-read{min-height:66px;margin:16px 0 18px;padding:14px 16px;border-left:2px solid var(--copper);background:rgba(255,255,255,.04);font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.86)}
+.ch-read b{color:#fff;font-weight:600}
+.ch-read em{font-style:normal;color:var(--copper);font-weight:600;white-space:nowrap}
+.gp-note{font-size:12.5px;color:var(--mute);margin-top:14px}
+@media(pointer:coarse){.ch-row{height:34px}.cl{font-size:12px}}
+@media(max-width:900px){.gp{grid-template-columns:minmax(0,1fr)}.gp-l{position:static}.gp-facts{grid-template-columns:repeat(3,auto);justify-content:start;gap:16px 32px}}
+@media(max-width:600px){.gp-svg .hs .lbl{font-size:34px}.gp-svg .hs .sub{display:none}.gp-facts{grid-template-columns:1fr 1fr;gap:14px 20px}.gp-facts dd{white-space:normal}.chess{padding-right:8px}.ch-row{grid-template-columns:30px 1fr}.ch-f{padding-right:8px}.gp-r .btn{width:100%;white-space:normal;text-align:center}}
+/* mortgage */
+.calc{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.calc-f{display:grid;gap:26px;background:#fff;border:1px solid var(--line2);border-radius:6px;padding:28px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg .chip{flex:1 1 auto;min-width:56px;text-align:center}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;background:var(--copper);color:var(--navy);padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px}
+.res{background:var(--navy);color:#fff;border-radius:6px;padding:30px 28px;position:sticky;top:calc(var(--hh) + 16px);--mute:rgba(255,255,255,.7);--focus:#C8875A}
+.res .for{font-size:13px;color:var(--mute);min-height:20px}
+.res .pay{font-family:Unbounded,sans-serif;font-weight:500;font-size:clamp(2rem,3.4vw,2.9rem);line-height:1;letter-spacing:-.02em;margin:8px 0 4px;color:var(--copper)}
+.res .pay small{font-family:Onest,sans-serif;font-weight:400;font-size:1rem;color:rgba(255,255,255,.7);letter-spacing:0}
+.res dl{margin-top:22px;border-top:1px solid var(--ld);font-size:14.5px}
+.res .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--ld2)}
+.res dt{color:var(--mute)}
+.res dd{font-weight:600;white-space:nowrap}
+.res .btn{margin-top:22px;width:100%;white-space:normal;text-align:center}
+.res .note{color:rgba(255,255,255,.6)}
+.res .split{font-size:13px;color:rgba(255,255,255,.72);margin-top:6px}
+.pnote{font-size:12.5px;color:var(--mute);margin-top:10px;line-height:1.45;min-height:2.9em}
+@media(max-width:900px){.calc{grid-template-columns:minmax(0,1fr)}.res{position:static}}
+.calc>*,.calc-f>*{min-width:0}
+@media(max-width:360px){.logo-t small{font-size:10.5px}.hdr-in{gap:12px}}
+@media(max-width:520px){.calc-f{padding:20px}}
+/* progress */
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 18px;scrollbar-width:thin;margin-inline:calc(50% - 50vw);padding-inline:max(16px,calc(50vw - 620px))}
+.strip>*{scroll-snap-align:start;flex:0 0 272px}
+.tile{display:grid;gap:12px}
+.tile .el{aspect-ratio:16/10;border:1px solid var(--line2);border-radius:6px;background:var(--sand2);overflow:hidden}
+.tile .el svg{width:100%;height:100%}
+.tile.now .el{border-color:var(--copper);box-shadow:inset 0 0 0 1px var(--copper)}
+.tile.plan .el{background:repeating-linear-gradient(135deg,var(--sand2) 0 6px,#fff 6px 12px)}
+.tile .n em{font-style:normal;font-family:Onest,sans-serif;font-size:11px;font-weight:600;background:var(--copper);color:var(--navy);padding:1px 7px;border-radius:3px;order:2}
+.strip-h{font-size:12.5px;color:var(--mute);margin-top:4px}
+.tile b{display:block;font-weight:600;font-size:15px}
+.tile span{font-size:13px;color:var(--mute)}
+.tile .n{font-family:Unbounded,sans-serif;font-weight:400;font-size:12px;color:var(--copper2);display:flex;align-items:center;gap:10px;min-height:20px}
+.tile .n::after{content:"";flex:1;height:1px;background:var(--line)}
+/* amenities */
+.am{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:6px;overflow:hidden}
+.am-i{background:var(--sand);padding:28px 26px 30px;display:grid;gap:14px}
+.am-i svg{width:36px;height:36px;color:var(--copper2)}
+.am-i h3{font-size:1.02rem}
+.am-i p{font-size:14px;color:var(--mute)}
+@media(max-width:860px){.am{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.am{grid-template-columns:1fr}}
+/* location */
+.loc{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start}
+.map{width:100%;height:auto;border-radius:6px;border:1px solid var(--line2)}
+.map text{font-family:Onest,sans-serif;fill:var(--ink)}
+.map .pin{cursor:pointer}
+.map .pin circle{fill:var(--navy);transition:fill .25s ease}
+.map .pin text{fill:#fff;font-weight:600;font-size:14px;text-anchor:middle}
+.map .pin.on circle{fill:var(--copper)}
+.map .pin.on text{fill:var(--navy)}
+.map .ln{stroke:var(--copper2);stroke-width:1.5;stroke-dasharray:5 5;opacity:0;transition:opacity .3s ease}
+.map .ln.on{opacity:1}
+.poi{display:grid;gap:8px}
+.poi button{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;text-align:left;padding:12px 14px;border:1px solid var(--line2);border-radius:6px;background:#fff;min-height:60px;transition:border-color .2s ease,transform .25s var(--ease)}
+.poi button:active{transform:scale(.98)}
+.poi button[aria-pressed=true]{border-color:var(--copper);background:var(--sand2)}
+.poi .num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+.poi button[aria-pressed=true] .num{background:var(--copper);color:var(--navy)}
+.poi b{display:block;font-weight:600;font-size:15px}
+.poi small{color:var(--mute);font-size:13px}
+.poi .min{font-family:Unbounded,sans-serif;font-weight:400;font-size:13px;color:var(--copper2);white-space:nowrap}
+@media(max-width:900px){.loc{grid-template-columns:1fr}}
+/* steps */
+.steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:8px}
+.steps-l{position:absolute;left:22px;right:22px;top:22px;height:1px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease)}
+.steps.in .steps-l{transform:scaleX(1)}
+.step{position:relative;padding-top:0}
+.step .n{width:44px;height:44px;border-radius:50%;border:1px solid var(--copper);background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:Unbounded,sans-serif;font-size:14px;color:var(--copper);transform:scale(.6);opacity:0;transition:transform .6s var(--ease),opacity .4s ease;transition-delay:calc(var(--i) * .22s)}
+.steps.in .step .n{transform:none;opacity:1}
+.step h3{font-size:1.02rem;margin:20px 0 8px}
+.step p{font-size:14px;color:var(--mute)}
+@media(max-width:900px){.steps{grid-template-columns:1fr;gap:28px;padding-left:0}.steps-l{left:22px;right:auto;top:22px;bottom:22px;width:1px;height:auto;transform:scaleY(0);transform-origin:top}.steps.in .steps-l{transform:scaleY(1)}.step{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start}.step h3{margin-top:10px}.step p{grid-column:2}}
+/* gallery */
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:260px 260px;gap:14px}
+.gi{position:relative;overflow:hidden;border-radius:6px;background:var(--sand3);padding:0;display:block;width:100%;height:100%}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gi:nth-child(1){grid-column:1/3;grid-row:1/3}
+.gi:nth-child(4){grid-column:3/5}
+@media(hover:hover) and (pointer:fine){.gi:hover img{transform:scale(1.04)}}
+@media(max-width:760px){.mosaic{grid-template-columns:1fr 1fr;grid-template-rows:220px 160px 160px}.gi:nth-child(1){grid-column:1/3;grid-row:1}.gi:nth-child(4){grid-column:1/3;grid-row:3}}
+.lb{position:fixed;inset:0;z-index:80;background:rgba(11,29,51,.92);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .25s ease}
+.lb[hidden]{display:none}
+.lb.vis{opacity:1}
+.lb img{max-width:min(1100px,100%);max-height:82vh;width:auto;height:auto;border-radius:6px;transform:scale(.96);transition:transform .3s var(--ease)}
+.lb.vis img{transform:none}
+.lb .x{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2);right:16px;top:16px}
+.lb .pn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center}
+.lb .pn svg{width:20px;height:20px}
+.lb .prev{left:16px}.lb .next{right:16px}
+.lb figcaption{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-size:13px}
+/* why */
+.why{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.why .ph{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--sand2)}
+.why img{width:100%;height:100%;object-fit:cover}
+.why ol{list-style:none;display:grid;gap:22px;margin-top:30px;counter-reset:w}
+.why li{display:grid;grid-template-columns:44px 1fr;gap:16px;counter-increment:w}
+.why li::before{content:counter(w,decimal-leading-zero);font-family:Unbounded,sans-serif;font-weight:400;font-size:14px;color:var(--copper2);border:1px solid var(--line);width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.why li b{display:block;font-weight:600;margin-bottom:4px}
+.why li p{font-size:14.5px;color:var(--mute)}
+@media(max-width:860px){.why{grid-template-columns:1fr}.why .ph{aspect-ratio:4/3;max-width:560px}}
+/* faq */
+.faq{max-width:820px}
+.q{border-top:1px solid var(--line)}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;text-align:left;font-weight:600;font-size:1.02rem;min-height:56px}
+.q button svg{width:22px;height:22px;flex:none;color:var(--copper2);transition:transform .4s var(--ease)}
+.q button[aria-expanded=true] svg{transform:rotate(45deg)}
+.q .a{padding:0 4px 22px;color:var(--mute);max-width:66ch;font-size:15px}
+.q .a[hidden]{display:none}
+.q .a>p{animation:fadeup .45s var(--ease)}
+/* form & contacts */
+.cta{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:start}
+.form{background:#fff;color:var(--ink);border-radius:8px;padding:clamp(22px,3vw,36px);position:relative;overflow:hidden;--focus:#0F2742;--mute:#4A5A70;--line:rgba(15,39,66,.18);--line2:rgba(15,39,66,.1)}
+.form .sheet span+span{color:var(--ink)}
+.ck a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.form h3{font-size:1.3rem}
+.form .f{display:grid;gap:16px;margin-top:22px}
+.form label{display:grid;gap:6px;font-size:13px;color:var(--mute)}
+.form input,.form select,.form textarea{font:inherit;font-size:15.5px;color:var(--ink);padding:0 14px;height:50px;border:1px solid var(--line);border-radius:var(--r);background:var(--sand2);width:100%;transition:border-color .2s ease}
+.form textarea{height:96px;padding:12px 14px;resize:vertical}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--navy);outline:none;background:#fff}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ck{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:13px;color:var(--mute);cursor:pointer;padding:6px 0}
+.ck input{width:22px;height:22px;accent-color:var(--navy);margin-top:0}
+.err{font-size:13px;color:#9b2c2c;min-height:0}
+.ok{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;opacity:0;transform:translateY(10px);transition:opacity .35s ease,transform .45s var(--ease);visibility:hidden}
+.ok.show{opacity:1;transform:none;visibility:visible}
+.ok svg{width:64px;height:64px;color:var(--copper2);margin-bottom:14px}
+.ok h3{font-size:1.4rem;margin-bottom:8px}
+.ok p{color:var(--mute);max-width:40ch}
+.con dl{display:grid;gap:18px;margin:26px 0 30px}
+.con .row{display:grid;grid-template-columns:120px 1fr;gap:12px;font-size:15px;border-bottom:1px solid var(--ld2);padding-bottom:14px}
+.con dt{color:var(--mute)}
+.con dd a{font-weight:600}
+.mapz{position:relative;aspect-ratio:16/9;border-radius:6px;border:1px solid var(--ld);background:var(--navy2);overflow:hidden;background-image:linear-gradient(var(--ld2) 1px,transparent 1px),linear-gradient(90deg,var(--ld2) 1px,transparent 1px);background-size:40px 40px}
+.mapz::before{content:"";position:absolute;left:-10%;right:-10%;top:60%;height:34px;background:rgba(255,255,255,.06);transform:rotate(-6deg)}
+.mapz::after{content:"";position:absolute;left:20%;top:-20%;bottom:-20%;width:26px;background:rgba(255,255,255,.05);transform:rotate(14deg)}
+.mapz .pinc{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-size:13px;color:rgba(255,255,255,.85)}
+.mapz .pinc svg{width:36px;height:36px;color:var(--copper)}
+@media(max-width:900px){.cta{grid-template-columns:1fr}}
+@media(max-width:520px){.form .two{grid-template-columns:1fr}.con .row{grid-template-columns:1fr;gap:4px}}
+/* footer */
+.ftr{background:var(--navy3);color:rgba(255,255,255,.72);padding:40px 0 32px;font-size:13.5px}
+.ftr-in{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px}
+.ftr b{color:#fff;font-weight:600}
+.ftr p+p{margin-top:8px}
+.ftr .legal{grid-column:1/-1;border-top:1px solid var(--ld2);padding-top:18px;margin-top:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:12.5px;color:rgba(255,255,255,.55)}
+.ftr .legal a{color:var(--copper);font-weight:600}
+@media(max-width:800px){.ftr-in{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms;animation-iteration-count:1;transition-duration:.01ms}html{scroll-behavior:auto}.rv{opacity:1;transform:none}.steps .steps-l,.steps .step .n{transform:none;opacity:1}.hero-ph img{height:100%}}
+</style>
+</head>
+<body id="top">
+<header class="hdr" id="hdr">
+ <div class="wrap hdr-in">
+  <a class="logo" href="#top" aria-label="ЖК Речной квартал — на главную">
+   <svg viewBox="0 0 38 38" aria-hidden="true"><rect width="38" height="38" rx="7" fill="#15325A"/><path d="M9 25V15h5v10zM16.5 25V9h5v16zM24 25v-7h5v7z" fill="#C8875A"/><path d="M6 30c3-2 5.5-2 8.5 0s5.5 2 8.5 0 5.5-2 9 0" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+   <span class="logo-t">Речной квартал<small>Пермь, набережная Камы</small></span>
+  </a>
+  <nav class="nav" aria-label="Разделы сайта">
+   <a href="#flats">Квартиры</a><a href="#choose">Выбор</a><a href="#plan">Шахматка</a><a href="#mortgage">Ипотека</a><a href="#progress">Стройка</a><a href="#location">Расположение</a><a href="#contacts">Контакты</a>
+  </nav>
+  <a class="hdr-tel" href="tel:+73420000000">+7 (342) 000-00-00</a>
+  <a class="btn btn-c btn-s" href="#form">Записаться на показ</a>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><span></span></button>
+ </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Мобильное меню" hidden>
+ <a href="#flats">Квартиры<small>02</small></a><a href="#choose">Выбор квартиры<small>03</small></a><a href="#plan">Генплан и шахматка<small>04</small></a><a href="#mortgage">Ипотека<small>05</small></a><a href="#progress">Ход строительства<small>06</small></a><a href="#location">Расположение<small>08</small></a><a href="#faq">Вопросы<small>12</small></a><a href="#contacts">Контакты<small>13</small></a>
+ <a class="mtel" href="tel:+73420000000">+7 (342) 000-00-00</a>
+ <a class="btn btn-c" href="#form">Записаться на показ</a>
+</nav>
+<a class="fab" href="tel:+73420000000" aria-label="Позвонить в офис продаж"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+ <div class="wrap hero-in">
+  <div>
+   <p class="live"><i aria-hidden="true"></i><span id="live">Офис продаж на Монастырской открыт ежедневно с 9:00 до 21:00</span></p>
+   <div class="sheet" style="border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)"><span>Лист 01</span><span style="color:#fff;border-color:rgba(255,255,255,.25)">ЖК «Речной квартал»</span></div>
+   <h1 id="h1">Жить в&nbsp;300&nbsp;метрах от&nbsp;<span class="o">Камы</span></h1>
+   <p class="sub">Три дома на&nbsp;9, 12 и&nbsp;16 этажей в&nbsp;Ленинском районе Перми: закрытый двор без машин, а&nbsp;набережная Камы&nbsp;— в&nbsp;четырёх минутах пешком. Квартиры от&nbsp;28 до&nbsp;118&nbsp;м² с&nbsp;потолками 2,9&nbsp;м.</p>
+   <div class="hero-a">
+    <a class="btn btn-c" href="#choose">Выбрать квартиру<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></a>
+    <a class="btn btn-o" href="#form">Записаться на показ</a>
+   </div>
+   <ul class="facts" aria-label="Параметры проекта">
+    <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l5-3v16M14 21V11l5-2v12M7.5 9.5h.01M7.5 13h.01M7.5 16.5h.01M16.5 14h.01M16.5 17.5h.01"/></svg><div><b>3 дома</b><span>9, 12 и 16 этажей</span></div></li>
+    <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v-4l2-5h12l2 5v4M4 16h16M7 16a2 2 0 1 0 0 .01M17 16a2 2 0 1 0 0 .01M3 3l18 18"/></svg><div><b>Двор без машин</b><span>тёплый подземный паркинг с лифтом</span></div></li>
+    <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h16M4 21h16M12 6.5v11M9 9.5l3-3 3 3M9 14.5l3 3 3-3"/></svg><div><b>Потолки 2,9 м</b><span>и окна от пола</span></div></li>
+   </ul>
+  </div>
+  <div class="hero-ph">
+   <div class="frame"><img id="heroImg" src="https://images.unsplash.com/photo-1624204386084-dd8c05e32226?auto=format&fit=crop&w=1000&h=1250&q=72&crop=entropy" width="1000" height="1250" alt="Современный жилой дом с панорамным остеклением — фото-пример" fetchpriority="high"></div>
+   <div class="dimv" aria-hidden="true"><span>Фото-пример</span></div>
+   <div class="plate p1"><b>2,9 м</b><span>высота потолков<br>во всех квартирах</span></div>
+   <div class="plate p2"><b>300 м</b><span>до набережной Камы<br>от ворот двора</span></div>
+  </div>
+ </div>
+</section>
+
+<div class="mq" aria-hidden="true">
+ <div class="mq-track" id="mq"><span>Студии от 5,9 млн ₽</span><span>1-комнатные от 7,5 млн ₽</span><span>2-комнатные от 10,8 млн ₽</span><span>3-комнатные от 15,4 млн ₽</span><span>Закрытый двор без машин</span><span>Тёплый подземный паркинг</span><span>Набережная Камы в 300 метрах</span><span>Потолки 2,9 м</span><span>Семейная ипотека от 6 %</span></div>
+</div>
+
+<section class="sec sand" id="flats" aria-labelledby="h-flats">
+ <div class="wrap">
+  <div class="dims rv">
+   <div class="dim"><b>3</b><div class="dl"><i>дома в квартале</i></div></div>
+   <div class="dim"><b>9–16</b><div class="dl"><i>этажей</i></div></div>
+   <div class="dim"><b>2,9 м</b><div class="dl"><i>высота потолков</i></div></div>
+   <div class="dim"><b>28–118</b><div class="dl"><i>м² площадь квартир</i></div></div>
+   <div class="dim"><b>300 м</b><div class="dl"><i>до набережной Камы</i></div></div>
+  </div>
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 02</span><span>Квартиры</span></div>
+   <h2>Четыре формата&nbsp;— от&nbsp;студии до&nbsp;<span class="o">трёх спален</span></h2>
+   <p class="lead">Цены зависят от дома, этажа и вида на Каму: выше этаж — дороже метр. Точная стоимость каждой свободной квартиры — в каталоге и шахматке ниже.</p>
+  </div>
+  <div class="types">
+   <article class="type rv" style="--d:.05s">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1697947656193-a87d460b5fb5?auto=format&fit=crop&w=640&h=480&q=72" width="640" height="480" alt="Светлая гостиная студии — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></div>
+    <div class="type-b"><h3>Студии<small>28–34 м²</small></h3><ul><li>Кухня-гостиная до 21 м²</li><li>Лоджия с выходом из гостиной</li><li>Этажи 3–12</li></ul>
+    <div class="price"><b>от 5,9 млн ₽<small>3 квартиры в продаже</small></b><button class="lnk" type="button" data-rooms="0">Планировки<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button></div></div>
+   </article>
+   <article class="type rv" style="--d:.12s">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1680416124510-5eae1beca412?auto=format&fit=crop&w=640&h=480&q=72" width="640" height="480" alt="Гостиная однокомнатной квартиры — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></div>
+    <div class="type-b"><h3>1-комнатные<small>38–47 м²</small></h3><ul><li>Отдельная спальня</li><li>Кухня-гостиная с окном от пола</li><li>Лоджия</li></ul>
+    <div class="price"><b>от 7,5 млн ₽<small>4 квартиры в продаже</small></b><button class="lnk" type="button" data-rooms="1">Планировки<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button></div></div>
+   </article>
+   <article class="type rv" style="--d:.19s">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1757924461488-ef9ad0670978?auto=format&fit=crop&w=640&h=480&q=72" width="640" height="480" alt="Гостиная с большим окном — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></div>
+    <div class="type-b"><h3>2-комнатные<small>58–72 м²</small></h3><ul><li>Две спальни</li><li>Ванная и отдельный санузел</li><li>Кухня-гостиная с лоджией</li></ul>
+    <div class="price"><b>от 10,8 млн ₽<small>5 квартир в продаже</small></b><button class="lnk" type="button" data-rooms="2">Планировки<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button></div></div>
+   </article>
+   <article class="type rv" style="--d:.26s">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1663811397207-418a92396ad5?auto=format&fit=crop&w=640&h=480&q=72" width="640" height="480" alt="Спальня с большим зеркалом — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></div>
+    <div class="type-b"><h3>3-комнатные<small>85–118 м²</small></h3><ul><li>Гостиная и две спальни</li><li>Гардеробная и два санузла</li><li>Две лоджии</li></ul>
+    <div class="price"><b>от 15,4 млн ₽<small>4 квартиры в продаже</small></b><button class="lnk" type="button" data-rooms="3">Планировки<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button></div></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="sec light" id="choose" aria-labelledby="h-choose">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 03</span><span>Выбор квартиры</span></div>
+   <h2 id="h-choose">Подберите квартиру <span class="o">по&nbsp;параметрам</span></h2>
+   <p class="lead">Отфильтруйте по числу комнат, этажу и площади — карточки перестроятся. Нажмите на планировку, чтобы увидеть её крупно и записаться на показ.</p>
+  </div>
+  <div class="filters rv" role="group" aria-label="Фильтры квартир">
+   <div>
+    <div class="fl"><span>Комнат</span></div>
+    <div class="chips" id="fRooms">
+     <button class="chip" type="button" data-r="all" aria-pressed="true">Все</button><button class="chip" type="button" data-r="0" aria-pressed="false">Студия</button><button class="chip" type="button" data-r="1" aria-pressed="false">1</button><button class="chip" type="button" data-r="2" aria-pressed="false">2</button><button class="chip" type="button" data-r="3" aria-pressed="false">3</button>
+    </div>
+   </div>
+   <div>
+    <div class="fl"><span>Этаж</span><output id="oFloor" for="fFloorLo fFloorHi">2 – 16</output></div>
+    <div class="rng" id="rFloor"><div class="rng-t"></div><div class="rng-f"></div>
+     <input type="range" id="fFloorLo" min="2" max="16" value="2" step="1" aria-label="Этаж от">
+     <input type="range" id="fFloorHi" min="2" max="16" value="16" step="1" aria-label="Этаж до">
+    </div>
+    <div class="rng-s"><span>2</span><span>16</span></div>
+   </div>
+   <div>
+    <div class="fl"><span>Площадь, м²</span><output id="oArea" for="fAreaLo fAreaHi">28 – 118</output></div>
+    <div class="rng" id="rArea"><div class="rng-t"></div><div class="rng-f"></div>
+     <input type="range" id="fAreaLo" min="28" max="118" value="28" step="1" aria-label="Площадь от">
+     <input type="range" id="fAreaHi" min="28" max="118" value="118" step="1" aria-label="Площадь до">
+    </div>
+    <div class="rng-s"><span>28</span><span>118</span></div>
+   </div>
+   <div>
+    <div class="fl"><span>Дом</span></div>
+    <div class="chips" id="fHouse">
+     <button class="chip" type="button" data-h="all" aria-pressed="true">Все</button><button class="chip" type="button" data-h="1" aria-pressed="false">1</button><button class="chip" type="button" data-h="2" aria-pressed="false">2</button><button class="chip" type="button" data-h="3" aria-pressed="false">3</button>
+    </div>
+   </div>
+  </div>
+  <div class="fres rv"><span>Найдено: <b id="fCount">16 квартир</b></span><button class="chip" type="button" id="fReset">Сбросить фильтры</button></div>
+  <div class="grid rv" id="grid" aria-live="polite"></div>
+  <div class="empty" id="empty">По таким параметрам квартир нет. Расширьте диапазон этажей или площади — или <a href="#form" style="font-weight:600;color:var(--copper2)">оставьте заявку</a>, менеджер подберёт варианты.</div>
+ </div>
+</section>
+
+<section class="sec dark" id="plan" aria-labelledby="h-plan">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 04</span><span>Генплан и шахматка</span></div>
+   <h2 id="h-plan">Три дома вокруг двора, двор&nbsp;— <span class="o">к&nbsp;Каме</span></h2>
+   <p class="lead">Выберите дом на схеме, затем проведите по этажам шахматки — этаж подсветится вместе со всеми квартирами. Свободные квартиры отмечены медным: нажмите, чтобы открыть планировку.</p>
+  </div>
+  <div class="gp">
+   <div class="gp-l rv">
+    <svg class="gp-svg" id="gpSvg" viewBox="0 0 1000 620" aria-hidden="true">
+     <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="rgba(255,255,255,.35)" stroke-width="1"/></pattern></defs>
+     <rect width="1000" height="620" fill="var(--navy3)"/>
+     <g stroke="rgba(255,255,255,.08)"><path d="M0 0h1000M0 620" fill="none"/><g fill="rgba(255,255,255,.05)"><rect x="0" y="0" width="1000" height="40"/><rect x="0" y="0" width="40" height="560"/></g></g>
+     <line x1="0" y1="20" x2="1000" y2="20" stroke="rgba(255,255,255,.25)" stroke-dasharray="14 10"/>
+     <line x1="20" y1="40" x2="20" y2="560" stroke="rgba(255,255,255,.25)" stroke-dasharray="14 10"/>
+     <text x="60" y="30" font-size="11" fill="rgba(255,255,255,.55)">ул. Монастырская</text>
+     <rect x="60" y="60" width="900" height="420" fill="none" stroke="rgba(255,255,255,.3)" stroke-dasharray="3 6"/>
+     <text x="70" y="76" font-size="10" fill="rgba(255,255,255,.5)">граница участка</text>
+     <!-- paths -->
+     <path d="M330 200 C360 260 380 300 400 330 M590 220 C560 280 540 320 520 340 M690 300 C650 330 620 350 600 360 M200 270 C260 320 320 350 400 360 M400 360 L600 360 M600 360 C700 350 760 330 800 300" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2" stroke-dasharray="6 6"/>
+     <!-- courtyard -->
+     <rect x="400" y="385" width="160" height="70" rx="8" fill="rgba(200,135,90,.15)" stroke="rgba(200,135,90,.6)" stroke-dasharray="4 4"/>
+     <text x="480" y="414" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.8)">детские площадки</text>
+     <text x="480" y="430" font-size="10" text-anchor="middle" fill="rgba(255,255,255,.55)">по возрастам</text>
+     <rect x="600" y="390" width="120" height="60" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.4)" stroke-dasharray="4 4"/>
+     <text x="660" y="424" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.8)">воркаут</text>
+     <g fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.55)"><circle cx="360" cy="300" r="14"/><circle cx="430" cy="345" r="11"/><circle cx="470" cy="270" r="16"/><circle cx="560" cy="330" r="12"/><circle cx="630" cy="300" r="15"/><circle cx="250" cy="330" r="13"/><circle cx="330" cy="420" r="16"/><circle cx="780" cy="400" r="14"/><circle cx="850" cy="360" r="11"/><circle cx="760" cy="350" r="9"/><circle cx="200" cy="420" r="11"/><circle cx="890" cy="420" r="15"/></g>
+     <!-- parking entrance -->
+     <rect x="110" y="330" width="80" height="44" fill="url(#hatch)" stroke="rgba(255,255,255,.6)"/>
+     <path d="M150 374v30M142 396l8 8 8-8" fill="none" stroke="var(--copper)" stroke-width="1.6"/>
+     <text x="150" y="358" font-size="10" text-anchor="middle" fill="#fff">въезд в паркинг</text>
+     <text x="150" y="420" font-size="10" text-anchor="middle" fill="rgba(255,255,255,.55)">−1 уровень</text>
+     <!-- houses -->
+     <g class="hs" data-h="1"><path d="M90 100h240v90H210v70H90z"/><text class="lbl" x="130" y="140">Дом 1</text><text class="sub" x="130" y="160">9 этажей</text><circle class="m" cx="270" cy="145" r="10"/><circle cx="270" cy="145" r="4" fill="var(--copper)"/></g>
+     <g class="hs" data-h="2"><rect class="b" x="410" y="90" width="180" height="130"/><text class="lbl" x="440" y="135">Дом 2</text><text class="sub" x="440" y="155">12 этажей</text><circle class="m" cx="555" cy="120" r="10"/><circle cx="555" cy="120" r="4" fill="var(--copper)"/></g>
+     <g class="hs" data-h="3"><path d="M690 100h220v200h-90V190H690z"/><text class="lbl" x="720" y="140">Дом 3</text><text class="sub" x="720" y="160">16 этажей</text><circle class="m" cx="870" cy="140" r="10"/><circle cx="870" cy="140" r="4" fill="var(--copper)"/></g>
+     <!-- dimension to water -->
+     <g stroke="rgba(255,255,255,.5)" stroke-width="1"><line x1="950" y1="300" x2="950" y2="500"/><line x1="944" y1="300" x2="956" y2="300"/><line x1="944" y1="500" x2="956" y2="500"/></g>
+     <text x="946" y="404" font-size="11" fill="#fff" text-anchor="end">≈300 м</text>
+     <!-- promenade & river -->
+     <rect x="0" y="500" width="1000" height="30" fill="rgba(200,135,90,.22)"/>
+     <text x="500" y="520" font-size="12" text-anchor="middle" fill="#fff" font-weight="600">Набережная</text>
+     <path d="M0 540 Q500 530 1000 540 V620 H0z" fill="rgba(255,255,255,.07)"/>
+     <path d="M0 560c40-8 80-8 120 0s80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0M0 590c40-8 80-8 120 0s80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0 80-8 120 0 80 8 120 0" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/>
+     <text x="40" y="612" font-size="11" fill="rgba(255,255,255,.6)">река Кама</text>
+     <!-- compass -->
+     <g transform="translate(930 80)"><circle r="22" fill="none" stroke="rgba(255,255,255,.4)"/><path d="M0 16-6-6 0-2 6-6z" fill="var(--copper)"/><text y="36" font-size="11" text-anchor="middle" fill="#fff">С</text></g>
+     <text x="960" y="470" font-size="10" text-anchor="end" fill="rgba(255,255,255,.5)">схема условная, не в масштабе</text>
+    </svg>
+    <dl class="gp-facts" id="gpFacts">
+     <div><dt>Этажей</dt><dd id="gpFloors">9</dd></div>
+     <div><dt>Квартир в доме</dt><dd id="gpTotal">48</dd></div>
+     <div><dt>Свободно сейчас</dt><dd id="gpCount">6</dd></div>
+     <div><dt>Площади</dt><dd id="gpArea">28–86 м²</dd></div>
+     <div><dt>Ввод в эксплуатацию</dt><dd id="gpDue">IV кв. 2027</dd></div>
+    </dl>
+   </div>
+   <div class="gp-r rv" style="--d:.1s">
+    <div class="gp-tabs" id="gpTabs" role="group" aria-label="Выбор дома">
+     <button class="chip" type="button" data-h="1" aria-pressed="true">Дом 1</button><button class="chip" type="button" data-h="2" aria-pressed="false">Дом 2</button><button class="chip" type="button" data-h="3" aria-pressed="false">Дом 3</button>
+    </div>
+    <h3 class="ch-title" id="gpTitle">Дом 1 <small id="gpSub">9 этажей, 6 квартир на этаже</small></h3>
+    <div class="chess" id="chess" role="group" aria-label="Шахматка дома 1: свободные квартиры"></div>
+    <ul class="ch-lg" aria-label="Обозначения в шахматке">
+     <li><i class="cl free"></i>свободна</li><li><i class="cl book"></i>бронь</li><li><i class="cl sold"></i>продана</li><li><i class="cl later"></i>откроется в продаже позже</li>
+    </ul>
+    <p class="ch-read" id="chRead" aria-live="polite"></p>
+    <button class="btn btn-c" type="button" id="gpGo">Свободные квартиры дома 1<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
+    <p class="gp-note">Сроки ввода закреплены в проектной декларации и ДДУ; копию декларации и разрешения на строительство выдадим в офисе продаж.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec sand" id="mortgage" aria-labelledby="h-m">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 05</span><span>Ипотека</span></div>
+   <h2 id="h-m">Посчитайте платёж <span class="o">до&nbsp;звонка</span></h2>
+   <p class="lead">Расчёт ориентировочный. Выберите программу — ставка подставится сама — или задайте свою. Точный расчёт от банков-партнёров менеджер пришлёт по вашей квартире.</p>
+  </div>
+  <div class="calc">
+   <div class="calc-f rv">
+    <div>
+     <div class="fl"><span id="lProg">Программа</span></div>
+     <div class="seg" id="cProg" role="group" aria-labelledby="lProg"><button class="chip" type="button" data-p="market" aria-pressed="true">Рыночная 17,9 %</button><button class="chip" type="button" data-p="family" aria-pressed="false">Семейная 6 %</button><button class="chip" type="button" data-p="own" aria-pressed="false">Своя ставка</button></div>
+     <p class="pnote" id="cProgNote">Ставка банков-партнёров для новостроек, без господдержки.</p>
+    </div>
+    <div>
+     <div class="fl"><label for="cPrice">Стоимость квартиры</label><output id="oPrice" for="cPrice">10 800 000 ₽</output></div>
+     <div class="rng rng1"><div class="rng-t"></div><div class="rng-f" id="cPriceF"></div><input type="range" id="cPrice" min="5000000" max="25000000" step="50000" value="10800000"></div>
+     <div class="rng-s"><span>5 млн</span><span>25 млн</span></div>
+    </div>
+    <div>
+     <div class="fl"><label for="cDown">Первоначальный взнос</label><output id="oDown" for="cDown">20 % · 2 160 000 ₽</output></div>
+     <div class="rng rng1"><div class="rng-t"></div><div class="rng-f" id="cDownF"></div><input type="range" id="cDown" min="20" max="70" step="1" value="20"></div>
+     <div class="rng-s"><span>20 %</span><span>70 %</span></div>
+    </div>
+    <div>
+     <div class="fl"><span id="lTerm">Срок кредита</span></div>
+     <div class="seg" id="cTerm" role="group" aria-labelledby="lTerm"><button class="chip" type="button" data-y="10" aria-pressed="false">10 лет</button><button class="chip" type="button" data-y="15" aria-pressed="false">15 лет</button><button class="chip" type="button" data-y="20" aria-pressed="true">20 лет</button><button class="chip" type="button" data-y="25" aria-pressed="false">25 лет</button><button class="chip" type="button" data-y="30" aria-pressed="false">30 лет</button></div>
+    </div>
+    <div>
+     <div class="fl"><label for="cRate">Ставка</label><output id="oRate" for="cRate">17,9 %</output></div>
+     <div class="rng rng1"><div class="rng-t"></div><div class="rng-f" id="cRateF"></div><input type="range" id="cRate" min="4" max="25" step="0.1" value="17.9"></div>
+     <div class="rng-s"><span>4 %</span><span>25 %</span></div>
+    </div>
+   </div>
+   <div class="res rv" style="--d:.1s" aria-live="polite">
+    <p class="for" id="cFor">Расчёт по выбранной стоимости</p>
+    <div class="pay"><span id="cPay">132 676</span> <small>₽ / мес</small></div>
+    <p class="split" id="cSplit" hidden></p>
+    <dl>
+     <div class="row"><dt>Первоначальный взнос</dt><dd id="rDown">2 160 000 ₽</dd></div>
+     <div class="row"><dt>Сумма кредита</dt><dd id="rLoan">8 640 000 ₽</dd></div>
+     <div class="row"><dt>Срок</dt><dd id="rTerm">20 лет</dd></div>
+     <div class="row"><dt>Переплата за срок</dt><dd id="rOver">23 202 240 ₽</dd></div>
+     <div class="row"><dt>Всего выплат банку</dt><dd id="rTotal">31 842 240 ₽</dd></div>
+    </dl>
+    <button class="btn btn-c" type="button" id="cGo">Получить расчёт от менеджера<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
+    <p class="note">Аннуитетный платёж без страховок и комиссий. Не является публичной офертой.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec light" id="progress" aria-labelledby="h-pr">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 06</span><span>Ход строительства</span></div>
+   <h2 id="h-pr">Как растёт квартал&nbsp;— <span class="o">по&nbsp;месяцам</span></h2>
+   <p class="lead">Каждый месяц обновляем схему: сколько этажей возведено в каждом доме и что сделано на площадке. Фото и видео с объекта пришлём в мессенджер по запросу.</p>
+  </div>
+  <div class="strip rv" id="strip" tabindex="0" aria-label="Хронология строительства, листайте"></div>
+  <p class="strip-h">Лента открыта на последнем отчёте — листайте назад, к началу стройки.</p>
+ </div>
+</section>
+
+<section class="sec sand2" id="amenities" aria-labelledby="h-am">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 07</span><span>Благоустройство</span></div>
+   <h2 id="h-am">Двор, в&nbsp;котором хочется <span class="o">задержаться</span></h2>
+  </div>
+  <div class="am" id="am"></div>
+ </div>
+</section>
+
+<section class="sec light" id="location" aria-labelledby="h-loc">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 08</span><span>Расположение</span></div>
+   <h2 id="h-loc">Всё нужное&nbsp;— <span class="o">пешком</span></h2>
+   <p class="lead">Адрес квартала: Пермь, Ленинский район, ул. Монастырская, 57. Время указано пешком от ворот двора.</p>
+  </div>
+  <div class="loc">
+   <div class="rv">
+    <svg class="map" id="map" viewBox="0 0 800 520" aria-hidden="true">
+     <rect width="800" height="520" fill="var(--sand2)"/>
+     <g stroke="#fff" stroke-width="14"><path d="M0 120H640M0 300H610M0 440H660M130 0V520M300 0V520M470 0V520"/></g>
+     <g stroke="#fff" stroke-width="5"><path d="M0 210H620M215 0V520M385 0V520M550 0V300"/></g>
+     <path d="M690 0C640 110 720 200 670 300S720 450 690 520H800V0z" fill="rgba(15,39,66,.1)"/>
+     <path d="M700 40c30 20 30 50 0 70s-30 60 0 90 10 70-10 100" fill="none" stroke="rgba(15,39,66,.2)" stroke-width="1.5"/>
+     <text x="745" y="265" font-size="12" fill="var(--mute)" text-anchor="middle" transform="rotate(80 745 265)">р. Кама</text>
+     <g fill="rgba(15,39,66,.06)"><rect x="140" y="130" width="65" height="70"/><rect x="310" y="220" width="65" height="70"/><rect x="20" y="320" width="100" height="100"/><rect x="480" y="20" width="60" height="90"/><rect x="560" y="310" width="90" height="120"/><rect x="140" y="450" width="150" height="70"/><rect x="310" y="20" width="65" height="90"/></g>
+     <g class="q"><rect x="400" y="130" width="140" height="160" rx="6" fill="var(--copper)" opacity=".9"/><rect x="415" y="145" width="40" height="55" fill="var(--navy)" opacity=".85"/><rect x="465" y="145" width="60" height="40" fill="var(--navy)" opacity=".85"/><rect x="480" y="215" width="45" height="60" fill="var(--navy)" opacity=".85"/><text x="470" y="312" font-size="13" font-weight="600" text-anchor="middle">Речной квартал</text></g>
+     <g id="mapLines"><line class="ln" data-p="1" x1="470" y1="210" x2="172" y2="165"/><line class="ln" data-p="2" x1="470" y1="210" x2="342" y2="372"/><line class="ln" data-p="3" x1="470" y1="210" x2="592" y2="78"/><line class="ln" data-p="4" x1="470" y1="210" x2="70" y2="372"/><line class="ln" data-p="5" x1="470" y1="210" x2="605" y2="470"/></g>
+     <g id="mapPins">
+      <g class="pin" data-p="1" transform="translate(172 165)"><circle r="18"/><text y="5">1</text></g>
+      <g class="pin" data-p="2" transform="translate(342 372)"><circle r="18"/><text y="5">2</text></g>
+      <g class="pin" data-p="3" transform="translate(592 78)"><circle r="18"/><text y="5">3</text></g>
+      <g class="pin" data-p="4" transform="translate(70 372)"><circle r="18"/><text y="5">4</text></g>
+      <g class="pin" data-p="5" transform="translate(605 470)"><circle r="18"/><text y="5">5</text></g>
+     </g>
+     <text x="16" y="505" font-size="11" fill="var(--mute)">схема условная</text>
+    </svg>
+   </div>
+   <div class="poi rv" id="poi" role="group" aria-label="Инфраструктура рядом" style="--d:.1s">
+    <button type="button" data-p="1" aria-pressed="false"><span class="num">1</span><span><b>Школа</b><small>Новая школа на 1 100 мест в соседнем квартале</small></span><span class="min">6 мин</span></button>
+    <button type="button" data-p="2" aria-pressed="false"><span class="num">2</span><span><b>Детский сад</b><small>Детский сад на 240 мест через улицу</small></span><span class="min">4 мин</span></button>
+    <button type="button" data-p="3" aria-pressed="false"><span class="num">3</span><span><b>Транспорт</b><small>Автобусы в центр, ж/д станция Пермь I</small></span><span class="min">10 мин</span></button>
+    <button type="button" data-p="4" aria-pressed="false"><span class="num">4</span><span><b>Набережная Камы</b><small>Бульвар, велодорожка и Речной вокзал</small></span><span class="min">4 мин</span></button>
+    <button type="button" data-p="5" aria-pressed="false"><span class="num">5</span><span><b>Торговый центр</b><small>Супермаркет, аптека и кинотеатр</small></span><span class="min">9 мин</span></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec dark" id="steps" aria-labelledby="h-st">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 09</span><span>Как купить</span></div>
+   <h2 id="h-st">Пять шагов <span class="o">до&nbsp;ключей</span></h2>
+  </div>
+  <ol class="steps" id="stepsList">
+   <div class="steps-l" aria-hidden="true"></div>
+   <li class="step" style="--i:0"><span class="n">1</span><h3>Выбор квартиры</h3><p>Фильтры на сайте или подбор с менеджером по вашим критериям.</p></li>
+   <li class="step" style="--i:1"><span class="n">2</span><h3>Показ или онлайн-экскурсия</h3><p>В офисе продаж у площадки или по видеосвязи в удобное время.</p></li>
+   <li class="step" style="--i:2"><span class="n">3</span><h3>Бронирование</h3><p>Фиксируем квартиру и цену на 7 дней бесплатно.</p></li>
+   <li class="step" style="--i:3"><span class="n">4</span><h3>Договор</h3><p>ДДУ с расчётами через эскроу-счёт. Оплата — ипотека, рассрочка до 12 месяцев или 100 %.</p></li>
+   <li class="step" style="--i:4"><span class="n">5</span><h3>Ключи</h3><p>Передача по акту в течение трёх месяцев после ввода: дом 1 — IV квартал 2027, дома 2 и 3 — 2028 год.</p></li>
+  </ol>
+ </div>
+</section>
+
+<section class="sec sand" id="gallery" aria-labelledby="h-g">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 10</span><span>Галерея</span></div>
+   <h2 id="h-g">Фасады, двор и&nbsp;<span class="o">виды</span></h2>
+   <p class="lead">Изображения — фото-примеры: так выглядят фасады, дворы и виды в домах этого класса. Визуализации «Речного квартала» покажем в офисе продаж.</p>
+  </div>
+  <div class="mosaic rv" id="mosaic">
+   <button class="gi" type="button" data-i="0"><img src="https://images.unsplash.com/photo-1776066361467-f70a25cf0dc8?auto=format&fit=crop&w=900&h=1080&q=72" width="900" height="1080" alt="Жилой квартал с высоты — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></button>
+   <button class="gi" type="button" data-i="1"><img src="https://images.unsplash.com/photo-1785281571594-37797c0d2c3a?auto=format&fit=crop&w=600&h=520&q=72" width="600" height="520" alt="Тенистый двор жилого дома — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></button>
+   <button class="gi" type="button" data-i="2"><img src="https://images.unsplash.com/photo-1768118422932-4cdcca2ced8f?auto=format&fit=crop&w=600&h=520&q=72" width="600" height="520" alt="Балконы с растениями — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></button>
+   <button class="gi" type="button" data-i="3"><img src="https://images.unsplash.com/photo-1776363116182-51694a04a1d5?auto=format&fit=crop&w=1200&h=520&q=72" width="1200" height="520" alt="Вид с балкона на город — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></button>
+  </div>
+ </div>
+</section>
+
+<section class="sec light" id="why" aria-labelledby="h-w">
+ <div class="wrap why">
+  <div class="ph rv"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&h=1000&q=72" width="800" height="1000" alt="Фасад многоэтажного дома снизу — фото-пример" loading="lazy"><span class="cap">Фото-пример</span></div>
+  <div class="rv" style="--d:.1s">
+   <div class="sheet"><span>Лист 11</span><span>Почему здесь</span></div>
+   <h2 id="h-w">Что отличает <span class="o">«Речной квартал»</span></h2>
+   <ol>
+    <li><div><b>Кама в 300 метрах</b><p>Набережная, бульвар и велодорожка начинаются у ворот двора: четыре минуты пешком и один пешеходный переход.</p></div></li>
+    <li><div><b>Двор без машин, тёплый паркинг</b><p>Въезд в паркинг с улицы, лифт прямо в подъезд. Пермской зимой машину не нужно откапывать и прогревать.</p></div></li>
+    <li><div><b>2,9 м и окна от пола</b><p>Высокие потолки во всех типах квартир — от студий до трёхкомнатных, панорамное остекление лоджий.</p></div></li>
+    <li><div><b>Открытые документы</b><p>Проектная декларация и разрешение на строительство — в открытом доступе, расчёты по ДДУ — только через эскроу-счёт в банке.</p></div></li>
+   </ol>
+  </div>
+ </div>
+</section>
+
+<section class="sec sand" id="faq" aria-labelledby="h-faq">
+ <div class="wrap">
+  <div class="sh rv">
+   <div class="sheet"><span>Лист 12</span><span>Вопросы</span></div>
+   <h2 id="h-faq">Частые вопросы <span class="o">покупателей</span></h2>
+  </div>
+  <div class="faq rv" id="faqList">
+   <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a1">Можно ли купить квартиру в ипотеку?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3><div class="a" id="a1" hidden><p>Да, работаем с пятью банками-партнёрами. Рыночные программы — от 17,9 %, семейная ипотека — от 6 % в пределах лимита 6 млн ₽; сумма сверх лимита кредитуется по рыночной ставке. Калькулятор на сайте учитывает этот лимит, точные условия банк назовёт после одобрения.</p></div></div>
+   <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a2">В каком состоянии передаются квартиры?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3><div class="a" id="a2" hidden><p>Квартиры передаются в white box: выровненные стены и стяжка, разводка электрики и сантехники, входная дверь и окна. Чистовая отделка — опция за 16 000 ₽/м², срок — два месяца после передачи ключей. Состав работ и материалов фиксируется в приложении к договору.</p></div></div>
+   <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a3">Где парковать машину?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3><div class="a" id="a3" hidden><p>Под домами — подземный паркинг с лифтом в подъезд, двор закрыт для автомобилей. Паркинг отапливаемый, машино-места продаются отдельно: от 1,4 млн ₽, есть рассрочка на 12 месяцев. Кладовые для лыж, шин и велосипедов — от 290 000 ₽. Для гостей — наземные места у въезда на территорию.</p></div></div>
+   <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a4">Когда сдача домов?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3><div class="a" id="a4" hidden><p>Дом 1 — IV квартал 2027, дом 2 — II квартал 2028, дом 3 — IV квартал 2028. Ключи — в течение трёх месяцев после ввода дома. Сроки закреплены в проектной декларации и в ДДУ, ход строительства обновляем каждый месяц в разделе «Стройка».</p></div></div>
+   <div class="q"><h3><button type="button" aria-expanded="false" aria-controls="a5">Как забронировать квартиру?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></h3><div class="a" id="a5" hidden><p>Выберите квартиру в шахматке или каталоге и запишитесь на показ или онлайн-экскурсию. После показа бесплатно фиксируем квартиру и цену на 7 дней, затем заключаем ДДУ с оплатой через эскроу-счёт.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec dark" id="contacts" aria-labelledby="h-c">
+ <div class="wrap cta">
+  <div class="form rv" id="form">
+   <div class="sheet"><span>Лист 13</span><span>Заявка</span></div>
+   <h3>Записаться на показ</h3>
+   <p class="lead" style="font-size:.95rem;margin-top:8px">Перезвоним в рабочее время, подберём удобный слот для показа или онлайн-экскурсии.</p>
+   <form class="f" id="lead" novalidate>
+    <div class="two">
+     <label>Имя<input type="text" id="fName" name="name" autocomplete="name" required placeholder="Как к вам обращаться"></label>
+     <label>Телефон<input type="tel" id="fPhone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="+7 (___) ___-__-__"></label>
+    </div>
+    <div class="two">
+     <label>Что вас интересует<select id="fSrv" name="service"><option>Показ квартиры</option><option>Онлайн-экскурсия</option><option>Расчёт ипотеки</option><option>Бронирование</option><option>Консультация</option></select></label>
+     <label>Квартира<input type="text" id="fApt" name="apartment" placeholder="Выберите в каталоге или оставьте пустым"></label>
+    </div>
+    <label>Комментарий<textarea id="fMsg" name="message" placeholder="Удобное время, пожелания по этажу или виду"></textarea></label>
+    <label class="ck"><input type="checkbox" id="fAgree" required><span>Согласен(на) на обработку персональных данных в соответствии с <a href="#privacy">политикой обработки персональных данных</a>.</span></label>
+    <p class="err" id="fErr" aria-live="polite"></p>
+    <button class="btn btn-c" type="submit">Отправить заявку<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg></button>
+   </form>
+   <div class="ok" id="ok" role="status">
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h3>Заявка принята</h3>
+    <p id="okText">Спасибо! Менеджер перезвонит в рабочее время и согласует показ.</p>
+    <p class="note" style="margin-top:14px">Демо-режим: данные никуда не отправлены.</p>
+   </div>
+  </div>
+  <div class="con rv" style="--d:.1s">
+   <div class="sheet"><span>Офис продаж</span><span>на площадке</span></div>
+   <h2 id="h-c">Приезжайте посмотреть <span class="o">вживую</span></h2>
+   <dl>
+    <div class="row"><dt>Адрес</dt><dd>Пермь, ул. Монастырская, 57 — павильон офиса продаж у въезда на площадку, вход с улицы</dd></div>
+    <div class="row"><dt>Телефон</dt><dd><a href="tel:+73420000000">+7 (342) 000-00-00</a></dd></div>
+    <div class="row"><dt>Часы работы</dt><dd>ежедневно 9:00–21:00, без выходных</dd></div>
+    <div class="row"><dt>Почта</dt><dd><a href="/cdn-cgi/l/email-protection#3d55585151527d4f585c51494413444e594d4f5257585e494e134e4d5c5e58"><span class="__cf_email__" data-cfemail="157d7079797a5567707479616c3b6c667165677a7f707661663b6665747670">[email&#160;protected]</span></a></dd></div>
+    <div class="row"><dt>Мессенджеры</dt><dd><a href="#contacts">Telegram</a>, <a href="#contacts">VK</a> — по номеру офиса</dd></div>
+   </dl>
+   <div class="mapz" role="img" aria-label="Схема: офис продаж на ул. Монастырской, 57"><div class="pinc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Офис продаж<br>ул. Монастырская, 57</span></div></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="ftr">
+ <div class="wrap ftr-in">
+  <div><p><b>ЖК «Речной квартал»</b> — жилой квартал у набережной Камы, Пермь.</p><p>Демо-сайт · дизайн-концепт студии YSD DEV. Компания и реквизиты вымышлены.</p></div>
+  <div><p><b>Офис продаж</b></p><p>Пермь, ул. Монастырская, 57</p><p>ежедневно 9:00–21:00</p><p><a href="tel:+73420000000">+7 (342) 000-00-00</a></p></div>
+  <div><p><b>Разделы</b></p><p><a href="#choose">Выбор квартиры</a> · <a href="#plan">Шахматка</a> · <a href="#mortgage">Ипотека</a></p><p><a href="#progress">Ход строительства</a> · <a href="#faq">Вопросы</a></p></div>
+  <div class="legal"><span>Демо-сайт. Информация не является публичной офертой; характеристики и цены носят ознакомительный характер.</span><span id="privacy">Персональные данные: в демо-версии формы ничего не отправляют и не сохраняют.</span><span>Дизайн-концепт · сайт разработан <a href="https://ysddev.com" rel="noopener">YSD DEV</a></span></div>
+ </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+ <div class="modal-bg" data-close></div>
+ <div class="modal-c">
+  <button class="x" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="modal-pl" id="mPlan"></div>
+  <div class="modal-i">
+   <div class="sheet"><span id="mSheet">Квартира №12</span><span id="mHouse">Дом 1</span></div>
+   <h3 id="mTitle"></h3>
+   <dl id="mRows"></dl>
+   <div class="modal-a"><button class="btn btn-c" type="button" id="mBook">Забронировать показ</button><button class="btn btn-o" type="button" id="mCalc">Рассчитать ипотеку</button></div>
+   <p class="note">Планировка демонстрационная, схема без масштаба. Площади комнат и общая площадь приведены по проектной документации, итоговые — по обмерам БТИ.</p>
+  </div>
+ </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
+ <button class="x" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+ <button class="pn prev" type="button" id="lbPrev" aria-label="Предыдущее фото"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+ <figure><img id="lbImg" src="" alt="" width="1100" height="800"><figcaption id="lbCap">Фото-пример</figcaption></figure>
+ <button class="pn next" type="button" id="lbNext" aria-label="Следующее фото"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<script data-cfasync="false" src="/realty/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+'use strict';
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NB=' ';
+const fmt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,NB);
+const rub=n=>fmt(n)+NB+'₽';
+const ar=a=>a.toFixed(1).replace('.',',');
+const plural=(n,a,b,c)=>{const m=n%10,h=n%100;return n+' '+(h>10&&h<20?c:m===1?a:m>1&&m<5?b:c)};
+const ARROW='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8"/></svg>';
+
+/* ---------- data ---------- */
+const HOUSES={1:9,2:12,3:16};
+const RN=['Студия','1-комнатная','2-комнатная','3-комнатная'];
+// [номер, дом, этаж, комнат, площадь, цена]
+// цены — Пермь, осень 2026: средняя цена новостроек по городу ≈177 тыс. ₽/м², у квартала у Камы — 180–212 тыс. ₽/м²
+const APTS=[[10,1,3,0,28.4,5900000],[33,2,7,0,31.2,6550000],[74,3,12,0,33.6,7100000],[15,1,4,1,38.1,7500000],[5,1,2,1,40.3,7650000],[46,2,9,1,42.5,8500000],[87,3,14,1,46.8,9500000],[26,1,6,2,58.3,10800000],[20,2,5,2,61.9,11450000],[48,1,9,2,64.7,12300000],[60,2,11,2,69.0,13250000],[93,3,15,2,72.4,14200000],[37,1,8,3,85.6,15400000],[61,2,12,3,94.2,17450000],[57,3,10,3,102.5,19050000],[105,3,16,3,118.0,23000000]];
+// поэтажная раскладка домов: позиция на этаже → [комнат, площадь]; №кв = (этаж−2)·K + позиция; 1 этаж — лобби и коммерция
+const LAY={1:[[3,85.6],[2,58.3],[1,38.1],[0,28.4],[1,40.3],[2,64.7]],2:[[3,94.2],[2,61.9],[0,31.2],[1,42.5],[0,29.8],[2,69.0]],3:[[3,102.5],[2,72.4],[1,46.8],[0,33.6],[1,44.1],[2,66.3],[3,118.0]]};
+const DUE={1:'IV квартал 2027',2:'II квартал 2028',3:'IV квартал 2028'},DUES={1:'IV кв. 2027',2:'II кв. 2028',3:'IV кв. 2028'};
+// шаблоны планировок: W,H в условных единицах; L — лоджии; R — комнаты [x,y,w,h,название,доля площади,акцент]
+const TPL=[
+ {W:60,H:50,L:[[0,-9,30,9]],R:[[0,0,60,36,'Кухня-гостиная',.62,1],[0,36,22,14,'С/у',.13],[22,36,38,14,'Прихожая',.25]]},
+ {W:70,H:56,L:[[32,-9,38,9]],R:[[0,0,32,36,'Спальня',.32,1],[32,0,38,36,'Кухня-гостиная',.40,1],[0,36,22,20,'С/у',.10],[22,36,48,20,'Прихожая',.18]]},
+ {W:84,H:60,L:[[56,-9,28,9]],R:[[0,0,30,32,'Спальня',.24,1],[30,0,26,32,'Спальня',.20,1],[56,0,28,60,'Кухня-гостиная',.30,1],[0,32,16,28,'Ванная',.07],[16,32,12,28,'С/у',.04],[28,32,28,28,'Прихожая',.15]]},
+ {W:100,H:64,L:[[0,-9,36,9],[64,-9,36,9]],R:[[0,0,36,36,'Гостиная',.22,1],[36,0,28,36,'Спальня',.16,1],[64,0,36,32,'Спальня',.17,1],[64,32,36,32,'Кухня',.14,1],[0,36,18,28,'Ванная',.07],[18,36,12,28,'С/у',.04],[30,36,14,28,'Гардероб',.05],[44,36,20,28,'Прихожая',.15]]}
+];
+function plan(a,big){
+ const t=TPL[a[3]],W=t.W,H=t.H,mir=a[0]%2===1,fs=W*(big?.036:.052);
+ const X=(x,w)=>mir?W-x-w:x;
+ let s=`<svg class="fp" viewBox="-6 -16 ${W+16} ${H+30}" style="font-size:${fs.toFixed(2)}px">`;
+ t.L.forEach(l=>{const x=X(l[0],l[2]);s+=`<rect class="fp-l" x="${x}" y="${l[1]}" width="${l[2]}" height="${l[3]}"/><text class="fp-s" x="${x+l[2]/2}" y="${l[1]+l[3]/2+fs*.35}" style="font-size:.78em">лоджия</text>`});
+ t.R.forEach(r=>{const x=X(r[0],r[2]),cx=x+r[2]/2,cy=r[1]+r[3]/2;
+  s+=`<rect class="fp-r${r[6]?' fp-rb':''}" x="${x}" y="${r[1]}" width="${r[2]}" height="${r[3]}"/>`;
+  if(r[1]===0){const w=r[2]*.5;s+=`<line class="fp-w" x1="${cx-w/2}" y1="0" x2="${cx+w/2}" y2="0"/>`}
+  else if(x+r[2]===W&&r[6]){const h=r[3]*.5;s+=`<line class="fp-w" x1="${W}" y1="${cy-h/2}" x2="${W}" y2="${cy+h/2}"/>`}
+  const m2=ar(a[4]*r[5]);
+  if(r[2]>=16&&r[3]>=12)s+=`<text class="fp-t" x="${cx}" y="${cy-fs*.15}">${r[4]}</text><text class="fp-m" x="${cx}" y="${cy+fs*1.05}" style="font-size:.9em">${m2}${NB}м²</text>`;
+  else s+=`<text class="fp-t" x="${cx}" y="${cy+fs*.35}" style="font-size:.82em">${r[4]}</text>`});
+ s+=`<rect class="fp-o" x="0" y="0" width="${W}" height="${H}"/>`;
+ const wm=Math.sqrt(a[4]*W/H),hm=a[4]/wm,dy=H+9,dx=W+8;
+ s+=`<g class="fp-d"><line x1="0" y1="${dy}" x2="${W}" y2="${dy}"/><line x1="0" y1="${dy-3}" x2="0" y2="${dy+3}"/><line x1="${W}" y1="${dy-3}" x2="${W}" y2="${dy+3}"/><line x1="${dx}" y1="0" x2="${dx}" y2="${H}"/><line x1="${dx-3}" y1="0" x2="${dx+3}" y2="0"/><line x1="${dx-3}" y1="${H}" x2="${dx+3}" y2="${H}"/></g>`;
+ s+=`<text class="fp-s" x="${W/2}" y="${dy+fs*1.2}" style="font-size:.8em">${ar(wm)} м</text><text class="fp-s" x="${dx+fs*.9}" y="${H/2+fs*.3}" style="font-size:.8em" transform="rotate(-90 ${dx+fs*.9} ${H/2})">${ar(hm)} м</text>`;
+ return s+'</svg>';
+}
+
+/* ---------- grid ---------- */
+const grid=$('#grid'),empty=$('#empty'),fCount=$('#fCount');
+grid.innerHTML=APTS.map((a,i)=>`<button class="apt" type="button" data-i="${i}" aria-label="${RN[a[3]]}, ${ar(a[4])} м², дом ${a[1]}, этаж ${a[2]}, ${rub(a[5])}. Открыть планировку"><div class="apt-pl">${plan(a)}</div><div class="apt-b"><div class="apt-r"><b>${RN[a[3]]}</b><span>${ar(a[4])}${NB}м²</span></div><div class="apt-m"><span>№${a[0]}</span><span>Дом ${a[1]}</span><span>${a[2]} этаж</span></div><div class="apt-p"><span>${rub(a[5])}</span>${ARROW}</div></div></button>`).join('');
+const cards=$$('.apt',grid);
+const F={rooms:'all',house:'all',fl:[2,16],ar:[28,118]};
+let pending=null;
+function matches(a){return (F.rooms==='all'||a[3]===+F.rooms)&&(F.house==='all'||a[1]===+F.house)&&a[2]>=F.fl[0]&&a[2]<=F.fl[1]&&a[4]>=F.ar[0]&&a[4]<=F.ar[1]}
+function applyFilter(){
+ clearTimeout(pending);
+ const vis=APTS.map(matches),n=vis.filter(Boolean).length;
+ fCount.textContent=plural(n,'квартира','квартиры','квартир');
+ empty.classList.toggle('show',n===0);
+ const first=new Map();cards.forEach(c=>{if(!c.hidden)first.set(c,c.getBoundingClientRect())});
+ const exiting=cards.filter((c,i)=>!c.hidden&&!vis[i]),entering=cards.filter((c,i)=>c.hidden&&vis[i]);
+ cards.forEach((c,i)=>{if(!c.hidden&&vis[i])c.classList.remove('out')});
+ exiting.forEach(c=>c.classList.add('out'));
+ const step2=()=>{
+  exiting.forEach(c=>{c.hidden=true;c.classList.remove('out')});
+  entering.forEach(c=>{c.hidden=false;c.classList.add('out')});
+  const last=new Map();cards.forEach(c=>{if(!c.hidden)last.set(c,c.getBoundingClientRect())});
+  if(!RM)cards.forEach(c=>{if(first.has(c)&&last.has(c)&&!exiting.includes(c)){const f=first.get(c),l=last.get(c),dx=f.left-l.left,dy=f.top-l.top;if(dx||dy){c.style.transition='none';c.style.transform=`translate(${dx}px,${dy}px)`}}});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{cards.forEach(c=>{c.style.transition='';c.style.transform=''});entering.forEach(c=>c.classList.remove('out'))}));
+ };
+ if(exiting.length&&!RM)pending=setTimeout(step2,220);else step2();
+}
+function setChips(group,attr,val){$$('.chip',group).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[attr]===String(val))))}
+$('#fRooms').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;F.rooms=b.dataset.r;setChips(e.currentTarget,'r',F.rooms);applyFilter()});
+$('#fHouse').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;F.house=b.dataset.h;setChips(e.currentTarget,'h',F.house);applyFilter()});
+function dual(id,lo,hi,out,key,suffix){
+ const box=$(id),a=$(lo),b=$(hi),o=$(out),fill=$('.rng-f',box),min=+a.min,max=+a.max;
+ const draw=()=>{let v1=+a.value,v2=+b.value;if(v1>v2){if(document.activeElement===a){a.value=v2;v1=v2}else{b.value=v1;v2=v1}}
+  F[key]=[v1,v2];o.textContent=v1+' – '+v2+(suffix||'');const p1=(v1-min)/(max-min)*100,p2=(v2-min)/(max-min)*100;fill.style.left=p1+'%';fill.style.width=(p2-p1)+'%'};
+ [a,b].forEach(i=>i.addEventListener('input',()=>{draw();applyFilter()}));draw();
+ return {reset:()=>{a.value=min;b.value=max;draw()}};
+}
+const rFloor=dual('#rFloor','#fFloorLo','#fFloorHi','#oFloor','fl'),rArea=dual('#rArea','#fAreaLo','#fAreaHi','#oArea','ar');
+$('#fReset').addEventListener('click',()=>{F.rooms='all';F.house='all';setChips($('#fRooms'),'r','all');setChips($('#fHouse'),'h','all');rFloor.reset();rArea.reset();applyFilter()});
+$$('.lnk[data-rooms]').forEach(b=>b.addEventListener('click',()=>{F.rooms=b.dataset.rooms;setChips($('#fRooms'),'r',F.rooms);applyFilter();$('#choose').scrollIntoView({behavior:RM?'auto':'smooth'})}));
+applyFilter();
+
+/* ---------- modal ---------- */
+const modal=$('#modal'),mPlan=$('#mPlan'),mTitle=$('#mTitle'),mRows=$('#mRows');
+let cur=null,lastFocus=null;
+function openModal(i){
+ const a=APTS[i];cur=a;lastFocus=document.activeElement;
+ mPlan.innerHTML=plan(a,true);
+ $('#mSheet').textContent='Квартира №'+a[0];$('#mHouse').textContent='Дом '+a[1];
+ mTitle.textContent=RN[a[3]]+', '+ar(a[4])+' м²';
+ mRows.innerHTML=[['Дом',a[1]+' из 3'],['Этаж',a[2]+' из '+HOUSES[a[1]]],['Общая площадь',ar(a[4])+' м²'],['Высота потолков','2,9 м'],['Цена',rub(a[5])],['Цена за м²',rub(a[5]/a[4])],['Ввод дома',DUE[a[1]]]].map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('');
+ modal.hidden=false;document.body.style.overflow='hidden';
+ requestAnimationFrame(()=>{modal.classList.add('vis');$('.x',modal).focus()});
+}
+function closeModal(){modal.classList.remove('vis');document.body.style.overflow='';setTimeout(()=>{modal.hidden=true;if(lastFocus)lastFocus.focus()},RM?0:260)}
+grid.addEventListener('click',e=>{const c=e.target.closest('.apt');if(c)openModal(+c.dataset.i)});
+modal.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeModal()});
+const aptLabel=a=>`№${a[0]}, дом ${a[1]}, ${a[2]} этаж, ${ar(a[4])} м²`;
+$('#mBook').addEventListener('click',()=>{if(!cur)return;$('#fSrv').value='Показ квартиры';$('#fApt').value=aptLabel(cur);closeModal();setTimeout(()=>{$('#form').scrollIntoView({behavior:RM?'auto':'smooth'});setTimeout(()=>$('#fName').focus({preventScroll:true}),RM?0:600)},RM?0:280)});
+$('#mCalc').addEventListener('click',()=>{if(!cur)return;setCalcPrice(cur[5],'Расчёт для квартиры №'+cur[0]+', '+ar(cur[4])+' м²');closeModal();setTimeout(()=>$('#mortgage').scrollIntoView({behavior:RM?'auto':'smooth'}),RM?0:280)});
+
+/* ---------- genplan + chess ---------- */
+const gpSvg=$('#gpSvg'),gpTabs=$('#gpTabs'),chess=$('#chess'),chRead=$('#chRead'),gpFacts=$('#gpFacts');
+const RG=['С','1','2','3'],RS=['студия','1-комнатная','2-комнатная','3-комнатная'];
+const SOLD={1:.86,2:.52,3:.28},LATER={1:0,2:.33,3:.6};
+function status(h,n){
+ const i=APTS.findIndex(a=>a[1]===h&&a[0]===n);if(i>-1)return {s:'free',i};
+ const x=Math.sin(h*131.7+n*12.9898)*43758.5453,f=x-Math.floor(x);
+ if(f<.07)return {s:'book'};if(f<.07+SOLD[h]||!LATER[h])return {s:'sold'};return {s:'later'};
+}
+const HOV=matchMedia('(hover:hover) and (pointer:fine)').matches;
+let house=1,pinned=null,stat={};
+function buildChess(h){
+ const L=LAY[h],K=L.length,F=HOUSES[h];stat={free:0,book:0,sold:0,later:0};
+ let s='';
+ for(let f=F;f>=2;f--){
+  s+=`<div class="ch-row" data-f="${f}" style="--r:${f}"><span class="ch-f">${f}</span><div class="ch-c">`;
+  L.forEach((l,p)=>{const n=(f-2)*K+p+1,st=status(h,n);stat[st.s]++;
+   if(st.s==='free'){const a=APTS[st.i];s+=`<button class="cl free" type="button" data-i="${st.i}" aria-label="Квартира №${n}, ${RS[a[3]]}, ${ar(a[4])} м², ${f} этаж, ${rub(a[5])}. Открыть планировку">${RG[l[0]]}</button>`}
+   else s+=`<span class="cl ${st.s}" data-n="${n}" data-p="${p}" aria-hidden="true">${RG[l[0]]}</span>`});
+  s+='</div></div>';
+ }
+ s+=`<div class="ch-row ch-lobby" style="--r:1" aria-hidden="true"><span class="ch-f">1</span><div class="ch-c"><span class="lb1">лобби, колясочные, кофейня</span></div></div>`;
+ chess.style.setProperty('--k',K);chess.innerHTML=s;chess.setAttribute('aria-label',`Шахматка дома ${h}: свободные квартиры`);
+ if(!RM){chess.classList.remove('rise');void chess.offsetWidth;chess.classList.add('rise')}
+}
+function summary(){const h=house;return `<b>Дом ${h}</b>: свободно <em>${plural(stat.free,'квартира','квартиры','квартир')}</em> из ${(HOUSES[h]-1)*LAY[h].length}, в брони — ${stat.book}${stat.later?`, ещё ${stat.later} откроются в продаже позже`:''}. ${HOV?'Проведите по этажам или выберите медную ячейку.':'Нажмите на этаж, чтобы увидеть его квартиры, или на медную ячейку.'}`}
+function floorText(f){
+ const list=APTS.filter(a=>a[1]===house&&a[2]===f);
+ if(list.length)return `<b>${f} этаж</b>: свободн${list.length>1?'ы':'а'} `+list.map(a=>`${RS[a[3]]} №${a[0]}, ${ar(a[4])} м² — <em>${rub(a[5])}</em>`).join('; ')+'.';
+ const cs=$$(`.ch-row[data-f="${f}"] .cl`,chess),c={sold:0,book:0,later:0};cs.forEach(x=>{for(const k in c)if(x.classList.contains(k))c[k]++});
+ return `<b>${f} этаж</b>: свободных квартир нет — ${[c.sold?c.sold+' '+(c.sold===1?'продана':'проданы'):'',c.book?c.book+' в брони':'',c.later?c.later+' откроются позже':''].filter(Boolean).join(', ')}.`;
+}
+function aptText(a){return `<b>№${a[0]}</b>, ${RS[a[3]]}, ${ar(a[4])} м², ${a[2]} этаж — <em>${rub(a[5])}</em> (${fmt(a[5]/a[4])} ₽/м²). Нажмите, чтобы открыть планировку.`}
+function lightFloor(f){$$('.ch-row',chess).forEach(r=>r.classList.toggle('on',f!=null&&r.dataset.f===String(f)))}
+function setRead(html){chRead.innerHTML=html}
+chess.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse')return;const c=e.target.closest('.cl.free'),r=e.target.closest('.ch-row[data-f]');if(!r)return;lightFloor(r.dataset.f);setRead(c?aptText(APTS[+c.dataset.i]):floorText(+r.dataset.f))});
+chess.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;lightFloor(pinned);setRead(pinned?floorText(pinned):summary())});
+chess.addEventListener('focusin',e=>{const c=e.target.closest('.cl.free');if(!c)return;const r=c.closest('.ch-row');lightFloor(r.dataset.f);setRead(aptText(APTS[+c.dataset.i]))});
+chess.addEventListener('click',e=>{const c=e.target.closest('.cl.free');if(c){openModal(+c.dataset.i);return}const r=e.target.closest('.ch-row[data-f]');if(!r)return;const f=+r.dataset.f;pinned=pinned===f?null:f;lightFloor(pinned);setRead(pinned?floorText(f):summary())});
+function setHouse(h,quiet){
+ h=+h;house=h;pinned=null;
+ $$('.hs',gpSvg).forEach(g=>g.classList.toggle('on',g.dataset.h===String(h)));
+ setChips(gpTabs,'h',h);
+ buildChess(h);setRead(summary());
+ const areas=LAY[h].map(l=>l[1]);
+ $('#gpTitle').firstChild.textContent='Дом '+h+' ';
+ $('#gpSub').textContent=HOUSES[h]+' этажей, '+LAY[h].length+' квартир на этаже';
+ $('#gpFloors').textContent=HOUSES[h];$('#gpTotal').textContent=(HOUSES[h]-1)*LAY[h].length;$('#gpCount').textContent=stat.free;
+ $('#gpArea').textContent=Math.round(Math.min(...areas))+'–'+Math.round(Math.max(...areas))+' м²';$('#gpDue').textContent=DUES[h];
+ $('#gpGo').firstChild.textContent='Свободные квартиры дома '+h;
+ if(!quiet){gpFacts.classList.remove('chg');void gpFacts.offsetWidth;gpFacts.classList.add('chg')}
+ gpTabs.dataset.h=h;
+}
+gpSvg.addEventListener('click',e=>{const g=e.target.closest('.hs');if(g)setHouse(g.dataset.h)});
+gpTabs.addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)setHouse(b.dataset.h)});
+$('#gpGo').addEventListener('click',()=>{F.house=gpTabs.dataset.h||'1';F.rooms='all';setChips($('#fHouse'),'h',F.house);setChips($('#fRooms'),'r','all');applyFilter();$('#choose').scrollIntoView({behavior:RM?'auto':'smooth'})});
+setHouse(1,true);
+
+/* ---------- mortgage ---------- */
+const cPrice=$('#cPrice'),cDown=$('#cDown'),cRate=$('#cRate'),cPay=$('#cPay'),cProg=$('#cProg');
+const MKT=17.9,FAM=6,FLIM=6000000;
+const PROG={market:['Рыночная',MKT,'Ставка банков-партнёров для новостроек, без господдержки.'],family:['Семейная',FAM,'Для семей с ребёнком до 7 лет: 6 % на сумму до 6 млн ₽, остаток — по рыночной ставке. Ставка зависит от числа детей.'],own:['Своя ставка',null,'Подставьте ставку из одобрения вашего банка — ползунок ниже.']};
+let term=20,prog='market';
+const pr=v=>String(v).replace('.',',');
+function fillBar(input,el){const p=(input.value-input.min)/(input.max-input.min)*100;el.style.left='0';el.style.width=p+'%'}
+function countUp(el,to){
+ const from=+el.dataset.v||0;el.dataset.v=to;
+ if(RM||!from){el.textContent=fmt(to);return}
+ cancelAnimationFrame(el._raf);const t0=performance.now(),d=650;
+ const step=now=>{const p=Math.min(1,(now-t0)/d),e=1-Math.pow(1-p,3);el.textContent=fmt(from+(to-from)*e);if(p<1)el._raf=requestAnimationFrame(step)};
+ el._raf=requestAnimationFrame(step);
+}
+const ann=(L,rate,n)=>{if(L<=0)return 0;const r=rate/1200;return L*r/(1-Math.pow(1+r,-n))};
+function calc(){
+ const S=+cPrice.value,dp=+cDown.value,rate=+cRate.value,down=S*dp/100,loan=S-down,n=term*12;
+ let pay,split='';
+ if(prog==='family'){const l1=Math.min(loan,FLIM),l2=loan-l1;pay=ann(l1,FAM,n)+ann(l2,MKT,n);if(l2>0)split=`${rub(l1)} под ${FAM} % и ${rub(l2)} под ${pr(MKT)} % — сверх лимита семейной программы`}
+ else pay=ann(loan,rate,n);
+ const total=pay*n;
+ $('#oPrice').textContent=rub(S);$('#oDown').textContent=dp+' % · '+rub(down);$('#oRate').textContent=prog==='family'?'6 % / '+pr(MKT)+' %':pr(rate)+' %';
+ fillBar(cPrice,$('#cPriceF'));fillBar(cDown,$('#cDownF'));fillBar(cRate,$('#cRateF'));
+ countUp(cPay,pay);
+ const sp=$('#cSplit');sp.hidden=!split;sp.textContent=split;
+ $('#rDown').textContent=rub(down);$('#rLoan').textContent=rub(loan);$('#rTerm').textContent=plural(term,'год','года','лет');$('#rOver').textContent=rub(total-loan);$('#rTotal').textContent=rub(total);
+ return {S,dp,rate:prog==='family'?FAM:rate,pay};
+}
+function setProg(p){prog=p;setChips(cProg,'p',p);$('#cProgNote').textContent=PROG[p][2];if(PROG[p][1]!=null)cRate.value=PROG[p][1];calc()}
+function setCalcPrice(p,label){cPrice.value=Math.min(Math.max(p,+cPrice.min),+cPrice.max);$('#cFor').textContent=label;calc()}
+cPrice.addEventListener('input',()=>{$('#cFor').textContent='Расчёт по выбранной стоимости';calc()});
+cDown.addEventListener('input',calc);
+cRate.addEventListener('input',()=>{const v=+cRate.value;const p=v===MKT?'market':v===FAM?'family':'own';if(p!==prog){prog=p;setChips(cProg,'p',p);$('#cProgNote').textContent=PROG[p][2]}calc()});
+cProg.addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)setProg(b.dataset.p)});
+$('#cTerm').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;term=+b.dataset.y;setChips(e.currentTarget,'y',term);calc()});
+$('#cGo').addEventListener('click',()=>{const c=calc();$('#fSrv').value='Расчёт ипотеки';$('#fMsg').value=`Программа: ${PROG[prog][0].toLowerCase()}. Стоимость ${rub(c.S)}, взнос ${c.dp} %, срок ${plural(term,'год','года','лет')}, ставка ${pr(c.rate)} % — платёж ≈ ${rub(c.pay)}/мес`;$('#form').scrollIntoView({behavior:RM?'auto':'smooth'})});
+calc();
+
+/* ---------- progress strip ---------- */
+// [дата, заголовок, что сделано, этажей возведено [д1,д2,д3], фасад готов [д1,д2,д3], режим]
+const PRG=[
+ ['март 2025','Подготовка площадки','Ограждение, вынос сетей, геодезическая разбивка',[0,0,0],[0,0,0],'site'],
+ ['июнь 2025','Котлован','Котлован и фундамент общего паркинга на −1 уровне',[0,0,0],[0,0,0],'pit'],
+ ['сентябрь 2025','Дом 1: этажи 1–5','Монолитный каркас первого дома',[5,0,0],[0,0,0]],
+ ['декабрь 2025','Дом 1: каркас готов','Дом 2 — этажи 1–4, бетон зимой прогреваем',[9,4,0],[0,0,0]],
+ ['март 2026','Дом 2: этажи 5–9','Дом 3 — фундаментная плита',[9,9,0],[0,0,0]],
+ ['июнь 2026','Дом 1: фасад и окна','Дом 2 — каркас 12 этажей, дом 3 — этажи 1–5',[9,12,5],[1,0,0]],
+ ['сентябрь 2026','Дом 1: инженерные сети','Дом 3 — этажи 6–11',[9,12,11],[1,0,0]],
+ ['октябрь 2026','Дом 3: этаж 13','Дом 2 — фасад, дом 1 — отделка подъездов',[9,12,13],[1,1,0],'now'],
+ ['IV квартал 2027','План: ввод дома 1','Двор первой очереди и выход к набережной',[9,12,16],[1,1,1],'plan']
+];
+function elev(fl,fac,mode){
+ const G=126,FH=6,HX=[24,100,172],HW=[54,50,48],HF=[9,12,16];
+ let s='<svg viewBox="0 0 240 150" aria-hidden="true">';
+ s+=`<rect x="0" y="${G}" width="240" height="24" fill="rgba(15,39,66,.06)"/><line x1="0" y1="${G}" x2="240" y2="${G}" stroke="#0F2742" stroke-width="1"/>`;
+ if(mode==='site')s+=`<rect x="14" y="${G-8}" width="212" height="8" fill="none" stroke="#8A5430" stroke-dasharray="3 3"/>`;
+ if(mode==='pit')s+=`<rect x="16" y="${G}" width="208" height="14" fill="rgba(15,39,66,.16)" stroke="#0F2742" stroke-width=".8" stroke-dasharray="3 2"/>`;
+ let crane=-1;
+ HF.forEach((F,i)=>{const x=HX[i],w=HW[i],top=G-F*FH,b=fl[i];
+  s+=`<rect x="${x}" y="${top}" width="${w}" height="${F*FH}" fill="none" stroke="${mode==='plan'?'#8A5430':'rgba(15,39,66,.32)'}" stroke-width=".8" stroke-dasharray="3 2"/>`;
+  if(b){s+=`<rect x="${x}" y="${G-b*FH}" width="${w}" height="${b*FH}" fill="#0F2742"/>`;
+   if(fac[i]){for(let k=0;k<b;k++)for(let c=0;c<4;c++)s+=`<rect x="${x+5+c*(w-10)/4}" y="${G-(k+1)*FH+1.6}" width="${(w-10)/4-3}" height="2.6" fill="#E9DFCF" opacity=".85"/>`}
+   else for(let k=1;k<b;k++)s+=`<line x1="${x}" y1="${G-k*FH}" x2="${x+w}" y2="${G-k*FH}" stroke="rgba(255,255,255,.18)" stroke-width=".6"/>`;
+   if(b<F&&mode!=='plan'){s+=`<rect x="${x}" y="${G-b*FH}" width="${w}" height="${FH}" fill="#C8875A"/>`;crane=i}}
+  s+=`<text x="${x+w/2}" y="${G+14}" font-size="9" text-anchor="middle" fill="#4A5A70" font-family="Onest,sans-serif">дом ${i+1}</text>`;
+ });
+ if(crane>-1){const x=HX[crane]+HW[crane]+6,top=G-HF[crane]*FH-14;s+=`<g stroke="#8A5430" stroke-width="1.2" fill="none"><line x1="${x}" y1="${G}" x2="${x}" y2="${top}"/><line x1="${x-34}" y1="${top+3}" x2="${x+14}" y2="${top+3}"/><line x1="${x}" y1="${top}" x2="${x-26}" y2="${top+3}"/><line x1="${x-20}" y1="${top+3}" x2="${x-20}" y2="${G-fl[crane]*FH-8}" stroke-width=".7"/></g>`}
+ return s+'</svg>';
+}
+const strip=$('#strip');
+strip.innerHTML=PRG.map((p,i)=>`<div class="tile${p[5]==='now'?' now':p[5]==='plan'?' plan':''}"><div class="n">${String(i+1).padStart(2,'0')}${p[5]==='now'?'<em>сейчас</em>':p[5]==='plan'?'<em>план</em>':''}</div><div class="el">${elev(p[3],p[4],p[5])}</div><b>${p[1]}</b><span>${p[0]} — ${p[2]}</span></div>`).join('');
+requestAnimationFrame(()=>{const now=$('.tile.now',strip);strip.scrollLeft=now.getBoundingClientRect().left-strip.getBoundingClientRect().left+strip.scrollLeft-parseFloat(getComputedStyle(strip).paddingLeft)});
+
+/* ---------- amenities ---------- */
+const I='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+const AM=[
+ ['Закрытый двор без машин','Въезд только в паркинг, по двору — пешком и на велосипеде. Калитки с домофоном и видеонаблюдением.',I+'<path d="M4 16v-4l2-5h12l2 5v4M4 16h16M7 16a2 2 0 1 0 0 .01M17 16a2 2 0 1 0 0 .01M3 3l18 18"/></svg>'],
+ ['Площадки по возрастам','Три зоны для детей разного возраста с мягким покрытием, навесами и местами для родителей.',I+'<path d="M12 3v3M8 21l4-9 4 9M5 12h14M7 12a5 5 0 0 1 10 0"/><circle cx="12" cy="8" r="1"/></svg>'],
+ ['Спорт и воркаут','Уличные тренажёры, турники и беговая дорожка по периметру квартала.',I+'<path d="M3 10v4M6 8v8M18 8v8M21 10v4M6 12h12"/></svg>'],
+ ['Взрослые деревья','Липы, клёны и сосны крупномерами — двор зелёный с первого сезона, а не через десять лет.',I+'<path d="M12 22v-6M12 16c-4 0-6.5-2.3-6.5-5.5 0-2 1-3.3 2.2-4.2C7.8 3.3 9.8 2 12 2s4.2 1.3 4.3 4.3c1.2.9 2.2 2.2 2.2 4.2 0 3.2-2.5 5.5-6.5 5.5z"/></svg>'],
+ ['Тёплый паркинг и кладовые','Отапливаемый паркинг на −1 уровне, кладовые для лыж, шин и велосипедов и лифт прямо в подъезд.',I+'<path d="M3 9l9-5 9 5v11H3zM7 20v-7h10v7M7 16.5h10"/></svg>'],
+ ['Выход к набережной Камы','Пешеходная и велодорожка от ворот двора до набережной — 300 метров и один пешеходный переход.',I+'<path d="M3 17c3-2 5-2 8 0s5 2 8 0M3 21c3-2 5-2 8 0s5 2 8 0M7 13V7l5-4 5 4v6"/></svg>']
+];
+$('#am').innerHTML=AM.map((a,i)=>`<div class="am-i rv" style="--d:${(i*.06).toFixed(2)}s">${a[2]}<h3>${a[0]}</h3><p>${a[1]}</p></div>`).join('');
+
+/* ---------- location ---------- */
+const poi=$('#poi'),map=$('#map');
+function setPoi(p){
+ const on=poi.querySelector(`[data-p="${p}"]`).getAttribute('aria-pressed')!=='true';
+ $$('button',poi).forEach(b=>b.setAttribute('aria-pressed',String(on&&b.dataset.p===String(p))));
+ $$('.pin',map).forEach(g=>g.classList.toggle('on',on&&g.dataset.p===String(p)));
+ $$('.ln',map).forEach(l=>l.classList.toggle('on',on&&l.dataset.p===String(p)));
+}
+poi.addEventListener('click',e=>{const b=e.target.closest('button');if(b)setPoi(b.dataset.p)});
+map.addEventListener('click',e=>{const g=e.target.closest('.pin');if(g)setPoi(g.dataset.p)});
+
+/* ---------- faq ---------- */
+$('#faqList').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const open=b.getAttribute('aria-expanded')==='true';$$('.q button',$('#faqList')).forEach(x=>{x.setAttribute('aria-expanded','false');$('#'+x.getAttribute('aria-controls')).hidden=true});if(!open){b.setAttribute('aria-expanded','true');$('#'+b.getAttribute('aria-controls')).hidden=false}});
+
+/* ---------- lightbox ---------- */
+const lb=$('#lb'),lbImg=$('#lbImg'),gis=$$('.gi');let li=0,lbFocus=null;
+function showLb(i){li=(i+gis.length)%gis.length;const im=$('img',gis[li]);lbImg.src=im.src.replace(/w=\d+&h=\d+/,'w=1400&h=1000');lbImg.alt=im.alt;$('#lbCap').textContent=im.alt}
+function openLb(i){lbFocus=document.activeElement;showLb(i);lb.hidden=false;document.body.style.overflow='hidden';requestAnimationFrame(()=>{lb.classList.add('vis');$('.x',lb).focus()})}
+function closeLb(){lb.classList.remove('vis');document.body.style.overflow='';setTimeout(()=>{lb.hidden=true;if(lbFocus)lbFocus.focus()},RM?0:260)}
+gis.forEach(g=>g.addEventListener('click',()=>openLb(+g.dataset.i)));
+lb.addEventListener('click',e=>{if(e.target.closest('[data-close]')||e.target===lb)closeLb()});
+$('#lbPrev').addEventListener('click',()=>showLb(li-1));$('#lbNext').addEventListener('click',()=>showLb(li+1));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!lb.hidden)closeLb();if(!modal.hidden)closeModal();if(burger.getAttribute('aria-expanded')==='true')toggleMenu(false)}if(!lb.hidden){if(e.key==='ArrowLeft')showLb(li-1);if(e.key==='ArrowRight')showLb(li+1)}});
+
+/* ---------- form ---------- */
+const fPhone=$('#fPhone');
+fPhone.addEventListener('input',e=>{let d=e.target.value.replace(/\D/g,'');if(d.startsWith('8'))d='7'+d.slice(1);if(!d.startsWith('7'))d='7'+d;d=d.slice(0,11);let r='+7';if(d.length>1)r+=' ('+d.slice(1,4);if(d.length>=4)r+=') '+d.slice(4,7);if(d.length>=7)r+='-'+d.slice(7,9);if(d.length>=9)r+='-'+d.slice(9,11);e.target.value=r});
+fPhone.addEventListener('focus',()=>{if(!fPhone.value)fPhone.value='+7 '});
+fPhone.addEventListener('blur',()=>{if(fPhone.value.replace(/\D/g,'').length<2)fPhone.value=''});
+$('#lead').addEventListener('submit',e=>{
+ e.preventDefault();const err=$('#fErr');err.textContent='';
+ const name=$('#fName').value.trim(),digits=fPhone.value.replace(/\D/g,'');
+ if(name.length<2){err.textContent='Укажите имя.';$('#fName').focus();return}
+ if(digits.length<11){err.textContent='Введите телефон полностью: +7 (XXX) XXX-XX-XX.';fPhone.focus();return}
+ if(!$('#fAgree').checked){err.textContent='Нужно согласие на обработку данных.';$('#fAgree').focus();return}
+ const apt=$('#fApt').value.trim();
+ $('#okText').textContent=`${name}, спасибо! Менеджер перезвонит на ${fPhone.value} в рабочее время${apt?' по квартире '+apt:''} и согласует: ${$('#fSrv').value.toLowerCase()}.`;
+ $('#ok').classList.add('show');$('#ok').focus();
+});
+
+/* ---------- office status, Perm time UTC+5 ---------- */
+(()=>{const d=new Date(),h=(d.getUTCHours()+5)%24,m=String(d.getUTCMinutes()).padStart(2,'0');
+ $('#live').textContent=h>=9&&h<21?`Офис продаж открыт до 21:00 — в Перми сейчас ${h}:${m}`:`Офис продаж откроется в 9:00 по Перми — оставьте заявку, перезвоним утром`})();
+
+/* ---------- header, menu, fab ---------- */
+const hdr=$('#hdr'),burger=$('#burger'),mnav=$('#mnav');
+function toggleMenu(open){burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');if(open){mnav.hidden=false;document.body.style.overflow='hidden';requestAnimationFrame(()=>mnav.classList.add('vis'))}else{mnav.classList.remove('vis');document.body.style.overflow='';setTimeout(()=>{mnav.hidden=true},RM?0:300)}}
+burger.addEventListener('click',()=>toggleMenu(burger.getAttribute('aria-expanded')!=='true'));
+mnav.addEventListener('click',e=>{if(e.target.closest('a'))toggleMenu(false)});
+const heroImg=$('#heroImg');let ticking=false;
+function onScroll(){const y=scrollY;hdr.classList.toggle('sc',y>24);if(!RM&&innerWidth>960&&y<innerHeight)heroImg.style.transform=`translateY(${(y*.1).toFixed(1)}px)`;ticking=false}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
+
+/* ---------- marquee ---------- */
+const mq=$('#mq');const sep='<svg viewBox="0 0 8 8" aria-hidden="true"><path d="M4 0l4 4-4 4-4-4z" fill="currentColor"/></svg>';
+mq.innerHTML=mq.innerHTML.replace(/<\/span>/g,sep+'</span>');mq.innerHTML+=mq.innerHTML;
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('.rv').forEach(el=>{if(!el.style.getPropertyValue('--d')){const sib=[...el.parentElement.children].filter(x=>x.classList.contains('rv'));const i=sib.indexOf(el);if(i>0)el.style.setProperty('--d',Math.min(i*.08,.4)+'s')}io.observe(el)});
+io.observe($('#stepsList'));
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3de65751054e4e4fa4a90bed90d3aebe","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

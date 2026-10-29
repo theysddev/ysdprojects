@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аурум — ювелирная мастерская: кольца на заказ и конструктор кольца</title>
+<meta name="description" content="Ювелирная мастерская «Аурум»: соберите кольцо в конструкторе — металл, камень, огранка, размер — и узнайте цену. Помощник по размеру и примерка в мастерской.">
+<meta property="og:title" content="Аурум — ювелирная мастерская">
+<meta property="og:description" content="Конструктор кольца с живым превью, подсказка размера и запись на примерку.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#080706">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080706'/%3E%3Cellipse cx='32' cy='38' rx='13' ry='16' fill='none' stroke='%23CDA75E' stroke-width='3'/%3E%3Cpath d='M26 18l6-7 6 7-6 6z' fill='%23E9D3A1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Commissioner:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#080706;
+  --coal:#11100D;
+  --coal-2:#1A1814;
+  --gold:#CDA75E;
+  --gold-2:#E9D3A1;
+  --gold-d:#8F7337;
+  --text:#EFE9DD;
+  --muted:#A39C8E;
+  --line:rgba(205,167,94,.22);
+  --line-2:rgba(239,233,221,.1);
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --serif:"Spectral",Georgia,serif;
+  --sans:"Commissioner","Helvetica Neue",sans-serif;
+  --wrap:1280px;
+  --gut:clamp(18px,4vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--text);font-family:var(--sans);font-weight:300;font-size:16.5px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto;color:transparent;font-size:0}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:200;margin:0;line-height:1.05;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:1.5px solid var(--gold-2);outline-offset:3px}
+section[id]{scroll-margin-top:72px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--gold);color:var(--black);padding:10px 16px;z-index:100}
+.skip:focus{top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;border:1px solid var(--gold);background:var(--gold);color:#16120A;font-weight:400;font-size:15px;letter-spacing:.04em;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;border-radius:0;transition:transform .16s var(--ease),background-color .25s ease,color .25s ease,border-color .25s ease}
+.btn:active{transform:scale(.97)}
+.btn--ghost{background:transparent;color:var(--gold-2);border-color:var(--line)}
+.btn svg{width:18px;height:18px}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--gold-2);border-color:var(--gold-2)}
+  .btn--ghost:hover{background:transparent;border-color:var(--gold);color:var(--gold-2)}
+}
+
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;transition:background-color .35s ease,border-color .35s ease;border-bottom:1px solid transparent}
+.hdr.sc{background:rgba(8,7,6,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom-color:var(--line-2)}
+.hdr__in{display:flex;align-items:center;gap:36px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-height:44px}
+.logo svg{width:26px;height:32px}
+.logo b{font-family:var(--serif);font-weight:300;font-size:22px;letter-spacing:.32em;padding-left:.1em}
+.nav{display:flex;gap:30px}
+.nav a{text-decoration:none;font-size:14.5px;color:var(--muted);padding:12px 0;letter-spacing:.02em;transition:color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--gold-2)}}
+.hdr .btn{min-height:44px;padding:0 20px;font-size:14px}
+@media (max-width:980px){.nav{display:none}}
+@media (max-width:480px){.hdr .btn{padding:0 14px;font-size:13.5px}.logo b{font-size:19px;letter-spacing:.24em}}
+
+/* hero */
+.hero{position:relative;min-height:min(100vh,940px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;overflow:hidden}
+.hero__txt{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gut) clamp(48px,7vw,96px) max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut)))}
+.hero h1{font-size:clamp(44px,5.4vw,92px);font-weight:200;line-height:.98;letter-spacing:-.02em;max-width:100%}
+.hero h1 i{font-style:italic;color:var(--gold-2)}
+.hero__rule{width:120px;height:1px;background:var(--gold);margin:34px 0 26px;transform-origin:left}
+.hero__lead{max-width:28em;color:var(--muted);font-size:17px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero__img{position:relative;background:var(--coal-2)}
+.hero__img img{width:100%;height:100%;object-fit:cover}
+.hero__img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--black) 0%,rgba(8,7,6,.55) 22%,rgba(8,7,6,0) 55%),linear-gradient(180deg,rgba(8,7,6,.75),rgba(8,7,6,0) 22%),linear-gradient(0deg,rgba(8,7,6,.6),rgba(8,7,6,0) 40%)}
+.hero__cap{position:absolute;right:var(--gut);bottom:28px;z-index:2;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold-2)}
+.js .hero h1,.js .hero__lead,.js .hero__cta{opacity:0;transform:translateY(18px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.js .hero__rule{transform:scaleX(0);transition:transform 1.4s var(--ease) .35s}
+.js .hero__img img{opacity:0;transform:scale(1.06);transition:opacity 1.6s var(--ease),transform 2.4s var(--ease)}
+.js .hero.ready h1,.js .hero.ready .hero__lead,.js .hero.ready .hero__cta{opacity:1;transform:none}
+.js .hero.ready .hero__lead{transition-delay:.2s}
+.js .hero.ready .hero__cta{transition-delay:.32s}
+.js .hero.ready .hero__rule{transform:none}
+.js .hero.ready .hero__img img{opacity:1;transform:none}
+
+/* sections */
+.sec{padding:clamp(80px,10vw,150px) 0}
+.sec--coal{background:var(--coal)}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:20px 64px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.shead h2{font-size:clamp(40px,5vw,76px)}
+.shead h2 i{font-style:italic;color:var(--gold-2)}
+.shead p{color:var(--muted);max-width:30em}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* collection */
+.coll{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;gap:clamp(12px,1.6vw,22px);align-items:end}
+.it{margin:0}
+.it__ph{overflow:hidden;background:var(--coal-2);position:relative}
+.it__ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.it:nth-child(1) .it__ph{aspect-ratio:3/4}
+.it:nth-child(2) .it__ph{aspect-ratio:3/4.6}
+.it:nth-child(3) .it__ph{aspect-ratio:3/3.6}
+.it:nth-child(4) .it__ph{aspect-ratio:3/4.2}
+.it figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:14px;border-top:1px solid var(--line);margin-top:14px}
+.it figcaption b{font-family:var(--serif);font-weight:300;font-size:21px;line-height:1.2}
+.it figcaption span{font-size:14px;color:var(--muted);white-space:nowrap}
+@media (hover:hover) and (pointer:fine){.it:hover .it__ph img{transform:scale(1.04)}}
+
+/* ===== configurator ===== */
+.cfg{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,72px);align-items:start}
+.stage{position:sticky;top:96px;background:radial-gradient(120% 90% at 50% 30%,#1E1B16 0%,#0E0D0B 60%,var(--black) 100%);border:1px solid var(--line-2);aspect-ratio:1/1.02;display:flex;flex-direction:column}
+.stage>svg{width:100%;flex:1;min-height:0;display:block}
+.stage__bar{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:0 clamp(18px,2.4vw,30px) clamp(18px,2.4vw,26px)}
+.stage__name{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(18px,1.7vw,22px);color:var(--gold-2);line-height:1.3}
+.stage__name small{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted);margin-top:4px}
+.inset{flex:none;width:clamp(86px,9vw,112px);text-align:center;font-size:12px;color:var(--muted)}
+.inset svg{width:100%;aspect-ratio:1;border:1px solid var(--line-2);border-radius:50%;background:#0C0B09}
+#ringG,#stoneG,#insetG{transition:opacity .45s var(--ease)}
+#stoneS{transition:transform .7s var(--ease)}
+.fade{opacity:0}
+.sparkle{animation:spk 3.6s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes spk{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.95;transform:scale(1)}}
+
+.ctl{display:grid;gap:34px}
+.grp{border:0;margin:0;padding:0;min-width:0}
+.grp legend{display:flex;justify-content:space-between;width:100%;gap:12px;padding:0;margin-bottom:14px;font-size:14px;color:var(--muted);letter-spacing:.02em}
+.grp legend b{font-family:var(--serif);font-weight:300;font-style:italic;font-size:18px;color:var(--gold-2);letter-spacing:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.ch{position:relative;cursor:pointer}
+.ch input{position:absolute;opacity:0;width:1px;height:1px}
+.ch span{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border:1px solid var(--line-2);font-size:14.5px;transition:border-color .2s ease,color .2s ease,background-color .2s ease}
+.ch i{flex:none;width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.ch svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.2}
+.ch input:checked+span{border-color:var(--gold);color:var(--gold-2);background:rgba(205,167,94,.07)}
+.ch input:focus-visible+span{outline:1.5px solid var(--gold-2);outline-offset:3px}
+.ch input:disabled+span{opacity:.35;cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){.ch:hover input:not(:checked):not(:disabled)+span{border-color:rgba(205,167,94,.5)}}
+.selrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sel{display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+.sel select,.sel input{min-height:50px;padding:0 14px;border:1px solid var(--line-2);background:var(--coal);color:var(--text);font-size:16px;border-radius:0;appearance:none;-webkit-appearance:none}
+.sel select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CDA75E' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:40px}
+.sel select:focus,.sel input:focus{outline:none;border-color:var(--gold)}
+.sel small{font-size:12.5px}
+.sel button{align-self:flex-start;min-height:44px;padding:0;border:0;background:none;color:var(--gold-2);font-size:13.5px;cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--gold-d)}
+.price{border-top:1px solid var(--line);padding-top:26px}
+.price__total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.price__total span{font-size:14px;color:var(--muted)}
+.price__total output{font-family:var(--serif);font-weight:200;font-size:clamp(40px,4.2vw,58px);line-height:1;color:var(--gold-2);white-space:nowrap;font-variant-numeric:lining-nums}
+.lines{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:6px;font-size:14.5px}
+.lines li{display:flex;justify-content:space-between;gap:16px;color:var(--muted)}
+.lines li b{font-weight:400;color:var(--text);white-space:nowrap}
+.price__meta{margin-top:16px;font-size:14px;color:var(--muted)}
+.price__meta b{color:var(--text);font-weight:400}
+.price .btn{width:100%;margin-top:22px}
+
+/* size helper */
+.sz{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,72px);align-items:start}
+.sz__intro p{color:var(--muted);margin-top:18px;max-width:28em}
+.sz__intro ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;font-size:15px;color:var(--muted)}
+.sz__intro li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+.sz__intro li svg{width:18px;height:18px;stroke:var(--gold);margin-top:4px}
+.tabs{display:flex;border-bottom:1px solid var(--line-2);margin-bottom:28px;overflow-x:auto;scrollbar-width:none}
+.tab{flex:none;min-height:52px;padding:0 20px;border:0;background:none;cursor:pointer;font-size:15px;color:var(--muted);position:relative}
+.tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .35s var(--ease)}
+.tab[aria-selected="true"]{color:var(--gold-2)}
+.tab[aria-selected="true"]::after{transform:none}
+.tp[hidden]{display:none}
+.tp{animation:tin .45s var(--ease)}
+@keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tp>p{color:var(--muted);font-size:15.5px;max-width:34em}
+.meas{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-top:20px}
+.meas .sel{flex:1;min-width:180px}
+.res{margin-top:22px;padding:22px 24px;border:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.res__v{font-family:var(--serif);font-weight:200;font-size:44px;line-height:1;color:var(--gold-2)}
+.res__v small{display:block;font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:8px;font-weight:300}
+.res .btn{min-height:46px;padding:0 20px;font-size:14px}
+.res .btn:disabled{opacity:.4;cursor:not-allowed}
+.screen{margin-top:20px;display:grid;gap:18px}
+.screen__area{position:relative;height:220px;border:1px dashed var(--line);display:grid;place-items:center;overflow:hidden;background:#0C0B09}
+.card{border:1.5px solid var(--gold);border-radius:10px;aspect-ratio:85.6/53.98;display:grid;place-items:center;font-size:12.5px;color:var(--gold-2);max-width:96%}
+.circ{border:1.5px solid var(--gold);border-radius:50%;aspect-ratio:1;position:relative}
+.circ::after{content:"";position:absolute;inset:50% auto auto 50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--gold)}
+.rng{display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted)}
+.rng[hidden]{display:none}
+.rng input{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0;cursor:pointer}
+.rng input::-webkit-slider-runnable-track{height:1px;background:var(--line)}
+.rng input::-moz-range-track{height:1px;background:var(--line)}
+.rng input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);margin-top:-11px;border:0}
+.rng input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:0}
+.steps2{display:flex;gap:8px;font-size:13.5px;color:var(--muted)}
+.steps2 span[aria-current="step"]{color:var(--gold-2)}
+
+/* process */
+.proc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line)}
+.proc li{padding:28px 22px 0 0;position:relative}
+.proc li+li{padding-left:22px;border-left:1px solid var(--line-2)}
+.proc__n{font-family:var(--serif);font-style:italic;font-weight:200;font-size:44px;line-height:1;color:var(--gold)}
+.proc h3{font-family:var(--serif);font-weight:300;font-size:23px;margin:18px 0 10px;line-height:1.2}
+.proc p{font-size:14.5px;color:var(--muted)}
+.proc__d{display:block;margin-top:14px;font-size:13px;color:var(--gold-2)}
+
+/* promise */
+.prom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center}
+.prom__ph{aspect-ratio:4/5;overflow:hidden;background:var(--coal-2)}
+.prom__ph img{width:100%;height:100%;object-fit:cover}
+.prom blockquote{margin:0;font-family:var(--serif);font-weight:200;font-size:clamp(28px,3vw,44px);line-height:1.18}
+.prom blockquote i{color:var(--gold-2)}
+.prom dl{margin:40px 0 0;display:grid;gap:0}
+.prom dl div{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px;padding:16px 0;border-top:1px solid var(--line-2);font-size:15px}
+.prom dt{color:var(--gold-2);font-family:var(--serif);font-size:18px;font-weight:300}
+.prom dd{margin:0;color:var(--muted)}
+
+/* booking */
+.book{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,80px)}
+.book h2{font-size:clamp(40px,5vw,72px)}
+.book__lead{margin-top:20px;color:var(--muted);max-width:28em}
+.cont{margin-top:36px;display:grid;gap:10px;font-size:15.5px}
+.cont a,.cont span{display:flex;align-items:center;gap:14px;min-height:44px;text-decoration:none}
+.cont svg{width:18px;height:18px;stroke:var(--gold);flex:none}
+.bf{border:1px solid var(--line);padding:clamp(22px,3vw,40px);background:var(--coal)}
+.bf .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bf .sel{margin-bottom:16px}
+.bf .sel .err{font-size:12.5px;color:#F0A58C}
+.bf .sel textarea{min-height:96px;padding:12px 14px;border:1px solid var(--line-2);background:var(--black);color:var(--text);font-size:16px;resize:vertical;border-radius:0}
+.bf .sel textarea:focus{outline:none;border-color:var(--gold)}
+.bf .sel input{background:var(--black)}
+.bf .sel select{background-color:var(--black)}
+.cfgchip{display:none;margin-bottom:18px;padding:14px 16px;border-left:1px solid var(--gold);background:rgba(205,167,94,.06);font-size:14.5px;line-height:1.55}
+.cfgchip.on{display:block}
+.cfgchip b{font-weight:400;color:var(--gold-2)}
+.bf .btn{width:100%}
+.bf__note{margin-top:12px;font-size:12.5px;color:var(--muted)}
+.done{display:none;text-align:center;padding:30px 0}
+.bf.sent form{display:none}
+.bf.sent .done{display:block;animation:tin .6s var(--ease)}
+.done svg{width:64px;height:64px;margin:0 auto 18px;stroke:var(--gold)}
+.done h3{font-size:clamp(34px,3.6vw,48px)}
+.done p{margin-top:14px;color:var(--muted)}
+
+.ftr{border-top:1px solid var(--line-2);padding:48px 0 40px;font-size:14px;color:var(--muted)}
+.ftr__top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;padding-bottom:26px}
+.ftr .logo b{color:var(--text)}
+.ftr nav{display:flex;flex-wrap:wrap;gap:4px 26px}
+.ftr nav a{text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+.ftr__bot{border-top:1px solid var(--line-2);padding-top:22px;display:grid;gap:4px}
+.ftr__bot a{color:var(--gold-2)}
+
+@media (max-width:1080px){
+  .proc{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:36px}
+  .proc li:nth-child(4){border-left:0;padding-left:0}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .hero h1{width:auto;max-width:none}
+  .hero__img{order:-1;height:min(64vh,560px)}
+  .hero__img::after{background:linear-gradient(0deg,var(--black) 0%,rgba(8,7,6,0) 55%)}
+  .hero__txt{padding:0 var(--gut) 64px;margin-top:-120px}
+  .hero__cap{display:none}
+  .shead{grid-template-columns:1fr}
+  .coll{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cfg{grid-template-columns:1fr}
+  .stage{position:relative;top:0;aspect-ratio:auto}
+  .stage>svg{height:min(78vw,460px)}
+  .sz{grid-template-columns:1fr}
+  .prom{grid-template-columns:1fr}
+  .prom__ph{max-width:460px}
+  .book{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .hdr__in{height:64px}
+  .proc{grid-template-columns:1fr;row-gap:0}
+  .proc li,.proc li+li{padding:24px 0;border-left:0;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:56px 1fr;gap:0 14px}
+  .proc__n{grid-row:span 3;font-size:36px}
+  .proc h3{margin:0 0 6px}
+  .selrow,.bf .row{grid-template-columns:1fr;gap:0}
+  .selrow .sel{margin-bottom:14px}
+  .ch span{padding:0 14px;font-size:14px}
+  .prom dl div{grid-template-columns:1fr;gap:4px}
+  .res__v{font-size:38px}
+  .it figcaption{flex-direction:column;gap:2px}
+  .it figcaption b{font-size:18px}
+  .tab{padding:0 14px;font-size:14.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv,.js .hero h1,.js .hero__lead,.js .hero__cta,.js .hero__img img{opacity:1;transform:none}
+  .js .hero__rule{transform:none}
+  .sparkle{animation:none;opacity:.6}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#top" aria-label="Аурум — на главную">
+      <svg viewBox="0 0 26 32" aria-hidden="true" fill="none"><ellipse cx="13" cy="20" rx="9" ry="10.5" stroke="#CDA75E" stroke-width="1.3"/><path d="M9 6.5L13 2l4 4.5L13 10z" stroke="#E9D3A1" stroke-width="1.1"/></svg>
+      <b>АУРУМ</b>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#collection">Изделия</a><a href="#configurator">Конструктор</a><a href="#size">Размер</a><a href="#process">Как мы&nbsp;делаем</a><a href="#visit">Примерка</a>
+    </nav>
+    <a class="btn" href="#visit">Записаться</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="hero__txt">
+    <h1 id="hero-h">Кольцо, сделанное для одной <i>руки</i></h1>
+    <div class="hero__rule" aria-hidden="true"></div>
+    <p class="hero__lead">Ювелирная мастерская в&nbsp;Казани. Делаем помолвочные и&nbsp;обручальные кольца по&nbsp;эскизу: от&nbsp;выбора камня до&nbsp;последней полировки&nbsp;— в&nbsp;одних руках.</p>
+    <div class="hero__cta">
+      <a class="btn" href="#configurator">Собрать кольцо</a>
+      <a class="btn btn--ghost" href="#size">Узнать размер</a>
+    </div>
+  </div>
+  <div class="hero__img">
+    <img src="https://images.unsplash.com/photo-1778000000743-87e855360c51?auto=format&fit=crop&w=1100&h=1300&q=72" width="1100" height="1300" alt="Три тонких золотых кольца крупным планом" fetchpriority="high">
+    <p class="hero__cap">Кольца из&nbsp;жёлтого золота 585</p>
+  </div>
+</section>
+
+<section class="sec" id="collection" aria-labelledby="coll-h">
+  <div class="wrap">
+    <div class="shead rv">
+      <h2 id="coll-h">Изделия <i>мастерской</i></h2>
+      <p>Помимо колец делаем серьги, браслеты и&nbsp;цепи. Каждая модель повторяется под заказ в&nbsp;вашем металле и&nbsp;размере.</p>
+    </div>
+    <div class="coll">
+      <figure class="it rv"><div class="it__ph"><img src="https://images.unsplash.com/photo-1783347337364-4f4f5035d9d9?auto=format&fit=crop&w=720&h=960&q=72" width="720" height="960" alt="Руки с несколькими кольцами" loading="lazy"></div><figcaption><b>Наборные кольца</b><span>от&nbsp;24&nbsp;000&nbsp;₽</span></figcaption></figure>
+      <figure class="it rv"><div class="it__ph"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=560&h=860&q=72" width="560" height="860" alt="Золотые серьги-кольца с витым узором" loading="lazy"></div><figcaption><b>Серьги «Виток»</b><span>от&nbsp;38&nbsp;000&nbsp;₽</span></figcaption></figure>
+      <figure class="it rv"><div class="it__ph"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=560&h=670&q=72" width="560" height="670" alt="Золотой браслет-цепь" loading="lazy"></div><figcaption><b>Браслет-цепь</b><span>от&nbsp;46&nbsp;000&nbsp;₽</span></figcaption></figure>
+      <figure class="it rv"><div class="it__ph"><img src="https://images.unsplash.com/photo-1585960622850-ed33c41d6418?auto=format&fit=crop&w=720&h=1010&q=72&crop=entropy" width="720" height="1010" alt="Тонкая золотая цепочка с подвеской на шее" loading="lazy"></div><figcaption><b>Подвески</b><span>от&nbsp;19&nbsp;000&nbsp;₽</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Configurator ===== -->
+<section class="sec sec--coal" id="configurator" aria-labelledby="cfg-h">
+  <div class="wrap">
+    <div class="shead rv">
+      <h2 id="cfg-h">Соберите <i>своё</i> кольцо</h2>
+      <p>Выберите металл, камень и&nbsp;огранку&nbsp;— превью и&nbsp;цена обновятся сразу. Итог можно отправить мастеру, он&nbsp;подготовит эскиз.</p>
+    </div>
+    <div class="cfg">
+      <div class="stage rv" aria-label="Превью кольца">
+        <svg id="ring" viewBox="0 0 400 400" role="img" aria-labelledby="ringDesc">
+          <title id="ringDesc">Превью кольца</title>
+          <defs>
+            <linearGradient id="mt" x1="0" y1="0" x2="1" y2="1">
+              <stop id="m1" offset="0"/><stop id="m2" offset=".42"/><stop id="m3" offset=".7"/><stop id="m4" offset="1"/>
+            </linearGradient>
+            <linearGradient id="mtIn" x1="1" y1="0" x2="0" y2="1">
+              <stop id="n1" offset="0"/><stop id="n2" offset="1"/>
+            </linearGradient>
+            <linearGradient id="st" x1="0" y1="0" x2="1" y2="1">
+              <stop id="s1" offset="0"/><stop id="s2" offset=".5"/><stop id="s3" offset="1"/>
+            </linearGradient>
+            <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E9D3A1" stop-opacity=".16"/><stop offset="1" stop-color="#E9D3A1" stop-opacity="0"/></radialGradient>
+            <path id="engr" d=""/>
+          </defs>
+          <ellipse cx="200" cy="360" rx="120" ry="12" fill="#000" opacity=".55"/>
+          <circle cx="200" cy="215" r="170" fill="url(#glow)"/>
+          <g id="ringG"></g>
+          <g id="stoneG"><g id="stoneS"></g></g>
+        </svg>
+        <div class="stage__bar">
+          <p class="stage__name" id="stName" aria-live="polite">—</p>
+          <div class="inset" aria-hidden="true"><svg viewBox="0 0 100 100"><g id="insetG"></g></svg>вид сверху</div>
+        </div>
+      </div>
+
+      <form class="ctl rv" id="cfgForm" onsubmit="return false" aria-label="Параметры кольца">
+        <fieldset class="grp"><legend>Металл <b id="lMetal">—</b></legend>
+          <div class="chips">
+            <label class="ch"><input type="radio" name="metal" value="yg" checked><span><i style="background:linear-gradient(135deg,#9A7631,#F3D78E,#B88A3A)"></i>Жёлтое золото</span></label>
+            <label class="ch"><input type="radio" name="metal" value="wg"><span><i style="background:linear-gradient(135deg,#8E9196,#F2F2F0,#A9ACB1)"></i>Белое золото</span></label>
+            <label class="ch"><input type="radio" name="metal" value="rg"><span><i style="background:linear-gradient(135deg,#8C5544,#F2C2A8,#B87560)"></i>Розовое золото</span></label>
+            <label class="ch"><input type="radio" name="metal" value="pt"><span><i style="background:linear-gradient(135deg,#6E7378,#E4E6E8,#9A9EA3)"></i>Платина</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="grp"><legend>Камень <b id="lStone">—</b></legend>
+          <div class="chips">
+            <label class="ch"><input type="radio" name="stone" value="dia" checked><span><i style="background:radial-gradient(circle at 35% 30%,#fff,#CFE3F2 45%,#8FA9BD)"></i>Бриллиант</span></label>
+            <label class="ch"><input type="radio" name="stone" value="sap"><span><i style="background:radial-gradient(circle at 35% 30%,#7C9BEA,#1F3E9A 55%,#0F1F56)"></i>Сапфир</span></label>
+            <label class="ch"><input type="radio" name="stone" value="emr"><span><i style="background:radial-gradient(circle at 35% 30%,#6FDDB2,#11795A 55%,#073D2D)"></i>Изумруд</span></label>
+            <label class="ch"><input type="radio" name="stone" value="none"><span><i style="background:transparent;box-shadow:inset 0 0 0 1px #A39C8E"></i>Без камня</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="grp" id="cutGrp"><legend>Огранка <b id="lCut">—</b></legend>
+          <div class="chips">
+            <label class="ch"><input type="radio" name="cut" value="round" checked><span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/></svg>Круглая</span></label>
+            <label class="ch"><input type="radio" name="cut" value="oval"><span><svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="10" rx="5.2" ry="7.8"/></svg>Овал</span></label>
+            <label class="ch"><input type="radio" name="cut" value="princess"><span><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="3.5" width="13" height="13"/></svg>Принцесса</span></label>
+            <label class="ch"><input type="radio" name="cut" value="emerald"><span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2.5h6l2.5 2.5v10L13 17.5H7L4.5 15V5z"/></svg>Изумрудная</span></label>
+            <label class="ch"><input type="radio" name="cut" value="pear"><span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5c3 4 5.5 6.5 5.5 9.5a5.5 5.5 0 0 1-11 0c0-3 2.5-5.5 5.5-9.5z"/></svg>Груша</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="grp" id="ctGrp"><legend>Вес камня <b id="lCt">—</b></legend>
+          <div class="chips">
+            <label class="ch"><input type="radio" name="ct" value="0.3"><span>0,3 карата</span></label>
+            <label class="ch"><input type="radio" name="ct" value="0.5" checked><span>0,5 карата</span></label>
+            <label class="ch"><input type="radio" name="ct" value="0.75"><span>0,75 карата</span></label>
+            <label class="ch"><input type="radio" name="ct" value="1"><span>1 карат</span></label>
+          </div>
+        </fieldset>
+        <div class="selrow">
+          <label class="sel">Ширина шинки
+            <select id="band"><option value="1.8">Тонкая, 1,8 мм</option><option value="2.5" selected>Классическая, 2,5 мм</option><option value="3.5">Широкая, 3,5 мм</option></select>
+          </label>
+          <div class="sel"><label for="ringSize">Размер</label>
+            <select id="ringSize"></select>
+            <button type="button" id="toSize">Не знаю размер</button>
+          </div>
+        </div>
+        <label class="sel">Гравировка внутри, до&nbsp;18 символов
+          <input id="engrave" maxlength="18" placeholder="Например, 14.02.2027" autocomplete="off">
+          <small>+2&nbsp;500&nbsp;₽, лазерная гравировка курсивом</small>
+        </label>
+
+        <div class="price" aria-live="polite">
+          <div class="price__total"><span>Ориентировочная стоимость</span><output id="total">—</output></div>
+          <ul class="lines" id="lines"></ul>
+          <p class="price__meta" id="meta"></p>
+          <a class="btn" href="#visit" id="sendCfg">Отправить мастеру и&nbsp;записаться на&nbsp;примерку</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Size helper ===== -->
+<section class="sec" id="size" aria-labelledby="size-h">
+  <div class="wrap sz">
+    <div class="sz__intro rv">
+      <h2 id="size-h" style="font-size:clamp(40px,5vw,72px)">Размер <i style="color:var(--gold-2)">без</i> примерочных колец</h2>
+      <p>Российский размер кольца&nbsp;— это внутренний диаметр в&nbsp;миллиметрах. Его можно узнать тремя способами, даже не&nbsp;выходя из&nbsp;дома.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Измеряйте вечером: к&nbsp;концу дня пальцы немного полнее.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>Для шинки шире 3&nbsp;мм берите на&nbsp;полразмера больше.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="M6 18L18 6M8 6h10v10"/></svg>Если сомневаетесь между двумя&nbsp;— выбирайте больший. Уменьшить кольцо проще.</li>
+      </ul>
+    </div>
+    <div class="rv">
+      <div class="tabs" role="tablist" aria-label="Способ измерения">
+        <button class="tab" role="tab" type="button" id="tb1" aria-selected="true" aria-controls="p1">По&nbsp;нитке</button>
+        <button class="tab" role="tab" type="button" id="tb2" aria-selected="false" aria-controls="p2" tabindex="-1">По&nbsp;своему кольцу</button>
+        <button class="tab" role="tab" type="button" id="tb3" aria-selected="false" aria-controls="p3" tabindex="-1">На&nbsp;экране</button>
+      </div>
+      <div class="tp" id="p1" role="tabpanel" aria-labelledby="tb1">
+        <p>Оберните нить вокруг основания пальца, отметьте место пересечения и&nbsp;измерьте длину линейкой.</p>
+        <div class="meas"><label class="sel">Длина нити, мм<input id="thread" type="number" inputmode="decimal" min="40" max="80" step="0.5" placeholder="например, 53"></label></div>
+      </div>
+      <div class="tp" id="p2" role="tabpanel" aria-labelledby="tb2" hidden>
+        <p>Возьмите кольцо, которое хорошо сидит на&nbsp;нужном пальце, и&nbsp;измерьте внутренний диаметр по&nbsp;самому широкому месту.</p>
+        <div class="meas"><label class="sel">Внутренний диаметр, мм<input id="diam" type="number" inputmode="decimal" min="14" max="23" step="0.1" placeholder="например, 17"></label></div>
+      </div>
+      <div class="tp" id="p3" role="tabpanel" aria-labelledby="tb3" hidden>
+        <p>Сначала настройте масштаб по&nbsp;банковской карте&nbsp;— у&nbsp;всех карт одинаковая ширина. Затем положите кольцо на&nbsp;экран и&nbsp;подгоните круг под его внутренний край.</p>
+        <div class="screen">
+          <div class="steps2"><span id="sc1" aria-current="step">1. Масштаб</span><span aria-hidden="true">/</span><span id="sc2">2. Кольцо</span></div>
+          <div class="screen__area" id="area"><div class="card" id="cardBox">приложите карту сюда</div></div>
+          <label class="rng" id="rCardL">Ширина рамки: совпадает с&nbsp;картой<input type="range" id="rCard" min="200" max="420" value="323" aria-describedby="sc1"></label>
+          <label class="rng" id="rRingL" hidden><span id="rRingT">Диаметр круга: 17,0 мм</span><input type="range" id="rRing" min="140" max="230" value="170"></label>
+          <div><button class="btn btn--ghost" type="button" id="scNext">Карта совпала, дальше</button></div>
+        </div>
+      </div>
+      <div class="res" aria-live="polite">
+        <p class="res__v" id="szV">—<small id="szS">Введите измерение, и&nbsp;мы&nbsp;подскажем размер</small></p>
+        <button class="btn" type="button" id="szApply" disabled>Применить в&nbsp;конструкторе</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Process ===== -->
+<section class="sec sec--coal" id="process" aria-labelledby="proc-h">
+  <div class="wrap">
+    <div class="shead rv">
+      <h2 id="proc-h">Как рождается <i>кольцо</i></h2>
+      <p>От&nbsp;эскиза до&nbsp;готового изделия&nbsp;— две-три недели. На&nbsp;каждом этапе присылаем фото, а&nbsp;восковую модель можно примерить.</p>
+    </div>
+    <ol class="proc">
+      <li class="rv"><span class="proc__n">i</span><h3>Эскиз</h3><p>Обсуждаем руку, образ жизни, камень. Рисуем 2–3 варианта.</p><span class="proc__d">1–2 дня</span></li>
+      <li class="rv"><span class="proc__n">ii</span><h3>Модель и&nbsp;воск</h3><p>3D-модель и&nbsp;печать восковки. Примеряете форму до&nbsp;металла.</p><span class="proc__d">3–4 дня</span></li>
+      <li class="rv"><span class="proc__n">iii</span><h3>Литьё</h3><p>Отливаем в&nbsp;выбранном металле, снимаем литники, выравниваем шинку.</p><span class="proc__d">2–3 дня</span></li>
+      <li class="rv"><span class="proc__n">iv</span><h3>Закрепка</h3><p>Ставим камень в&nbsp;крапы или глухую закрепку под микроскопом.</p><span class="proc__d">2–4 дня</span></li>
+      <li class="rv"><span class="proc__n">v</span><h3>Полировка и&nbsp;проба</h3><p>Финишная полировка, гравировка и&nbsp;клеймение в&nbsp;пробирной палате.</p><span class="proc__d">3–5 дней</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="prom-h">
+  <div class="wrap prom">
+    <div class="prom__ph rv"><img src="https://images.unsplash.com/photo-1616837874254-8d5aaa63e273?auto=format&fit=crop&w=880&h=1100&q=72" width="880" height="1100" alt="Женщина в чёрном жакете с золотыми украшениями" loading="lazy"></div>
+    <div class="rv">
+      <h2 id="prom-h" class="sr">Наши условия</h2>
+      <blockquote>Мы&nbsp;не&nbsp;держим витрину с&nbsp;тысячей моделей. Мы&nbsp;делаем одно кольцо&nbsp;— <i>ваше</i>&nbsp;— и&nbsp;отвечаем за&nbsp;него сами.</blockquote>
+      <dl>
+        <div><dt>Камни</dt><dd>Бриллианты от&nbsp;0,3 карата&nbsp;— с&nbsp;сертификатом геммологической лаборатории. Показываем камень до&nbsp;закрепки.</dd></div>
+        <div><dt>Металл</dt><dd>Золото 585 и&nbsp;платина 950, каждое изделие проходит клеймение.</dd></div>
+        <div><dt>После покупки</dt><dd>Бесплатная чистка и&nbsp;проверка крапов в&nbsp;мастерской, когда понадобится.</dd></div>
+        <div><dt>Изменение размера</dt><dd>Один раз бесплатно в&nbsp;течение полугода, если кольцо без дорожки камней.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Booking ===== -->
+<section class="sec sec--coal" id="visit" aria-labelledby="visit-h">
+  <div class="wrap book">
+    <div class="rv">
+      <h2 id="visit-h">Примерка в&nbsp;мастерской</h2>
+      <p class="book__lead">Покажем камни, металлы и&nbsp;образцы шинок, снимем точный размер. Встреча около часа, без обязательства заказать.</p>
+      <div class="cont">
+        <a href="tel:+78430000000"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+7 (843) 000-00-00</a>
+        <a href="mailto:hello@ysdprojects.space"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/></svg>hello@ysdprojects.space</a>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Казань, ул. Профсоюзная, 23, второй этаж</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Вт–сб, 11:00–20:00, по&nbsp;записи</span>
+      </div>
+    </div>
+    <div class="bf rv" id="bf">
+      <form id="bookForm" novalidate>
+        <div class="cfgchip" id="cfgChip"></div>
+        <div class="row">
+          <div class="sel"><label for="bName">Имя</label><input id="bName" autocomplete="name" required><span class="err" id="ebName"></span></div>
+          <div class="sel"><label for="bPhone">Телефон</label><input id="bPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required><span class="err" id="ebPhone"></span></div>
+        </div>
+        <div class="row">
+          <div class="sel"><label for="bDay">Удобный день</label><select id="bDay"></select></div>
+          <div class="sel"><label for="bTime">Время</label><select id="bTime"><option>11:00</option><option>13:00</option><option selected>15:00</option><option>17:00</option><option>19:00</option></select></div>
+        </div>
+        <div class="sel"><label for="bMsg">Комментарий</label><textarea id="bMsg" placeholder="Например: ищем помолвочное кольцо, бюджет до 150 000 ₽"></textarea></div>
+        <button class="btn" type="submit">Записаться на&nbsp;примерку</button>
+        <p class="bf__note">Нажимая кнопку, вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных.</p>
+      </form>
+      <div class="done" role="status" tabindex="-1" id="bDone">
+        <svg viewBox="0 0 64 64" fill="none" stroke-width="1.2" aria-hidden="true"><ellipse cx="32" cy="38" rx="15" ry="18"/><path d="M25 14l7-8 7 8-7 6z"/></svg>
+        <h3>Заявка принята</h3>
+        <p id="bDoneT"></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <a class="logo" href="#top"><svg viewBox="0 0 26 32" aria-hidden="true" fill="none"><ellipse cx="13" cy="20" rx="9" ry="10.5" stroke="#CDA75E" stroke-width="1.3"/><path d="M9 6.5L13 2l4 4.5L13 10z" stroke="#E9D3A1" stroke-width="1.1"/></svg><b>АУРУМ</b></a>
+      <nav aria-label="Навигация в подвале"><a href="#collection">Изделия</a><a href="#configurator">Конструктор</a><a href="#size">Размер</a><a href="#visit">Примерка</a></nav>
+    </div>
+    <div class="ftr__bot">
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и&nbsp;реквизиты вымышлены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document;d.documentElement.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function rub(n){return Math.round(n).toLocaleString('ru-RU')+' ₽'}
+  function ru(n,dg){return n.toLocaleString('ru-RU',{minimumFractionDigits:dg||0,maximumFractionDigits:dg||0})}
+  var NS='http://www.w3.org/2000/svg';
+
+  requestAnimationFrame(function(){requestAnimationFrame(function(){$('.hero').classList.add('ready')})});
+  var hdr=$('#hdr');function sc(){hdr.classList.toggle('sc',scrollY>30)}addEventListener('scroll',sc,{passive:true});sc();
+
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var sib=Array.prototype.filter.call(e.target.parentNode.children,function(x){return x.classList.contains('rv')});e.target.style.transitionDelay=Math.min(sib.indexOf(e.target),5)*90+'ms';e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+    rv.forEach(function(x){io.observe(x)});
+  }else rv.forEach(function(x){x.classList.add('in')});
+
+  /* ===== data ===== */
+  var METAL={
+    yg:{n:'Жёлтое золото 585',g:7200,c:['#7E5E26','#F3D78E','#C99A45','#8C6A2A'],i:['#5E4519','#B88A3A']},
+    wg:{n:'Белое золото 585',g:7600,c:['#7C8085','#F4F4F2','#B9BCC1','#83878C'],i:['#55585C','#A9ACB1']},
+    rg:{n:'Розовое золото 585',g:7300,c:['#7A4636','#F4C9B1','#C7846D','#8C5544'],i:['#5A3227','#B87560']},
+    pt:{n:'Платина 950',g:9800,c:['#666B70','#E8EAEC','#A7ABB0','#73777C'],i:['#4A4E52','#9A9EA3'],dens:1.65}
+  };
+  var STONE={
+    dia:{n:'Бриллиант',c:['#FFFFFF','#CFE3F2','#7F9AB0'],p:{0.3:85000,0.5:160000,0.75:280000,1:420000}},
+    sap:{n:'Сапфир',c:['#86A3F0','#2445A8','#0E1D52'],p:{0.3:24000,0.5:42000,0.75:68000,1:98000}},
+    emr:{n:'Изумруд',c:['#7FE6BE','#138362','#06392A'],p:{0.3:26000,0.5:47000,0.75:76000,1:112000}},
+    none:{n:'Без камня'}
+  };
+  var CUT={round:{n:'круглая',k:1},oval:{n:'овал',k:.95},princess:{n:'принцесса',k:.9},emerald:{n:'изумрудная',k:.92},pear:{n:'груша',k:.93}};
+  var BAND={'1.8':{g:2.2,n:'тонкая шинка 1,8 мм'},'2.5':{g:3.2,n:'шинка 2,5 мм'},'3.5':{g:4.6,n:'широкая шинка 3,5 мм'}};
+  var WORK=18000, SETTING=6500, ENGR=2500;
+  var sizeSel=$('#ringSize');
+  for(var s=15;s<=21.001;s+=.5){var o=d.createElement('option');o.value=s;o.textContent=ru(s,s%1?1:0);if(s===17)o.selected=true;sizeSel.appendChild(o)}
+
+  var form=$('#cfgForm'), cur={};
+  function val(n){var x=form.querySelector('input[name="'+n+'"]:checked');return x?x.value:null}
+
+  /* ===== ring drawing ===== */
+  function el(tag,attrs,parent){var e=d.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+  function setStops(m){
+    var M=METAL[m];['m1','m2','m3','m4'].forEach(function(id,i){$('#'+id).setAttribute('stop-color',M.c[i])});
+    $('#n1').setAttribute('stop-color',M.i[0]);$('#n2').setAttribute('stop-color',M.i[1]);
+  }
+  function setStoneStops(st){if(st==='none')return;var c=STONE[st].c;$('#s1').setAttribute('stop-color',c[0]);$('#s2').setAttribute('stop-color',c[1]);$('#s3').setAttribute('stop-color',c[2])}
+  function drawRing(c){
+    var g=$('#ringG');g.innerHTML='';
+    var k=.92+(c.size-15)/6*.16, cx=200, cy=232, R=118*k, rx=R*.62, ry=R;
+    var t=9+(+c.band)*5.2;   // band thickness
+    // back inner (visible inside)
+    el('ellipse',{cx:cx,cy:cy,rx:rx,ry:ry,fill:'url(#mt)'},g);
+    el('ellipse',{cx:cx+t*.42,cy:cy,rx:rx-t*.78,ry:ry-t,fill:'url(#mtIn)'},g);
+    el('ellipse',{cx:cx+t*.62,cy:cy,rx:rx-t*.98,ry:ry-t*1.08,fill:'#0D0C0A'},g);
+    el('ellipse',{cx:cx+t*.62,cy:cy,rx:rx-t*.98,ry:ry-t*1.08,fill:'url(#mtIn)',opacity:.22},g);
+    // highlights
+    el('path',{d:'M'+(cx-rx+5)+' '+(cy-ry*.25)+' Q '+(cx-rx+2)+' '+cy+' '+(cx-rx+8)+' '+(cy+ry*.42),stroke:'rgba(255,255,255,.55)','stroke-width':2.2,fill:'none','stroke-linecap':'round'},g);
+    el('path',{d:'M'+(cx+rx-6)+' '+(cy-ry*.5)+' Q '+(cx+rx-1)+' '+(cy-ry*.1)+' '+(cx+rx-4)+' '+(cy+ry*.2),stroke:'rgba(255,255,255,.25)','stroke-width':1.4,fill:'none','stroke-linecap':'round'},g);
+    // engraving along inner bottom arc
+    var irx=rx-t*.98, iry=ry-t*1.08, icx=cx+t*.62;
+    $('#engr').setAttribute('d','M '+(icx-irx*.82)+' '+(cy+iry*.45)+' A '+irx+' '+iry+' 0 0 0 '+(icx+irx*.82)+' '+(cy+iry*.45));
+    if(c.engr){
+      var tx=el('text',{fill:METAL[c.metal].c[1],'font-family':'Spectral, Georgia, serif','font-style':'italic','font-size':13,opacity:.9,'text-anchor':'middle'},g);
+      var tp=el('textPath',{href:'#engr',startOffset:'50%'},tx);tp.textContent=c.engr;
+    }
+    return {cx:cx,top:cy-ry,t:t,k:k};
+  }
+  function gemPath(cut,w){
+    // front profile: returns {crown, pav, table} paths centered at 0, girdle at y=0
+    var h=w/2, tb=w*.28, ch=w*.17, pv=w*.5;
+    if(cut==='princess'){tb=w*.4;ch=w*.12;pv=w*.52}
+    if(cut==='emerald'){tb=w*.36;ch=w*.14;pv=w*.38}
+    if(cut==='oval'){w*=1.06;h=w/2}
+    var crown='M'+(-h)+' 0 L'+(-tb)+' '+(-ch)+' L'+tb+' '+(-ch)+' L'+h+' 0 Z';
+    var pav=cut==='emerald'?'M'+(-h)+' 0 L'+h+' 0 L'+(w*.12)+' '+pv+' L'+(-w*.12)+' '+pv+' Z':'M'+(-h)+' 0 L'+h+' 0 L0 '+pv+' Z';
+    var facets='M'+(-tb)+' '+(-ch)+' L'+(-h*.45)+' 0 L0 '+(-ch)+' L'+(h*.45)+' 0 L'+tb+' '+(-ch)+
+      ' M'+(-h)+' 0 L0 '+pv*(cut==='emerald'?.95:1)+' L'+h+' 0 M'+(-h*.45)+' 0 L0 '+pv*.98+' L'+(h*.45)+' 0';
+    if(cut==='emerald')facets='M'+(-tb)+' '+(-ch)+' L'+(-h*.8)+' '+(-ch*.45)+' L'+(h*.8)+' '+(-ch*.45)+' L'+tb+' '+(-ch)+' M'+(-h*.75)+' '+(pv*.35)+' L'+(h*.75)+' '+(pv*.35)+' M'+(-h*.45)+' '+(pv*.7)+' L'+(h*.45)+' '+(pv*.7);
+    return {crown:crown,pav:pav,facets:facets,w:w,ch:ch,pv:pv};
+  }
+  function drawStone(c,ring){
+    var outer=$('#stoneS');outer.innerHTML='';
+    if(c.stone==='none'){
+      // small milgrain line on top for plain band
+      outer.style.transform='translate(200px,'+(ring.top+6)+'px) scale(1)';
+      return;
+    }
+    var ct=+c.ct, w=46*Math.cbrt(ct/.5), gp=gemPath(c.cut,w);
+    var M=METAL[c.metal], gy=-(gp.pv+10);
+    var g=el('g',{},outer);
+    // prongs / basket
+    var pw=gp.w/2;
+    [-pw*.86,-pw*.3,pw*.3,pw*.86].forEach(function(x,i){
+      el('path',{d:'M'+x*.55+' 10 L'+x+' '+(gy+gp.pv*.2)+' L'+x*1.02+' '+(gy-gp.ch-2),stroke:i%3===0?M.c[1]:M.c[2],'stroke-width':i%3===0?3.2:2.4,'stroke-linecap':'round',fill:'none'},g);
+    });
+    el('path',{d:'M'+(-pw*.62)+' '+(gy+gp.pv*.62)+' Q 0 '+(gy+gp.pv*.8)+' '+(pw*.62)+' '+(gy+gp.pv*.62),stroke:M.c[2],'stroke-width':2,fill:'none'},g);
+    var gem=el('g',{transform:'translate(0 '+gy+')'},g);
+    el('path',{d:gp.pav,fill:'url(#st)',opacity:.95},gem);
+    el('path',{d:gp.crown,fill:'url(#st)'},gem);
+    el('path',{d:gp.crown+gp.pav,fill:'none',stroke:'rgba(255,255,255,.55)','stroke-width':.8},gem);
+    el('path',{d:gp.facets,fill:'none',stroke:'rgba(255,255,255,.38)','stroke-width':.7},gem);
+    el('path',{d:'M'+(-gp.w*.18)+' '+(-gp.ch+2)+' L'+(gp.w*.05)+' '+(-gp.ch+2),stroke:'#fff','stroke-width':1.6,'stroke-linecap':'round',opacity:.8},gem);
+    // sparkle
+    var sp=el('path',{d:'M0 -7 L1.4 -1.4 L7 0 L1.4 1.4 L0 7 L-1.4 1.4 L-7 0 L-1.4 -1.4 Z',fill:'#fff',class:'sparkle',transform:'translate('+(gp.w*.22)+' '+(-gp.ch-4)+')'},gem);
+    if(c.stone!=='dia')sp.setAttribute('opacity','.6');
+    outer.style.transformOrigin='0 0';
+    outer.style.transform='translate(200px,'+(ring.top+4)+'px) scale(1)';
+  }
+  function topShape(cut,r){
+    if(cut==='round')return 'M'+(50-r)+' 50 A'+r+' '+r+' 0 1 1 '+(50+r)+' 50 A'+r+' '+r+' 0 1 1 '+(50-r)+' 50 Z';
+    if(cut==='oval'){var a=r*.78,b=r*1.12;return 'M'+(50-a)+' 50 A'+a+' '+b+' 0 1 1 '+(50+a)+' 50 A'+a+' '+b+' 0 1 1 '+(50-a)+' 50 Z'}
+    if(cut==='princess'){var q=r*.86;return 'M'+(50-q)+' '+(50-q)+' H'+(50+q)+' V'+(50+q)+' H'+(50-q)+' Z'}
+    if(cut==='emerald'){var x=r*.72,y=r*1.02,c=r*.26;return 'M'+(50-x+c)+' '+(50-y)+' H'+(50+x-c)+' L'+(50+x)+' '+(50-y+c)+' V'+(50+y-c)+' L'+(50+x-c)+' '+(50+y)+' H'+(50-x+c)+' L'+(50-x)+' '+(50+y-c)+' V'+(50-y+c)+' Z'}
+    var t=r*1.15;return 'M50 '+(50-t)+' C'+(50+r*.55)+' '+(50-t*.45)+' '+(50+r)+' '+(50+r*.05)+' '+(50+r)+' '+(50+r*.35)+' A'+r+' '+r+' 0 0 1 '+(50-r)+' '+(50+r*.35)+' C'+(50-r)+' '+(50+r*.05)+' '+(50-r*.55)+' '+(50-t*.45)+' 50 '+(50-t)+' Z';
+  }
+  function drawInset(c){
+    var g=$('#insetG');g.innerHTML='';
+    var M=METAL[c.metal];
+    el('circle',{cx:50,cy:50,r:40,fill:'none',stroke:M.c[2],'stroke-width':2+(+c.band)*1.6,opacity:.75},g);
+    if(c.stone==='none')return;
+    var r=15*Math.cbrt(+c.ct/.5), p=topShape(c.cut,r);
+    el('path',{d:p,fill:'url(#st)',stroke:M.c[1],'stroke-width':1.6},g);
+    var lines='';
+    if(c.cut==='emerald'){lines=topShape('emerald',r*.62)}
+    else if(c.cut==='princess'){var q=r*.86;lines='M'+(50-q)+' '+(50-q)+' L'+(50+q)+' '+(50+q)+' M'+(50+q)+' '+(50-q)+' L'+(50-q)+' '+(50+q)+' '+topShape('princess',r*.5)}
+    else{for(var i=0;i<8;i++){var a=i*Math.PI/4;lines+='M50 50 L'+(50+Math.cos(a)*r*.95)+' '+(50+Math.sin(a)*r*1.05)+' '}lines+=topShape(c.cut,r*.5)}
+    el('path',{d:lines,fill:'none',stroke:'rgba(255,255,255,.4)','stroke-width':.6},g);
+    // prongs as dots
+    var pr=c.cut==='princess'||c.cut==='emerald'?[[-1,-1],[1,-1],[1,1],[-1,1]]:[[-.7,-.7],[.7,-.7],[.7,.7],[-.7,.7]];
+    pr.forEach(function(pp){el('circle',{cx:50+pp[0]*r*(c.cut==='emerald'?.72:.86),cy:50+pp[1]*r*(c.cut==='emerald'?1.02:.86),r:2,fill:M.c[1]},g)});
+  }
+
+  /* ===== compute ===== */
+  function compute(){
+    var c={metal:val('metal'),stone:val('stone'),cut:val('cut'),ct:val('ct'),band:$('#band').value,size:+sizeSel.value,engr:$('#engrave').value.trim()};
+    var M=METAL[c.metal], dens=M.dens||1;
+    var grams=BAND[c.band].g*(c.size/17)*dens+(c.stone==='none'?0:.6*dens);
+    var metal=grams*M.g, stone=c.stone==='none'?0:STONE[c.stone].p[c.ct]*CUT[c.cut].k;
+    var work=WORK+(c.stone==='none'?0:SETTING), engr=c.engr?ENGR:0;
+    c.grams=grams;c.metalP=metal;c.stoneP=stone;c.work=work;c.engrP=engr;c.total=metal+stone+work+engr;
+    c.days=c.stone==='none'?'10–12 рабочих дней':'14–18 рабочих дней';
+    return c;
+  }
+  function label(c){
+    return M2(c)+(c.stone==='none'?', без камня':', '+STONE[c.stone].n.toLowerCase()+' '+ru(+c.ct,c.ct==='1'?0:(c.ct==='0.75'?2:1))+' карата, огранка «'+CUT[c.cut].n+'»')+', размер '+ru(c.size,c.size%1?1:0);
+  }
+  function M2(c){return METAL[c.metal].n}
+  var prev=null;
+  function render(){
+    var c=compute(), none=c.stone==='none';
+    $$('#cutGrp input,#ctGrp input').forEach(function(i){i.disabled=none});
+    $('#lMetal').textContent=METAL[c.metal].n.replace(/ \d+$/,'');
+    $('#lStone').textContent=STONE[c.stone].n;
+    $('#lCut').textContent=none?'—':CUT[c.cut].n;
+    $('#lCt').textContent=none?'—':ru(+c.ct,c.ct==='1'?0:(c.ct==='0.75'?2:1))+' ct';
+    setStops(c.metal);setStoneStops(c.stone);
+    var changedShape=!prev||prev.cut!==c.cut||prev.stone!==c.stone||prev.band!==c.band;
+    var ring=drawRing(c);
+    var go=function(){drawStone(c,ring);drawInset(c)};
+    if(changedShape&&prev&&!reduce){
+      var sg=$('#stoneG'), ig=$('#insetG');sg.classList.add('fade');ig.classList.add('fade');
+      setTimeout(function(){go();requestAnimationFrame(function(){sg.classList.remove('fade');ig.classList.remove('fade')})},220);
+    }else go();
+    // carat grow animation via scale when only carat changed
+    if(prev&&!changedShape&&prev.ct!==c.ct&&!reduce&&c.stone!=='none'){
+      var o=$('#stoneS'), f=Math.cbrt(+prev.ct/+c.ct);
+      o.style.transition='none';o.style.transform='translate(200px,'+(ring.top+4)+'px) scale('+f+')';
+      void o.getBoundingClientRect();o.style.transition='';o.style.transform='translate(200px,'+(ring.top+4)+'px) scale(1)';
+    }
+    $('#stName').innerHTML=METAL[c.metal].n+(none?'':', '+STONE[c.stone].n.toLowerCase())+'<small>'+(none?'гладкое кольцо, ':'огранка «'+CUT[c.cut].n+'», ')+BAND[c.band].n+', размер '+ru(c.size,c.size%1?1:0)+'</small>';
+    $('#total').textContent=rub(c.total);
+    var h='<li><span>Металл, около '+ru(c.grams,1)+' г</span><b>'+rub(c.metalP)+'</b></li>';
+    if(!none)h+='<li><span>'+STONE[c.stone].n+' '+ru(+c.ct,c.ct==='1'?0:(c.ct==='0.75'?2:1))+' ct'+(c.stone==='dia'?', с сертификатом':'')+'</span><b>'+rub(c.stoneP)+'</b></li>';
+    h+='<li><span>Работа'+(none?'':' и закрепка')+'</span><b>'+rub(c.work)+'</b></li>';
+    if(c.engrP)h+='<li><span>Гравировка «'+c.engr.replace(/</g,'')+'»</span><b>'+rub(c.engrP)+'</b></li>';
+    $('#lines').innerHTML=h;
+    $('#meta').innerHTML='Срок изготовления: <b>'+c.days+'</b>. Цена камня уточняется по&nbsp;конкретному экземпляру.'+(c.band==='3.5'?' Для широкой шинки советуем размер на&nbsp;0,5 больше обычного.':'');
+    prev=c;cur=c;
+  }
+  form.addEventListener('change',render);
+  $('#engrave').addEventListener('input',render);
+  render();
+
+  $('#toSize').addEventListener('click',function(){d.getElementById('size-h').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});
+
+  /* ===== size helper ===== */
+  var tabs=$$('.tab'), found=null;
+  function selTab(t,focus){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;d.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+    if(focus)t.focus();
+    if(t.id==='tb3')layoutScreen();
+    recalc();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){selTab(t)});
+    t.addEventListener('keydown',function(e){var n=null;if(e.key==='ArrowRight')n=tabs[(i+1)%3];if(e.key==='ArrowLeft')n=tabs[(i+2)%3];if(n){e.preventDefault();selTab(n,true)}});
+  });
+  function toSize(dmm){return Math.round(dmm*2)/2}
+  function showSize(dmm,how){
+    if(!dmm||isNaN(dmm)){found=null;$('#szV').innerHTML='—<small>Введите измерение, и&nbsp;мы&nbsp;подскажем размер</small>';$('#szApply').disabled=true;return}
+    var s=toSize(dmm);
+    if(s<14||s>23){found=null;$('#szV').innerHTML='—<small>Получилось '+ru(dmm,1)+' мм: проверьте измерение, обычно это 14–23 мм</small>';$('#szApply').disabled=true;return}
+    found=Math.min(21,Math.max(15,s));
+    $('#szV').innerHTML='Размер '+ru(s,s%1?1:0)+'<small>'+how+(s!==found?'. В конструкторе доступны 15–21, подберём индивидуально':'')+'</small>';
+    $('#szApply').disabled=false;
+  }
+  function recalc(){
+    var sel=tabs.filter(function(t){return t.getAttribute('aria-selected')==='true'})[0].id;
+    if(sel==='tb1'){var L=parseFloat(($('#thread').value||'').replace(',','.'));showSize(L?L/Math.PI:NaN,L?'Окружность '+ru(L,1)+' мм, диаметр '+ru(L/Math.PI,1)+' мм':'')}
+    else if(sel==='tb2'){var D=parseFloat(($('#diam').value||'').replace(',','.'));showSize(D,'Внутренний диаметр '+(D?ru(D,1):'')+' мм')}
+    else{ if(scStep===2){var mm=+$('#rRing').value/10;showSize(mm,'Диаметр по экрану '+ru(mm,1)+' мм')} else showSize(NaN)}
+  }
+  $('#thread').addEventListener('input',recalc);$('#diam').addEventListener('input',recalc);
+  // screen method
+  var scStep=1, pxmm=323/85.6, area=$('#area');
+  function layoutScreen(){
+    var maxW=area.clientWidth*.96, cw=Math.min(+$('#rCard').value,maxW);
+    if(scStep===1){$('#cardBox').style.width=cw+'px'}
+    else{var mm=+$('#rRing').value/10,dp=mm*pxmm;var c=$('.circ',area);if(c){c.style.width=dp+'px'}$('#rRingT').textContent='Диаметр круга: '+ru(mm,1)+' мм'}
+  }
+  $('#rCard').addEventListener('input',layoutScreen);
+  $('#rRing').addEventListener('input',function(){layoutScreen();recalc()});
+  $('#scNext').addEventListener('click',function(){
+    if(scStep===1){
+      pxmm=Math.min(+$('#rCard').value,area.clientWidth*.96)/85.6;
+      scStep=2;area.innerHTML='<div class="circ" aria-hidden="true"></div>';
+      $('#rCardL').hidden=true;$('#rRingL').hidden=false;
+      $('#sc1').removeAttribute('aria-current');$('#sc2').setAttribute('aria-current','step');
+      this.textContent='Настроить масштаб заново';layoutScreen();recalc();$('#rRing').focus();
+    }else{
+      scStep=1;area.innerHTML='<div class="card" id="cardBox">приложите карту сюда</div>';
+      $('#rCardL').hidden=false;$('#rRingL').hidden=true;
+      $('#sc2').removeAttribute('aria-current');$('#sc1').setAttribute('aria-current','step');
+      this.textContent='Карта совпала, дальше';layoutScreen();recalc();
+    }
+  });
+  addEventListener('resize',function(){if(!$('#p3').hidden)layoutScreen()});
+  layoutScreen();
+  $('#szApply').addEventListener('click',function(){
+    if(found===null)return;
+    var s=found;if(cur.band==='3.5'&&s<21)s+=.5;
+    sizeSel.value=String(s);render();
+    d.getElementById('configurator').scrollIntoView({behavior:reduce?'auto':'smooth'});
+    setTimeout(function(){sizeSel.focus({preventScroll:true})},reduce?0:600);
+  });
+
+  /* ===== booking ===== */
+  var days=$('#bDay'), WD=['вс','пн','вт','ср','чт','пт','сб'], MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var t0=new Date();t0.setHours(0,0,0,0);var added=0;
+  for(var i=1;added<10;i++){var dt=new Date(t0);dt.setDate(t0.getDate()+i);var w=dt.getDay();if(w===0||w===1)continue;var op=d.createElement('option');op.textContent=WD[w]+', '+dt.getDate()+' '+MON[dt.getMonth()];days.appendChild(op);added++}
+  $('#sendCfg').addEventListener('click',function(){
+    var ch=$('#cfgChip');ch.innerHTML='<b>Ваше кольцо:</b> '+label(cur).replace(/</g,'')+(cur.engr?', гравировка «'+cur.engr.replace(/</g,'')+'»':'')+'. Ориентир: <b>'+rub(cur.total)+'</b>.';ch.classList.add('on');
+  });
+  var bp=$('#bPhone');
+  bp.addEventListener('input',function(){var v=bp.value.replace(/\D/g,'');if(v.charAt(0)==='8')v='7'+v.slice(1);if(v.charAt(0)!=='7')v='7'+v;v=v.slice(0,11);var o='+7';if(v.length>1)o+=' ('+v.slice(1,4);if(v.length>=4)o+=')';if(v.length>4)o+=' '+v.slice(4,7);if(v.length>7)o+='-'+v.slice(7,9);if(v.length>9)o+='-'+v.slice(9,11);bp.value=o});
+  $('#bookForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#bName').value.trim(),okN=n.length>1,okP=bp.value.replace(/\D/g,'').length===11;
+    $('#ebName').textContent=okN?'':'Как к вам обращаться?';$('#ebPhone').textContent=okP?'':'Нужен номер из 11 цифр';
+    if(!okN){$('#bName').focus();return}if(!okP){bp.focus();return}
+    $('#bDoneT').textContent=n.split(' ')[0]+', ждём вас '+days.value+' в '+$('#bTime').value+'. Позвоним накануне, чтобы подтвердить.'+($('#cfgChip').classList.contains('on')?' Мастер подготовит камни и образцы под вашу конфигурацию.':'');
+    $('#bf').classList.add('sent');$('#bDone').focus({preventScroll:true});
+  });
+})();
+</script>
+</body>
+</html>

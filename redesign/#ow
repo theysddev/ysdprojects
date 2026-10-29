@@ -1,0 +1,1421 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Доработка сайта автошколы «Право руля» — кейс YSD DEV</title>
+<meta name="description" content="Кейс студии YSD DEV: сайт воронежской автошколы «Право руля» до и после доработки. Переключите «Было» и «Стало» и посмотрите 8 исправлений: оффер, калькулятор, форма, скорость, мобильная версия, SEO и аналитика.">
+<meta property="og:title" content="Доработка сайта автошколы «Право руля» — кейс YSD DEV">
+<meta property="og:description" content="Было и стало: 8 исправлений на сайте автошколы — от оффера и калькулятора обучения до мобильной версии и целей в Метрике.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta name="theme-color" content="#16181D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='6' width='20' height='20' rx='2.5' transform='rotate(45 16 16)' fill='%23fff' stroke='%230F1B2D' stroke-width='1.5'/%3E%3Crect x='10' y='10' width='12' height='12' rx='1.5' transform='rotate(45 16 16)' fill='%23FFCF1A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{
+  --bar:56px;--hdr:60px;--pw:400px;--vw:1vw;
+  --ease:cubic-bezier(.23,1,.32,1);--io:cubic-bezier(.65,0,.35,1);
+  --ink:#0F1B2D;--ink2:#172741;--ink3:#22365A;--paper:#F1F3F6;--line:#D9DFE7;--text:#0F1B2D;--muted:#4E5B6E;--mutedd:#A9B6C8;
+  --sign:#FFCF1A;--ok:#0B7A3E;--bad:#D92D20;--ysd:#16181D;--ysd2:#23262E;
+  --fd:"Russo One","Arial Black",system-ui,sans-serif;--ft:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media(min-width:1024px){:root{--hdr:72px}}
+html{background:var(--ysd);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;padding-top:var(--bar);min-height:100vh;background:var(--paper);color:var(--text);font:400 17px/1.55 var(--ft);-webkit-font-smoothing:antialiased;--pinc:var(--ok)}
+body[data-mode=old]{--pinc:var(--bad)}
+img{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus,#0F1B2D);outline-offset:3px}
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;z-index:200;left:12px;top:-60px;padding:12px 16px;border-radius:10px;background:#fff;color:var(--ink);font-weight:600;text-decoration:none}
+.skip:focus{top:calc(var(--bar) + 8px)}
+
+/* ===== YSD case bar ===== */
+.ysd-bar{position:fixed;z-index:100;top:0;left:0;right:0;height:var(--bar);display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:10px;padding:0 12px;background:var(--ysd);color:#fff;font:500 14px/1.2 var(--ft);border-bottom:1px solid rgba(255,255,255,.08);view-transition-name:ysd-bar;--focus:#fff}
+.ysd-l{display:flex;align-items:center;gap:12px;min-width:0}
+.ysd-mark{display:grid;place-items:center;width:44px;height:44px;flex:none;border-radius:12px;text-decoration:none}
+.ysd-mark span{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#fff;color:var(--ysd);font:800 11px/1 var(--ft);letter-spacing:.02em}
+.ysd-t{display:none;white-space:nowrap;color:#C9CED8}
+.ysd-t b{color:#fff;font-weight:600}
+.seg{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:999px;background:rgba(255,255,255,.1)}
+.seg button{position:relative;z-index:1;min-width:66px;height:38px;padding:0 14px;border:0;border-radius:999px;background:none;color:#C9CED8;font-weight:600;font-size:14px;cursor:pointer;transition:color .25s ease}
+.seg button[aria-pressed=true]{color:var(--ysd)}
+.seg-th{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:#fff;transition:transform .45s var(--ease)}
+.seg[data-mode=new] .seg-th{transform:translateX(100%)}
+.ysd-r{display:flex;align-items:center;justify-content:flex-end;gap:18px;min-width:0}
+.fix-btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 6px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.26);background:transparent;color:#fff;font-weight:600;font-size:14px;white-space:nowrap;cursor:pointer;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease)}
+.fix-btn b{display:grid;place-items:center;min-width:30px;height:30px;border-radius:999px;background:#fff;color:var(--ysd);font-size:13px;transition:background-color .2s ease,color .2s ease}
+.fix-btn[aria-expanded=true]{background:#fff;color:var(--ysd)}
+.fix-btn[aria-expanded=true] b{background:var(--ysd);color:#fff}
+.fix-btn:active,.seg button:active{transform:scale(.97)}
+.ysd-link{display:none;align-items:center;min-height:44px;color:#C9CED8;text-decoration:none;font-weight:500}
+@media(hover:hover) and (pointer:fine){.ysd-link:hover{color:#fff}.fix-btn[aria-expanded=false]:hover{background:rgba(255,255,255,.08)}.seg button[aria-pressed=false]:hover{color:#fff}}
+@media(min-width:960px){.ysd-bar{grid-template-columns:1fr auto 1fr;padding:0 20px}.ysd-t{display:block}.ysd-link{display:inline-flex}}
+@media(max-width:380px){.ysd-bar{gap:6px;padding:0 10px}.ysd-mark{width:40px}.seg button{min-width:54px;padding:0 10px}.fix-btn{padding-left:11px;font-size:13px;gap:6px}}
+
+/* ===== fixes panel ===== */
+.fix-panel{position:fixed;z-index:95;top:var(--bar);right:0;bottom:0;width:min(var(--pw),100%);display:flex;flex-direction:column;background:var(--ysd);color:#E4E7EC;border-left:1px solid rgba(255,255,255,.08);transform:translateX(100%);visibility:hidden;transition:transform .36s var(--ease),visibility 0s linear .36s;view-transition-name:ysd-panel;--focus:#fff}
+body.fixes-on .fix-panel{transform:none;visibility:visible;transition:transform .36s var(--ease),visibility 0s}
+.fp-head{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:18px 18px 14px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.fp-head h2{margin:0;align-self:center;font:600 20px/1.2 var(--ft);color:#fff}
+.fp-head p{grid-column:1/-1;margin:0;font-size:14px;line-height:1.45;color:#AEB4BF}
+.fp-x{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
+.fp-x svg{width:20px;height:20px}
+.fp-list{flex:1;margin:0;padding:8px 10px 16px;list-style:none;overflow:auto;overscroll-behavior:contain}
+.fx{display:grid;grid-template-columns:30px 1fr;gap:12px;width:100%;padding:14px 12px;border:0;border-radius:14px;background:none;color:inherit;text-align:left;font-size:14px;line-height:1.45;cursor:pointer;transition:background-color .2s ease}
+.fx[aria-current=true]{background:rgba(255,255,255,.08)}
+@media(hover:hover) and (pointer:fine){.fx:hover{background:rgba(255,255,255,.05)}.fp-x:hover{background:rgba(255,255,255,.14)}}
+.fx-n{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid #fff;background:var(--pinc);color:#fff;font-weight:700;font-size:14px;transition:background-color .3s ease}
+.fx-b{display:block;min-width:0}
+.fx-t{display:block;margin:4px 0 8px;color:#fff;font-weight:600;font-size:16px}
+.fx-r{display:grid;grid-template-columns:50px 1fr;gap:8px;margin-top:5px}
+.fx-r i{font-style:normal;font-size:12.5px;font-weight:600;padding-top:1px}
+.fx-was i{color:#FF9D95}.fx-now i{color:#7EE2A8}
+.fx-was span{color:#B3B9C4}.fx-now span{color:#F1F3F6}
+.snip{display:block;margin:10px 0 0 58px;padding:10px 12px;border-radius:10px;background:#fff;color:#1F2937;font-size:13px;line-height:1.4}
+.snip b{display:block;color:#1A0DAB;font-weight:500;font-size:14px}
+.snip u{display:block;color:#0B7A3E;text-decoration:none;margin:2px 0}
+.goals{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0 58px}
+.goals span{padding:3px 9px;border-radius:999px;background:rgba(126,226,168,.14);color:#BFF0D3;font-size:12.5px}
+.fp-foot{padding:14px 20px 18px;border-top:1px solid rgba(255,255,255,.08);font-size:14px;color:#AEB4BF}
+.fp-foot a{color:#fff;font-weight:600;text-underline-offset:3px}
+@media(max-width:899px){.fix-panel{top:auto;left:0;width:auto;height:min(54vh,480px);border-left:0;border-top:1px solid rgba(255,255,255,.12);border-radius:20px 20px 0 0;transform:translateY(100%);box-shadow:0 -24px 60px rgba(0,0,0,.4)}.fp-foot{display:none}.fp-head{padding:14px 14px 12px 18px}}
+@media(min-width:1280px){body.fixes-on{--vw:calc((100vw - var(--pw)) / 100)}body.fixes-on .stage{margin-right:var(--pw)}}
+@media(max-width:899px){body.fixes-on .stage{padding-bottom:min(54vh,480px)}}
+
+/* ===== pins ===== */
+.pin{position:absolute;z-index:35;top:-15px;left:-15px;display:none;place-items:center;width:30px;height:30px;padding:0;border-radius:50%;border:2px solid #fff;background:var(--pinc);color:#fff;font:700 14px/1 var(--ft);cursor:pointer;box-shadow:0 6px 18px -4px rgba(0,0,0,.55)}
+.pin::after{content:"";position:absolute;inset:-9px;border-radius:50%}
+.pin::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--pinc);opacity:0;pointer-events:none}
+body.fixes-on .pin{display:grid;animation:pinIn .5s var(--ease) both;animation-delay:calc(var(--i,0) * 50ms)}
+.pin.is-hot::before{animation:ring 1.2s var(--ease) 3}
+.pin.p-tr{left:auto;right:-15px}.pin.p-bl{top:auto;bottom:-15px}.pin.p-in{top:10px;left:10px}.pin.p-inr{top:10px;left:auto;right:10px}
+.is-hot{outline:3px solid var(--hl);outline-offset:6px}
+@keyframes pinIn{from{opacity:0;transform:scale(.4)}}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+.v-new{--pinc:var(--ok);--hl:#10A050}
+.v-old{--pinc:var(--bad);--hl:var(--bad)}
+.v-old .pin{transform-origin:0 0;scale:calc(1 / var(--s,1))}
+.v-old .pin.p-inr{transform-origin:100% 0}
+
+/* ===== view transition ===== */
+.stage{overflow-x:clip}
+.wipe-edge{position:fixed;z-index:120;top:var(--bar);bottom:0;left:-8px;width:4px;background:var(--sign);box-shadow:0 0 0 1px rgba(15,27,45,.45),0 0 34px 8px rgba(255,207,26,.42);pointer-events:none;view-transition-name:wipe-edge}
+::view-transition-old(root){animation:vtDim .62s var(--io) both;mix-blend-mode:normal}
+::view-transition-new(root){animation:vtWipeL .62s var(--io) both;mix-blend-mode:normal}
+:root.vt-rtl::view-transition-new(root){animation-name:vtWipeR}
+::view-transition-group(ysd-bar),::view-transition-group(ysd-panel),::view-transition-new(ysd-bar),::view-transition-new(ysd-panel),::view-transition-group(wipe-edge){animation:none}
+::view-transition-old(ysd-bar),::view-transition-old(ysd-panel){display:none}
+::view-transition-new(wipe-edge){animation:vtEdgeL .62s var(--io) both}
+:root.vt-rtl::view-transition-new(wipe-edge){animation-name:vtEdgeR}
+@keyframes vtWipeL{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes vtWipeR{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes vtDim{to{opacity:.45}}
+@keyframes vtEdgeL{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 12px))}}
+@keyframes vtEdgeR{from{transform:translateX(calc(100vw + 12px))}to{transform:translateX(0)}}
+
+/* ===== NEW: base ===== */
+.v-new{--focus:var(--ink)}
+.v-new [id]{scroll-margin-top:calc(var(--bar) + var(--hdr) + 12px)}
+.wrap{width:100%;max-width:1248px;margin:0 auto;padding:0 24px}
+@media(max-width:599px){.wrap{padding:0 16px}}
+.dark{background:var(--ink);color:#fff;--focus:var(--sign)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border:0;border-radius:14px;font:600 16px/1.1 var(--ft);text-align:center;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,box-shadow .2s ease,color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-s{min-height:44px;padding:0 18px;font-size:15px;border-radius:12px}
+.btn-sign{background:var(--sign);color:var(--ink)}
+.btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.34)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+@media(hover:hover) and (pointer:fine){.btn-sign:hover{background:#FFDA4D}.btn-ghost:hover{box-shadow:inset 0 0 0 2px #fff}.btn-ink:hover{background:var(--ink3)}.btn-line:hover{background:var(--ink);color:#fff}}
+.rv{transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.rv-wait{opacity:0;transform:translateY(18px)}
+.no-tr .rv{transition:none}
+
+/* header */
+.hdr{position:sticky;top:var(--bar);z-index:40;background:rgba(15,27,45,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.07);--focus:var(--sign)}
+@supports (backdrop-filter:blur(8px)){.hdr{background:rgba(15,27,45,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}}
+.hdr-in{display:flex;align-items:center;gap:12px;height:var(--hdr)}
+.logo{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-right:auto;color:#fff;text-decoration:none}
+.logo-s{width:38px;height:38px;flex:none}
+.logo b{display:block;font:400 20px/1 var(--fd);letter-spacing:.01em}
+.logo small{display:block;margin-top:5px;color:var(--mutedd);font-size:12.5px;font-weight:500;line-height:1}
+.nav{display:none;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:10px;color:#D3DCE7;text-decoration:none;font-weight:500;font-size:15px;transition:color .2s ease,background-color .2s ease}
+@media(hover:hover) and (pointer:fine){.nav a:hover{color:#fff;background:rgba(255,255,255,.08)}.hdr-phone:hover{background:rgba(255,255,255,.08)}}
+.hdr-call{display:inline-flex}
+.hdr-phone{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:16px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.24);transition:background-color .2s ease}
+.hdr-phone svg{width:20px;height:20px;color:var(--sign)}
+.hp-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hdr-cta{display:none}
+.burger{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:12px;background:rgba(255,255,255,.09);color:#fff;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s ease}
+.burger span{position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}
+.burger[aria-expanded=true] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded=true] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mnav{position:absolute;left:0;right:0;top:100%;display:grid;padding:6px 16px 18px;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 30px 40px -20px rgba(0,0,0,.6);animation:drop .3s var(--ease)}
+.mnav a{display:flex;align-items:center;min-height:52px;padding:0 6px;border-bottom:1px solid rgba(255,255,255,.08);color:#fff;text-decoration:none;font-size:18px;font-weight:500}
+.mnav .btn{margin-top:14px;border:0}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+@media(min-width:560px){.hdr-cta{display:inline-flex}}
+@media(min-width:1024px){.nav{display:flex}.burger{display:none}.mnav{display:none!important}.hdr-in{gap:16px}}
+@media(min-width:1200px){.hdr-phone{padding:0 12px;box-shadow:none}.hp-t{position:static;width:auto;height:auto;overflow:visible;clip:auto}}
+@media(min-width:1280px) and (max-width:1679px){body.fixes-on .hdr-cta{display:none}body.fixes-on .nav a{padding:0 9px}body.fixes-on .hp-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}body.fixes-on .hdr-phone{padding:0;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.24)}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:40px 0 76px}
+.hero-in{display:grid;gap:36px;align-items:center}
+@media(min-width:900px){.hero{padding:48px 0 80px}.hero-in{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px}}
+.hero-offer{position:relative}
+.hero h1{margin:0;font:400 clamp(38px,calc(var(--vw)*5),68px)/1.03 var(--fd);letter-spacing:-.005em}
+.plates{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0;padding:0;list-style:none}
+.plate{display:inline-flex;align-items:center;padding:11px 16px 10px;border-radius:10px;background:var(--sign);color:var(--ink);font:400 clamp(21px,calc(var(--vw)*2.3),30px)/1 var(--fd);white-space:nowrap;box-shadow:inset 0 0 0 4px var(--sign),inset 0 0 0 6px var(--ink)}
+.hero-lead{margin:22px 0 0;max-width:33em;color:#C6D1DE;font-size:clamp(17px,calc(var(--vw)*1.35),19px)}
+.hero-cta{position:relative;display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+@media(max-width:559px){.hero-cta .btn{flex:1 1 100%}}
+@media(max-width:380px){.plates{gap:8px}.plate{padding:10px 12px 9px;font-size:18px}}
+.facts{display:grid;gap:14px;margin:34px 0 0;padding:26px 0 0;list-style:none;border-top:1px solid rgba(255,255,255,.12)}
+@media(min-width:600px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+.fact{display:grid;grid-template-columns:24px 1fr;gap:12px;color:var(--mutedd);font-size:15px;line-height:1.4}
+.fact svg{width:24px;height:24px;color:var(--sign)}
+.fact b{display:block;margin-bottom:3px;color:#fff;font-size:16px;font-weight:600}
+.hero-media{position:relative}
+.hero-ph{aspect-ratio:16/11;border-radius:22px;overflow:hidden;background:#22344F}
+.hero-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+@media(min-width:900px){.hero-ph{aspect-ratio:4/5;border-radius:28px}}
+.next-g{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 20px 44px -16px rgba(0,0,0,.65);--focus:var(--sign);transition:transform .16s var(--ease)}
+.next-g:active{transform:scale(.97)}
+.next-g small{display:block;color:var(--muted);font-size:13px;font-weight:500;line-height:1.3}
+.next-g b{display:block;font:400 19px/1.15 var(--fd)}
+.ng-dot{flex:none;width:10px;height:10px;border-radius:50%;background:#12A150;box-shadow:0 0 0 4px rgba(18,161,80,.2)}
+@media(min-width:900px){.next-g{left:-32px;bottom:40px;padding:16px 20px}}
+@media(max-width:899px){.hero{padding:28px 0 64px}.hero-in{gap:0}.hero-in>div:first-child{display:contents}.hero-media{order:1;margin-top:24px}.hero-lead{order:2}.hero-cta{order:3}.facts{order:4}}
+.road{position:absolute;left:0;right:0;bottom:30px;height:4px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 46px,transparent 46px 92px);pointer-events:none}
+.ld{animation:ld .9s var(--ease) both;animation-delay:calc(var(--d,0) * 80ms + 60ms)}
+@keyframes ld{from{opacity:0;transform:translateY(20px)}}
+.hero-ph{animation:phIn 1.15s var(--ease) both .18s}
+.hero-ph img{animation:phImg 1.4s var(--ease) both .18s}
+@keyframes phIn{from{clip-path:inset(100% 0 0 0 round 28px)}to{clip-path:inset(0 0 0 0 round 28px)}}
+@keyframes phImg{from{transform:scale(1.12)}}
+
+/* sections */
+.sec{padding:clamp(64px,calc(var(--vw)*8),112px) 0}
+.sec-head{display:grid;gap:14px 48px;margin-bottom:clamp(28px,calc(var(--vw)*4),48px)}
+@media(min-width:900px){.sec-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}}
+.sec-head h2,.faq-head h2,.lead-info h2{margin:0;font:400 clamp(32px,calc(var(--vw)*4.2),56px)/1.04 var(--fd)}
+.sec-head p{margin:0;max-width:34em;color:var(--muted)}
+.dark .sec-head p{color:var(--mutedd)}
+
+/* categories */
+.cats{display:grid;gap:1px;margin:0;padding:0;list-style:none;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+@media(min-width:640px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1080px){.cats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cat{display:flex;flex-direction:column;padding:26px 24px 24px;background:#fff}
+.cat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.cat-l{display:grid;place-items:center;width:60px;height:60px;border:3px solid var(--ink);border-radius:12px;font:400 32px/1 var(--fd)}
+.cat-ic{width:56px;height:38px;color:#7A879A}
+.cat h3{margin:0 0 6px;font-size:18px;font-weight:600;line-height:1.3}
+.cat-p{margin:0 0 16px;font:400 30px/1.1 var(--fd);white-space:nowrap}
+.cat-d{display:grid;gap:6px;margin:0 0 14px;font-size:15px}
+.cat-d div{display:flex;justify-content:space-between;gap:12px;padding-top:6px;border-top:1px dashed var(--line)}
+.cat-d dt{color:var(--muted)}.cat-d dd{margin:0;font-weight:600;text-align:right}
+.cat-n{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.4}
+.cat .btn{align-self:flex-start;margin-top:auto}
+@media(max-width:639px){.cat{display:grid;grid-template-columns:60px minmax(0,1fr);column-gap:16px;padding:22px 18px}.cat-top{grid-row:1/span 6;align-self:start;margin:0}.cat-ic{display:none}.cat>*:not(.cat-top){grid-column:2}.cat .btn{margin-top:4px}}
+
+/* calculator */
+.calc{display:grid;gap:24px}
+@media(min-width:960px){.calc{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:44px;align-items:start}}
+.calc-l{display:grid;gap:12px}
+.calc-form{display:grid;gap:28px;margin:0;padding:28px;border-radius:24px;background:var(--ink2);border:1px solid rgba(255,255,255,.06)}
+@media(max-width:599px){.calc-form{padding:22px 16px}}
+.cf{min-width:0;margin:0;padding:0;border:0}
+.cf legend,.cf-l{display:block;margin:0 0 12px;padding:0;color:#fff;font-weight:600;font-size:16px}
+.cf-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.cf-row .cf-l{margin:0}
+.cf-row output{color:var(--sign);font:400 22px/1 var(--fd);white-space:nowrap}
+.cf-note{margin:8px 0 0;color:var(--mutedd);font-size:14px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative;display:inline-flex}
+.opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;min-height:46px;padding:0 17px;border-radius:12px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.26);color:#E3E9F1;font-weight:500;font-size:15px;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease,transform .16s var(--ease)}
+.opt:active span{transform:scale(.97)}
+.opt input:checked+span{background:var(--sign);color:var(--ink);box-shadow:none;font-weight:600}
+.opt input:focus-visible+span{outline:3px solid #fff;outline-offset:3px}
+.opt input:disabled{cursor:not-allowed}
+.opt input:disabled+span{opacity:.38}
+@media(hover:hover) and (pointer:fine){.opt input:not(:checked):not(:disabled):hover+span{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)}}
+.rng{display:block;width:100%;height:44px;margin:6px 0 0;background:transparent;cursor:pointer;-webkit-appearance:none;appearance:none;--p:0%}
+.rng::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--sign) var(--p),rgba(255,255,255,.18) var(--p))}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:#fff;border:5px solid var(--sign);box-shadow:0 2px 10px rgba(0,0,0,.45)}
+.rng::-moz-range-track{height:6px;border-radius:6px;background:rgba(255,255,255,.18)}
+.rng::-moz-range-progress{height:6px;border-radius:6px;background:var(--sign)}
+.rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:5px solid var(--sign)}
+.rng:focus-visible{outline-offset:2px}
+.ticks{display:flex;justify-content:space-between;padding:0 6px;color:var(--mutedd);font-size:13px}
+.sw{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;min-height:44px;cursor:pointer}
+.sw input{position:absolute;opacity:0;width:1px;height:1px}
+.sw-tr{position:relative;margin-top:1px;width:52px;height:30px;border-radius:999px;background:rgba(255,255,255,.2);transition:background-color .2s ease}
+.sw-tr::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .3s var(--ease),background-color .2s ease}
+.sw input:checked+.sw-tr{background:var(--sign)}
+.sw input:checked+.sw-tr::after{transform:translateX(22px);background:var(--ink)}
+.sw input:focus-visible+.sw-tr{outline:3px solid #fff;outline-offset:3px}
+.sw-t b{display:block;font-weight:600}
+.sw-t small{display:block;margin-top:2px;color:var(--mutedd);font-size:14px}
+.sw-t a{color:#fff;text-underline-offset:3px}
+.calc-mini{display:none}
+@media(max-width:959px){.calc-mini{position:sticky;z-index:5;top:calc(var(--bar) + var(--hdr) + 8px);display:flex;align-self:start;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;background:var(--sign);color:var(--ink);box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}.calc-mini b{font:400 26px/1 var(--fd);white-space:nowrap}.calc-mini>span{font-size:14px;font-weight:500;line-height:1.3;text-align:right}}
+.calc-out{position:relative;padding:32px 30px 28px;border-radius:24px;background:var(--sign);color:var(--ink);box-shadow:inset 0 0 0 9px var(--sign),inset 0 0 0 11px var(--ink);--focus:var(--ink)}
+@media(min-width:960px){.calc-out{position:sticky;top:calc(var(--bar) + var(--hdr) + 24px)}}
+@media(max-width:599px){.calc-out{padding:26px 22px 24px}}
+.co-l{margin:0;font-weight:600}
+.co-total{margin:8px 0 6px;font:400 clamp(44px,calc(var(--vw)*5.4),68px)/1 var(--fd);letter-spacing:-.01em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.co-month{min-height:3em;margin:0 0 20px;font-weight:500;line-height:1.45}
+.co-list{display:grid;gap:9px;margin:0 0 24px;padding:16px 0 0;border-top:2px solid rgba(15,27,45,.22);font-size:15px}
+.co-list div{display:flex;justify-content:space-between;gap:16px;transition:opacity .25s ease}
+.co-list div.z{opacity:.65}
+.co-list dt{margin:0}.co-list dd{margin:0;font-weight:600;white-space:nowrap}
+.calc-out .btn{width:100%}
+.co-fine{margin:12px 0 0;font-size:14px;text-align:center}
+
+/* schedule */
+.sched{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;font-size:16px}
+.sched th{padding:16px 22px;background:#F7F8FA;border-bottom:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:600;text-align:left}
+.sched td{padding:20px 22px;border-bottom:1px solid var(--line);vertical-align:middle}
+.sched tr:last-child td{border-bottom:0}
+.sched td:last-child{text-align:right}
+.sd{display:block;font:400 24px/1.1 var(--fd);white-space:nowrap}
+.sdw{color:var(--muted);font-size:14px}
+.grp b{display:block;font-weight:600}
+.grp span{color:var(--muted);font-size:14px}
+.seats{display:grid;gap:8px;font-size:15px;font-weight:500;white-space:nowrap}
+.seat-bar{width:120px;height:6px;border-radius:6px;background:#E3E7ED;overflow:hidden}
+.seat-bar i{display:block;height:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(var(--t))}
+@media(max-width:819px){
+  .sched,.sched tbody{display:block;background:none;border:0;border-radius:0;overflow:visible}
+  .sched thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sched tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;margin-bottom:12px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:20px}
+  .sched td{display:block;padding:0;border:0}
+  .sched td:nth-child(1){grid-column:1;grid-row:1}
+  .sched td:nth-child(2),.sched td:nth-child(3){grid-column:1/-1}
+  .sched td:nth-child(3){color:var(--muted);font-size:15px}
+  .sched td:nth-child(4){grid-column:2;grid-row:1;text-align:right}
+  .sched td:nth-child(5){grid-column:1/-1;margin-top:8px;text-align:left}
+  .sched td:nth-child(5) .btn{width:100%}
+  .seat-bar{width:96px;margin-left:auto}
+}
+
+/* route */
+.route{display:grid;gap:24px}
+@media(min-width:1000px){.route{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:40px;align-items:start}}
+.map-wrap{position:relative}
+.map{position:relative;aspect-ratio:1000/620;border-radius:24px;overflow:hidden;background:#1A2B44;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.map>svg{position:absolute;inset:0;width:100%;height:100%}
+.mp{position:absolute;display:grid;place-items:center;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
+.mp span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#fff;color:var(--ink);font:400 15px/1 var(--fd);box-shadow:0 0 0 4px rgba(255,255,255,.18);transition:transform .3s var(--ease),background-color .2s ease,box-shadow .3s ease}
+.mp[aria-pressed=true] span{background:var(--sign);box-shadow:0 0 0 5px rgba(255,207,26,.35);transform:scale(1.12)}
+.mp.pass span{box-shadow:0 0 0 8px rgba(255,207,26,.45);transform:scale(1.18)}
+@media(max-width:599px){.mp span{width:24px;height:24px;font-size:13px}}
+.map-play{position:absolute;right:10px;bottom:10px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px 0 12px;border:0;border-radius:999px;background:rgba(15,27,45,.82);color:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:transform .16s var(--ease)}
+.map-play:active{transform:scale(.97)}
+.map-play svg{width:18px;height:18px}
+.tip{position:absolute;z-index:3;top:0;left:0;width:min(300px,calc(100% - 24px));padding:15px 18px 16px;border-radius:16px;background:#fff;color:var(--ink);box-shadow:0 24px 50px -18px rgba(0,0,0,.75);pointer-events:none;animation:tipIn .26s var(--ease)}
+.tip b{display:block;margin-bottom:4px;font-size:16px}
+.tip p{margin:0;color:#34404F;font-size:15px;line-height:1.45}
+.tip::after{content:"";position:absolute;left:var(--ax,50%);bottom:-7px;width:14px;height:14px;margin-left:-7px;border-radius:2px;background:#fff;transform:rotate(45deg)}
+.tip.below::after{top:-7px;bottom:auto}
+@keyframes tipIn{from{opacity:0;transform:translateY(6px)}}
+@media(max-width:719px){.tip{position:static;width:auto;margin-top:12px}.tip::after{display:none}}
+.rlist{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.rlist button{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:center;width:100%;min-height:56px;padding:10px 14px;border:0;border-radius:14px;background:rgba(255,255,255,.05);color:#fff;font-weight:500;text-align:left;cursor:pointer;transition:background-color .2s ease,box-shadow .2s ease,transform .16s var(--ease)}
+.rlist button:active{transform:scale(.98)}
+.rn{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);font:400 15px/1 var(--fd)}
+.rlist button[aria-pressed=true]{background:rgba(255,207,26,.12);box-shadow:inset 0 0 0 1.5px var(--sign)}
+.rlist button[aria-pressed=true] .rn{background:var(--sign);color:var(--ink)}
+@media(hover:hover) and (pointer:fine){.rlist button[aria-pressed=false]:hover{background:rgba(255,255,255,.09)}}
+.route-note{margin:18px 0 0;color:var(--mutedd);font-size:14px}
+
+/* instructors */
+.ins-list{display:grid;gap:24px;margin:0;padding:0;list-style:none}
+@media(min-width:900px){.ins-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:899px){.ins-list{grid-auto-flow:column;grid-auto-columns:min(78%,340px);gap:16px;margin:0 -24px;padding:0 24px 12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 24px;scrollbar-width:none}.ins-list::-webkit-scrollbar{display:none}.ins{scroll-snap-align:start}}
+@media(max-width:599px){.ins-list{margin:0 -16px;padding:0 16px 12px;scroll-padding:0 16px}}
+.ins-ph{position:relative;margin:0 0 16px;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#C9D1DB}
+.ins-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.ins-k{position:absolute;left:12px;top:12px;padding:6px 10px;border-radius:8px;background:var(--sign);color:var(--ink);font-weight:600;font-size:14px}
+.ins h3{margin:0 0 10px;font:400 22px/1.15 var(--fd)}
+.ins dl{display:grid;gap:6px;margin:0;font-size:15px}
+.ins dl div{display:flex;justify-content:space-between;gap:12px;padding-top:6px;border-top:1px dashed var(--line)}
+.ins dt{color:var(--muted)}.ins dd{margin:0;font-weight:600;text-align:right}
+
+/* faq */
+.faq-sec{background:#fff}
+.faq{display:grid;gap:32px}
+@media(min-width:960px){.faq{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px}}
+.faq-head{position:relative;align-self:start}
+.faq-head h2{margin-bottom:16px}
+.faq-head p{margin:0;max-width:24em;color:var(--muted)}
+.faq-head a{color:var(--ink);font-weight:600;text-underline-offset:3px;white-space:nowrap}
+.qa{border-bottom:1px solid var(--line)}
+.qa:first-child{border-top:1px solid var(--line)}
+.qa summary{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:68px;padding:16px 0;list-style:none;font-weight:600;font-size:clamp(17px,calc(var(--vw)*1.5),19px);line-height:1.35;cursor:pointer}
+.qa summary::-webkit-details-marker{display:none}
+.qa-i{position:relative;flex:none;width:36px;height:36px;border-radius:50%;background:var(--paper);transition:transform .3s var(--ease),background-color .2s ease}
+.qa-i::before,.qa-i::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;margin:-1px 0 0 -7px;border-radius:2px;background:var(--ink)}
+.qa-i::after{transform:rotate(90deg)}
+.qa[open] .qa-i{transform:rotate(45deg);background:var(--sign)}
+.qa-a{padding:0 56px 22px 0;color:#34404F}
+.qa-a p{margin:0}
+.qa[open] .qa-a{animation:qaIn .35s var(--ease)}
+@keyframes qaIn{from{opacity:0;transform:translateY(-6px)}}
+@media(max-width:599px){.qa-a{padding-right:0}}
+
+/* lead form */
+.lead-sec{background:var(--sign);color:var(--ink);--focus:var(--ink)}
+.lead{display:grid;gap:28px;align-items:start}
+@media(min-width:960px){.lead{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}}
+.lead-info h2{margin-bottom:16px}
+.lead-info>p{max-width:28em;margin:0 0 28px;font-size:18px}
+.lead-ph{margin:0;aspect-ratio:16/11;border-radius:22px;overflow:hidden;background:#E5BA0E}
+.lead-ph img{width:100%;height:100%;object-fit:cover}
+@media(max-width:959px){.lead-ph{display:none}.lead-info>p{margin-bottom:0}}
+.form-card{position:relative;padding:clamp(22px,calc(var(--vw)*3),36px);border-radius:26px;background:#fff;box-shadow:0 40px 70px -40px rgba(15,27,45,.55)}
+.chips{min-width:0;margin:0 0 20px;padding:0;border:0}
+.chips legend{margin-bottom:10px;padding:0;font-weight:600}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;display:inline-flex}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;box-shadow:inset 0 0 0 1.5px #B7C1CE;font-weight:500;font-size:15px;transition:background-color .2s ease,color .2s ease,transform .16s var(--ease)}
+.chip:active span{transform:scale(.97)}
+.chip input:checked+span{background:var(--ink);color:#fff;box-shadow:none}
+.chip input:focus-visible+span{outline:3px solid var(--ink);outline-offset:3px}
+@media(hover:hover) and (pointer:fine){.chip input:not(:checked):hover+span{box-shadow:inset 0 0 0 1.5px var(--ink)}}
+.fld{margin-bottom:16px}
+.fld label{display:block;margin-bottom:8px;font-weight:600}
+.fld input{width:100%;height:56px;padding:0 16px;border:1.5px solid #B7C1CE;border-radius:14px;background:#fff;color:var(--ink);font-size:17px;transition:border-color .2s ease,box-shadow .2s ease}
+.fld input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(15,27,45,.16)}
+.fld input[aria-invalid=true]{border-color:#B42318}
+.err{margin:6px 0 0;color:#B42318;font-size:14px}
+.err:empty{display:none}
+.extras{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.ex{display:inline-flex;align-items:center;gap:2px;padding:0 0 0 14px;border-radius:999px;background:var(--paper);font-size:14px;font-weight:500}
+.ex-x{display:grid;place-items:center;width:44px;height:40px;padding:0;border:0;border-radius:999px;background:none;color:var(--muted);cursor:pointer}
+.ex-x svg{width:16px;height:16px}
+.fine{margin:12px 0 0;color:var(--muted);font-size:13px;text-align:center}
+.done{padding:20px 0;text-align:center;animation:ld .5s var(--ease) both}
+.done-ic{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:var(--sign);color:var(--ink)}
+.done-ic svg{width:30px;height:30px}
+.done h3{margin:0 0 10px;font:400 30px/1.1 var(--fd)}
+.done p{max-width:26em;margin:0 auto 22px;color:#34404F}
+
+/* footer */
+.ft{padding:64px 0 28px;background:var(--ink);color:#B9C5D4;font-size:15px;--focus:var(--sign)}
+.ft-grid{display:grid;gap:32px}
+@media(min-width:800px){.ft-grid{grid-template-columns:1.2fr 1fr .8fr}}
+.ft .logo{margin:0 0 14px}
+.ft p{margin:0}
+.ft a{color:#fff;text-decoration:none}
+.ft-contacts{position:relative;display:grid;gap:4px;justify-items:start;align-self:start}
+.ft-phone{display:inline-flex;align-items:center;min-height:44px;font:400 26px/1.2 var(--fd)}
+.ft-contacts a:not(.ft-phone){min-height:32px;display:inline-flex;align-items:center;overflow-wrap:anywhere}
+.ft-nav{display:grid;gap:2px;justify-items:start;align-self:start}
+.ft-nav a{display:inline-flex;align-items:center;min-height:40px}
+@media(hover:hover) and (pointer:fine){.ft a:hover{text-decoration:underline;text-underline-offset:3px}}
+.ft-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);color:#9AA8BA;font-size:14px}
+.ft-bottom a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:719px){.ft{padding-bottom:110px}}
+
+/* mobile call bar */
+.mbar{position:fixed;z-index:60;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));display:none;grid-template-columns:1fr 1.3fr;gap:8px;padding:8px;border-radius:18px;background:rgba(15,27,45,.95);box-shadow:0 18px 40px -10px rgba(0,0,0,.55);transform:translateY(150%);visibility:hidden;transition:transform .4s var(--ease),visibility 0s linear .4s;--focus:var(--sign)}
+.mbar .btn{min-height:50px;padding:0 12px}
+.mbar.show{transform:none;visibility:visible;transition:transform .4s var(--ease),visibility 0s}
+body.fixes-on .mbar.show{transform:translateY(150%);visibility:hidden}
+@media(max-width:719px){.mbar{display:grid}}
+
+/* goal toast */
+.goal{position:fixed;z-index:110;left:16px;bottom:16px;max-width:min(430px,calc(100% - 32px));padding:12px 16px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:var(--ysd);color:#E4E7EC;font-size:14px;line-height:1.4;box-shadow:0 18px 40px -12px rgba(0,0,0,.55);opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s ease,transform .35s var(--ease)}
+.goal b{color:#7EE2A8;font-weight:600}
+.goal.show{opacity:1;transform:none}
+@media(max-width:899px){.goal{top:calc(var(--bar) + 10px);bottom:auto;transform:translateY(-10px)}}
+
+/* ===== OLD (2012 parody) ===== */
+.v-old{background:#9DBFE0 repeating-linear-gradient(45deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px);color:#333;font:12px/1.4 Verdana,Tahoma,Arial,sans-serif;--focus:#000}
+.old-note{display:none}
+@media(max-width:979px){.old-note{display:flex;gap:10px;align-items:flex-start;margin:0;padding:12px 16px;background:var(--ysd);color:#E4E7EC;font:500 14px/1.45 var(--ft)}.old-note svg{flex:none;width:20px;height:20px;margin-top:1px;color:#FF9D95}}
+.old-frame{overflow:hidden;overflow:clip}
+.old-scaler{display:flow-root;width:980px;margin:0 auto;padding:16px 0 28px;transform-origin:0 0;transform:scale(var(--s,1))}
+.o-page{background:#fff;border:1px solid #5D86B5;box-shadow:0 0 14px rgba(0,0,0,.45)}
+.o-header{position:relative;display:flex;align-items:center;justify-content:space-between;height:128px;padding:0 26px;background:linear-gradient(180deg,#7FB2EE 0%,#3B7BCB 49%,#215FB0 50%,#2B6CC0 100%);border-bottom:3px solid #F2C200}
+.o-header::after{content:"";position:absolute;left:0;right:0;top:0;height:50%;background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.08));pointer-events:none}
+.o-logo{position:relative;z-index:1;display:flex;align-items:center;gap:14px}
+.o-logo svg{width:86px;height:86px;filter:drop-shadow(3px 3px 3px rgba(0,0,0,.6))}
+.o-name{display:block;color:#fff;font:italic 900 40px/1 "Arial Black",Arial,sans-serif;letter-spacing:1px;text-shadow:3px 3px 4px #000,0 0 12px #9cf}
+.o-sub{display:block;margin-top:6px;color:#FFF57A;font:bold 14px Arial,sans-serif;text-transform:uppercase;text-shadow:1px 1px 1px #000}
+.o-phone{position:relative;z-index:2;color:#fff;font:bold 13px Arial,sans-serif;text-align:right;text-shadow:1px 1px 1px #000}
+.o-phone b{display:block;color:#FFEF3A;font-size:26px}
+.o-phone span{display:block;color:#FF6B6B;font-size:16px}
+.o-menu{position:relative;display:flex;background:linear-gradient(#FDFDFD,#D3D3D3);border-bottom:1px solid #8A8A8A}
+.o-menu span{padding:0 8px;border-right:1px solid #AAA;color:#1A3F8F;font:bold 11px/32px Tahoma,Verdana,sans-serif;white-space:nowrap;cursor:pointer}
+.o-menu span.on{background:linear-gradient(#5B95DB,#1F5BAA);color:#fff}
+@media(hover:hover) and (pointer:fine){.o-menu span:hover{text-decoration:underline}}
+.o-marq{overflow:hidden;white-space:nowrap;background:#FFF200;border-bottom:1px solid #D4C600;color:#E00000;font:bold 13px/24px Arial,sans-serif}
+.o-marq span{display:inline-block;padding-left:100%;animation:marq 22s linear infinite}
+@keyframes marq{to{transform:translateX(-100%)}}
+.o-banner{position:relative;height:300px;background:#6E8FB3;border-bottom:4px solid #215FB0}
+.o-banner img{width:100%;height:100%;object-fit:fill}
+.o-btext{position:absolute;left:30px;top:26px;max-width:640px;margin:0;color:#fff;font:italic bold 30px/1.15 "Times New Roman",Times,serif}
+.o-btext2{position:absolute;left:30px;top:112px;margin:0;color:#FFF57A;font:bold 18px Arial,sans-serif}
+.o-arr{position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font:bold 28px/37px Arial,sans-serif;text-align:center}
+.o-arr.l{left:10px}.o-arr.r{right:10px}
+.o-dots{position:absolute;left:0;right:0;bottom:10px;color:#fff;font-size:14px;letter-spacing:4px;text-align:center}
+.o-body{display:flex;gap:16px;padding:14px}
+.o-side{flex:none;width:220px}
+.o-box{margin-bottom:14px;border:1px solid #9DB6D6;background:#F4F8FD}
+.o-box h3{margin:0;padding:5px 8px;background:linear-gradient(#4E8BD6,#1E5AA8);color:#fff;font:bold 12px Tahoma,sans-serif;text-transform:uppercase}
+.o-box ul{margin:0;padding:8px 8px 8px 10px;list-style:none}
+.o-box li{padding:3px 0;border-bottom:1px dotted #9DB6D6;color:#1A3F8F}
+.o-box li::before{content:"► ";color:#D00000;font-size:9px}
+.o-news{padding:8px;font-size:11px}
+.o-news p{margin:0 0 8px}.o-news b{color:#D00000}.o-news u{color:#1A3F8F}
+.o-park{padding:6px}
+.o-park img{width:206px;height:110px;object-fit:fill;border:1px solid #777;background:#BBB}
+.o-main{flex:1;min-width:0;text-align:justify}
+.o-h1{position:relative;margin:0 0 10px;padding-bottom:4px;border-bottom:2px dotted #1E5AA8;color:#1E5AA8;font:bold 22px "Times New Roman",Times,serif}
+.o-h2{margin:18px 0 8px;color:#C00000;font:bold 15px Arial,sans-serif;text-decoration:underline}
+.o-main p{margin:0 0 8px}
+.o-blink{color:#E00000;font-weight:bold;font-size:13px;animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.o-adv{margin:0;padding:0;list-style:none}
+.o-adv li::before{content:"✔ ";color:#2E9B2E;font-weight:bold}
+.o-prices{position:relative}
+.o-prices table{width:100%;border-collapse:collapse;font-size:11px}
+.o-prices th,.o-prices td{padding:3px 5px;border:1px solid #8FA9C9;text-align:center}
+.o-prices th{background:#DCE8F6}
+.o-prices tr:nth-child(even) td{background:#F3F7FC}
+.o-star{margin:4px 0 0!important;color:#777;font-size:10px}
+.o-gallery{position:relative;display:flex;gap:12px}
+.o-gallery figure{margin:0;color:#666;font-size:10px;text-align:center}
+.o-gallery img{width:210px;height:150px;object-fit:fill;border:4px solid #fff;box-shadow:1px 1px 5px rgba(0,0,0,.6);background:#BBB}
+.o-form{position:relative;padding:10px;border:1px solid #9DB6D6;background:#F4F8FD}
+.o-form table{border-collapse:collapse}
+.o-form td{padding:3px 6px;font-size:12px}
+.o-form td:first-child{text-align:right;white-space:nowrap}
+.o-form input,.o-form select{width:260px;height:21px;padding:1px 3px;border:1px solid #7F9DB9;background:#fff;font:12px Verdana,sans-serif}
+.o-form em{color:#E00000;font-style:normal}
+.o-cap{display:flex;align-items:center;gap:8px}
+.o-cap input{width:110px}
+.o-btns button{padding:3px 14px;border:1px solid #707070;border-radius:3px;background:linear-gradient(#F7F7F7,#D9D9D9);font:12px Verdana,sans-serif;cursor:pointer}
+.o-err{margin:8px 0 0!important;color:#E00000;font-weight:bold}
+.o-err:empty{display:none}
+.o-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:14px 18px;background:linear-gradient(#2B6CC0,#173F7A);color:#DDE8F6;font-size:11px}
+.o-footer p{margin:0 0 4px}
+.o-footer u{color:#FFF57A}
+.o-counters{position:relative;display:flex;flex:none;gap:6px}
+.o-counters span{display:grid;place-items:center;width:88px;height:31px;border:1px solid #8C8C8C;background:linear-gradient(#E9E9E9,#BDBDBD);color:#666;font:bold 9px Tahoma,sans-serif;text-transform:uppercase}
+
+/* ===== reduced motion ===== */
+@media (prefers-reduced-motion:reduce){
+  .ld,.hero-ph,.hero-ph img,.mnav,.tip,.qa[open] .qa-a,.o-marq span,.o-blink,body.fixes-on .pin,.pin.is-hot::before,.done{animation:none}
+  .rv,.seg-th,.fix-panel,body.fixes-on .fix-panel,.mbar,.mbar.show,.goal,.btn,.opt span,.chip span,.sw-tr,.sw-tr::after,.qa-i,.burger span,.burger span::before,.burger span::after,.mp span,.co-list div,.fix-btn,.fx,.rlist button,.next-g{transition:none}
+  .rv-wait{opacity:1;transform:none}
+  .o-marq span{padding-left:12px}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
+</style>
+</head>
+<body data-mode="new">
+<a class="skip" href="#main">К содержанию</a>
+
+<div class="ysd-bar" role="region" aria-label="Панель кейса YSD DEV">
+  <div class="ysd-l">
+    <a class="ysd-mark" href="https://ysddev.com" aria-label="Студия YSD DEV"><span>YSD</span></a>
+    <p class="ysd-t" style="margin:0">Кейс <b>YSD DEV</b> · Доработка сайта</p>
+  </div>
+  <div class="seg" data-mode="new" role="group" aria-label="Версия сайта">
+    <span class="seg-th" aria-hidden="true"></span>
+    <button type="button" data-m="old" aria-pressed="false">Было</button>
+    <button type="button" data-m="new" aria-pressed="true">Стало</button>
+  </div>
+  <div class="ysd-r">
+    <button type="button" class="fix-btn" id="fixBtn" aria-expanded="false" aria-controls="fixPanel">Что исправили <b>8</b></button>
+    <a class="ysd-link" href="https://ysddev.com">ysddev.com</a>
+  </div>
+</div>
+
+<div class="stage" id="stage">
+
+<!-- ================= СТАЛО ================= -->
+<div class="v-new" id="vNew">
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr-in">
+      <a class="logo" href="#start">
+        <svg class="logo-s" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="3" transform="rotate(45 20 20)" fill="#fff"/><rect x="11.5" y="11.5" width="17" height="17" rx="2" transform="rotate(45 20 20)" fill="#FFCF1A"/></svg>
+        <span><b>Право руля</b><small>автошкола в Воронеже</small></span>
+      </a>
+      <nav class="nav" aria-label="Разделы сайта">
+        <a href="#kategorii">Категории</a><a href="#ceny">Цены</a><a href="#raspisanie">Расписание</a><a href="#marshrut">Маршрут</a><a href="#voprosy">Вопросы</a>
+      </nav>
+      <span class="hdr-call" data-fix="6" data-pin="bl"><a class="hdr-phone" href="tel:+74730000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.2-2 1.3a11 11 0 0 0 6.2 6.2l1.3-2 4.2 1.6v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg><span class="hp-t">+7 (473) 000-00-00</span></a></span>
+      <a class="btn btn-sign btn-s hdr-cta" href="#zapis">Записаться</a>
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Меню"><span></span></button>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="Меню" hidden>
+      <a href="#kategorii">Категории</a><a href="#ceny">Цены и калькулятор</a><a href="#raspisanie">Расписание</a><a href="#marshrut">Маршрут</a><a href="#voprosy">Вопросы</a>
+      <a class="btn btn-sign" href="#zapis">Записаться</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero dark" id="start" data-pair="top" aria-labelledby="heroH">
+      <div class="wrap hero-in">
+        <div>
+          <div class="hero-offer ld" data-fix="1">
+            <h1 id="heroH">Права категории&nbsp;B в&nbsp;Воронеже</h1>
+            <ul class="plates" aria-label="Цена и срок">
+              <li class="plate">от 38&nbsp;500&nbsp;₽</li>
+              <li class="plate">от 2,5&nbsp;месяцев</li>
+            </ul>
+          </div>
+          <p class="hero-lead ld" style="--d:1">Теория онлайн или в&nbsp;классе, вождение на механике или автомате, рассрочка 0% без переплаты. Посчитайте свой вариант&nbsp;— это займёт минуту.</p>
+          <div class="hero-cta ld" style="--d:2" data-fix="2" data-pin="tl">
+            <a class="btn btn-sign" href="#ceny">Рассчитать стоимость</a>
+            <a class="btn btn-ghost" href="#zapis">Записаться</a>
+          </div>
+          <ul class="facts ld" style="--d:3">
+            <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg><span><b>Рассрочка 0%</b>на&nbsp;6 или 10&nbsp;месяцев, без переплаты</span></li>
+            <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19.5h20"/></svg><span><b>Теория онлайн</b>или очно в&nbsp;классе на&nbsp;Плехановской</span></li>
+            <li class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v10M12 7v10M18 7v5H6"/></svg><span><b>Механика или автомат</b>и&nbsp;инструктор из&nbsp;вашего района</span></li>
+          </ul>
+        </div>
+        <div class="hero-media" data-fix="5" data-pin="tl">
+          <div class="hero-ph">
+            <picture>
+              <source media="(max-width: 899px)" srcset="https://images.unsplash.com/photo-1550517636-ad7bac40dc28?auto=format&fit=crop&w=860&h=600&q=72&crop=entropy">
+              <img src="https://images.unsplash.com/photo-1550517636-ad7bac40dc28?auto=format&fit=crop&w=920&h=1150&q=72&crop=entropy" width="920" height="1150" alt="Человек за рулём автомобиля во время поездки" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <a class="next-g ld" style="--d:4" href="#raspisanie">
+            <span class="ng-dot" aria-hidden="true"></span>
+            <span><small>Ближайшая группа</small><b id="nextDate">каждую неделю</b></span>
+          </a>
+        </div>
+      </div>
+      <div class="road" aria-hidden="true"></div>
+    </section>
+
+    <section class="sec" id="kategorii" data-pair="cats" aria-labelledby="catH">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2 id="catH">Категории и&nbsp;цены</h2>
+          <p>Цена&nbsp;— за весь курс: теория, вождение по&nbsp;программе и&nbsp;внутренний экзамен. Медкомиссия и&nbsp;госпошлина оплачиваются отдельно.</p>
+        </div>
+        <ul class="cats">
+          <li class="cat rv" style="--d:0">
+            <div class="cat-top"><span class="cat-l" aria-hidden="true">A</span><svg class="cat-ic" viewBox="0 0 56 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="27" r="7"/><circle cx="45" cy="27" r="7"/><path d="M11 27l9-11h12l7 11M20 16l5 11h9M32 16l4-6h6"/></svg></div>
+            <h3>Категория A, мотоцикл</h3>
+            <p class="cat-p">24&nbsp;900&nbsp;₽</p>
+            <dl class="cat-d"><div><dt>Срок</dt><dd>от 2 месяцев</dd></div><div><dt>Вождение</dt><dd>18 часов</dd></div></dl>
+            <button type="button" class="btn btn-line btn-s" data-calc="A">Рассчитать</button>
+          </li>
+          <li class="cat rv" style="--d:1">
+            <div class="cat-top"><span class="cat-l" aria-hidden="true">B</span><svg class="cat-ic" viewBox="0 0 56 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27v-7l6-9h26l9 9h5v7"/><circle cx="15" cy="27" r="5"/><circle cx="41" cy="27" r="5"/><path d="M20 27h16M14 19h30"/></svg></div>
+            <h3>Категория B, механика</h3>
+            <p class="cat-p">38&nbsp;500&nbsp;₽</p>
+            <dl class="cat-d"><div><dt>Срок</dt><dd>от 2,5 месяцев</dd></div><div><dt>Вождение</dt><dd>56 часов</dd></div></dl>
+            <button type="button" class="btn btn-line btn-s" data-calc="Bm">Рассчитать</button>
+          </li>
+          <li class="cat rv" style="--d:2">
+            <div class="cat-top"><span class="cat-l" aria-hidden="true">B</span><svg class="cat-ic" viewBox="0 0 56 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 27v-7l6-9h26l9 9h5v7"/><circle cx="15" cy="27" r="5"/><circle cx="41" cy="27" r="5"/><path d="M20 27h16M14 19h30"/></svg></div>
+            <h3>Категория B, автомат</h3>
+            <p class="cat-p">41&nbsp;500&nbsp;₽</p>
+            <dl class="cat-d"><div><dt>Срок</dt><dd>от 2,5 месяцев</dd></div><div><dt>Вождение</dt><dd>54 часа</dd></div></dl>
+            <p class="cat-n">В&nbsp;правах будет отметка&nbsp;AT.</p>
+            <button type="button" class="btn btn-line btn-s" data-calc="Ba">Рассчитать</button>
+          </li>
+          <li class="cat rv" style="--d:3">
+            <div class="cat-top"><span class="cat-l" aria-hidden="true">C</span><svg class="cat-ic" viewBox="0 0 56 38" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h29v21H4zM33 13h10l8 8v6H33"/><circle cx="13" cy="29" r="5"/><circle cx="42" cy="29" r="5"/></svg></div>
+            <h3>Категория C, грузовой</h3>
+            <p class="cat-p">59&nbsp;000&nbsp;₽</p>
+            <dl class="cat-d"><div><dt>Срок</dt><dd>от 3,5 месяцев</dd></div><div><dt>Вождение</dt><dd>72 часа</dd></div></dl>
+            <button type="button" class="btn btn-line btn-s" data-calc="C">Рассчитать</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec dark" id="ceny" data-pair="prices" aria-labelledby="calcH">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2 id="calcH">Калькулятор обучения</h2>
+          <p>Соберите курс под себя: итог и&nbsp;платёж в&nbsp;рассрочку пересчитываются сразу. Медкомиссия и&nbsp;госпошлина&nbsp;— отдельно.</p>
+        </div>
+        <div class="calc">
+          <div class="calc-l">
+            <div class="calc-mini" aria-hidden="true"><b><span id="cmTotal">38&nbsp;500</span>&nbsp;₽</b><span id="cmMonth">оплата сразу</span></div>
+            <form class="calc-form rv" id="calcForm">
+              <fieldset class="cf">
+                <legend>Категория</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="cat" value="A"><span>A, мотоцикл</span></label>
+                  <label class="opt"><input type="radio" name="cat" value="B" checked><span>B, легковой</span></label>
+                  <label class="opt"><input type="radio" name="cat" value="C"><span>C, грузовой</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="cf">
+                <legend>Коробка передач</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="kpp" value="m" checked><span>Механика</span></label>
+                  <label class="opt"><input type="radio" name="kpp" value="a"><span>Автомат, +3&nbsp;000&nbsp;₽</span></label>
+                </div>
+                <p class="cf-note" id="kppNote" hidden>Для категорий A и&nbsp;C обучение только на&nbsp;механике.</p>
+              </fieldset>
+              <fieldset class="cf">
+                <legend>Теория</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="th" value="class" checked><span>В&nbsp;классе</span></label>
+                  <label class="opt"><input type="radio" name="th" value="online"><span>Онлайн, −2&nbsp;500&nbsp;₽</span></label>
+                </div>
+              </fieldset>
+              <div class="cf">
+                <div class="cf-row"><label class="cf-l" for="hrs">Дополнительные часы вождения</label><output id="hrsOut" for="hrs">0 ч</output></div>
+                <input class="rng" type="range" id="hrs" name="hrs" min="0" max="20" step="1" value="0" aria-describedby="hrsHint">
+                <div class="ticks" aria-hidden="true"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+                <p class="cf-note" id="hrsHint">1&nbsp;200&nbsp;₽ за&nbsp;час сверх программы.</p>
+              </div>
+              <label class="sw"><input type="checkbox" name="route" id="routeChk"><span class="sw-tr" aria-hidden="true"></span><span class="sw-t"><b>Вождение по&nbsp;экзаменационному маршруту</b><small>3&nbsp;занятия на&nbsp;участках городского экзамена, +3&nbsp;600&nbsp;₽</small></span></label>
+              <fieldset class="cf">
+                <legend>Рассрочка 0%</legend>
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="inst" value="0" checked><span>Оплата сразу</span></label>
+                  <label class="opt"><input type="radio" name="inst" value="6"><span>6 месяцев</span></label>
+                  <label class="opt"><input type="radio" name="inst" value="10"><span>10 месяцев</span></label>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="calc-out rv" style="--d:1" data-fix="3">
+            <p class="co-l">Итого за&nbsp;обучение</p>
+            <p class="co-total"><span id="cTotal">38&nbsp;500</span>&nbsp;₽</p>
+            <p class="co-month" id="cMonth">Оплата сразу. В&nbsp;рассрочку 0%&nbsp;— от&nbsp;3&nbsp;850&nbsp;₽ в&nbsp;месяц.</p>
+            <dl class="co-list">
+              <div><dt id="cProgL">Программа B, механика</dt><dd id="cProg">38&nbsp;500&nbsp;₽</dd></div>
+              <div class="z" id="rTh"><dt>Теория онлайн</dt><dd id="cTh">0&nbsp;₽</dd></div>
+              <div class="z" id="rHrs"><dt id="cHrsL">Доп. вождение, 0&nbsp;ч</dt><dd id="cHrs">0&nbsp;₽</dd></div>
+              <div class="z" id="rRoute"><dt>Экзаменационный маршрут</dt><dd id="cRoute">0&nbsp;₽</dd></div>
+            </dl>
+            <button type="button" class="btn btn-ink" id="calcGo">Записаться с&nbsp;этим расчётом</button>
+            <p class="sr" id="cLive" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="raspisanie" aria-labelledby="schH">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2 id="schH">Ближайшие группы</h2>
+          <p>Теория&nbsp;— три раза в&nbsp;неделю, вождение&nbsp;— по&nbsp;графику, который вы согласуете с&nbsp;инструктором.</p>
+        </div>
+        <table class="sched rv">
+          <caption class="sr">Расписание ближайших групп</caption>
+          <thead><tr><th scope="col">Старт</th><th scope="col">Группа</th><th scope="col">Теория</th><th scope="col">Свободно</th><th scope="col"><span class="sr">Запись</span></th></tr></thead>
+          <tbody>
+            <tr><td><b class="sd" data-sd="0">через 6 дней</b><span class="sdw" data-sw="0"></span></td><td class="grp"><b>Вечерняя</b><span>категория B</span></td><td>3 раза в&nbsp;неделю, 19:00–21:00</td><td><span class="seats"><span class="seat-bar" aria-hidden="true"><i style="--t:.8"></i></span>Осталось мест: 4</span></td><td><button type="button" class="btn btn-line btn-s" data-take="0">Занять место</button></td></tr>
+            <tr><td><b class="sd" data-sd="1">через 11 дней</b><span class="sdw" data-sw="1"></span></td><td class="grp"><b>Утренняя</b><span>категория B</span></td><td>3 раза в&nbsp;неделю, 9:30–11:30</td><td><span class="seats"><span class="seat-bar" aria-hidden="true"><i style="--t:.55"></i></span>Осталось мест: 9</span></td><td><button type="button" class="btn btn-line btn-s" data-take="1">Занять место</button></td></tr>
+            <tr><td><b class="sd" data-sd="2">через 2 недели</b><span class="sdw" data-sw="2"></span></td><td class="grp"><b>Выходного дня</b><span>категория B</span></td><td>сб и&nbsp;вс, 10:00–13:00</td><td><span class="seats"><span class="seat-bar" aria-hidden="true"><i style="--t:.4"></i></span>Осталось мест: 12</span></td><td><button type="button" class="btn btn-line btn-s" data-take="2">Занять место</button></td></tr>
+            <tr><td><b class="sd" data-sd="3">через 3 недели</b><span class="sdw" data-sw="3"></span></td><td class="grp"><b>Вечерняя</b><span>категории A и&nbsp;C</span></td><td>3 раза в&nbsp;неделю, 19:00–21:00</td><td><span class="seats"><span class="seat-bar" aria-hidden="true"><i style="--t:.25"></i></span>Осталось мест: 15</span></td><td><button type="button" class="btn btn-line btn-s" data-take="3">Занять место</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec dark" id="marshrut" aria-labelledby="rtH">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2 id="rtH">Экзаменационный маршрут</h2>
+          <p>Пять участков, которые проверяют на&nbsp;городском экзамене. Отрабатываем их на&nbsp;занятиях заранее&nbsp;— нажмите на&nbsp;точку, чтобы узнать, на&nbsp;что смотреть.</p>
+        </div>
+        <div class="route">
+          <div class="map-wrap rv">
+            <div class="map" id="map">
+              <svg viewBox="0 0 1000 620" role="img" aria-label="Схема учебного маршрута с пятью сложными участками" focusable="false">
+                <rect width="1000" height="620" fill="#1A2B44"/>
+                <path d="M220 0V620M420 0V620M620 0V620M0 210H860M0 385H860M0 548H860" stroke="#213553" stroke-width="10" fill="none"/>
+                <rect x="134" y="134" width="172" height="152" rx="12" fill="#1C3A3A"/>
+                <circle cx="182" cy="182" r="15" fill="#23473F"/><circle cx="254" cy="232" r="19" fill="#23473F"/><circle cx="208" cy="258" r="10" fill="#23473F"/>
+                <path d="M120 0V620M320 0V620M520 0V620M720 0V620M0 300H850M0 470H850" stroke="#2A4166" stroke-width="26" fill="none"/>
+                <path d="M0 120H850" stroke="#2A4166" stroke-width="36" fill="none"/>
+                <path d="M120 0V620M320 0V620M520 0V620M720 0V620M0 300H850M0 470H850M0 120H790" stroke="#4A6390" stroke-width="2" stroke-dasharray="10 12" fill="none"/>
+                <circle cx="520" cy="300" r="46" fill="none" stroke="#2A4166" stroke-width="30"/>
+                <circle cx="520" cy="300" r="29" fill="#1C3A3A"/>
+                <circle cx="822" cy="118" r="34" fill="#2A4166"/>
+                <path d="M870 0C842 110 905 210 872 330S826 520 884 620H1000V0Z" fill="#1D4470"/>
+                <path d="M902 70q12 7 24 0t24 0M890 250q12 7 24 0t24 0M906 420q12 7 24 0t24 0M896 560q12 7 24 0t24 0" stroke="#2E5E93" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <path d="M744 270l10-10 10 10M744 240l10-10 10 10M744 210l10-10 10 10M744 180l10-10 10 10" stroke="#7D93B6" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#C9D4E5"><rect x="420" y="459" width="22" height="3"/><rect x="420" y="465" width="22" height="3"/><rect x="420" y="471" width="22" height="3"/><rect x="420" y="477" width="22" height="3"/></g>
+                <g fill="#8EA2C0" font-family="Golos Text, system-ui, sans-serif" font-size="17" font-weight="500">
+                  <text x="772" y="232">подъём</text>
+                  <text x="938" y="330" transform="rotate(-82 938 330)" text-anchor="middle">Водохранилище</text>
+                  <text x="251" y="515" text-anchor="middle">Старт и финиш</text>
+                </g>
+                <path id="routePath" d="M240 470H150Q120 470 120 440V330Q120 300 150 300H474A46 46 0 1 0 520 254V158Q520 128 550 128H800C848 128 848 108 800 108H752Q720 108 720 140V440Q720 470 690 470H262" fill="none" stroke="#FFCF1A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="251" cy="470" r="12" fill="#0F1B2D" stroke="#fff" stroke-width="4"/>
+                <g id="car" transform="translate(240 470) rotate(180)"><rect x="-16" y="-10" width="32" height="20" rx="6" fill="#FFCF1A" stroke="#0F1B2D" stroke-width="3"/><rect x="3" y="-7" width="7" height="14" rx="2" fill="#0F1B2D"/><rect x="-12" y="-7" width="5" height="14" rx="1.5" fill="#0F1B2D" opacity=".55"/></g>
+              </svg>
+              <button type="button" class="mp" data-p="0" style="left:32%;top:48.387%" aria-pressed="false" aria-label="Участок 1: нерегулируемый перекрёсток"><span>1</span></button>
+              <button type="button" class="mp" data-p="1" style="left:52%;top:48.387%" aria-pressed="false" aria-label="Участок 2: круговое движение"><span>2</span></button>
+              <button type="button" class="mp" data-p="2" style="left:83.4%;top:19.03%" aria-pressed="false" aria-label="Участок 3: разворот"><span>3</span></button>
+              <button type="button" class="mp" data-p="3" style="left:72%;top:34.68%" aria-pressed="false" aria-label="Участок 4: остановка на подъёме"><span>4</span></button>
+              <button type="button" class="mp" data-p="4" style="left:43.1%;top:75.81%" aria-pressed="false" aria-label="Участок 5: пешеходный переход"><span>5</span></button>
+              <button type="button" class="map-play" id="mapPlay" aria-pressed="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Пауза</span></button>
+            </div>
+            <div class="tip" id="tip" role="status" hidden><b></b><p></p></div>
+          </div>
+          <ol class="rlist rv" style="--d:1">
+            <li><button type="button" data-p="0" aria-pressed="false"><span class="rn" aria-hidden="true">1</span><span>Нерегулируемый перекрёсток</span></button></li>
+            <li><button type="button" data-p="1" aria-pressed="false"><span class="rn" aria-hidden="true">2</span><span>Круговое движение</span></button></li>
+            <li><button type="button" data-p="2" aria-pressed="false"><span class="rn" aria-hidden="true">3</span><span>Разворот</span></button></li>
+            <li><button type="button" data-p="3" aria-pressed="false"><span class="rn" aria-hidden="true">4</span><span>Остановка на&nbsp;подъёме</span></button></li>
+            <li><button type="button" data-p="4" aria-pressed="false"><span class="rn" aria-hidden="true">5</span><span>Пешеходный переход</span></button></li>
+          </ol>
+        </div>
+        <p class="route-note">Схема упрощена: это пример упражнений, а&nbsp;не&nbsp;точная копия маршрута ГИБДД.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="instruktory" data-pair="gallery" aria-labelledby="insH">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2 id="insH">Инструкторы</h2>
+          <p>Выбирайте по&nbsp;машине, коробке передач и&nbsp;району, откуда удобно начинать занятия.</p>
+        </div>
+        <ul class="ins-list">
+          <li class="ins rv" style="--d:0">
+            <figure class="ins-ph"><img src="https://images.unsplash.com/photo-1615563164538-89e1da13fcc4?auto=format&fit=crop&w=640&h=800&q=72&crop=faces,entropy" width="640" height="800" alt="Инструктор в белой рубашке за рулём" loading="lazy" decoding="async"><span class="ins-k">Механика</span></figure>
+            <h3>Ковальчук А.&nbsp;В.</h3>
+            <dl><div><dt>Автомобиль</dt><dd>Lada Vesta</dd></div><div><dt>Категория</dt><dd>B</dd></div><div><dt>Старт занятий</dt><dd>Северный район</dd></div></dl>
+          </li>
+          <li class="ins rv" style="--d:1">
+            <figure class="ins-ph"><img src="https://images.unsplash.com/photo-1515086828834-023d61380316?auto=format&fit=crop&w=640&h=800&q=72&crop=faces,entropy" width="640" height="800" alt="Инструктор за рулём учебного автомобиля" loading="lazy" decoding="async"><span class="ins-k">Автомат</span></figure>
+            <h3>Черных Д.&nbsp;С.</h3>
+            <dl><div><dt>Автомобиль</dt><dd>Kia Rio</dd></div><div><dt>Категория</dt><dd>B</dd></div><div><dt>Старт занятий</dt><dd>Левый берег</dd></div></dl>
+          </li>
+          <li class="ins rv" style="--d:2">
+            <figure class="ins-ph"><img src="https://images.unsplash.com/photo-1577977799980-cd7053d89661?auto=format&fit=crop&w=640&h=800&q=72&crop=top" width="640" height="800" alt="Водитель за рулём автомобиля" loading="lazy" decoding="async"><span class="ins-k">Механика</span></figure>
+            <h3>Шевченко И.&nbsp;П.</h3>
+            <dl><div><dt>Автомобиль</dt><dd>Lada Granta</dd></div><div><dt>Категория</dt><dd>B</dd></div><div><dt>Старт занятий</dt><dd>Центр</dd></div></dl>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec faq-sec" id="voprosy" aria-labelledby="faqH">
+      <div class="wrap faq">
+        <div class="faq-head rv" data-fix="7">
+          <h2 id="faqH">Вопросы</h2>
+          <p>Не нашли ответ&nbsp;— позвоните, расскажем: <a href="tel:+74730000000">+7 (473) 000-00-00</a></p>
+        </div>
+        <div class="faq-list rv" style="--d:1">
+          <details class="qa"><summary>Сколько длится обучение?<span class="qa-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Категория B&nbsp;— от&nbsp;2,5&nbsp;месяцев: теория идёт параллельно с&nbsp;вождением. Точный срок зависит от&nbsp;группы и&nbsp;от&nbsp;того, как часто вы ездите с&nbsp;инструктором.</p></div></details>
+          <details class="qa"><summary>Можно учить теорию онлайн?<span class="qa-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Да. Лекции и&nbsp;тесты&nbsp;— в&nbsp;личном кабинете в&nbsp;удобное время, в&nbsp;класс приходите только на&nbsp;внутренний экзамен. Онлайн-формат дешевле на&nbsp;2&nbsp;500&nbsp;₽.</p></div></details>
+          <details class="qa"><summary>Что входит в&nbsp;стоимость, а&nbsp;что оплачивается отдельно?<span class="qa-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Теория, вождение по&nbsp;программе (для категории B&nbsp;— 56&nbsp;часов на&nbsp;механике или 54 на&nbsp;автомате), учебные материалы и&nbsp;внутренний экзамен. Отдельно оплачиваются медкомиссия и&nbsp;госпошлина за&nbsp;права.</p></div></details>
+          <details class="qa"><summary>Как работает рассрочка 0%?<span class="qa-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Делим стоимость на&nbsp;6 или 10&nbsp;равных платежей без переплаты. Первый платёж&nbsp;— при заключении договора, дальше раз в&nbsp;месяц.</p></div></details>
+          <details class="qa"><summary>Как выбрать время вождения и&nbsp;инструктора?<span class="qa-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Выберите инструктора по&nbsp;машине, коробке и&nbsp;району старта. Время занятий согласуете с&nbsp;ним напрямую: утро, вечер или выходные.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec lead-sec" id="zapis" data-pair="form" aria-labelledby="leadH">
+      <div class="wrap lead">
+        <div class="lead-info rv">
+          <h2 id="leadH">Запись на&nbsp;обучение</h2>
+          <p>Оставьте имя и&nbsp;телефон&nbsp;— перезвоним, ответим на&nbsp;вопросы и&nbsp;подберём группу.</p>
+          <figure class="lead-ph"><img src="https://images.unsplash.com/photo-1596649714492-a8f90ecb3776?auto=format&fit=crop&w=900&h=620&q=72&crop=entropy" width="900" height="620" alt="Человек ведёт машину по городу" loading="lazy" decoding="async"></figure>
+        </div>
+        <div class="form-card rv" style="--d:1" data-fix="4">
+          <form id="leadForm" novalidate>
+            <fieldset class="chips">
+              <legend>Категория</legend>
+              <div class="chip-row">
+                <label class="chip"><input type="radio" name="lcat" value="A" data-label="A, мотоцикл"><span>A</span></label>
+                <label class="chip"><input type="radio" name="lcat" value="Bm" data-label="B, механика" checked><span>B, механика</span></label>
+                <label class="chip"><input type="radio" name="lcat" value="Ba" data-label="B, автомат"><span>B, автомат</span></label>
+                <label class="chip"><input type="radio" name="lcat" value="C" data-label="C, грузовой"><span>C</span></label>
+              </div>
+            </fieldset>
+            <div class="fld"><label for="fName">Имя</label><input id="fName" name="name" autocomplete="given-name" aria-describedby="eName" required><p class="err" id="eName"></p></div>
+            <div class="fld"><label for="fPhone">Телефон</label><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="ePhone" required><p class="err" id="ePhone"></p></div>
+            <div class="extras" id="extras" hidden></div>
+            <button class="btn btn-ink" type="submit" style="width:100%">Отправить заявку</button>
+            <p class="fine">Нажимая кнопку, вы соглашаетесь на&nbsp;обработку персональных данных.</p>
+          </form>
+          <div class="done" id="done" tabindex="-1" hidden>
+            <div class="done-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h3>Заявка принята</h3>
+            <p id="doneText">Перезвоним в&nbsp;рабочее время и&nbsp;подберём группу.</p>
+            <button type="button" class="btn btn-line btn-s" id="again">Отправить ещё одну заявку</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ft" data-pair="footer">
+    <div class="wrap">
+      <div class="ft-grid">
+        <div>
+          <a class="logo" href="#start"><svg class="logo-s" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="3" transform="rotate(45 20 20)" fill="#fff"/><rect x="11.5" y="11.5" width="17" height="17" rx="2" transform="rotate(45 20 20)" fill="#FFCF1A"/></svg><span><b>Право руля</b><small>автошкола в Воронеже</small></span></a>
+          <p>Категории A, B и&nbsp;C. Теория онлайн или в&nbsp;классе, рассрочка 0%.</p>
+        </div>
+        <div class="ft-contacts" data-fix="8">
+          <a class="ft-phone" href="tel:+74730000000">+7 (473) 000-00-00</a>
+          <a href="/cdn-cgi/l/email-protection#4f272a2323200f3d2a2b2a3c26282161363c2b3f3d20252a2c3b3c613c3f2e2c2a"><span class="__cf_email__" data-cfemail="650d0009090a2517000100160c020b4b1c160115170a0f000611164b1615040600">[email&#160;protected]</span></a>
+          <p>Воронеж, ул.&nbsp;Плехановская, 48, офис&nbsp;3<br>пн–пт 9:00–20:00, сб 10:00–16:00</p>
+        </div>
+        <nav class="ft-nav" aria-label="Разделы в подвале">
+          <a href="#kategorii">Категории</a><a href="#ceny">Калькулятор</a><a href="#raspisanie">Расписание</a><a href="#marshrut">Маршрут</a><a href="#zapis">Запись</a>
+        </nav>
+      </div>
+      <div class="ft-bottom">
+        <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+        <p>Демо-проект студии YSD DEV. Компания, цены и&nbsp;реквизиты вымышлены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mbar" id="mbar">
+    <a class="btn btn-ghost" href="tel:+74730000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.6 4.2-2 1.3a11 11 0 0 0 6.2 6.2l1.3-2 4.2 1.6v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>Позвонить</a>
+    <a class="btn btn-sign" href="#zapis">Записаться</a>
+  </div>
+</div>
+
+<!-- ================= БЫЛО ================= -->
+<div class="v-old" id="vOld" hidden>
+  <p class="old-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21M8 11h6M11 8v6"/></svg><span>Так старый сайт открывался на&nbsp;телефоне: страница шириной 980&nbsp;px просто уменьшалась целиком&nbsp;— без зума текст не&nbsp;прочитать.</span></p>
+  <div class="old-frame" id="oldFrame">
+    <div class="old-scaler" id="oldScaler">
+      <div class="o-page">
+        <header class="o-header" data-pair="top">
+          <div class="o-logo">
+            <svg viewBox="0 0 90 90" aria-hidden="true"><defs><radialGradient id="ow" gradientUnits="userSpaceOnUse" cx="32" cy="26" r="70"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#C8CED6"/><stop offset="1" stop-color="#4E5660"/></radialGradient></defs><circle cx="45" cy="45" r="37" fill="none" stroke="url(#ow)" stroke-width="10"/><path d="M45 34V10M35 51L13 63M55 51L77 63" stroke="url(#ow)" stroke-width="8"/><circle cx="45" cy="45" r="12" fill="url(#ow)"/></svg>
+            <div><b class="o-name">ПРАВО РУЛЯ</b><span class="o-sub">Автошкола г. Воронеж</span></div>
+          </div>
+          <div class="o-phone" data-fix="6" data-pin="inr">Тел.: <b>8 (473) 000-00-00</b><span>Звоните!!!</span></div>
+        </header>
+        <nav class="o-menu" data-fix="2" data-pin="inr" aria-label="Меню старого сайта"><span class="on">Главная</span><span>О нас</span><span>Новости</span><span>Категории</span><span>Цены</span><span>Инструкторы</span><span>Автопарк</span><span>Фотогалерея</span><span>Документы</span><span>Отзывы</span><span>Контакты</span></nav>
+        <div class="o-marq" aria-hidden="true"><span>АКЦИЯ!!! ЗВОНИТЕ!!! Набор в группы категории «В» открыт!!! ЗВОНИТЕ ПРЯМО СЕЙЧАС!!! АКЦИЯ!!! ЗВОНИТЕ!!!</span></div>
+        <div class="o-banner" data-fix="1" data-pin="in">
+          <img src="https://images.unsplash.com/photo-1550517636-ad7bac40dc28?auto=format&fit=crop&w=1200&h=800&q=72" width="1200" height="800" alt="Человек за рулём (растянутое фото старого баннера)" loading="lazy" decoding="async">
+          <p class="o-btext">Добро пожаловать на официальный сайт автошколы «Право руля»!</p>
+          <p class="o-btext2">Обучение вождению категорий «А», «В», «С»</p>
+          <span class="o-arr l" aria-hidden="true">‹</span><span class="o-arr r" aria-hidden="true">›</span><span class="o-dots" aria-hidden="true">● ○ ○ ○</span>
+        </div>
+        <div class="o-body">
+          <aside class="o-side">
+            <div class="o-box"><h3>Наши услуги</h3><ul><li>Обучение на категорию «А»</li><li>Обучение на категорию «В»</li><li>Обучение на категорию «С»</li><li>Дополнительные занятия</li><li>Восстановление навыков</li></ul></div>
+            <div class="o-box"><h3>Новости</h3><div class="o-news"><p><b>15.09.2014</b><br>Открыт набор в новые группы по категории «В»! <u>подробнее »</u></p><p><b>03.06.2014</b><br>Изменения в расписании на летний период <u>подробнее »</u></p><p><b>20.01.2014</b><br>С Новым годом!!! <u>подробнее »</u></p></div></div>
+            <div class="o-box"><h3>Наш автопарк</h3><div class="o-park"><img src="https://images.unsplash.com/photo-1596649714492-a8f90ecb3776?auto=format&fit=crop&w=400&h=300&q=72" width="400" height="300" alt="Человек ведёт машину (сжатое фото старого сайта)" loading="lazy" decoding="async"></div></div>
+          </aside>
+          <div class="o-main" id="oMain">
+            <h1 class="o-h1" data-pair="cats" data-fix="7" data-pin="inr">Главная</h1>
+            <p>Автошкола «Право руля» осуществляет профессиональную подготовку водителей транспортных средств категорий «А», «В», «С». Обучение проводится по программам, утверждённым в установленном порядке. В нашей автошколе работают квалифицированные преподаватели и инструкторы, которые помогут Вам получить необходимые знания и навыки вождения! Занятия проводятся в оборудованных учебных классах.</p>
+            <p>Для записи на обучение необходимо при себе иметь паспорт, медицинскую справку, 2 фотографии 3×4. Подробную информацию Вы можете получить по телефону или в офисе автошколы.</p>
+            <p class="o-blink">ВНИМАНИЕ!!! Открыт набор в новые группы!!! Количество мест ограничено!!!</p>
+            <h2 class="o-h2">Наши преимущества:</h2>
+            <ul class="o-adv"><li>Удобное расположение</li><li>Индивидуальный подход</li><li>Доступные цены</li><li>Рассрочка платежа*</li></ul>
+            <h2 class="o-h2" data-pair="prices">Стоимость обучения</h2>
+            <div class="o-prices" data-fix="3" data-pin="inr">
+              <table>
+                <tr><th>Категория</th><th>Теория, руб.</th><th>Практика, руб.</th><th>Итого, руб.</th><th>Примечание</th></tr>
+                <tr><td>«А»</td><td>6 900</td><td>18 000</td><td>24 900</td><td>мотоцикл</td></tr>
+                <tr><td>«В» (МКПП)</td><td>9 500</td><td>29 000</td><td>38 500</td><td>56 час.</td></tr>
+                <tr><td>«В» (АКПП)</td><td>9 500</td><td>32 000</td><td>41 500</td><td>54 час.</td></tr>
+                <tr><td>«С»</td><td>12 000</td><td>47 000</td><td>59 000</td><td>—</td></tr>
+                <tr><td>Доп. занятие (1 час)</td><td>—</td><td>1 200</td><td>1 200</td><td>по записи</td></tr>
+                <tr><td>Рассрочка*</td><td>—</td><td>—</td><td>—</td><td>уточняйте по телефону!!!</td></tr>
+              </table>
+              <p class="o-star">* Цены указаны без учёта госпошлины. Цены могут меняться, уточняйте по телефону.</p>
+            </div>
+            <h2 class="o-h2" data-pair="gallery">Фотогалерея</h2>
+            <div class="o-gallery" data-fix="5" data-pin="in">
+              <figure><img src="https://images.unsplash.com/photo-1515086828834-023d61380316?auto=format&fit=crop&w=400&h=300&q=72" width="400" height="300" alt="Человек за рулём (фото старого сайта)" loading="lazy" decoding="async"><figcaption>DSC_0012.JPG</figcaption></figure>
+              <figure><img src="https://images.unsplash.com/photo-1615563164538-89e1da13fcc4?auto=format&fit=crop&w=400&h=300&q=72" width="400" height="300" alt="Человек в белой рубашке за рулём (фото старого сайта)" loading="lazy" decoding="async"><figcaption>DSC_0027.JPG</figcaption></figure>
+              <figure><img src="https://images.unsplash.com/photo-1577977799980-cd7053d89661?auto=format&fit=crop&w=300&h=450&q=72" width="300" height="450" alt="Водитель за рулём (вертикальное фото, сжатое в горизонтальное)" loading="lazy" decoding="async"><figcaption>IMG_0034.jpg</figcaption></figure>
+            </div>
+            <h2 class="o-h2" data-pair="form">Запись на обучение</h2>
+            <div class="o-form" data-fix="4" data-pin="inr">
+              <form id="oForm" novalidate>
+                <p style="margin:0 0 6px">Поля, отмеченные <em>*</em>, обязательны для заполнения.</p>
+                <table>
+                  <tr><td><label for="o1">Фамилия <em>*</em></label></td><td><input id="o1" data-req></td></tr>
+                  <tr><td><label for="o2">Имя <em>*</em></label></td><td><input id="o2" data-req></td></tr>
+                  <tr><td><label for="o3">Отчество <em>*</em></label></td><td><input id="o3" data-req></td></tr>
+                  <tr><td><label for="o4">Дата рождения <em>*</em></label></td><td><input id="o4" placeholder="дд.мм.гггг" data-req></td></tr>
+                  <tr><td><label for="o5">Телефон <em>*</em></label></td><td><input id="o5" data-req></td></tr>
+                  <tr><td><label for="o6">E-mail <em>*</em></label></td><td><input id="o6" data-req></td></tr>
+                  <tr><td><label for="o7">Категория <em>*</em></label></td><td><select id="o7"><option>-- выберите --</option><option>«А»</option><option>«В» (МКПП)</option><option>«В» (АКПП)</option><option>«С»</option></select></td></tr>
+                  <tr><td><label for="o8">Откуда Вы о нас узнали?</label></td><td><select id="o8"><option>-- выберите --</option><option>Интернет</option><option>Газета</option><option>Друзья</option><option>Другое</option></select></td></tr>
+                  <tr><td><label for="oCap">Введите код с картинки <em>*</em></label></td><td><span class="o-cap"><svg width="110" height="36" viewBox="0 0 110 36" role="img" aria-label="Картинка с кодом (заглушка)"><rect width="110" height="36" fill="#E8E2C8"/><path d="M0 8L110 28M0 30L110 4M10 0L40 36M70 0L95 36" stroke="#9A8F6A"/><g font-family="Times New Roman,serif" font-size="22" font-style="italic" font-weight="bold" fill="#5A4A1E"><text x="8" y="26" transform="rotate(-12 14 20)">x</text><text x="26" y="25" transform="rotate(10 32 20)">7</text><text x="44" y="27" transform="rotate(-8 50 20)">G</text><text x="64" y="24" transform="rotate(14 70 20)">q</text><text x="84" y="27" transform="rotate(-6 90 20)">2</text></g></svg><input id="oCap" data-req></span></td></tr>
+                  <tr><td></td><td class="o-btns"><button type="submit">Отправить</button> <button type="reset">Очистить</button></td></tr>
+                </table>
+                <p class="o-err" id="oErr" role="alert"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+        <footer class="o-footer" data-pair="footer">
+          <div>
+            <p>© 2011–2014 Автошкола «Право руля». Все права защищены.</p>
+            <p>Сайт лучше просматривать в разрешении 1024×768 и выше. <u>Добавить в избранное</u></p>
+            <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com" style="color:#FFF57A">YSD DEV</a>. Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+          </div>
+          <div class="o-counters" data-fix="8" aria-label="Кнопки-счётчики"><span>счётчик</span><span>рейтинг</span><span>каталог</span></div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<aside class="fix-panel" id="fixPanel" aria-labelledby="fpH">
+  <div class="fp-head">
+    <h2 id="fpH">Что исправили</h2>
+    <button type="button" class="fp-x" id="fpClose" aria-label="Закрыть разбор"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p id="fpHint">Зелёные метки&nbsp;— что изменили. Нажмите пункт, и&nbsp;мы покажем место на&nbsp;странице.</p>
+  </div>
+  <ol class="fp-list" id="fpList">
+    <li><button type="button" class="fx" data-n="1" aria-current="false"><span class="fx-n">1</span><span class="fx-b"><span class="fx-t">Первый экран</span><span class="fx-r fx-was"><i>Было</i><span>«Добро пожаловать на&nbsp;официальный сайт» поверх фото&nbsp;— ни&nbsp;цены, ни&nbsp;сроков</span></span><span class="fx-r fx-now"><i>Стало</i><span>Оффер с&nbsp;ценой и&nbsp;сроком, дата ближайшей группы</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="2" aria-current="false"><span class="fx-n">2</span><span class="fx-b"><span class="fx-t">Навигация и&nbsp;кнопки</span><span class="fx-r fx-was"><i>Было</i><span>Меню из&nbsp;11&nbsp;пунктов и&nbsp;бегущая строка «ЗВОНИТЕ!!!»</span></span><span class="fx-r fx-now"><i>Стало</i><span>5 якорей и&nbsp;две кнопки: рассчитать стоимость и&nbsp;записаться</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="3" aria-current="false"><span class="fx-n">3</span><span class="fx-b"><span class="fx-t">Цены</span><span class="fx-r fx-was"><i>Было</i><span>Цены в&nbsp;таблице мелким шрифтом, рассрочка «уточняйте по&nbsp;телефону»</span></span><span class="fx-r fx-now"><i>Стало</i><span>Калькулятор с&nbsp;рассрочкой 0%: допчасы, маршрут, формат теории и&nbsp;платёж в&nbsp;месяц</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="4" aria-current="false"><span class="fx-n">4</span><span class="fx-b"><span class="fx-t">Форма записи</span><span class="fx-r fx-was"><i>Было</i><span>Форма из&nbsp;9&nbsp;полей и&nbsp;капча</span></span><span class="fx-r fx-now"><i>Стало</i><span>2&nbsp;поля и&nbsp;выбор категории</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="5" aria-current="false"><span class="fx-n">5</span><span class="fx-b"><span class="fx-t">Скорость</span><span class="fx-r fx-was"><i>Было</i><span>Фото по&nbsp;3–5&nbsp;МБ без сжатия</span></span><span class="fx-r fx-now"><i>Стало</i><span>WebP, размеры под экран и&nbsp;ленивая загрузка</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="6" aria-current="false"><span class="fx-n">6</span><span class="fx-b"><span class="fx-t">Мобильная версия</span><span class="fx-r fx-was"><i>Было</i><span>Сайт не&nbsp;адаптирован: 980&nbsp;px и&nbsp;зум</span></span><span class="fx-r fx-now"><i>Стало</i><span>Мобильная версия и&nbsp;кнопка звонка</span></span></span></button></li>
+    <li><button type="button" class="fx" data-n="7" aria-current="false"><span class="fx-n">7</span><span class="fx-b"><span class="fx-t">SEO</span><span class="fx-r fx-was"><i>Было</i><span>Title «Главная», description нет</span></span><span class="fx-r fx-now"><i>Стало</i><span>Title и&nbsp;description под запросы «автошкола Воронеж», вопросы и&nbsp;ответы на&nbsp;странице</span></span><span class="snip" aria-label="Пример сниппета в поиске"><b>Автошкола в&nbsp;Воронеже — права категории B от&nbsp;38&nbsp;500&nbsp;₽</b><u>redesign.ysdprojects.space</u>Категории A, B, C. Теория онлайн или в&nbsp;классе, рассрочка 0%, запись в&nbsp;ближайшую группу.</span></span></button></li>
+    <li><button type="button" class="fx" data-n="8" aria-current="false"><span class="fx-n">8</span><span class="fx-b"><span class="fx-t">Аналитика</span><span class="fx-r fx-was"><i>Было</i><span>Кнопки-счётчики в&nbsp;подвале, целей в&nbsp;Метрике нет</span></span><span class="fx-r fx-now"><i>Стало</i><span>Цели на&nbsp;звонок, форму и&nbsp;калькулятор. Попробуйте: с&nbsp;открытым разбором нажмите на&nbsp;телефон или измените расчёт</span></span><span class="goals"><span>звонок</span><span>заявка</span><span>расчёт</span></span></span></button></li>
+  </ol>
+  <div class="fp-foot">Нужна такая&nbsp;же доработка? <a href="https://ysddev.com">Обсудить на&nbsp;ysddev.com</a></div>
+</aside>
+
+<div class="wipe-edge" id="wipeEdge" hidden></div>
+<div class="goal" id="goal" role="status" aria-live="polite"></div>
+
+<script data-cfasync="false" src="/redesign/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(()=>{
+'use strict';
+const D=document,R=D.documentElement,B=D.body;
+const $=(s,c=D)=>c.querySelector(s),$$=(s,c=D)=>[...c.querySelectorAll(s)];
+const mq=matchMedia('(prefers-reduced-motion: reduce)');
+let reduce=mq.matches;
+if(mq.addEventListener)mq.addEventListener('change',e=>{reduce=e.matches;runCar();});
+const NB=' ';
+const fmt=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,NB);
+const rub=n=>fmt(n)+NB+'₽';
+const easeOut=t=>1-Math.pow(1-t,5);
+
+/* ---------- dates ---------- */
+const MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const WD=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+const today=new Date();today.setHours(12,0,0,0);
+const addD=n=>{const d=new Date(today);d.setDate(d.getDate()+n);return d;};
+const dTxt=d=>d.getDate()+NB+MON[d.getMonth()];
+const sat=(()=>{const d=addD(13);while(d.getDay()!==6)d.setDate(d.getDate()+1);return d;})();
+const GROUPS=[
+  {d:addD(6),name:'вечерняя',cat:'B'},
+  {d:addD(11),name:'утренняя',cat:'B'},
+  {d:sat,name:'выходного дня',cat:'B'},
+  {d:addD(21),name:'вечерняя',cat:'AC'}
+];
+$('#nextDate').textContent=dTxt(GROUPS[0].d)+', '+GROUPS[0].name;
+GROUPS.forEach((g,i)=>{const a=$('[data-sd="'+i+'"]'),b=$('[data-sw="'+i+'"]');if(a)a.textContent=dTxt(g.d);if(b)b.textContent=WD[g.d.getDay()];});
+
+/* ---------- elements ---------- */
+const vNew=$('#vNew'),vOld=$('#vOld'),hdr=$('#hdr'),seg=$('.seg'),segBtns=$$('.seg button'),stage=$('#stage');
+const edge=$('#wipeEdge'),fixBtn=$('#fixBtn'),panel=$('#fixPanel'),fpList=$('#fpList'),fpHint=$('#fpHint');
+let mode='new';
+const barH=()=>parseFloat(getComputedStyle(R).getPropertyValue('--bar'))||56;
+const topOff=()=>barH()+(mode==='new'&&hdr?hdr.offsetHeight:0);
+const cur=()=>mode==='old'?vOld:vNew;
+function scrollToY(y,smooth){window.scrollTo({top:Math.max(0,y),behavior:smooth&&!reduce?'smooth':'auto'});}
+function scrollToEl(el,extra){scrollToY(el.getBoundingClientRect().top+scrollY-topOff()-(extra==null?12:extra),true);}
+
+/* ---------- old version fit (980px, scaled on small screens) ---------- */
+const oFrame=$('#oldFrame'),oScaler=$('#oldScaler');
+let lastW=0,lastH=0;
+function fitOld(force){
+  if(vOld.hidden)return;
+  const W=oFrame.clientWidth,H=oScaler.offsetHeight;
+  if(!force&&W===lastW&&H===lastH)return;
+  lastW=W;lastH=H;
+  const s=Math.min(1,W/980);
+  oFrame.style.setProperty('--s',s.toFixed(4));
+  oFrame.style.height=Math.ceil(H*s)+'px';
+}
+if('ResizeObserver' in window){const ro=new ResizeObserver(()=>fitOld());ro.observe(oFrame);ro.observe(oScaler);}
+addEventListener('resize',()=>fitOld());
+
+/* ---------- pins ---------- */
+const FIX=['Первый экран','Навигация и кнопки','Цены','Форма записи','Скорость','Мобильная версия','SEO','Аналитика'];
+$$('[data-fix]').forEach(el=>{
+  const n=+el.dataset.fix;
+  if(getComputedStyle(el).position==='static')el.style.position='relative';
+  const p=D.createElement('button');
+  p.type='button';p.className='pin p-'+(el.dataset.pin||'tl');p.textContent=n;p.dataset.n=n;
+  p.style.setProperty('--i',n);
+  p.setAttribute('aria-label','Правка '+n+': '+FIX[n-1]);
+  p.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openPanel(true);selectFix(n,false);});
+  el.appendChild(p);
+});
+let hotT=0;
+function clearHot(){clearTimeout(hotT);$$('.is-hot').forEach(e=>e.classList.remove('is-hot'));}
+function selectFix(n,scroll){
+  clearHot();
+  $$('.fx').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.n===n)));
+  const item=$('.fx[data-n="'+n+'"]');
+  if(item){const lr=fpList.getBoundingClientRect(),ir=item.getBoundingClientRect();if(ir.top<lr.top||ir.bottom>lr.bottom)fpList.scrollTop+=ir.top-lr.top-8;}
+  const t=$('[data-fix="'+n+'"]',cur());
+  if(!t)return;
+  void t.offsetWidth;
+  t.classList.add('is-hot');
+  const pin=t.querySelector(':scope > .pin');if(pin)pin.classList.add('is-hot');
+  if(scroll&&!t.closest('.hdr'))scrollToEl(t,innerWidth<900?28:48);
+  hotT=setTimeout(clearHot,4200);
+}
+function openPanel(on){
+  B.classList.toggle('fixes-on',on);
+  fixBtn.setAttribute('aria-expanded',String(on));
+  if(!on){clearHot();$$('.fx').forEach(b=>b.setAttribute('aria-current','false'));}
+}
+fixBtn.addEventListener('click',()=>openPanel(!B.classList.contains('fixes-on')));
+$('#fpClose').addEventListener('click',()=>{openPanel(false);fixBtn.focus();});
+$$('.fx').forEach(b=>b.addEventListener('click',()=>selectFix(+b.dataset.n,true)));
+
+/* ---------- goals toast (demo of analytics) ---------- */
+const goalEl=$('#goal');let goalT=0;
+function goal(name){
+  if(!B.classList.contains('fixes-on'))return;
+  goalEl.innerHTML='Цель <b>«'+name+'»</b>: здесь в Метрику ушло бы событие. Демо, без отправки.';
+  goalEl.classList.add('show');clearTimeout(goalT);goalT=setTimeout(()=>goalEl.classList.remove('show'),2800);
+}
+$$('a[href^="tel:"]').forEach(a=>a.addEventListener('click',()=>goal('Звонок')));
+
+/* ---------- reveal on scroll ---------- */
+const rvEls=$$('.rv');
+let rvIO=null;
+if('IntersectionObserver' in window&&!reduce){
+  const vh=innerHeight;
+  rvEls.forEach(el=>{if(el.getBoundingClientRect().top>vh*.9)el.classList.add('rv-wait');});
+  rvIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('rv-wait');rvIO.unobserve(en.target);}}),{rootMargin:'0px 0px -8% 0px'});
+  rvEls.forEach(el=>{if(el.classList.contains('rv-wait'))rvIO.observe(el);});
+}
+function revealAllNow(){
+  vNew.classList.add('no-tr');
+  rvEls.forEach(el=>{el.classList.remove('rv-wait');if(rvIO)rvIO.unobserve(el);});
+  setTimeout(()=>vNew.classList.remove('no-tr'),900);
+}
+
+/* ---------- mode switch: Было / Стало ---------- */
+const fromHash=()=>{const h=location.hash.slice(1);return h==='bylo'?'old':h==='stalo'?'new':null;};
+function pairKey(from){
+  if(scrollY<80)return null;
+  const line=topOff()+140;let k=null;
+  $$('[data-pair]',from).forEach(el=>{if(el.getBoundingClientRect().top<=line)k=el.dataset.pair;});
+  return k;
+}
+function apply(m,key){
+  mode=m;
+  const old=m==='old';
+  vOld.hidden=!old;vNew.hidden=old;
+  B.dataset.mode=m;seg.dataset.mode=m;
+  segBtns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));
+  fpHint.innerHTML=old?'Красные метки&nbsp;— проблемы старой версии. Нажмите пункт, и&nbsp;мы покажем место на&nbsp;странице.':'Зелёные метки&nbsp;— что изменили. Нажмите пункт, и&nbsp;мы покажем место на&nbsp;странице.';
+  if(old)fitOld(true);else revealAllNow();
+  closeMnav();clearHot();
+  $$('.fx').forEach(b=>b.setAttribute('aria-current','false'));
+  let y=0;
+  if(key){const t=$('[data-pair="'+key+'"]',old?vOld:vNew);if(t)y=t.getBoundingClientRect().top+scrollY-topOff()-12;}
+  window.scrollTo({top:Math.max(0,y),behavior:'instant'});
+  if(!old)placeTip();
+}
+function setMode(m,user){
+  if(m===mode)return;
+  const key=pairKey(cur());
+  if(user)history.replaceState(null,'','#'+(m==='old'?'bylo':'stalo'));
+  if(user&&!reduce&&D.startViewTransition){
+    R.classList.toggle('vt-rtl',m==='old');
+    const vt=D.startViewTransition(()=>{apply(m,key);edge.hidden=false;});
+    vt.finished.catch(()=>{}).finally(()=>{edge.hidden=true;R.classList.remove('vt-rtl');});
+  }else{
+    apply(m,key);
+    const el=cur();
+    if(user&&!reduce&&el.animate){
+      /* fallback without View Transitions: the same horizontal curtain on the incoming version */
+      /* clip and edge are driven in the same frame so the yellow line never drifts from the cut */
+      const rtl=m==='old',t0=performance.now(),io=t=>t<.5?4*t*t*t:1-Math.pow(2-2*t,3)/2;
+      edge.hidden=false;stage.style.background='var(--ysd)';
+      const step=now=>{
+        const k=Math.min(1,(now-t0)/620),e=io(k),r=el.getBoundingClientRect(),cut=(1-e)*100;
+        el.style.clipPath=rtl?'inset(0 0 0 '+cut+'%)':'inset(0 '+cut+'% 0 0)';
+        edge.style.transform='translateX('+(r.left+r.width*(rtl?1-e:e)+6).toFixed(1)+'px)';
+        if(k<1)requestAnimationFrame(step);
+        else{el.style.clipPath='';edge.style.transform='';edge.hidden=true;stage.style.background='';}
+      };
+      step(t0);
+    }
+  }
+}
+segBtns.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m,true)));
+addEventListener('hashchange',()=>{const m=fromHash();if(m&&m!==mode)setMode(m,true);});
+
+/* ---------- in-page anchors (keep #bylo/#stalo in URL) ---------- */
+D.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const id=a.getAttribute('href').slice(1);
+  if(id==='bylo'||id==='stalo'){e.preventDefault();setMode(id==='bylo'?'old':'new',true);return;}
+  const t=id==='main'&&mode==='old'?$('#oMain'):id&&D.getElementById(id);if(!t)return;
+  e.preventDefault();closeMnav();
+  if(id==='start')scrollToY(0,true);else scrollToEl(t);
+  if(!t.hasAttribute('tabindex'))t.setAttribute('tabindex','-1');
+  t.focus({preventScroll:true});
+});
+
+/* ---------- mobile menu ---------- */
+const burger=$('#burger'),mnav=$('#mnav');
+function closeMnav(){if(!burger)return;burger.setAttribute('aria-expanded','false');mnav.hidden=true;}
+burger.addEventListener('click',()=>{const o=burger.getAttribute('aria-expanded')!=='true';burger.setAttribute('aria-expanded',String(o));mnav.hidden=!o;});
+addEventListener('resize',()=>{if(innerWidth>=1024)closeMnav();placeTip();});
+D.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(burger.getAttribute('aria-expanded')==='true'){closeMnav();burger.focus();return;}
+  if(B.classList.contains('fixes-on')){openPanel(false);fixBtn.focus();}
+});
+
+/* ---------- mobile call bar ---------- */
+const mbar=$('#mbar');let heroOut=false,formIn=false;
+const updBar=()=>mbar.classList.toggle('show',heroOut&&!formIn);
+if('IntersectionObserver' in window){
+  new IntersectionObserver(([e])=>{heroOut=!e.isIntersecting&&e.boundingClientRect.top<0;updBar();}).observe($('.hero'));
+  new IntersectionObserver(([e])=>{formIn=e.isIntersecting;updBar();},{rootMargin:'0px 0px -20% 0px'}).observe($('#zapis'));
+}
+
+/* ---------- calculator ---------- */
+const cf=$('#calcForm'),hrs=$('#hrs');
+const PRICE={A:24900,Bm:38500,Ba:41500,C:59000};
+const NAME={A:'A, мотоцикл',Bm:'B, механика',Ba:'B, автомат',C:'C, грузовой'};
+const tot=$('#cTotal'),mTot=$('#cmTotal');tot._v=38500;mTot._v=38500;
+function tween(el,to){
+  const from=el._v==null?to:el._v;
+  cancelAnimationFrame(el._raf);
+  if(reduce||from===to){el._v=to;el.textContent=fmt(to);return;}
+  const t0=performance.now(),dur=560;
+  const step=now=>{const k=Math.min(1,(now-t0)/dur);el._v=from+(to-from)*easeOut(k);el.textContent=fmt(el._v);if(k<1)el._raf=requestAnimationFrame(step);else el._v=to;};
+  el._raf=requestAnimationFrame(step);
+}
+function calcState(){
+  const g=n=>{const i=cf.querySelector('input[name="'+n+'"]:checked');return i?i.value:null;};
+  const cat=g('cat')||'B';
+  const kpp=cat==='B'?(g('kpp')||'m'):'m';
+  const key=cat==='B'?(kpp==='a'?'Ba':'Bm'):cat;
+  const th=g('th'),h=+hrs.value,route=$('#routeChk').checked,inst=+(g('inst')||0);
+  const base=PRICE[key],thv=th==='online'?-2500:0,hv=h*1200,rv=route?3600:0;
+  const total=base+thv+hv+rv;
+  return {cat,key,th,h,route,inst,base,thv,hv,rv,total,month:inst?Math.ceil(total/inst/10)*10:0};
+}
+let liveT=0;
+function renderCalc(){
+  const s=calcState(),isB=s.cat==='B';
+  $$('input[name=kpp]',cf).forEach(i=>{i.disabled=!isB;});
+  if(!isB)cf.querySelector('input[name=kpp][value=m]').checked=true;
+  $('#kppNote').hidden=isB;
+  hrs.style.setProperty('--p',(s.h/20*100)+'%');
+  $('#hrsOut').textContent=s.h+NB+'ч';
+  $('#cProgL').textContent='Программа '+NAME[s.key];
+  $('#cProg').textContent=rub(s.base);
+  $('#cTh').textContent=s.thv?'−'+rub(-s.thv):'0'+NB+'₽';
+  $('#rTh').classList.toggle('z',!s.thv);
+  $('#cHrsL').textContent='Доп. вождение, '+s.h+NB+'ч';
+  $('#cHrs').textContent=rub(s.hv);$('#rHrs').classList.toggle('z',!s.hv);
+  $('#cRoute').textContent=rub(s.rv);$('#rRoute').classList.toggle('z',!s.rv);
+  const m10=Math.ceil(s.total/10/10)*10;
+  $('#cMonth').innerHTML=s.inst?rub(s.month)+' в&nbsp;месяц × '+s.inst+'&nbsp;— без переплаты, первый платёж при заключении договора.':'Оплата сразу. В&nbsp;рассрочку 0%&nbsp;— от&nbsp;'+rub(m10)+' в&nbsp;месяц.';
+  $('#cmMonth').textContent=s.inst?rub(s.month)+' × '+s.inst+' мес.':'оплата сразу';
+  tween(tot,s.total);tween(mTot,s.total);
+  clearTimeout(liveT);
+  liveT=setTimeout(()=>{$('#cLive').textContent='Итого '+rub(s.total)+(s.inst?', '+rub(s.month)+' в месяц на '+s.inst+' месяцев':'');},500);
+  return s;
+}
+let goalCalcT=0;
+cf.addEventListener('input',()=>{renderCalc();clearTimeout(goalCalcT);goalCalcT=setTimeout(()=>goal('Расчёт в калькуляторе'),700);});
+cf.addEventListener('change',renderCalc);
+cf.addEventListener('submit',e=>e.preventDefault());
+$$('[data-calc]').forEach(b=>b.addEventListener('click',()=>{
+  const k=b.dataset.calc,cat=k[0];
+  cf.querySelector('input[name=cat][value="'+cat+'"]').checked=true;
+  if(cat==='B')cf.querySelector('input[name=kpp][value="'+(k==='Ba'?'a':'m')+'"]').checked=true;
+  renderCalc();scrollToEl($('#ceny'));
+}));
+renderCalc();
+
+/* ---------- lead form ---------- */
+const lf=$('#leadForm'),fName=$('#fName'),fPhone=$('#fPhone'),extrasEl=$('#extras'),done=$('#done');
+const extra={};
+const xIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function drawExtras(){
+  extrasEl.textContent='';
+  Object.keys(extra).forEach(k=>{
+    const s=D.createElement('span');s.className='ex';s.textContent=extra[k];
+    const x=D.createElement('button');x.type='button';x.className='ex-x';x.innerHTML=xIcon;x.setAttribute('aria-label','Убрать: '+extra[k]);
+    x.addEventListener('click',()=>{delete extra[k];drawExtras();fName.focus();});
+    s.appendChild(x);extrasEl.appendChild(s);
+  });
+  extrasEl.hidden=!Object.keys(extra).length;
+}
+function setLeadCat(k){const i=lf.querySelector('input[name=lcat][value="'+k+'"]');if(i)i.checked=true;}
+function toForm(){
+  if(!done.hidden){done.hidden=true;lf.hidden=false;}
+  scrollToEl($('#zapis'));fName.focus({preventScroll:true});
+}
+$('#calcGo').addEventListener('click',()=>{
+  const s=calcState();setLeadCat(s.key);
+  extra.calc='Расчёт: '+rub(s.total)+(s.inst?', рассрочка на '+s.inst+' мес.':'');
+  drawExtras();toForm();
+});
+$$('[data-take]').forEach(b=>b.addEventListener('click',()=>{
+  const g=GROUPS[+b.dataset.take];
+  extra.group='Группа: '+dTxt(g.d)+', '+g.name;
+  const c=lf.querySelector('input[name=lcat]:checked');
+  if(g.cat==='B'&&c&&!/^B/.test(c.value))setLeadCat('Bm');
+  if(g.cat==='AC'&&c&&/^B/.test(c.value))setLeadCat('A');
+  drawExtras();toForm();
+}));
+fPhone.addEventListener('input',()=>{
+  let d=fPhone.value.replace(/\D/g,'');
+  if(!d){fPhone.value='';return;}
+  if(d[0]==='8')d='7'+d.slice(1);
+  if(d[0]!=='7')d='7'+d;
+  d=d.slice(0,11);
+  let r='+7';
+  if(d.length>1)r+=' ('+d.slice(1,4);
+  if(d.length>=5)r+=') '+d.slice(4,7);
+  if(d.length>=8)r+='-'+d.slice(7,9);
+  if(d.length>=10)r+='-'+d.slice(9,11);
+  fPhone.value=r;
+  if(d.length===11)setErr(fPhone,$('#ePhone'),'');
+});
+function setErr(inp,el,msg){el.textContent=msg;inp.setAttribute('aria-invalid',msg?'true':'false');}
+fName.addEventListener('input',()=>{if(fName.value.trim())setErr(fName,$('#eName'),'');});
+lf.addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=fName.value.trim(),digits=fPhone.value.replace(/\D/g,'');
+  setErr(fName,$('#eName'),n?'':'Введите имя, чтобы мы знали, как к вам обращаться.');
+  setErr(fPhone,$('#ePhone'),digits.length===11?'':'Введите номер полностью: 10 цифр после +7.');
+  if(!n){fName.focus();return;}
+  if(digits.length!==11){fPhone.focus();return;}
+  const c=lf.querySelector('input[name=lcat]:checked');
+  let t=' в рабочее время. Категория: '+(c?c.dataset.label:'B, механика')+'.';
+  if(extra.group)t+=' '+extra.group+'.';
+  if(extra.calc)t+=' '+extra.calc+'.';
+  const dt=$('#doneText'),ph=D.createElement('span');
+  ph.style.whiteSpace='nowrap';ph.textContent=fPhone.value;
+  dt.textContent=n+', перезвоним на ';dt.append(ph,t);
+  lf.hidden=true;done.hidden=false;done.focus();
+  goal('Заявка');
+});
+$('#again').addEventListener('click',()=>{
+  lf.reset();Object.keys(extra).forEach(k=>delete extra[k]);drawExtras();
+  setErr(fName,$('#eName'),'');setErr(fPhone,$('#ePhone'),'');
+  done.hidden=true;lf.hidden=false;fName.focus();
+});
+
+/* ---------- old form (parody) ---------- */
+$('#oForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const empty=$$('[data-req]',e.target).some(i=>!i.value.trim());
+  $('#oErr').textContent=empty?'Ошибка! Заполните все поля, отмеченные *':'Ошибка! Неверно введён код с картинки. Попробуйте ещё раз.';
+  $('#oCap').value='';
+});
+$('#oForm').addEventListener('reset',()=>{$('#oErr').textContent='';});
+
+/* ---------- exam route map ---------- */
+const POINTS=[
+  {x:320,y:300,t:'Нерегулируемый перекрёсток',d:'Светофора и знаков приоритета нет: подъезжаем со сниженной скоростью и пропускаем тех, кто справа.'},
+  {x:520,y:300,t:'Круговое движение',d:'На въезде уступаем тем, кто уже едет по кольцу. Перед съездом — правый поворотник и крайний правый ряд.'},
+  {x:834,y:118,t:'Разворот',d:'Разворачиваемся там, где это разрешено: левый поворотник, крайнее левое положение, пропускаем встречных.'},
+  {x:720,y:215,t:'Остановка на подъёме',d:'Останавливаемся у знака и трогаемся без отката назад — помогает стояночный тормоз.'},
+  {x:431,y:470,t:'Пешеходный переход',d:'Снижаем скорость заранее и пропускаем всех, кто уже на переходе или вот-вот на него шагнёт.'}
+];
+const map=$('#map'),tip=$('#tip'),path=$('#routePath'),car=$('#car'),mps=$$('.mp'),playBtn=$('#mapPlay');
+let sel=-1;
+function pick(i){
+  sel=i;
+  $$('.mp,.rlist button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.p===i)));
+  tip.querySelector('b').textContent=(i+1)+'. '+POINTS[i].t;
+  tip.querySelector('p').textContent=POINTS[i].d;
+  tip.hidden=false;
+  tip.style.animation='none';void tip.offsetWidth;tip.style.animation='';
+  placeTip();
+}
+function placeTip(){
+  if(sel<0||tip.hidden||vNew.hidden)return;
+  if(matchMedia('(max-width:719px)').matches){tip.style.left='';tip.style.top='';tip.classList.remove('below');return;}
+  const W=map.clientWidth,H=map.clientHeight,p=POINTS[sel];
+  const px=p.x/1000*W,py=p.y/620*H,w=tip.offsetWidth,h=tip.offsetHeight;
+  const left=Math.max(12,Math.min(W-w-12,px-w/2));
+  let top=py-h-30,below=false;
+  if(top<12){top=py+30;below=true;}
+  tip.classList.toggle('below',below);
+  tip.style.left=left+'px';tip.style.top=top+'px';
+  tip.style.setProperty('--ax',Math.max(18,Math.min(w-18,px-left))+'px');
+}
+$$('.mp,.rlist button').forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.p)));
+let L=0,lens=[];
+try{
+  L=path.getTotalLength();
+  lens=POINTS.map(p=>{let best=0,bd=1e12;for(let s=0;s<=L;s+=4){const q=path.getPointAtLength(s),dd=(q.x-p.x)**2+(q.y-p.y)**2;if(dd<bd){bd=dd;best=s;}}return best;});
+}catch(err){L=0;}
+let pos=0,last=0,playing=!reduce,inView=false,raf=0;
+function placeCar(s){
+  const a=path.getPointAtLength(s),b=path.getPointAtLength(s+2<=L?s+2:s),a2=s+2<=L?a:path.getPointAtLength(s-2);
+  const ang=Math.atan2(b.y-a2.y,b.x-a2.x)*180/Math.PI;
+  car.setAttribute('transform','translate('+a.x.toFixed(1)+' '+a.y.toFixed(1)+') rotate('+ang.toFixed(1)+')');
+  mps.forEach((m,i)=>m.classList.toggle('pass',Math.abs(lens[i]-s)<42));
+}
+function loop(t){
+  if(!last)last=t;
+  const dt=Math.min(64,t-last);last=t;
+  pos=(pos+dt*L/17000)%L;placeCar(pos);
+  raf=requestAnimationFrame(loop);
+}
+function runCar(){
+  cancelAnimationFrame(raf);last=0;
+  if(L&&playing&&inView&&!D.hidden&&!vNew.hidden)raf=requestAnimationFrame(loop);
+}
+function setPlayUI(){
+  playBtn.setAttribute('aria-pressed',String(playing));
+  playBtn.innerHTML=playing?'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Пауза</span>':'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg><span>Поехали</span>';
+}
+playBtn.addEventListener('click',()=>{playing=!playing;setPlayUI();runCar();});
+setPlayUI();
+if('IntersectionObserver' in window)new IntersectionObserver(([e])=>{inView=e.isIntersecting;runCar();},{threshold:.15}).observe(map);
+D.addEventListener('visibilitychange',runCar);
+pick(0);
+
+/* ---------- init state from hash ---------- */
+if(fromHash()==='old'){apply('old',null);}
+const moObs=new MutationObserver(runCar);moObs.observe(vNew,{attributes:true,attributeFilter:['hidden']});
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3de65751054e4e4fa4a90bed90d3aebe","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

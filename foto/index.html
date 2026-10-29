@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вера Светлова — портретный фотограф в Петербурге</title>
+<meta name="description" content="Портретный фотограф Вера Светлова: студийные и ч/б портреты, lifestyle-съёмки. Галерея работ по жанрам, три пакета съёмки с ценами и календарь свободных дат для записи.">
+<meta property="og:title" content="Вера Светлова — портретный фотограф">
+<meta property="og:description" content="Галерея по жанрам, пакеты съёмки и свободные даты в календаре.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1a1917">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231a1917'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23ece8e1' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23c9b48a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200..600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a1917;
+  --bg-2:#22211e;
+  --bg-3:#2c2a26;
+  --paper:#ece8e1;
+  --mute:#a39e94;
+  --brass:#c9b48a;
+  --line:rgba(236,232,225,.12);
+  --line-2:rgba(236,232,225,.24);
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --d:'Tenor Sans','Gill Sans',sans-serif;
+  --f:'Commissioner','Helvetica Neue',sans-serif;
+  --gut:clamp(16px,3.6vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:var(--f);font-weight:300;font-size:16px;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--d);font-weight:400;letter-spacing:.01em;line-height:1.08}
+:focus-visible{outline:1.5px solid var(--brass);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1600px;margin-inline:auto;padding-inline:var(--gut)}
+.ph{background:var(--bg-3);overflow:hidden;position:relative}
+.ph img{width:100%;height:100%;object-fit:cover;color:transparent}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 26px;border:1px solid var(--paper);background:var(--paper);color:var(--bg);font-weight:400;font-size:15px;letter-spacing:.02em;text-decoration:none;border-radius:999px;transition:transform .16s var(--ease),background-color .25s ease,color .25s ease}
+.btn--ghost{background:transparent;color:var(--paper);border-color:var(--line-2)}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){
+  .btn:not([disabled]):hover{background:transparent;color:var(--paper)}
+  .btn--ghost:hover{border-color:var(--paper)}
+}
+
+/* header */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:40;transition:background-color .3s ease,border-color .3s ease;border-bottom:1px solid transparent}
+.hdr.sc{background:rgba(26,25,23,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom-color:var(--line)}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{font-family:var(--d);font-size:17px;letter-spacing:.14em;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.nav{display:flex;gap:4px}
+.nav a{font-size:15px;color:var(--mute);text-decoration:none;padding:10px 14px;min-height:44px;display:inline-flex;align-items:center;transition:color .2s ease}
+.nav a[aria-current="true"]{color:var(--paper)}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--paper)}}
+.hdr__cta{font-size:15px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;gap:10px;padding:0 18px;border:1px solid var(--line-2);border-radius:999px;transition:border-color .2s ease}
+.hdr__cta .sm{display:none}
+@media (max-width:560px){.hdr__cta .lg{display:none}.hdr__cta .sm{display:inline}.logo{font-size:15px;letter-spacing:.1em}}
+.logo{white-space:nowrap}
+.hero__next{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:15px;color:var(--mute)}
+.hero__next i{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:none}
+.hero__next a{color:var(--paper);text-underline-offset:4px}
+.hdr__cta i{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+@media (hover:hover) and (pointer:fine){.hdr__cta:hover{border-color:var(--paper)}}
+@media (max-width:860px){.nav{display:none}}
+
+/* hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,1.6vw,24px);padding-top:68px}
+.hero__txt{grid-column:1/6;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(40px,6vh,80px) 0 clamp(28px,5vh,56px);gap:40px}
+.hero__name{font-size:clamp(46px,6vw,100px);line-height:.98;letter-spacing:-.01em}
+.hero__name span{display:block}
+.hero__name span:nth-child(2){padding-left:1.1em}
+.hero__lead{font-size:clamp(17px,1.35vw,20px);line-height:1.55;max-width:26em;color:var(--paper)}
+.hero__lead + .hero__lead{color:var(--mute);margin-top:12px;font-size:16px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.hero__img{grid-column:6/13;position:relative;margin:clamp(16px,2vh,28px) calc(var(--gut)*-1) 0 0;min-height:440px}
+.hero__img .ph{position:absolute;inset:0;animation:reveal 1.4s var(--ease) both}
+.hero__img .ph img{animation:settle 2.2s var(--ease) both}
+@keyframes reveal{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes settle{from{transform:scale(1.08)}}
+.label{position:absolute;left:clamp(16px,2vw,28px);bottom:clamp(16px,2vw,28px);background:rgba(26,25,23,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:12px 16px;font-size:13px;line-height:1.45;max-width:260px}
+.label b{font-family:var(--d);font-weight:400;font-size:15px;display:block;color:var(--paper)}
+.label span{color:var(--mute)}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero__txt{grid-column:1;padding-top:28px;gap:24px}
+  .hero__img{grid-column:1;grid-row:2;aspect-ratio:4/5;min-height:0;margin:0 calc(var(--gut)*-1)}
+  .hero__name{font-size:clamp(44px,13.5vw,80px)}
+}
+
+/* sections */
+.sec{padding-block:clamp(80px,10vw,160px)}
+.hd{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,1.6vw,24px);row-gap:16px;margin-bottom:clamp(32px,4vw,56px);align-items:end}
+.hd h2{grid-column:1/7;font-size:clamp(36px,4.4vw,68px)}
+.hd p{grid-column:8/13;color:var(--mute);max-width:32em}
+@media (max-width:900px){.hd h2,.hd p{grid-column:1/-1}}
+
+/* gallery */
+.flt{display:flex;flex-wrap:wrap;gap:4px 6px;margin-bottom:24px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.fb{min-height:44px;padding:0 16px;border:0;background:none;color:var(--mute);font-size:15px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;transition:color .2s ease,background-color .2s ease}
+.fb sup{font-size:11px;top:-.6em;position:relative;color:var(--mute)}
+.fb[aria-pressed="true"]{color:var(--bg);background:var(--paper)}
+.fb[aria-pressed="true"] sup{color:#5e5a52}
+.fb:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.fb:not([aria-pressed="true"]):hover{color:var(--paper)}}
+.gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,15vw,250px);grid-auto-flow:dense;gap:clamp(8px,1vw,16px)}
+.gi{position:relative;border:0;padding:0;background:var(--bg-3);overflow:hidden;cursor:zoom-in;display:block;width:100%;height:100%;text-align:left}
+.gi.t{grid-row:span 2}
+.gi.w{grid-column:span 2}
+.gi img{width:100%;height:100%;object-fit:cover;color:transparent;transition:transform 1s var(--ease),opacity .4s ease}
+.gi__cap{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(26,25,23,.85));font-size:13px;color:var(--paper);display:flex;justify-content:space-between;gap:8px;opacity:0;transform:translateY(6px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.gi__cap span:last-child{color:var(--mute)}
+@media (hover:hover) and (pointer:fine){
+  .gi:hover img{transform:scale(1.03)}
+  .gi:hover .gi__cap{opacity:1;transform:none}
+}
+@media (hover:none){.gi__cap{opacity:1;transform:none}}
+.gi.in{animation:gin .6s var(--ease) both;animation-delay:var(--dl,0ms)}
+@keyframes gin{from{opacity:0;transform:scale(.97)}}
+@media (max-width:900px){.gal{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,42vw,280px)}}
+.gal__note{margin-top:20px;font-size:14px;color:var(--mute)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(14,13,12,.97);display:grid;grid-template-rows:auto minmax(0,1fr) auto;opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility 0s .3s;touch-action:pan-y}
+.lb.open{opacity:1;visibility:visible;transition:opacity .3s var(--ease)}
+.lb__top{display:flex;justify-content:space-between;align-items:center;padding:10px clamp(12px,2vw,24px);font-size:14px;color:var(--mute)}
+.lb__cnt{font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.ib{width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:rgba(26,25,23,.6);display:grid;place-items:center;transition:border-color .2s ease,transform .16s var(--ease)}
+.ib svg{width:22px;height:22px}
+.ib:active{transform:scale(.94)}
+@media (hover:hover) and (pointer:fine){.ib:hover{border-color:var(--paper)}}
+.lb__stage{position:relative;display:grid;place-items:center;padding:0 clamp(8px,6vw,96px);min-height:0}
+.lb__fig{margin:0;height:100%;width:100%;display:grid;place-items:center;min-height:0}
+.lb__fig .ph{height:100%;max-height:100%;aspect-ratio:var(--ar,3/4);max-width:100%;transition:opacity .25s ease,transform .35s var(--ease)}
+.lb__fig.sw .ph{opacity:0;transform:translateX(calc(var(--dir,1) * 24px))}
+.lb .prev,.lb .next{position:absolute;top:50%;margin-top:-24px;z-index:2}
+.lb .prev{left:clamp(8px,2vw,28px)}
+.lb .next{right:clamp(8px,2vw,28px)}
+.lb__bot{padding:14px clamp(12px,2vw,24px) calc(16px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.lb__t{font-family:var(--d);font-size:20px}
+.lb__m{font-size:14px;color:var(--mute)}
+.lb__bot .btn{min-height:44px;padding:0 18px}
+.lb .ph{background:#2a2825}
+.lb .ph img{object-fit:cover}
+@media (max-width:640px){.lb .prev,.lb .next{top:auto;bottom:-62px;margin:0}.lb .prev{left:auto;right:72px}.lb .next{right:12px}.lb__bot{padding-right:132px}}
+
+/* packages */
+.pk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.pc{padding:32px clamp(16px,2.4vw,40px) 36px;display:flex;flex-direction:column;gap:20px;border-right:1px solid var(--line);position:relative;transition:background-color .3s ease}
+.pc:first-child{padding-left:0}
+.pc:last-child{border-right:0;padding-right:0}
+.pc h3{font-size:clamp(28px,2.6vw,40px)}
+.pc__dur{color:var(--mute);font-size:15px}
+.pc__price{font-family:var(--d);font-size:clamp(30px,2.6vw,40px);font-variant-numeric:tabular-nums}
+.pc__price small{font-family:var(--f);font-size:14px;color:var(--mute);margin-left:6px}
+.pc ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;flex:1}
+.pc li{display:flex;gap:12px;font-size:15px;line-height:1.45}
+.pc li::before{content:"";flex:none;width:14px;height:1px;background:var(--brass);margin-top:.72em}
+.pc__fit{font-size:14px;color:var(--mute);border-top:1px solid var(--line);padding-top:16px}
+.pc .btn{align-self:flex-start}
+.pc[data-on="true"]::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--brass)}
+.pc:first-child[data-on="true"]::before{left:0}
+.extras{margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,1.6vw,24px);row-gap:16px}
+.extras h3{grid-column:1/5;font-size:24px}
+.extras dl{grid-column:5/13;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(16px,3vw,48px)}
+.extras dl div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.extras dt{color:var(--paper)}
+.extras dd{margin:0;color:var(--mute);white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:900px){
+  .pk{grid-template-columns:1fr}
+  .pc,.pc:first-child,.pc:last-child{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .extras h3,.extras dl{grid-column:1/-1}
+  .extras dl{grid-template-columns:1fr}
+}
+
+/* calm section */
+.calm{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,1.6vw,24px);row-gap:40px;align-items:center}
+.calm__img{grid-column:1/6;aspect-ratio:4/5}
+.calm__txt{grid-column:7/13;display:grid;gap:28px}
+.calm__txt h2{font-size:clamp(34px,3.8vw,58px)}
+.calm ol{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:c}
+.calm li{display:grid;grid-template-columns:56px 1fr;gap:4px 16px;padding:20px 0;border-top:1px solid var(--line)}
+.calm li b{font-family:var(--d);font-weight:400;font-size:20px;grid-column:2}
+.calm li span.n{grid-row:1/3;font-family:var(--d);font-size:15px;color:var(--brass);padding-top:4px}
+.calm li p{grid-column:2;color:var(--mute);font-size:15px}
+@media (max-width:900px){.calm__img,.calm__txt{grid-column:1/-1}.calm__img{aspect-ratio:4/3}}
+
+/* calendar */
+.bk{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:start}
+.cal{border:1px solid var(--line);padding:clamp(16px,2.4vw,32px)}
+.cal__hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.cal__m{font-family:var(--d);font-size:clamp(24px,2.2vw,32px);text-transform:none}
+.cal__nav{display:flex;gap:6px}
+.cal__grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal__dow{font-size:12px;color:var(--mute);text-align:center;padding-bottom:6px}
+.dd{aspect-ratio:1/1;min-height:44px;border:1px solid transparent;background:none;border-radius:50%;display:grid;place-items:center;font-size:15px;font-variant-numeric:tabular-nums;position:relative;transition:background-color .2s ease,color .2s ease,border-color .2s ease;padding:0}
+.dd.free{border-color:var(--line-2)}
+.dd.free::after{content:"";position:absolute;bottom:18%;width:4px;height:4px;border-radius:50%;background:var(--brass)}
+.dd.busy,.dd.past{color:#6f6b64;cursor:not-allowed}
+.dd.busy span{text-decoration:line-through;text-decoration-color:#6f6b64}
+.dd.today{box-shadow:inset 0 0 0 1px var(--mute)}
+.dd[aria-pressed="true"]{background:var(--paper);color:var(--bg);border-color:var(--paper)}
+.dd[aria-pressed="true"]::after{background:var(--bg)}
+@media (hover:hover) and (pointer:fine){.dd.free:not([aria-pressed="true"]):hover{border-color:var(--paper)}}
+.cal__leg{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:13px;color:var(--mute)}
+.cal__leg span{display:inline-flex;align-items:center;gap:8px}
+.cal__leg i{width:14px;height:14px;border-radius:50%;border:1px solid var(--line-2);position:relative}
+.cal__leg i.f::after{content:"";position:absolute;left:4px;top:4px;width:4px;height:4px;border-radius:50%;background:var(--brass)}
+.cal__leg i.b{border-color:transparent;background:linear-gradient(to top right,transparent 45%,#6f6b64 47%,#6f6b64 53%,transparent 55%)}
+.cal__sum{margin-top:18px;font-size:14px;color:var(--mute)}
+.form{display:grid;gap:22px}
+.form h3{font-size:clamp(26px,2.4vw,36px)}
+.slots{display:flex;flex-wrap:wrap;gap:6px}
+.sl{min-height:48px;padding:0 18px;border:1px solid var(--line-2);border-radius:999px;background:none;font-size:15px;font-variant-numeric:tabular-nums;transition:background-color .2s ease,color .2s ease}
+.sl small{color:var(--mute);margin-left:6px;font-size:12px}
+.sl[aria-pressed="true"]{background:var(--paper);color:var(--bg)}
+.sl[aria-pressed="true"] small{color:#5e5a52}
+.sl[disabled]{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.fs{border:0;margin:0;padding:0;min-width:0;display:grid;gap:10px}
+.fs legend,.fl label{font-size:14px;color:var(--mute);margin-bottom:2px;padding:0}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line-2);border-radius:999px;padding:3px}
+.seg button{min-height:46px;border:0;background:none;border-radius:999px;font-size:14px;line-height:1.2;padding:4px 6px;color:var(--mute);transition:background-color .2s ease,color .2s ease}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--bg)}
+.fl{display:grid;gap:6px}
+.fl input,.fl textarea{border:0;border-bottom:1px solid var(--line-2);background:transparent;min-height:48px;padding:8px 0;font-size:17px;border-radius:0;resize:vertical}
+.fl textarea{min-height:72px}
+.fl input:focus-visible,.fl textarea:focus-visible{outline:0;border-bottom-color:var(--paper)}
+.fl input[aria-invalid="true"]{border-bottom-color:#e08a7a}
+.er{font-size:13px;color:#e8a294;min-height:18px}
+.recap{font-size:15px;line-height:1.55;border-left:1px solid var(--brass);padding-left:14px;color:var(--mute)}
+.recap b{color:var(--paper);font-weight:400}
+.done{display:grid;gap:14px;border:1px solid var(--line-2);padding:clamp(22px,3vw,40px)}
+.done h3{font-size:clamp(30px,3vw,44px)}
+.done p{color:var(--mute)}
+.done.show{animation:gin .5s var(--ease) both}
+@media (max-width:980px){.bk{grid-template-columns:1fr}}
+@media (max-width:400px){.cal{padding:12px}.cal__grid{gap:2px}.dd{font-size:14px}.seg button{font-size:13px}}
+
+/* places + light */
+.pl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.plc{border-top:1px solid var(--line-2);padding-top:20px;display:grid;gap:10px;align-content:start}
+.plc svg{width:28px;height:28px;color:var(--brass)}
+.plc h3{font-size:24px}
+.plc p{color:var(--mute);font-size:15px}
+.plc dl{margin:6px 0 0;display:grid;gap:4px;font-size:14px}
+.plc dl div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0}
+.plc dt{color:var(--mute)}
+.plc dd{margin:0}
+@media (max-width:900px){.pl{grid-template-columns:1fr}}
+.light{margin-top:clamp(40px,5vw,72px);border:1px solid var(--line);padding:clamp(20px,3vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(20px,4vw,56px);align-items:center}
+.light h3{font-size:clamp(24px,2.4vw,34px)}
+.light > div > p{color:var(--mute);margin-top:10px;font-size:15px}
+.months{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin-top:20px}
+.months button{min-height:44px;border:1px solid var(--line);background:none;border-radius:999px;font-size:13px;color:var(--mute);transition:background-color .2s ease,color .2s ease}
+.months button[aria-pressed="true"]{background:var(--paper);color:var(--bg);border-color:var(--paper)}
+.sky{position:relative;height:120px;border-bottom:1px solid var(--line-2);margin-bottom:12px}
+.sky__arc{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.sky__sun{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 8px rgba(201,180,138,.15);transition:left .6s var(--ease),top .6s var(--ease)}
+.sky__gold{position:absolute;bottom:0;height:100%;background:linear-gradient(transparent,rgba(201,180,138,.18));border-left:1px dashed rgba(201,180,138,.6);transition:left .6s var(--ease),width .6s var(--ease)}
+.sky__ax{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.light__out{font-size:17px;margin-top:14px}
+.light__out b{font-family:var(--d);font-weight:400;font-size:22px}
+@media (max-width:900px){.light{grid-template-columns:1fr}.months{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* gift */
+.gift{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,88px);align-items:center}
+.gift__form{display:grid;gap:22px}
+.gift__form h2{font-size:clamp(34px,3.8vw,58px)}
+.gift__form > p{color:var(--mute);max-width:32em}
+.cert{position:relative;aspect-ratio:7/5;border:1px solid var(--line-2);padding:clamp(20px,3vw,44px);display:flex;flex-direction:column;justify-content:space-between;background:var(--bg-2);transition:background-color .4s ease,color .4s ease;overflow:hidden}
+.cert::before{content:"";position:absolute;right:-12%;top:-30%;width:62%;aspect-ratio:1/1;border-radius:50%;border:1px solid currentColor;opacity:.18}
+.cert::after{content:"";position:absolute;right:6%;top:-6%;width:24%;aspect-ratio:1/1;border-radius:50%;background:var(--brass);opacity:.9}
+.cert.light{background:var(--paper);color:var(--bg)}
+.cert.light .cert__s{color:#5e5a52}
+.cert__s{font-size:13px;color:var(--mute);letter-spacing:.04em}
+.cert__t{font-family:var(--d);font-size:clamp(26px,3vw,46px);line-height:1.05;max-width:12em;position:relative}
+.cert__b{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font-size:14px}
+.cert__p{font-family:var(--d);font-size:clamp(22px,2.2vw,32px);white-space:nowrap}
+.cert__t span{display:inline-block}
+.cert.pop .cert__t span{animation:gin .45s var(--ease) both}
+@media (max-width:900px){.gift{grid-template-columns:1fr}.cert{order:-1}}
+/* faq */
+.faq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,1.6vw,24px);row-gap:24px}
+.faq h2{grid-column:1/5;font-size:clamp(34px,3.8vw,58px)}
+.faq__l{grid-column:6/13}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:64px;padding:16px 0;font-family:var(--d);font-size:clamp(18px,1.6vw,22px)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:20px;height:20px;position:relative}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:currentColor;transition:transform .3s var(--ease)}
+.faq summary i::after{transform:rotate(90deg)}
+.faq details[open] summary i::after{transform:rotate(0)}
+.faq details p{color:var(--mute);padding-bottom:22px;max-width:40em}
+.faq details[open] p{animation:gin .4s var(--ease) both}
+@media (max-width:900px){.faq h2,.faq__l{grid-column:1/-1}}
+
+.ftr{border-top:1px solid var(--line);padding:56px 0 36px}
+.ftr__top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;margin-bottom:48px}
+.ftr__name{font-family:var(--d);font-size:clamp(32px,4vw,56px);line-height:1}
+.ftr dl{display:grid;grid-template-columns:repeat(3,auto);gap:8px 48px;margin:0}
+.ftr dt{font-size:13px;color:var(--mute)}
+.ftr dd{margin:0;font-size:16px}
+.ftr dd a{text-decoration:none;border-bottom:1px solid var(--line-2)}
+.ftr__bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:13px;color:var(--mute)}
+.ftr__bot a{color:var(--paper)}
+@media (max-width:760px){.ftr dl{grid-template-columns:1fr}}
+
+.js .rv{opacity:0;transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);transform:translateY(16px);transition-delay:var(--dl,0ms)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#top">ВЕРА СВЕТЛОВА</a>
+    <nav class="nav" aria-label="Разделы"><a href="#works">Работы</a><a href="#packages">Съёмки и&nbsp;цены</a><a href="#calm">Как проходит</a><a href="#dates">Даты</a><a href="#gift">Сертификат</a></nav>
+    <a class="hdr__cta" href="#dates"><i aria-hidden="true"></i><span id="hdrFree" class="lg">Свободные даты</span><span class="sm">Даты</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero" aria-labelledby="h1">
+    <div class="hero__txt">
+      <div><h1 class="hero__name" id="h1"><span>Вера</span><span>Светлова</span><span class="sr">, портретный фотограф</span></h1>
+      <p class="hero__next" id="heroNext" hidden><i aria-hidden="true"></i><span>Ближайшая свободная дата&nbsp;— <a href="#dates" id="heroNextD"></a></span></p></div>
+      <div>
+        <p class="hero__lead">Портреты, на&nbsp;которых вы узнаёте себя. Снимаю в&nbsp;студии на&nbsp;Лиговском, дома и&nbsp;в&nbsp;городе&nbsp;— без натянутых улыбок и&nbsp;заученных поз.</p>
+        <p class="hero__lead">Петербург. Цвет и&nbsp;чёрно-белый портрет, lifestyle.</p>
+        <div class="hero__cta"><a class="btn" href="#works">Смотреть работы</a><a class="btn btn--ghost" href="#dates">Выбрать дату</a></div>
+      </div>
+    </div>
+    <div class="hero__img">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1606143412458-acc5f86de897?auto=format&fit=crop&w=1200&h=1400&q=72&crop=entropy" width="1200" height="1400" alt="Портрет девушки в чёрном платье на тёмном фоне" fetchpriority="high"></div>
+      <p class="label"><b>Портрет в&nbsp;чёрном</b><span>Студия, мягкий боковой свет. Пакет «Студия»</span></p>
+    </div>
+  </section>
+
+  <section class="sec" id="works" aria-labelledby="worksH">
+    <div class="wrap">
+      <div class="hd">
+        <h2 id="worksH" class="rv">Работы</h2>
+        <p class="rv" style="--dl:80ms">Отберите жанр, который ближе. Нажмите на&nbsp;снимок, чтобы открыть его крупно,&nbsp;— листать можно стрелками на&nbsp;клавиатуре или свайпом.</p>
+      </div>
+      <div class="flt" role="group" aria-label="Жанр" id="flt"></div>
+      <div class="gal" id="gal" aria-live="polite"></div>
+      <p class="gal__note">Демо-галерея: снимки иллюстративные, взяты с&nbsp;фотостока.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="packages" aria-labelledby="pkH" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="hd">
+        <h2 id="pkH" class="rv">Съёмки и&nbsp;цены</h2>
+        <p class="rv" style="--dl:80ms">Цена фиксированная и&nbsp;включает подготовку, съёмку, отбор и&nbsp;ретушь. Все кадры после отбора отдаю в&nbsp;онлайн-галерее, без водяных знаков.</p>
+      </div>
+      <div class="pk" id="pk">
+        <article class="pc rv" data-pk="portrait">
+          <h3>Портрет</h3>
+          <p class="pc__dur">1 час, один образ</p>
+          <p class="pc__price">9&nbsp;000&nbsp;₽</p>
+          <ul><li>Локация на&nbsp;выбор: город, парк или ваш дом</li><li>15 кадров в&nbsp;авторской ретуши</li><li>Все удачные кадры в&nbsp;цветокоррекции</li><li>Подсказки по&nbsp;одежде до&nbsp;съёмки</li></ul>
+          <p class="pc__fit">Для аватара, профиля, первого опыта съёмки.</p>
+          <button class="btn btn--ghost" type="button" data-pick="portrait">Выбрать дату</button>
+        </article>
+        <article class="pc rv" data-pk="studio" style="--dl:80ms">
+          <h3>Студия</h3>
+          <p class="pc__dur">2 часа, два образа</p>
+          <p class="pc__price">16&nbsp;000&nbsp;₽</p>
+          <ul><li>Аренда студии на&nbsp;Лиговском включена</li><li>Постановочный свет, цвет и&nbsp;ч/б</li><li>30 кадров в&nbsp;авторской ретуши</li><li>Мудборд и&nbsp;созвон перед съёмкой</li></ul>
+          <p class="pc__fit">Для портфолио, личного бренда, подарка себе.</p>
+          <button class="btn btn--ghost" type="button" data-pick="studio">Выбрать дату</button>
+        </article>
+        <article class="pc rv" data-pk="story" style="--dl:160ms">
+          <h3>История</h3>
+          <p class="pc__dur">3–4 часа, день из&nbsp;жизни</p>
+          <p class="pc__price">24&nbsp;000&nbsp;₽</p>
+          <ul><li>Дома, в&nbsp;мастерской, с&nbsp;близкими или питомцем</li><li>Репортаж и&nbsp;постановочные портреты</li><li>60 кадров в&nbsp;авторской ретуши</li><li>Отбор вместе на&nbsp;видеозвонке</li></ul>
+          <p class="pc__fit">Для семьи, пары, проекта о&nbsp;вашем деле.</p>
+          <button class="btn btn--ghost" type="button" data-pick="story">Выбрать дату</button>
+        </article>
+      </div>
+      <div class="extras">
+        <h3 class="rv">Можно добавить</h3>
+        <dl class="rv" style="--dl:80ms">
+          <div><dt>Визажист и&nbsp;укладка</dt><dd>5&nbsp;000&nbsp;₽</dd></div>
+          <div><dt>Дополнительный кадр в&nbsp;ретуши</dt><dd>600&nbsp;₽</dd></div>
+          <div><dt>Срочная ретушь за&nbsp;3&nbsp;дня</dt><dd>+30%</dd></div>
+          <div><dt>Печать 30×40 на&nbsp;хлопковой бумаге</dt><dd>2&nbsp;400&nbsp;₽</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="calm" aria-labelledby="calmH">
+    <div class="wrap calm">
+      <div class="calm__img ph rv"><img loading="lazy" src="https://images.unsplash.com/photo-1612242879330-cd06b2696e56?auto=format&fit=crop&w=900&h=1125&q=72&crop=entropy" width="900" height="1125" alt="Девушка в белой футболке, естественный свет"></div>
+      <div class="calm__txt">
+        <h2 id="calmH" class="rv">Если вы не&nbsp;любите фотографироваться</h2>
+        <p class="rv" style="color:var(--mute);max-width:34em">Так говорит почти каждый, кто приходит на&nbsp;первую съёмку. Позировать не&nbsp;нужно: я&nbsp;говорю, куда встать и&nbsp;что делать с&nbsp;руками, а&nbsp;лучшие кадры получаются между командами.</p>
+        <ol>
+          <li class="rv"><span class="n" aria-hidden="true">1</span><b>Созвон на&nbsp;20&nbsp;минут</b><p>Обсуждаем, для чего снимки, смотрим референсы, выбираем локацию и&nbsp;время с&nbsp;хорошим светом.</p></li>
+          <li class="rv"><span class="n" aria-hidden="true">2</span><b>Подготовка</b><p>Присылаю подсказки по&nbsp;одежде: какие цвета и&nbsp;фактуры работают в&nbsp;кадре. Если нужно, подключаю визажиста.</p></li>
+          <li class="rv"><span class="n" aria-hidden="true">3</span><b>Съёмка</b><p>Первые пятнадцать минут&nbsp;— разминка, их&nbsp;никто не&nbsp;увидит. Дальше привыкаете к&nbsp;камере и&nbsp;перестаёте её&nbsp;замечать.</p></li>
+          <li class="rv"><span class="n" aria-hidden="true">4</span><b>Отбор и&nbsp;ретушь</b><p>Через три дня&nbsp;— галерея превью для отбора. Ретушь сохраняет кожу живой: убираю временное, оставляю вас.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="places" aria-labelledby="placesH" style="padding-top:0">
+    <div class="wrap">
+      <div class="hd"><h2 id="placesH" class="rv">Где снимаем</h2><p class="rv" style="--dl:80ms">Локацию выбираем на&nbsp;созвоне под задачу. Для уличной съёмки ориентируемся на&nbsp;мягкий вечерний свет&nbsp;— посмотрите, когда он&nbsp;бывает в&nbsp;нужном месяце.</p></div>
+      <div class="pl">
+        <div class="plc rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 9v11"/></svg><h3>Студия на&nbsp;Лиговском</h3><p>Большое окно на&nbsp;север и&nbsp;постановочный свет. Не&nbsp;зависит от&nbsp;погоды и&nbsp;времени года.</p><dl><div><dt>Подходит</dt><dd>Портрет, Студия</dd></div><div><dt>Аренда</dt><dd>в&nbsp;пакете «Студия»</dd></div></dl></div>
+        <div class="plc rv" style="--dl:80ms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 11l8-6 8 6v9H4z"/><path d="M10 20v-5h4v5"/></svg><h3>У&nbsp;вас дома</h3><p>Привычные вещи и&nbsp;свет из&nbsp;окна. Лучше всего днём, когда солнце не&nbsp;бьёт прямо в&nbsp;комнату.</p><dl><div><dt>Подходит</dt><dd>История, Портрет</dd></div><div><dt>Выезд</dt><dd>по&nbsp;городу бесплатно</dd></div></dl></div>
+        <div class="plc rv" style="--dl:160ms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 20h18M5 20V9l4-3v14M9 20V11h6v9M15 20V6l4 3v11"/></svg><h3>Город</h3><p>Набережные, дворы, парки. Снимаем утром или в&nbsp;золотой час, чтобы свет был мягким.</p><dl><div><dt>Подходит</dt><dd>Портрет, История</dd></div><div><dt>Погода</dt><dd>перенос бесплатно</dd></div></dl></div>
+      </div>
+      <div class="light rv">
+        <div>
+          <h3>Золотой час в&nbsp;Петербурге</h3>
+          <p>Последний час перед закатом: тёплый, низкий, мягкий свет. Выберите месяц съёмки.</p>
+          <div class="months" id="months" role="group" aria-label="Месяц"></div>
+        </div>
+        <div>
+          <div class="sky" aria-hidden="true"><svg class="sky__arc" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="arc" d="M0 100 Q50 0 100 100" fill="none" stroke="rgba(236,232,225,.4)" stroke-width=".8" stroke-dasharray="1.5 1.5" vector-effect="non-scaling-stroke"/></svg><i class="sky__gold" id="gold"></i><i class="sky__sun" id="sun"></i></div>
+          <div class="sky__ax" aria-hidden="true"><span>04:00</span><span>12:00</span><span>24:00</span></div>
+          <p class="light__out" id="lightOut" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="dates" aria-labelledby="datesH" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="hd">
+        <h2 id="datesH" class="rv">Свободные даты</h2>
+        <p class="rv" style="--dl:80ms">Отмечены точкой. Выберите день и&nbsp;время&nbsp;— дата закрепится за&nbsp;вами после короткого созвона. Предоплата не&nbsp;нужна.</p>
+      </div>
+      <div class="bk">
+        <div class="cal rv">
+          <div class="cal__hd">
+            <p class="cal__m" id="calM" aria-live="polite"></p>
+            <div class="cal__nav"><button class="ib" type="button" id="calPrev" aria-label="Предыдущий месяц"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="ib" type="button" id="calNext" aria-label="Следующий месяц"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+          </div>
+          <div class="cal__grid" id="calG" role="group" aria-labelledby="calM"></div>
+          <div class="cal__leg"><span><i class="f"></i>Свободно</span><span><i class="b"></i>Занято</span><span><i style="box-shadow:inset 0 0 0 1px var(--mute);border:0"></i>Сегодня</span></div>
+          <p class="cal__sum" id="calSum"></p>
+        </div>
+        <div>
+          <form class="form" id="form" novalidate>
+            <h3>Запись на&nbsp;съёмку</h3>
+            <p class="recap" id="recap">Выберите свободный день в&nbsp;календаре.</p>
+            <fieldset class="fs"><legend>Время</legend><div class="slots" id="slots"><p style="font-size:14px;color:var(--mute)">Появится после выбора дня</p></div></fieldset>
+            <fieldset class="fs"><legend>Съёмка</legend><div class="seg" id="seg"><button type="button" data-p="portrait" aria-pressed="false">Портрет</button><button type="button" data-p="studio" aria-pressed="true">Студия</button><button type="button" data-p="story" aria-pressed="false">История</button></div></fieldset>
+            <div class="fl"><label for="fN">Имя</label><input id="fN" autocomplete="name"><span class="er" id="eN"></span></div>
+            <div class="fl"><label for="fP">Телефон или Telegram</label><input id="fP" autocomplete="tel" placeholder="+7 или @ник"><span class="er" id="eP"></span></div>
+            <div class="fl"><label for="fC">Для чего снимки (по&nbsp;желанию)</label><textarea id="fC" rows="2"></textarea></div>
+            <span class="er" id="eF" role="alert"></span>
+            <button class="btn" type="submit" id="fBtn">Записаться</button>
+          </form>
+          <div class="done" id="done" hidden tabindex="-1" role="status">
+            <h3>Заявка принята</h3>
+            <p id="doneT"></p>
+            <button class="btn btn--ghost" type="button" id="doneR" style="justify-self:start">Выбрать другую дату</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec" id="gift" aria-labelledby="giftH">
+    <div class="wrap gift">
+      <form class="gift__form" id="gf" novalidate>
+        <h2 id="giftH" class="rv">Съёмка в&nbsp;подарок</h2>
+        <p class="rv">Сертификат на&nbsp;любой пакет. Получатель сам выберет дату в&nbsp;календаре, сертификат действует полгода. Соберите его здесь&nbsp;— пришлю PDF и&nbsp;печатную открытку.</p>
+        <fieldset class="fs"><legend>Пакет</legend><div class="seg" id="gSeg"><button type="button" data-p="portrait" aria-pressed="true">Портрет</button><button type="button" data-p="studio" aria-pressed="false">Студия</button><button type="button" data-p="story" aria-pressed="false">История</button></div></fieldset>
+        <div class="fl"><label for="gTo">Кому</label><input id="gTo" maxlength="24" placeholder="Например, Анне" autocomplete="off"></div>
+        <div class="fl"><label for="gFrom">От кого</label><input id="gFrom" maxlength="24" placeholder="Например, от Миши" autocomplete="off"></div>
+        <fieldset class="fs"><legend>Открытка</legend><div class="seg" id="gTone" style="grid-template-columns:repeat(2,minmax(0,1fr))"><button type="button" data-t="dark" aria-pressed="true">Тёмная</button><button type="button" data-t="light" aria-pressed="false">Светлая</button></div></fieldset>
+        <div class="fl"><label for="gPh">Ваш телефон</label><input id="gPh" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7"><span class="er" id="gE" role="alert"></span></div>
+        <button class="btn" type="submit" style="justify-self:start">Заказать сертификат</button>
+      </form>
+      <div>
+        <div class="cert" id="cert" aria-live="polite">
+          <p class="cert__s">Подарочный сертификат на&nbsp;съёмку</p>
+          <p class="cert__t" id="cT"><span>Для&nbsp;вас</span></p>
+          <div class="cert__b"><span id="cF">Вера Светлова, фотограф</span><span class="cert__p" id="cP">9&nbsp;000&nbsp;₽</span></div>
+        </div>
+        <div class="done" id="gDone" hidden tabindex="-1" role="status" style="margin-top:16px"><h3>Заявка принята</h3><p id="gDoneT"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faqH" style="padding-top:0">
+    <div class="wrap faq">
+      <h2 id="faqH" class="rv">Перед съёмкой спрашивают</h2>
+      <div class="faq__l">
+        <details><summary>Что надеть?<i aria-hidden="true"></i></summary><p>Однотонные вещи без крупных логотипов, фактурные ткани: лён, трикотаж, шерсть. Возьмите два-три варианта&nbsp;— выберем на&nbsp;месте. Подробную памятку пришлю после записи.</p></details>
+        <details><summary>Можно прийти с&nbsp;ребёнком или собакой?<i aria-hidden="true"></i></summary><p>Да, для этого лучше подходит пакет «История»: в&nbsp;нём есть время на&nbsp;то, чтобы все привыкли к&nbsp;камере и&nbsp;никто не&nbsp;устал.</p></details>
+        <details><summary>Когда будут готовы фотографии?<i aria-hidden="true"></i></summary><p>Галерея превью для отбора&nbsp;— через три дня после съёмки. Ретушь отобранных кадров&nbsp;— до&nbsp;двух недель, срочно&nbsp;— за&nbsp;три дня с&nbsp;доплатой.</p></details>
+        <details><summary>Что если испортится погода?<i aria-hidden="true"></i></summary><p>Перенесём уличную съёмку на&nbsp;другой свободный день или переедем в&nbsp;студию без доплаты за&nbsp;аренду.</p></details>
+        <details><summary>Можно перенести дату?<i aria-hidden="true"></i></summary><p>Да, предупредите за&nbsp;сутки&nbsp;— выберем новую дату из&nbsp;свободных. Предоплаты нет, так что и&nbsp;штрафов за&nbsp;перенос тоже.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <p class="ftr__name">Вера Светлова</p>
+      <dl>
+        <div><dt>Студия</dt><dd>Санкт-Петербург, Лиговский пр., 50</dd></div>
+        <div><dt>Телефон</dt><dd><a href="tel:+78120000000">+7 (812) 000-00-00</a></dd></div>
+        <div><dt>Почта</dt><dd><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></dd></div>
+      </dl>
+    </div>
+    <div class="ftr__bot">
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и&nbsp;реквизиты вымышлены.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbT">
+  <div class="lb__top"><span class="lb__cnt" id="lbC" aria-live="polite">1 / 10</span><button class="ib" type="button" id="lbX" aria-label="Закрыть просмотр"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="lb__stage" id="lbS">
+    <button class="ib prev" type="button" id="lbP" aria-label="Предыдущий снимок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure class="lb__fig" id="lbF"><div class="ph"><img id="lbI" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" width="1200" height="1600"></div></figure>
+    <button class="ib next" type="button" id="lbN" aria-label="Следующий снимок"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="lb__bot"><div><p class="lb__t" id="lbT"></p><p class="lb__m" id="lbM"></p></div><button class="btn btn--ghost" type="button" id="lbB">Хочу такую съёмку</button></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+document.documentElement.classList.add('js');
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+var RM=matchMedia('(prefers-reduced-motion: reduce)');
+var U='https://images.unsplash.com/photo-';
+function src(id,w,h,c){return U+id+'?auto=format&fit=crop&w='+w+'&h='+h+'&q=72&crop='+(c||'entropy');}
+
+var G={portrait:'Портрет',studio:'Студия',bw:'Ч/б',life:'Lifestyle'};
+var PH=[
+ {id:'1606143412458-acc5f86de897',t:'Портрет в чёрном',g:['studio','portrait'],m:'Студия, мягкий боковой свет',pk:'studio',sz:'t',ar:'3/4',alt:'Девушка в чёрном платье на тёмном фоне'},
+ {id:'1506863530036-1efeddceb993',t:'Тишина',g:['bw','portrait'],m:'Ч/б, дневной свет из окна',pk:'portrait',sz:'',ar:'3/4',alt:'Чёрно-белый портрет девушки'},
+ {id:'1684598273404-2d94d7a7ce2f',t:'Взгляд',g:['portrait'],m:'Город, пасмурный день',pk:'portrait',sz:'w',ar:'3/2',alt:'Портрет девушки крупным планом'},
+ {id:'1532170579297-281918c8ae72',t:'Линия плеч',g:['studio'],m:'Студия, один источник света',pk:'studio',sz:'t',ar:'3/4',alt:'Девушка в чёрном топе с V-вырезом'},
+ {id:'1612242879330-cd06b2696e56',t:'Утро дома',g:['life'],m:'Дома, свет из окна',pk:'story',sz:'',ar:'4/5',alt:'Девушка в белой футболке у окна'},
+ {id:'1581841064838-a470c740e8ee',t:'Шляпа',g:['portrait','studio'],m:'Студия, жёсткий свет',pk:'studio',sz:'t',ar:'3/4',alt:'Девушка в чёрной шляпе'},
+ {id:'1532171875345-9712d9d4f65a',t:'Между кадрами',g:['life'],m:'Город, репортаж',pk:'story',sz:'',ar:'4/5',alt:'Девушка фотографирует себя на телефон'},
+ {id:'1506863530036-1efeddceb993',c:'faces',t:'Деталь',g:['bw'],m:'Ч/б, крупный план',pk:'portrait',sz:'',ar:'1/1',alt:'Чёрно-белый портрет, крупный план лица'},
+ {id:'1612242879330-cd06b2696e56',c:'faces',t:'Свой ритм',g:['life','portrait'],m:'Дома, мягкий свет',pk:'story',sz:'w',ar:'3/2',alt:'Портрет девушки в домашней обстановке'},
+ {id:'1606143412458-acc5f86de897',c:'faces',t:'Крупно',g:['studio','bw'],m:'Студия, обработка в ч/б',pk:'studio',sz:'w',ar:'3/2',alt:'Студийный портрет крупным планом'}
+];
+var PK={portrait:['Портрет','9 000 ₽','1 час'],studio:['Студия','16 000 ₽','2 часа'],story:['История','24 000 ₽','3–4 часа']};
+
+/* header */
+var hdr=$('#hdr');function sc(){hdr.classList.toggle('sc',scrollY>20);}addEventListener('scroll',sc,{passive:true});sc();
+
+/* gallery */
+var flt=$('#flt'),gal=$('#gal'),cur='all',view=[];
+var keys=['all'].concat(Object.keys(G));
+flt.innerHTML=keys.map(function(k){var n=k==='all'?PH.length:PH.filter(function(p){return p.g.indexOf(k)>=0;}).length;return '<button type="button" class="fb" data-g="'+k+'" aria-pressed="'+(k==='all')+'">'+(k==='all'?'Все':G[k])+'<sup>'+n+'</sup></button>';}).join('');
+flt.addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b||b.dataset.g===cur)return;cur=b.dataset.g;$$('.fb',flt).forEach(function(x){x.setAttribute('aria-pressed',x===b);});renderGal(true);});
+function renderGal(anim){
+  view=PH.map(function(p,i){return i;}).filter(function(i){return cur==='all'||PH[i].g.indexOf(cur)>=0;});
+  gal.innerHTML=view.map(function(i,k){var p=PH[i];var w=p.sz==='w'?900:p.sz==='t'?600:600,h=p.sz==='w'?560:p.sz==='t'?900:600;
+    if(p.ar==='4/5'&&!p.sz){w=600;h=600;}
+    return '<button type="button" class="gi '+(p.sz||'')+(anim?' in':'')+'" style="--dl:'+(k*50)+'ms" data-i="'+k+'" aria-label="Открыть снимок «'+p.t+'», '+p.g.map(function(g){return G[g];}).join(', ')+'"><img loading="lazy" src="'+src(p.id,w,h,p.c)+'" width="'+w+'" height="'+h+'" alt="'+p.alt+'"><span class="gi__cap" aria-hidden="true"><span>'+p.t+'</span><span>'+p.g.map(function(g){return G[g];}).join(', ')+'</span></span></button>';
+  }).join('');
+}
+renderGal(false);
+gal.addEventListener('click',function(e){var b=e.target.closest('.gi');if(b)openLb(+b.dataset.i,b);});
+
+/* lightbox */
+var lb=$('#lb'),lbI=$('#lbI'),lbF=$('#lbF'),idx=0,opener=null,swT=null;
+function showLb(dir){
+  var p=PH[view[idx]];
+  function apply(){
+    var tall=p.ar==='3/4'||p.ar==='4/5';var w=tall?1200:1500,h=tall?(p.ar==='3/4'?1600:1500):(p.ar==='1/1'?1500:1000);
+    if(p.ar==='1/1'){w=1400;h=1400;}
+    lbI.src=src(p.id,w,h,p.c);lbI.width=w;lbI.height=h;lbI.alt=p.alt;
+    lbF.style.setProperty('--ar',p.ar);
+    $('#lbT').textContent=p.t;$('#lbM').textContent=p.m+'. Пакет «'+PK[p.pk][0]+'»';
+    $('#lbC').textContent=(idx+1)+' / '+view.length;
+    lbF.classList.remove('sw');
+  }
+  if(dir&&!RM.matches){lbF.style.setProperty('--dir',dir);lbF.classList.add('sw');clearTimeout(swT);swT=setTimeout(apply,180);}
+  else apply();
+}
+function openLb(i,from){idx=i;opener=from||null;showLb(0);lb.classList.add('open');document.body.style.overflow='hidden';setTimeout(function(){$('#lbX').focus();},30);}
+function closeLb(){lb.classList.remove('open');document.body.style.overflow='';if(opener)opener.focus();}
+function go(d){idx=(idx+d+view.length)%view.length;showLb(d);}
+$('#lbX').addEventListener('click',closeLb);
+$('#lbP').addEventListener('click',function(){go(-1);});
+$('#lbN').addEventListener('click',function(){go(1);});
+$('#lbS').addEventListener('click',function(e){if(e.target===this)closeLb();});
+$('#lbB').addEventListener('click',function(){var p=PH[view[idx]];setPk(p.pk);closeLb();$('#dates').scrollIntoView({behavior:RM.matches?'auto':'smooth'});});
+document.addEventListener('keydown',function(e){
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  else if(e.key==='ArrowRight')go(1);
+  else if(e.key==='ArrowLeft')go(-1);
+  else if(e.key==='Tab'){var f=$$('button',lb);if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus();}else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}}
+});
+var sx=null,sy=null;
+lb.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;});
+lb.addEventListener('pointerup',function(e){if(sx===null)return;var dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)go(dx<0?1:-1);});
+
+/* packages */
+var pkSel='studio';
+function setPk(k){pkSel=k;$$('#seg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===k);});$$('.pc').forEach(function(c){c.dataset.on=c.dataset.pk===k;});recap();renderSlots();}
+$$('[data-pick]').forEach(function(b){b.addEventListener('click',function(){setPk(b.dataset.pick);$('#dates').scrollIntoView({behavior:RM.matches?'auto':'smooth'});});});
+$('#seg').addEventListener('click',function(e){var b=e.target.closest('button');if(b)setPk(b.dataset.p);});
+
+/* calendar */
+var MN=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+var MG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var DW=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+var DWF=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+var today=new Date();today.setHours(0,0,0,0);
+var mOff=0,selD=null,selT=null;
+function key(d){return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();}
+function isFree(d){
+  if(d<today)return false;
+  var k=key(d),h=(k*2654435761)%97,wd=d.getDay();
+  if(d-today<864e5*2)return false;
+  if(wd===1)return false; // выходной у фотографа
+  return (wd===0||wd===6)?h%3!==0:h%5<3;
+}
+function slotsFor(d){
+  var all=[['10:00','утренний свет'],['13:00',''],['16:00',''],['19:00','золотой час']];
+  var k=key(d);
+  return all.map(function(s,i){var busy=((k+i*7)%4===0);return {t:s[0],n:s[1],busy:busy};});
+}
+function renderCal(){
+  var base=new Date(today.getFullYear(),today.getMonth()+mOff,1);
+  $('#calM').textContent=MN[base.getMonth()]+' '+base.getFullYear();
+  $('#calPrev').disabled=mOff<=0;$('#calNext').disabled=mOff>=2;
+  $('#calPrev').style.opacity=mOff<=0?.35:1;$('#calNext').style.opacity=mOff>=2?.35:1;
+  var start=(base.getDay()+6)%7,days=new Date(base.getFullYear(),base.getMonth()+1,0).getDate();
+  var h=DW.map(function(d){return '<span class="cal__dow" aria-hidden="true">'+d+'</span>';}).join('');
+  for(var i=0;i<start;i++)h+='<span aria-hidden="true"></span>';
+  var freeN=0;
+  for(var d=1;d<=days;d++){
+    var dt=new Date(base.getFullYear(),base.getMonth(),d),past=dt<today,free=isFree(dt);if(free)freeN++;
+    var cls='dd '+(past?'past':free?'free':'busy')+(+dt===+today?' today':'');
+    var lab=d+' '+MG[dt.getMonth()]+', '+DWF[dt.getDay()]+(past?', прошло':free?', свободно':', занято');
+    h+='<button type="button" class="'+cls+'" data-d="'+key(dt)+'" aria-pressed="'+(selD&&+selD===+dt)+'" aria-label="'+lab+'"'+(free?'':' disabled')+'><span>'+d+'</span></button>';
+  }
+  $('#calG').innerHTML=h;
+  $('#calSum').textContent=freeN?'В этом месяце свободно '+freeN+' '+pl(freeN,'день','дня','дней')+'.':'В этом месяце свободных дат нет — посмотрите следующий.';
+}
+function pl(n,a,b,c){var m=n%10,h=n%100;if(m===1&&h!==11)return a;if(m>=2&&m<=4&&(h<12||h>14))return b;return c;}
+$('#calPrev').addEventListener('click',function(){if(mOff>0){mOff--;renderCal();}});
+$('#calNext').addEventListener('click',function(){if(mOff<2){mOff++;renderCal();}});
+$('#calG').addEventListener('click',function(e){
+  var b=e.target.closest('.dd');if(!b||b.disabled)return;
+  var k=+b.dataset.d;selD=new Date(Math.floor(k/10000),Math.floor(k/100)%100-1,k%100);selT=null;
+  $$('.dd',this).forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+  renderSlots();recap();
+});
+function renderSlots(){
+  var el=$('#slots');if(!selD){return;}
+  var ss=slotsFor(selD),long=pkSel==='story';
+  el.innerHTML=ss.map(function(s,i){var dis=s.busy||(long&&i===3);return '<button type="button" class="sl" data-t="'+s.t+'" aria-pressed="'+(selT===s.t)+'"'+(dis?' disabled':'')+'>'+s.t+(s.n?'<small>'+s.n+'</small>':'')+'</button>';}).join('')+(long?'<p style="font-size:13px;color:var(--mute);width:100%;margin-top:4px">«История» длится 3–4 часа, поэтому вечерний старт недоступен.</p>':'');
+  if(selT&&$('.sl[data-t="'+selT+'"]',el).disabled)selT=null;
+}
+$('#slots').addEventListener('click',function(e){var b=e.target.closest('.sl');if(!b||b.disabled)return;selT=b.dataset.t;$$('.sl',this).forEach(function(x){x.setAttribute('aria-pressed',x===b);});recap();});
+function recap(){
+  var r=$('#recap'),p=PK[pkSel];
+  if(!selD){r.innerHTML='Выберите свободный день в календаре. Съёмка: <b>«'+p[0]+'», '+p[2]+', '+p[1]+'</b>';return;}
+  r.innerHTML='<b>'+selD.getDate()+' '+MG[selD.getMonth()]+', '+DWF[selD.getDay()]+(selT?', '+selT:'')+'</b><br>Съёмка «'+p[0]+'», '+p[2]+', '+p[1];
+}
+(function(){var n=0,first=null;for(var i=0;i<30;i++){var d=new Date(today);d.setDate(d.getDate()+i);if(isFree(d)){n++;if(!first)first=d;}}if(first){$('#heroNextD').textContent=first.getDate()+' '+MG[first.getMonth()]+', '+DWF[first.getDay()];$('#heroNext').hidden=false;}$('#hdrFree').textContent=n?n+' '+pl(n,'свободная дата','свободные даты','свободных дат')+' за месяц':'Свободные даты';
+  var left=0,end=new Date(today.getFullYear(),today.getMonth()+1,0);for(var d2=new Date(today);d2<=end;d2.setDate(d2.getDate()+1)){if(isFree(d2))left++;}if(left<3)mOff=1;})();
+renderCal();setPk('studio');
+
+/* form */
+var form=$('#form');
+form.addEventListener('submit',function(e){
+  e.preventDefault();var ok=true,n=$('#fN'),p=$('#fP');
+  if(n.value.trim().length<2){$('#eN').textContent='Напишите, как к вам обращаться';n.setAttribute('aria-invalid','true');ok=false;}else{$('#eN').textContent='';n.removeAttribute('aria-invalid');}
+  var v=p.value.trim();
+  if(!(v.replace(/\D/g,'').length>=10||/^@[\w.]{3,}$/.test(v))){$('#eP').textContent='Укажите телефон или ник в Telegram, начиная с @';p.setAttribute('aria-invalid','true');ok=false;}else{$('#eP').textContent='';p.removeAttribute('aria-invalid');}
+  $('#eF').textContent=!selD?'Выберите день в календаре':!selT?'Выберите время съёмки':'';
+  if(!selD||!selT)ok=false;
+  if(!ok)return;
+  $('#doneT').textContent=n.value.trim()+', дата '+selD.getDate()+' '+MG[selD.getMonth()]+' в '+selT+' отложена за вами. Напишу в течение дня, чтобы договориться о созвоне и подтвердить съёмку «'+PK[pkSel][0]+'».';
+  form.hidden=true;var d=$('#done');d.hidden=false;d.classList.add('show');d.focus();
+});
+$('#doneR').addEventListener('click',function(){form.reset();form.hidden=false;$('#done').hidden=true;selD=null;selT=null;renderCal();$('#slots').innerHTML='<p style="font-size:14px;color:var(--mute)">Появится после выбора дня</p>';recap();});
+
+
+
+/* golden hour (approximate sunset in St Petersburg, mid-month) */
+var SUNSET=[[16,25],[17,35],[18,40],[20,10],[21,30],[22,25],[22,10],[21,0],[19,35],[18,5],[16,35],[15,55]];
+var SUNRISE=[[9,55],[8,50],[7,25],[6,30],[4,50],[3,40],[4,0],[5,20],[6,40],[8,0],[9,20],[10,0]];
+var MS=['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+var MP=['январе','феврале','марте','апреле','мае','июне','июле','августе','сентябре','октябре','ноябре','декабре'];
+var mEl=$('#months'),mSel=today.getMonth();
+mEl.innerHTML=MS.map(function(m,i){return '<button type="button" data-m="'+i+'" aria-pressed="'+(i===mSel)+'">'+m+'</button>';}).join('');
+function hm(m){return Math.floor(m/60)+':'+String(m%60).padStart(2,'0');}
+function renderLight(){
+  var ss=SUNSET[mSel][0]*60+SUNSET[mSel][1],sr=SUNRISE[mSel][0]*60+SUNRISE[mSel][1],g=ss-60;
+  var x=function(min){return (min-240)/(1440-240)*100;};
+  var gold=$('#gold');gold.style.left=x(g)+'%';gold.style.width=(x(ss)-x(g))+'%';
+  var xr=x(sr),xs=x(ss);$('#arc').setAttribute('d','M'+xr+' 100 Q'+((xr+xs)/2)+' -100 '+xs+' 100');
+  var t=(ss-30-sr)/(ss-sr),yv=(1-t)*(1-t)*100-2*(1-t)*t*100+t*t*100;
+  var sun=$('#sun');sun.style.left=(xr+(xs-xr)*t)+'%';sun.style.top=yv+'%';
+  var tip=ss<17*60?'Свет короткий — для улицы лучше утро выходного, а портреты переносим в студию.':ss>21*60?'Белые ночи: мягкий свет держится до поздней ночи, можно снимать после работы.':'Удобно снимать после работы или в выходной вечером.';
+  $('#lightOut').innerHTML='В '+MP[mSel]+' золотой час примерно <b>'+hm(g)+'–'+hm(ss)+'</b>. Рассвет около '+hm(sr)+'. '+tip;
+}
+mEl.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;mSel=+b.dataset.m;$$('button',mEl).forEach(function(x){x.setAttribute('aria-pressed',x===b);});renderLight();});
+renderLight();
+
+/* gift */
+var gPk='portrait',gTone='dark',cert=$('#cert');
+function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function renderCert(pop){
+  var to=$('#gTo').value.trim(),fr=$('#gFrom').value.trim();
+  $('#cT').innerHTML='<span>'+(to?esc(to.replace(/^для\s+/i,''))+'&nbsp;— съёмка':'Съёмка')+' «'+PK[gPk][0]+'»</span>';
+  $('#cF').textContent=fr?(/^от\s/i.test(fr)?fr:'от '+fr):'Вера Светлова, фотограф';
+  $('#cP').textContent=PK[gPk][1].replace(' ','\u00a0');
+  cert.classList.toggle('light',gTone==='light');
+  if(pop&&!RM.matches){cert.classList.remove('pop');void cert.offsetWidth;cert.classList.add('pop');}
+}
+$('#gSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;gPk=b.dataset.p;$$('#gSeg button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});renderCert(true);});
+$('#gTone').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;gTone=b.dataset.t;$$('#gTone button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});renderCert(false);});
+$('#gTo').addEventListener('input',function(){renderCert(false);});
+$('#gFrom').addEventListener('input',function(){renderCert(false);});
+renderCert(false);
+$('#gf').addEventListener('submit',function(e){
+  e.preventDefault();var ph=$('#gPh');
+  if(ph.value.replace(/\D/g,'').length<10){$('#gE').textContent='Нужен номер из 10–11 цифр, чтобы договориться о доставке открытки';ph.setAttribute('aria-invalid','true');return;}
+  $('#gE').textContent='';ph.removeAttribute('aria-invalid');
+  $('#gDoneT').textContent='Сертификат на съёмку «'+PK[gPk][0]+'» за '+PK[gPk][1]+'. Позвоню, чтобы уточнить, куда прислать PDF и открытку.';
+  var d=$('#gDone');d.hidden=false;d.classList.add('show');d.focus();
+});
+
+/* reveal */
+var rv=$$('.rv');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});rv.forEach(function(el){io.observe(el);});}
+else rv.forEach(function(el){el.classList.add('in');});
+})();
+</script>
+</body>
+</html>

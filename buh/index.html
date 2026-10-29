@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>«Баланс» — бухгалтерское сопровождение ИП и ООО: калькулятор и налоговый календарь</title>
+<meta name="description" content="Посчитайте стоимость бухгалтерии на аутсорсе под ваш режим налогообложения, число операций и сотрудников. Налоговый календарь со сроками отчётов и платежей под ваш бизнес.">
+<meta property="og:title" content="«Баланс» — бухгалтерия для ИП и ООО">
+<meta property="og:description" content="Калькулятор стоимости обслуживания и налоговый календарь, настроенный под ваш режим и штат.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23065a40'/%3E%3Cpath d='M7 11h18M7 21h18' stroke='%23fff' stroke-width='3'/%3E%3Cpath d='M16 6v20' stroke='%2378d3ad' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --w:#ffffff;
+  --bg-2:#f6f8f7;
+  --ink:#0f1f1a;
+  --ink-2:#2b3a35;
+  --muted:#55635d;
+  --line:#dbe3df;
+  --line-2:#c4d0ca;
+  --em:#0a7b55;
+  --em-deep:#065a40;
+  --em-ink:#04402d;
+  --em-soft:#e8f4ee;
+  --em-mid:#78d3ad;
+  --warn:#9a3b12;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --gut:clamp(16px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink);background:var(--w);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+p{margin:0}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--em);outline-offset:2px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--em-deep);color:#fff;padding:10px 14px;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border:1px solid transparent;border-radius:2px;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,border-color .2s ease,color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-em{background:var(--em-deep);color:#fff}
+.btn-line{border-color:var(--ink);background:transparent}
+@media (hover:hover) and (pointer:fine){.btn-em:hover{background:var(--em-ink)}.btn-line:hover{background:var(--bg-2)}}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:66px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.logo svg{width:32px;height:32px}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{text-decoration:none;font-size:15px;color:var(--ink-2);padding:10px 12px;min-height:44px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:border-color .2s ease,color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--em);border-color:var(--em)}}
+.top .tel{font-family:var(--mono);font-size:15px;text-decoration:none;white-space:nowrap;min-height:44px;display:flex;align-items:center}
+.top .btn{min-height:42px;font-size:15px;padding:0 16px}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line-2);background:var(--w);cursor:pointer;align-items:center;justify-content:center;border-radius:2px}
+.burger svg{width:22px;height:22px}
+.mnav{display:none}
+@media (max-width:1080px){
+  .nav,.top .tel,.top .btn{display:none}
+  .burger{display:inline-flex}
+  .mnav{display:grid;position:fixed;top:66px;left:0;right:0;z-index:39;background:var(--w);border-bottom:1px solid var(--line);padding:6px var(--gut) 18px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+  .mnav.open{opacity:1;transform:none;pointer-events:auto}
+  .mnav a{text-decoration:none;padding:13px 0;border-bottom:1px solid var(--line);min-height:48px;font-size:17px}
+  .mnav a.mono{color:var(--em)}
+}
+
+/* hero */
+.hero{padding:clamp(40px,6vw,88px) 0 clamp(48px,6vw,80px);border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.hero h1{font-size:clamp(34px,4.3vw,62px);font-weight:600;letter-spacing:-.035em;line-height:1.02}
+.hero h1 span{display:block}
+.hero h1 span+span{color:var(--muted);font-weight:400}
+.hero .lead{margin-top:24px;font-size:clamp(17px,1.4vw,19px);color:var(--ink-2);max-width:32em}
+.hero .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:40px;border-top:1px solid var(--ink)}
+.kv div{padding:14px 16px 0 0;font-size:14px;color:var(--muted);line-height:1.4}
+.kv div+div{padding-left:16px;border-left:1px solid var(--line)}
+.kv b{display:block;font-family:var(--mono);font-weight:500;color:var(--ink);font-size:15px;margin-bottom:4px}
+.ledger{border:1px solid var(--ink);background:var(--w);font-size:14px;box-shadow:12px 12px 0 var(--em-soft)}
+.ledger-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 18px;border-bottom:1px solid var(--ink);background:var(--bg-2)}
+.ledger-h b{font-weight:600;font-size:15px}
+.ledger-h span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ledger table{width:100%;border-collapse:collapse}
+.ledger th{font-weight:500;font-size:12px;color:var(--muted);text-align:left;padding:10px 18px 8px;border-bottom:1px solid var(--line)}
+.ledger td{padding:11px 18px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ledger td.d{font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--ink-2)}
+.ledger td.s{text-align:right;white-space:nowrap}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 8px;border-radius:2px}
+.st svg{width:14px;height:14px}
+.st.ok{background:var(--em-soft);color:var(--em-ink)}
+.st.wait{background:#fff4e5;color:var(--warn)}
+.ledger tfoot td{border-bottom:0;font-weight:600}
+.ledger tfoot td.m{font-family:var(--mono);text-align:right;font-weight:500}
+.ledger .note{padding:10px 18px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+.js .ledger tbody tr{opacity:0;transform:translateX(-8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.js .ready .ledger tbody tr{opacity:1;transform:none}
+.js .ledger tbody tr:nth-child(2){transition-delay:.08s}.js .ledger tbody tr:nth-child(3){transition-delay:.16s}.js .ledger tbody tr:nth-child(4){transition-delay:.24s}.js .ledger tbody tr:nth-child(5){transition-delay:.32s}.js .ledger tbody tr:nth-child(6){transition-delay:.4s}
+@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+@media (max-width:560px){.kv{grid-template-columns:1fr}.kv div,.kv div+div{padding:12px 0;border-left:0;border-bottom:1px solid var(--line)}.ledger td,.ledger th{padding-left:12px;padding-right:12px}.ledger .hide-s{display:none}.hero .acts .btn{width:100%}}
+
+/* sections */
+.sec{padding:clamp(64px,8vw,112px) 0}
+.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 64px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.sec-h h2{font-size:clamp(30px,3.8vw,52px);font-weight:600;letter-spacing:-.03em}
+.sec-h p{color:var(--muted);max-width:34em}
+.idx{font-family:var(--mono);font-size:13px;color:var(--em);display:block;margin-bottom:14px}
+@media (max-width:860px){.sec-h{grid-template-columns:1fr}}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);border:1px solid var(--ink)}
+.calc-in{padding:clamp(18px,2.6vw,32px);display:grid;gap:28px;min-width:0}
+.calc-out{border-left:1px solid var(--ink);background:var(--bg-2);padding:clamp(18px,2.6vw,32px);display:flex;flex-direction:column;min-width:0}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend,.lbl{font-weight:600;font-size:15px;padding:0;margin-bottom:10px;display:flex;justify-content:space-between;gap:12px;width:100%}
+legend small,.lbl small{font-weight:400;color:var(--muted);font-size:13px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--line-2);border-radius:2px}
+.seg label{position:relative;flex:1 1 auto}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:6px 14px;font-size:15px;cursor:pointer;border-right:1px solid var(--line-2);line-height:1.2;transition:background-color .2s ease,color .2s ease}
+.seg label:last-child span{border-right:0}
+.seg input:checked+span{background:var(--ink);color:#fff}
+.seg input:focus-visible+span{outline:2px solid var(--em);outline-offset:-3px}
+.seg input:disabled+span{color:#9aa7a1;cursor:not-allowed;text-decoration:line-through}
+@media (hover:hover) and (pointer:fine){.seg input:not(:checked):not(:disabled)+span:hover{background:var(--em-soft)}}
+.regs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.reg{position:relative}
+.reg input{position:absolute;opacity:0;pointer-events:none}
+.reg span{display:block;border:1px solid var(--line-2);padding:12px 14px;min-height:64px;cursor:pointer;border-radius:2px;line-height:1.3;transition:border-color .2s ease,background-color .2s ease}
+.reg b{display:block;font-weight:600;font-size:15px}
+.reg small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.reg input:checked+span{border-color:var(--em-deep);background:var(--em-soft);box-shadow:inset 0 0 0 1px var(--em-deep)}
+.reg input:focus-visible+span{outline:2px solid var(--em);outline-offset:2px}
+.reg input:disabled+span{opacity:.45;cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){.reg input:not(:checked):not(:disabled)+span:hover{border-color:var(--ink)}}
+.rng{display:grid;gap:4px}
+.rng .row{display:flex;justify-content:space-between;align-items:baseline}
+.rng output{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--ink)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:linear-gradient(var(--em),var(--em)) 0/var(--p,10%) 100% no-repeat,var(--line)}
+input[type=range]::-moz-range-track{height:4px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:4px;background:var(--em)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;background:var(--w);border:2px solid var(--em-deep);border-radius:50%}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;background:var(--w);border:2px solid var(--em-deep);border-radius:50%}
+input[type=range]:focus-visible{outline:none}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(10,123,85,.3)}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.stepper{display:flex;align-items:stretch;border:1px solid var(--line-2);width:max-content;border-radius:2px}
+.stepper button{width:48px;min-height:48px;border:0;background:var(--w);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:background-color .2s ease}
+.stepper button:active{transform:scale(.94)}
+.stepper button svg{width:18px;height:18px}
+@media (hover:hover) and (pointer:fine){.stepper button:hover{background:var(--em-soft)}}
+.stepper input{width:76px;border:0;border-left:1px solid var(--line-2);border-right:1px solid var(--line-2);text-align:center;font-family:var(--mono);font-size:20px;-moz-appearance:textfield;appearance:textfield}
+.stepper input::-webkit-inner-spin-button{display:none}
+.emp-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.emp-row .hint{font-size:14px;color:var(--muted);max-width:22em}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}
+.chk{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;min-height:48px;cursor:pointer;font-size:15px;border-bottom:1px solid var(--line);padding:4px 0}
+.chk input{width:20px;height:20px;accent-color:var(--em-deep);margin:0}
+.chk .p{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.chk.dis{opacity:.5}
+@media (max-width:620px){.opts{grid-template-columns:1fr}}
+.inv-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:12px}
+.inv-h b{font-size:17px}
+.inv-h span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.inv{width:100%;border-collapse:collapse;font-size:15px;margin-top:4px}
+.inv td{padding:11px 0;border-bottom:1px dashed var(--line-2);vertical-align:top}
+.inv td.q{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;padding-left:10px;text-align:right}
+.inv td.m{font-family:var(--mono);text-align:right;white-space:nowrap;padding-left:14px}
+.inv td small{display:block;color:var(--muted);font-size:13px}
+.inv tr.inc td.m{color:var(--em)}
+.js .inv tr.new{animation:rowin .45s var(--ease) both}
+@keyframes rowin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.total{margin-top:auto;padding-top:22px}
+.total .lab{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-top:2px solid var(--ink);padding-top:14px}
+.total .lab span{font-size:15px;color:var(--muted)}
+.total .sum{font-family:var(--mono);font-weight:600;font-size:clamp(32px,3.4vw,46px);letter-spacing:-.03em;line-height:1;white-space:nowrap}
+.total .once{font-size:14px;color:var(--muted);margin-top:8px;font-family:var(--mono);min-height:1.5em}
+.total .btn{width:100%;margin-top:18px}
+.total .fine{font-size:13px;color:var(--muted);margin-top:10px}
+@media (max-width:980px){.calc{grid-template-columns:1fr}.calc-out{border-left:0;border-top:1px solid var(--ink)}}
+
+/* calendar */
+.cal-sec{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cal-bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:14px 18px;border:1px solid var(--ink);border-bottom:0;background:var(--w)}
+.cal-bar .who{font-size:15px}
+.cal-bar .who b{font-weight:600}
+.cal-bar .who button{border:0;background:transparent;color:var(--em);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-weight:500;min-height:44px;padding:0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:40px;padding:0 12px;border:1px solid var(--line-2);background:var(--w);border-radius:2px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:background-color .2s ease,border-color .2s ease}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.cal{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);border:1px solid var(--ink);background:var(--w)}
+.month{padding:clamp(14px,2vw,24px);min-width:0}
+.mhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.mhead h3{font-size:clamp(20px,2vw,26px);font-weight:600;text-transform:none}
+.mhead h3 .mono{font-weight:400;color:var(--muted)}
+.mnavb{display:flex;gap:6px}
+.mnavb button{width:44px;height:44px;border:1px solid var(--line-2);background:var(--w);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px;transition:background-color .2s ease}
+.mnavb button:active{transform:scale(.94)}
+.mnavb button svg{width:18px;height:18px}
+@media (hover:hover) and (pointer:fine){.mnavb button:hover{background:var(--em-soft)}}
+.grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.grid7 .wd{font-size:12px;color:var(--muted);padding:8px 8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+.dc{position:relative;min-height:84px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--w);text-align:left;padding:6px 8px;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:background-color .2s ease}
+.dc .n{font-family:var(--mono);font-size:14px}
+.dc.we .n{color:#8a9691}
+.dc.out{background:#fafbfb;cursor:default}
+.dc.out .n{color:#b7c2bd}
+.dc.today .n{background:var(--ink);color:#fff;border-radius:2px;padding:0 5px;width:max-content}
+.dc .marks{display:flex;flex-wrap:wrap;gap:3px;margin-top:auto}
+.dc .marks i{width:8px;height:8px;border-radius:50%}
+.dc .cnt{font-size:11px;color:var(--muted);line-height:1.2}
+.dc.has{background:linear-gradient(var(--w),var(--w))}
+.dc[aria-pressed="true"]{background:var(--em-soft);box-shadow:inset 0 0 0 2px var(--em-deep)}
+.dc:disabled{cursor:default}
+@media (hover:hover) and (pointer:fine){.dc.has:not([aria-pressed="true"]):hover{background:var(--bg-2)}}
+.k-pay{background:var(--em-deep)}
+.k-rep{background:var(--w);box-shadow:inset 0 0 0 2px var(--em-deep)}
+.k-ntf{background:#c98a1b}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dayinfo{border-left:1px solid var(--ink);padding:clamp(14px,2vw,24px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.dayinfo h4{font-size:18px}
+.dayinfo h4 .mono{font-weight:400;color:var(--muted);font-size:14px;display:block;margin-top:4px}
+.evs{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ev{display:grid;grid-template-columns:12px 1fr;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:2px}
+.ev i{width:10px;height:10px;border-radius:50%;margin-top:6px}
+.ev b{font-weight:600;font-size:15px;display:block;line-height:1.3}
+.ev small{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.ev .sh{font-family:var(--mono);font-size:11px;color:var(--warn);margin-top:4px;display:block}
+.js .evs .ev{animation:rowin .4s var(--ease) both}
+.empty{font-size:15px;color:var(--muted);border:1px dashed var(--line-2);padding:16px}
+.next h4{font-size:15px;font-weight:600;border-bottom:1px solid var(--ink);padding-bottom:8px}
+.next ol{list-style:none;margin:0;padding:0}
+.next li{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.35}
+.next li .mono{font-size:13px;color:var(--em-ink)}
+.next button{border:0;background:transparent;padding:0;text-align:left;cursor:pointer;min-height:24px;font:inherit;color:inherit;text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:3px}
+.cal-note{font-size:13px;color:var(--muted);margin-top:14px;max-width:62em}
+@media (max-width:980px){.cal{grid-template-columns:1fr}.dayinfo{border-left:0;border-top:1px solid var(--ink)}}
+@media (max-width:560px){.dc{min-height:58px;padding:4px 5px}.dc .cnt{display:none}.grid7 .wd{padding:6px 4px;font-size:11px}.dc .marks i{width:7px;height:7px}}
+
+/* compare */
+.cmp-wrap{overflow-x:auto;border:1px solid var(--ink)}
+.cmp{width:100%;border-collapse:collapse;min-width:640px;font-size:15px}
+.cmp th,.cmp td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp thead th{font-size:14px;font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--ink)}
+.cmp thead th.us{background:var(--em-deep);color:#fff}
+.cmp td.us{background:var(--em-soft)}
+.cmp tbody th{font-weight:500;width:32%}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
+.y,.n{display:inline-flex;gap:8px;align-items:flex-start}
+.y svg,.n svg{width:18px;height:18px;flex:none;margin-top:3px}
+.y svg{color:var(--em)}
+.n svg{color:#9aa7a1}
+.n{color:var(--muted)}
+
+@media (max-width:640px){
+  .cmp-wrap{overflow:visible;border:0}
+  .cmp{min-width:0}
+  .cmp thead{display:none}
+  .cmp,.cmp tbody,.cmp tr,.cmp th,.cmp td{display:block;width:auto}
+  .cmp tr{border:1px solid var(--ink);margin-bottom:12px}
+  .cmp tbody th{width:auto;font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--ink)}
+  .cmp td{display:grid;grid-template-columns:120px 1fr;gap:10px;padding:10px 16px}
+  .cmp td::before{content:attr(data-l);font-size:13px;color:var(--muted);padding-top:2px}
+  .cmp td.us::before{color:var(--em-ink);font-weight:600}
+  .cmp tr:last-child td{border-bottom:1px solid var(--line)}
+  .cmp tr td:last-child{border-bottom:0}
+}
+/* steps */
+.flow{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.flow .ph{background:var(--bg-2);aspect-ratio:4/5;overflow:hidden;position:relative}
+.flow .ph img{width:100%;height:100%;object-fit:cover}
+.flow .ph figcaption{position:absolute;left:0;bottom:0;background:var(--w);font-size:13px;color:var(--muted);padding:8px 12px;font-family:var(--mono)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;border-top:1px solid var(--ink)}
+.steps li{display:grid;grid-template-columns:64px 1fr auto;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);color:var(--em);font-size:15px;padding-top:2px}
+.steps h3{font-size:20px;font-weight:600}
+.steps p{color:var(--muted);margin-top:6px;font-size:16px;max-width:30em}
+.steps .t{font-family:var(--mono);font-size:13px;color:var(--ink-2);white-space:nowrap;padding-top:4px}
+@media (max-width:900px){.flow{grid-template-columns:1fr}.flow .ph{aspect-ratio:16/9}}
+@media (max-width:520px){.steps li{grid-template-columns:44px 1fr}.steps .t{grid-column:2}}
+
+/* resp */
+.resp{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);border:1px solid var(--ink)}
+.resp .txt{padding:clamp(22px,4vw,56px)}
+.resp h2{font-size:clamp(28px,3.4vw,46px);letter-spacing:-.03em}
+.resp ul{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.resp li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:16px}
+.resp li svg{width:22px;height:22px;color:var(--em);margin-top:2px}
+.resp .ph{background:var(--bg-2);border-left:1px solid var(--ink);min-height:320px}
+.resp .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.resp{grid-template-columns:1fr}.resp .ph{border-left:0;border-top:1px solid var(--ink);aspect-ratio:16/9;min-height:0}}
+
+/* faq */
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;display:grid;grid-template-columns:1fr 32px;gap:20px;align-items:center;font-size:18px;font-weight:500;min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:32px;height:32px;border:1px solid var(--line-2);position:relative;border-radius:2px}
+.faq summary .pm::before,.faq summary .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .25s var(--ease)}
+.faq summary .pm::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.faq .a{padding:0 52px 22px 0;color:var(--ink-2);max-width:46em}
+
+/* contact */
+.contact{background:var(--em-deep);color:#fff}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px)}
+.contact h2{font-size:clamp(32px,4vw,56px);letter-spacing:-.03em}
+.contact .lead{color:#cfe8dc;margin-top:16px;max-width:30em}
+.contact .idx{color:var(--em-mid)}
+.cl{margin-top:30px;display:grid;gap:4px;border-top:1px solid rgba(255,255,255,.25)}
+.cl a,.cl div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.25);text-decoration:none;font-size:16px;min-height:44px}
+.cl span:first-child{color:#a9d6c2;font-size:14px}
+.form{background:var(--w);color:var(--ink);padding:clamp(20px,3vw,36px);border-radius:2px}
+.form h3{font-size:22px}
+.f{display:grid;gap:6px;margin-top:16px}
+.f label{font-size:14px;font-weight:500}
+.f input,.f textarea{width:100%;min-height:48px;border:1px solid var(--line-2);border-radius:2px;padding:11px 14px;font-size:16px;background:var(--w);transition:border-color .2s ease,box-shadow .2s ease}
+.f textarea{min-height:110px;font-family:var(--mono);font-size:13px;line-height:1.5;resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--em-deep);box-shadow:0 0 0 3px rgba(10,123,85,.2)}
+.f input[aria-invalid="true"]{border-color:#b3261e}
+.f .err{font-size:13px;color:#b3261e}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media (max-width:520px){.f2{grid-template-columns:1fr}}
+.form .btn{width:100%;margin-top:22px}
+.form .fine{font-size:13px;color:var(--muted);margin-top:10px}
+.done{display:none}
+.form.sent .fb{display:none}
+.form.sent .done{display:block}
+.js .form.sent .done{animation:rowin .5s var(--ease) both}
+.done .ok{width:56px;height:56px;background:var(--em-soft);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.done .ok svg{width:28px;height:28px;color:var(--em-deep)}
+.done h3{font-size:28px}
+.done p{color:var(--muted);margin-top:10px}
+.done pre{font-family:var(--mono);font-size:12px;background:var(--bg-2);padding:12px;white-space:pre-wrap;margin:16px 0 0;border-left:2px solid var(--em)}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.cl a,.cl div{grid-template-columns:1fr;gap:2px}}
+
+footer{background:var(--em-ink);color:#a9d6c2;font-size:14px;padding:28px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between}
+footer a{color:#fff}
+footer p+p{margin-top:4px}
+
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv,.js .ledger tbody tr{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Баланс — на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="3" fill="#065a40"/><path d="M7 11h18M7 21h18" stroke="#fff" stroke-width="3"/><path d="M16 6v20" stroke="#78d3ad" stroke-width="2"/></svg>
+      Баланс
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#calc">Стоимость</a>
+      <a href="#cal">Налоговый календарь</a>
+      <a href="#cmp">Что входит</a>
+      <a href="#flow">Переход</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="tel" href="tel:+78430000000">+7 (843) 000-00-00</a>
+    <a class="btn btn-em" href="#calc">Рассчитать</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Разделы">
+  <a href="#calc">Калькулятор стоимости</a>
+  <a href="#cal">Налоговый календарь</a>
+  <a href="#cmp">Что входит</a>
+  <a href="#flow">Как перейти</a>
+  <a href="#faq">Вопросы</a>
+  <a class="mono" href="tel:+78430000000">+7 (843) 000-00-00</a>
+</nav>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div>
+      <h1 id="h1"><span>Ведём учёт.</span><span>Сдаём отчёты в&nbsp;срок.</span><span>Объясняем цифры.</span></h1>
+      <p class="lead">Бухгалтерия на&nbsp;аутсорсе для ИП и&nbsp;ООО на&nbsp;любом режиме. Каждый месяц вы получаете короткий отчёт: что сделано, что заплатить и&nbsp;до&nbsp;какого числа.</p>
+      <div class="acts">
+        <a class="btn btn-em" href="#calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M8 7h8M8 12h2M12 12h2M16 12h0M8 16h2M12 16h2"/></svg>Рассчитать стоимость</a>
+        <a class="btn btn-line" href="#cal">Открыть налоговый календарь</a>
+      </div>
+      <div class="kv">
+        <div><b>от 1 500 ₽/мес</b>для ИП на&nbsp;АУСН без сотрудников</div>
+        <div><b>2 бухгалтера</b>ведут и&nbsp;проверяют каждого клиента</div>
+        <div><b>штрафы — наши</b>если ошибка допущена нами</div>
+      </div>
+    </div>
+    <div class="ledger rv" aria-label="Пример ежемесячного отчёта клиенту">
+      <div class="ledger-h"><b>ООО «Северный ветер» · УСН 6%</b><span>отчёт за&nbsp;сентябрь</span></div>
+      <table>
+        <thead><tr><th>Задача</th><th class="hide-s">Срок</th><th style="text-align:right">Статус</th></tr></thead>
+        <tbody>
+          <tr><td>Банковские выписки разнесены</td><td class="d hide-s">05.10</td><td class="s"><span class="st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>готово</span></td></tr>
+          <tr><td>Зарплата за&nbsp;сентябрь, 4 сотрудника</td><td class="d hide-s">10.10</td><td class="s"><span class="st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>готово</span></td></tr>
+          <tr><td>Уведомление по&nbsp;УСН за&nbsp;9 месяцев</td><td class="d hide-s">26.10</td><td class="s"><span class="st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>сдано</span></td></tr>
+          <tr><td>РСВ и&nbsp;6-НДФЛ за&nbsp;9 месяцев</td><td class="d hide-s">26.10</td><td class="s"><span class="st ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>сдано</span></td></tr>
+          <tr><td>Пополнить ЕНС</td><td class="d hide-s">28.10</td><td class="s"><span class="st wait"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2"/></svg>ваш шаг</span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">К&nbsp;оплате до&nbsp;28.10</td><td class="m">184 260,00 ₽</td></tr></tfoot>
+      </table>
+      <p class="note">Пример отчёта. Компания и&nbsp;суммы вымышлены.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="calc" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div><span class="idx">01 / стоимость</span><h2 id="calc-h">Сколько стоит бухгалтерия для вашего бизнеса</h2></div>
+      <p>Цена зависит от&nbsp;режима налогообложения, числа операций и&nbsp;сотрудников. Отметьте, что подходит, и&nbsp;посмотрите смету по&nbsp;строкам. Настройки сразу применятся к&nbsp;налоговому календарю ниже.</p>
+    </div>
+    <div class="calc rv">
+      <div class="calc-in">
+        <fieldset>
+          <legend>Организационная форма</legend>
+          <div class="seg" id="segForm">
+            <label><input type="radio" name="form" value="ip"><span>ИП</span></label>
+            <label><input type="radio" name="form" value="ooo" checked><span>ООО</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Режим налогообложения</legend>
+          <div class="regs" id="regs">
+            <label class="reg"><input type="radio" name="reg" value="usn6" checked><span><b>УСН 6%</b><small>«Доходы»</small></span></label>
+            <label class="reg"><input type="radio" name="reg" value="usn15"><span><b>УСН 15%</b><small>«Доходы минус расходы»</small></span></label>
+            <label class="reg"><input type="radio" name="reg" value="osno"><span><b>ОСНО</b><small>общий режим с&nbsp;НДС</small></span></label>
+            <label class="reg"><input type="radio" name="reg" value="ausn"><span><b>АУСН</b><small>автоматизированная УСН</small></span></label>
+            <label class="reg"><input type="radio" name="reg" value="psn"><span><b>Патент</b><small>только для ИП</small></span></label>
+          </div>
+        </fieldset>
+        <div class="rng">
+          <div class="row"><label class="lbl" for="ops" style="margin:0;width:auto">Операций в&nbsp;месяц <small>&nbsp;платежи и&nbsp;документы</small></label><output id="opsOut" class="num">40</output></div>
+          <input type="range" id="ops" min="0" max="300" step="5" value="40">
+          <div class="ticks" aria-hidden="true"><span>0</span><span>100</span><span>200</span><span>300</span></div>
+        </div>
+        <div>
+          <span class="lbl" id="empL">Сотрудники в&nbsp;штате</span>
+          <div class="emp-row">
+            <div class="stepper" role="group" aria-labelledby="empL">
+              <button type="button" id="empM" aria-label="Меньше сотрудников"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg></button>
+              <input id="emp" type="number" inputmode="numeric" min="0" max="80" value="4" aria-label="Число сотрудников">
+              <button type="button" id="empP" aria-label="Больше сотрудников"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button>
+            </div>
+            <p class="hint" id="empHint">Зарплата, НДФЛ, взносы и&nbsp;отчёты в&nbsp;СФР и&nbsp;ФНС.</p>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Дополнительно</legend>
+          <div class="opts" id="opts">
+            <label class="chk" id="vatRow"><input type="checkbox" value="vat"><span>Плательщик НДС на&nbsp;УСН</span><span class="p">+3 000</span></label>
+            <label class="chk"><input type="checkbox" value="hr"><span>Кадровый учёт</span><span class="p">+400/чел</span></label>
+            <label class="chk"><input type="checkbox" value="ved"><span>ВЭД и&nbsp;валютный контроль</span><span class="p">+4 000</span></label>
+            <label class="chk"><input type="checkbox" value="mgmt"><span>Управленческий отчёт</span><span class="p">+5 000</span></label>
+            <label class="chk"><input type="checkbox" value="restore"><span>Восстановить учёт за&nbsp;прошлые периоды</span><span class="p">разово</span></label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="inv-h"><b>Смета на&nbsp;месяц</b><span id="invWho">ООО · УСН 6%</span></div>
+        <table class="inv"><tbody id="inv"></tbody></table>
+        <div class="total">
+          <div class="lab"><span>Итого в&nbsp;месяц</span><span class="sum" id="sum">0 ₽</span></div>
+          <p class="once" id="once"></p>
+          <a class="btn btn-em" href="#contact" id="toForm">Зафиксировать цену в&nbsp;договоре</a>
+          <p class="fine">Цена в&nbsp;договоре не&nbsp;меняется, пока объём операций и&nbsp;штат в&nbsp;пределах сметы.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cal-sec" id="cal" aria-labelledby="cal-h">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div><span class="idx">02 / сроки</span><h2 id="cal-h">Налоговый календарь под ваш бизнес</h2></div>
+      <p>Календарь показывает только то, что касается вашей формы, режима и&nbsp;штата. Нажмите на&nbsp;день, чтобы увидеть, что сдать или заплатить. Если срок выпадает на&nbsp;выходной, он&nbsp;сдвигается на&nbsp;понедельник.</p>
+    </div>
+    <div class="cal-bar rv">
+      <p class="who">Настроен под: <b id="calWho">ООО, УСН 6%, 4 сотрудника</b> <button type="button" id="toCalc">изменить в&nbsp;калькуляторе</button></p>
+      <div class="chips" role="group" aria-label="Что показывать">
+        <button class="chip" type="button" data-k="pay" aria-pressed="true"><i class="k-pay"></i>Платежи</button>
+        <button class="chip" type="button" data-k="rep" aria-pressed="true"><i class="k-rep"></i>Отчёты</button>
+        <button class="chip" type="button" data-k="ntf" aria-pressed="true"><i class="k-ntf"></i>Уведомления</button>
+      </div>
+    </div>
+    <div class="cal rv">
+      <div class="month">
+        <div class="mhead">
+          <h3 id="mTitle" aria-live="polite">Ноябрь <span class="mono">2026</span></h3>
+          <div class="mnavb">
+            <button type="button" id="mPrev" aria-label="Предыдущий месяц"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button type="button" id="mNext" aria-label="Следующий месяц"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="grid7" id="grid7" role="group" aria-label="Дни месяца"></div>
+        <div class="legend"><span><i class="k-pay"></i>уплата</span><span><i class="k-rep"></i>отчёт или декларация</span><span><i class="k-ntf"></i>уведомление</span></div>
+      </div>
+      <div class="dayinfo">
+        <div>
+          <h4 id="dTitle">Выберите день</h4>
+          <ul class="evs" id="evs" aria-live="polite"></ul>
+        </div>
+        <div class="next">
+          <h4>Ближайшие сроки</h4>
+          <ol id="next"></ol>
+        </div>
+      </div>
+    </div>
+    <p class="cal-note">Демо-календарь: основные федеральные сроки по&nbsp;правилам 2025–2026 годов, перенос с&nbsp;выходных учтён, праздничные дни&nbsp;— нет. Кадровые ЕФС-1 сдаются по&nbsp;событию и&nbsp;в&nbsp;календарь не&nbsp;попадают. Для клиентов календарь ведёт бухгалтер и&nbsp;напоминает в&nbsp;мессенджере.</p>
+  </div>
+</section>
+
+<section class="sec" id="cmp" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <div><span class="idx">03 / что входит</span><h2 id="cmp-h">Чем аутсорс отличается от&nbsp;бухгалтера в&nbsp;штате</h2></div>
+      <p>Штатный бухгалтер&nbsp;— отличный вариант для крупного бизнеса. Для малого чаще важнее непрерывность и&nbsp;вторая пара глаз.</p>
+    </div>
+    <div class="cmp-wrap rv" tabindex="0" role="region" aria-label="Сравнение вариантов, прокручивается по горизонтали">
+      <table class="cmp">
+        <thead><tr><th scope="col">Что важно</th><th scope="col">Бухгалтер в&nbsp;штате</th><th scope="col">Частный бухгалтер</th><th scope="col" class="us">«Баланс»</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Отпуск и&nbsp;больничный</th><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Нужна замена</span></td><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Работа встаёт</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Подменяет второй бухгалтер</span></td></tr>
+          <tr><th scope="row">Проверка перед сдачей</th><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Обычно нет</span></td><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Нет</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Каждый отчёт проверяет коллега</span></td></tr>
+          <tr><th scope="row">Ответственность за&nbsp;ошибки</th><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>По&nbsp;трудовому договору</span></td><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Обычно не&nbsp;прописана</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Штрафы по&nbsp;нашей вине оплачиваем мы</span></td></tr>
+          <tr><th scope="row">Рабочее место, 1С, ЭЦП</th><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>За&nbsp;ваш счёт</span></td><td><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Своё</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Входит в&nbsp;стоимость</span></td></tr>
+          <tr><th scope="row">Отчёт о&nbsp;платежах на&nbsp;месяц</th><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Если попросить</span></td><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Если попросить</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>До&nbsp;10&nbsp;числа каждого месяца</span></td></tr>
+          <tr><th scope="row">Ответы на&nbsp;вопросы</th><td><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>В&nbsp;рабочее время</span></td><td><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg>Как получится</span></td><td class="us"><span class="y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>В&nbsp;чате в&nbsp;течение рабочего дня</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="flow" style="padding-top:0" aria-labelledby="flow-h">
+  <div class="wrap flow">
+    <figure class="ph rv" style="margin:0"><img src="https://images.unsplash.com/photo-1583521214690-73421a1829a9?auto=format&fit=crop&w=800&h=1000&q=72" width="800" height="1000" loading="lazy" alt="Стопки бумажных документов и папок"><figcaption>первичка, которую мы разбираем при переходе</figcaption></figure>
+    <div>
+      <div class="rv"><span class="idx">04 / переход</span><h2 id="flow-h" style="font-size:clamp(30px,3.8vw,52px);letter-spacing:-.03em">Как перейти от&nbsp;прежнего бухгалтера</h2></div>
+      <ol class="steps" style="margin-top:32px">
+        <li class="rv"><div><h3>Экспресс-аудит</h3><p>Смотрим базу 1С, выписки и&nbsp;сверку с&nbsp;налоговой. Говорим, где есть долги и&nbsp;ошибки, ещё до&nbsp;договора.</p></div><span class="t">3–5 дней</span></li>
+        <li class="rv" style="--d:.05s"><div><h3>Договор и&nbsp;смета</h3><p>Фиксируем объём, цену и&nbsp;ответственность. Прописываем, что передаёте вы и&nbsp;что делаем мы.</p></div><span class="t">1 день</span></li>
+        <li class="rv" style="--d:.1s"><div><h3>Доступы</h3><p>Банк&nbsp;— только на&nbsp;просмотр, 1С&nbsp;— в&nbsp;облаке, ЭЦП&nbsp;— по&nbsp;доверенности. Деньгами вы распоряжаетесь сами.</p></div><span class="t">1–2 дня</span></li>
+        <li class="rv" style="--d:.15s"><div><h3>Работа и&nbsp;ежемесячный отчёт</h3><p>Ведём учёт, сдаём отчётность и&nbsp;до&nbsp;10&nbsp;числа присылаем отчёт: что сделано и&nbsp;что заплатить.</p></div><span class="t">каждый месяц</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0" aria-labelledby="resp-h">
+  <div class="wrap">
+    <div class="resp rv">
+      <div class="txt">
+        <span class="idx">05 / ответственность</span>
+        <h2 id="resp-h">Если ошиблись мы&nbsp;— платим&nbsp;мы</h2>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Штрафы и&nbsp;пени из-за нашей ошибки компенсируем по&nbsp;договору.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>На&nbsp;требования налоговой отвечаем сами, вам приходит короткое пояснение.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>База 1С остаётся вашей: при расторжении передаём её и&nbsp;все документы.</li>
+        </ul>
+      </div>
+      <div class="ph"><img src="https://images.unsplash.com/photo-1468779036391-52341f60b55d?auto=format&fit=crop&w=800&h=700&q=72" width="800" height="700" loading="lazy" alt="Стопка плотных папок на белой поверхности"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-h rv"><div><span class="idx">06 / вопросы</span><h2 id="faq-h">Частые вопросы</h2></div></div>
+    <div class="faq rv">
+      <details><summary>Что считается операцией?<span class="pm" aria-hidden="true"></span></summary><div class="a">Одна строка в&nbsp;банковской выписке или один первичный документ: счёт, акт, накладная. Входящие и&nbsp;исходящие платежи считаются по&nbsp;отдельности.</div></details>
+      <details><summary>Что будет, если операций станет больше, чем в&nbsp;смете?<span class="pm" aria-hidden="true"></span></summary><div class="a">Ничего страшного: если превышение разовое, цена не&nbsp;меняется. Если объём вырос на&nbsp;три месяца подряд, предложим пересчитать смету.</div></details>
+      <details><summary>Можно&nbsp;ли перейти в&nbsp;середине года?<span class="pm" aria-hidden="true"></span></summary><div class="a">Да. Удобнее всего с&nbsp;начала квартала, но&nbsp;мы принимаем учёт с&nbsp;любого месяца и&nbsp;проверяем всё, что было до&nbsp;нас в&nbsp;текущем году.</div></details>
+      <details><summary>Работаете&nbsp;ли вы с&nbsp;маркетплейсами?<span class="pm" aria-hidden="true"></span></summary><div class="a">Да, разносим отчёты Ozon и&nbsp;Wildberries, учитываем комиссии и&nbsp;возвраты. Отчёт маркетплейса считается одной операцией.</div></details>
+      <details><summary>Как вы получаете документы?<span class="pm" aria-hidden="true"></span></summary><div class="a">Через ЭДО или фото в&nbsp;чат. Бумажные оригиналы раз в&nbsp;квартал забирает курьер.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact" aria-labelledby="ct-h">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <span class="idx">07 / связаться</span>
+      <h2 id="ct-h">Обсудим вашу бухгалтерию</h2>
+      <p class="lead">Оставьте контакты&nbsp;— главный бухгалтер позвонит, задаст пару вопросов и&nbsp;пришлёт договор со&nbsp;сметой. Расчёт из&nbsp;калькулятора прикрепится к&nbsp;заявке.</p>
+      <div class="cl">
+        <a href="tel:+78430000000"><span>Телефон</span><span class="mono">+7 (843) 000-00-00</span></a>
+        <a href="mailto:hello@ysdprojects.space"><span>Почта</span><span>hello@ysdprojects.space</span></a>
+        <div><span>Офис</span><span>Казань, ул.&nbsp;Баумана, 58, офис&nbsp;304</span></div>
+        <div><span>Часы</span><span class="mono">пн–пт, 9:00–18:00</span></div>
+      </div>
+    </div>
+    <form class="form rv" id="form" novalidate style="--d:.08s">
+      <div class="fb">
+        <h3>Заявка на&nbsp;обслуживание</h3>
+        <div class="f2">
+          <div class="f"><label for="fn">Имя</label><input id="fn" autocomplete="name" required><span class="err" id="fn-e" aria-live="polite"></span></div>
+          <div class="f"><label for="fp">Телефон</label><input id="fp" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required><span class="err" id="fp-e" aria-live="polite"></span></div>
+        </div>
+        <div class="f"><label for="fi">ИНН компании или ИП <span style="color:var(--muted);font-weight:400">необязательно</span></label><input id="fi" inputmode="numeric" class="mono" maxlength="12"><span class="err" id="fi-e" aria-live="polite"></span></div>
+        <div class="f"><label for="fc">Смета из&nbsp;калькулятора</label><textarea id="fc"></textarea></div>
+        <button class="btn btn-em" type="submit">Отправить заявку</button>
+        <p class="fine">Демо-форма: данные никуда не&nbsp;отправляются.</p>
+      </div>
+      <div class="done" id="done" tabindex="-1">
+        <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>Заявка принята</h3>
+        <p id="doneTxt">Главный бухгалтер позвонит в&nbsp;течение рабочего дня.</p>
+        <pre id="donePre" hidden></pre>
+        <button class="btn btn-line" type="button" id="again" style="margin-top:20px;width:auto">Новая заявка</button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и&nbsp;реквизиты вымышлены.</p>
+    </div>
+    <p class="mono">ООО «Баланс», Казань</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var money=function(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'};
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.add('ready')})});
+
+  var burger=$('.burger'),mnav=$('#mnav');
+  burger.addEventListener('click',function(){var o=mnav.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню')});
+  $$('#mnav a').forEach(function(a){a.addEventListener('click',function(){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false')})});
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+    $$('.rv').forEach(function(el){io.observe(el)});
+  } else $$('.rv').forEach(function(el){el.classList.add('in')});
+
+  var heads=$$('.cmp thead th').map(function(th){return th.textContent});
+  $$('.cmp tbody tr').forEach(function(tr){$$('td',tr).forEach(function(td,i){td.setAttribute('data-l',heads[i+1])})});
+
+  /* ---------- state ---------- */
+  var S={form:'ooo',reg:'usn6',ops:40,emp:4,opt:{vat:false,hr:false,ved:false,mgmt:false,restore:false}};
+  var REGN={usn6:'УСН 6%',usn15:'УСН 15%',osno:'ОСНО',ausn:'АУСН',psn:'Патент'};
+  var BASE={ip:{usn6:2500,usn15:3500,osno:6000,ausn:1500,psn:2000},ooo:{usn6:5000,usn15:6500,osno:10000,ausn:3500}};
+  function plural(n,a,b,c){n=Math.abs(n)%100;var n1=n%10;if(n>10&&n<20)return c;if(n1>1&&n1<5)return b;if(n1===1)return a;return c}
+  function who(){return (S.form==='ip'?'ИП':'ООО')+', '+REGN[S.reg]+', '+(S.emp?S.emp+' '+plural(S.emp,'сотрудник','сотрудника','сотрудников'):'без сотрудников')}
+
+  function calc(){
+    var rows=[],base=BASE[S.form][S.reg];
+    rows.push({k:'base',t:'Учёт и отчётность: '+(S.form==='ip'?'ИП':'ООО')+', '+REGN[S.reg],s:'декларации, уведомления, сверка с ФНС',q:'',m:base});
+    var inc=20,ops=S.ops,extra=0,q='';
+    if(ops>inc){var a=Math.min(ops,100)-inc,b=Math.max(0,ops-100);extra=a*70+b*50;q=a+' × 70'+(b?' + '+b+' × 50':'')}
+    rows.push({k:'ops',t:'Операции сверх '+inc,s:ops<=inc?'до 20 операций входит в базу':'первичка, выписки, сверки',q:ops<=inc?ops+' из 20':q,m:extra,inc:ops<=inc});
+    if(S.emp>0){
+      var pay=S.reg==='ausn'?S.emp*600:S.emp*900;
+      rows.push({k:'emp',t:'Зарплата и отчёты по сотрудникам',s:S.reg==='ausn'?'НДФЛ за сотрудников удерживает банк':'НДФЛ, взносы, РСВ, 6-НДФЛ, ПСВ',q:S.emp+' × '+(S.reg==='ausn'?600:900),m:pay});
+      if(S.opt.hr)rows.push({k:'hr',t:'Кадровый учёт',s:'приказы, договоры, ЕФС-1',q:S.emp+' × 400',m:S.emp*400});
+    }
+    if(S.reg==='osno')rows.push({k:'vat',t:'НДС',s:'книги покупок и продаж, декларация',q:'',m:0,inc:true});
+    else if(S.opt.vat&&S.reg!=='ausn'&&S.reg!=='psn')rows.push({k:'vat',t:'НДС на УСН',s:'книги покупок и продаж, декларация',q:'',m:3000});
+    if(S.opt.ved)rows.push({k:'ved',t:'ВЭД и валютный контроль',s:'паспорта сделок, справки для банка',q:'',m:4000});
+    if(S.opt.mgmt)rows.push({k:'mgmt',t:'Управленческий отчёт',s:'деньги, прибыль, долги — раз в месяц',q:'',m:5000});
+    var total=rows.reduce(function(s,r){return s+r.m},0);
+    var once=S.opt.restore?Math.max(15000,Math.round(base*3*.9/1000)*1000):0;
+    return {rows:rows,total:total,once:once};
+  }
+  var prevKeys=[];
+  var sumEl=$('#sum'),shown=0,raf=0;
+  function animateSum(to){
+    if(reduce){sumEl.textContent=money(to);shown=to;return}
+    cancelAnimationFrame(raf);var from=shown,t0=performance.now();
+    (function step(t){var k=Math.min(1,(t-t0)/380);k=1-Math.pow(1-k,4);sumEl.textContent=money(Math.round((from+(to-from)*k)/10)*10);if(k<1)raf=requestAnimationFrame(step);else{shown=to;sumEl.textContent=money(to)}})(t0);
+  }
+  function renderCalc(){
+    // constraints
+    var psn=$('input[name=reg][value=psn]');
+    psn.disabled=S.form==='ooo';
+    if(S.form==='ooo'&&S.reg==='psn'){S.reg='usn6';$('input[name=reg][value=usn6]').checked=true}
+    var vat=$('#vatRow'),vi=$('input',vat);
+    var vatDis=S.reg==='osno'||S.reg==='ausn'||S.reg==='psn';vi.disabled=vatDis;vat.classList.toggle('dis',vatDis);
+    $('#vatRow span:nth-of-type(1)').textContent=S.reg==='osno'?'НДС входит в ОСНО':'Плательщик НДС на УСН';
+    var hr=$('#opts input[value=hr]');hr.disabled=S.emp===0;hr.closest('.chk').classList.toggle('dis',S.emp===0);
+    $('#empHint').textContent=S.emp===0?'Без сотрудников — только отчёты самого бизнеса.':S.reg==='ausn'?'На АУСН НДФЛ удерживает банк, отчётов в СФР почти нет.':'Зарплата, НДФЛ, взносы и отчёты в СФР и ФНС.';
+    var r=calc();
+    $('#invWho').textContent=(S.form==='ip'?'ИП':'ООО')+' · '+REGN[S.reg];
+    var keys=r.rows.map(function(x){return x.k});
+    $('#inv').innerHTML=r.rows.map(function(x){return '<tr class="'+(x.inc?'inc ':'')+(prevKeys.length&&prevKeys.indexOf(x.k)<0?'new':'')+'"><td>'+x.t+'<small>'+x.s+'</small></td><td class="q">'+x.q+'</td><td class="m">'+(x.inc&&!x.m?'включено':money(x.m))+'</td></tr>'}).join('');
+    prevKeys=keys;
+    animateSum(r.total);
+    $('#once').textContent=r.once?'+ разово: восстановление учёта от '+money(r.once)+' за квартал':'';
+    $('#opsOut').textContent=S.ops;
+    var o=$('#ops');o.style.setProperty('--p',(S.ops/3)+'%');
+    $('#calWho').textContent=who();
+    renderCal();
+  }
+  $$('input[name=form]').forEach(function(i){i.addEventListener('change',function(){S.form=i.value;renderCalc()})});
+  $$('input[name=reg]').forEach(function(i){i.addEventListener('change',function(){S.reg=i.value;renderCalc()})});
+  $('#ops').addEventListener('input',function(){S.ops=+this.value;renderCalc()});
+  var empIn=$('#emp');
+  function setEmp(n){n=Math.max(0,Math.min(80,isNaN(n)?0:n));S.emp=n;empIn.value=n;if(n===0){S.opt.hr=false;$('#opts input[value=hr]').checked=false}renderCalc()}
+  $('#empM').addEventListener('click',function(){setEmp(S.emp-1)});
+  $('#empP').addEventListener('click',function(){setEmp(S.emp+1)});
+  empIn.addEventListener('change',function(){setEmp(parseInt(empIn.value,10))});
+  $$('#opts input').forEach(function(i){i.addEventListener('change',function(){S.opt[i.value]=i.checked;renderCalc()})});
+
+  function summary(){
+    var r=calc();
+    return who()+', '+S.ops+' операций в месяц\n'+r.rows.map(function(x){return '— '+x.t+': '+(x.inc&&!x.m?'включено':money(x.m))}).join('\n')+'\nИтого: '+money(r.total)+' в месяц'+(r.once?'\nРазово: восстановление учёта от '+money(r.once):'');
+  }
+  $('#toForm').addEventListener('click',function(){$('#fc').value=summary()});
+  $('#toCalc').addEventListener('click',function(){$('#calc').scrollIntoView({behavior:reduce?'auto':'smooth'})});
+
+  /* ---------- tax calendar ---------- */
+  var MON=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  var MONG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var WD=['пн','вт','ср','чт','пт','сб','вс'];
+  var WDF=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+  var QN={0:'IV квартал',3:'I квартал',6:'полугодие',9:'9 месяцев'};
+  function shift(d){var w=d.getDay();if(w===6)d.setDate(d.getDate()+2);else if(w===0)d.setDate(d.getDate()+1);return d}
+  function events(y){
+    var E=[],emp=S.emp>0,ip=S.form==='ip',r=S.reg,vat=r==='osno'||(S.opt.vat&&(r==='usn6'||r==='usn15'));
+    function add(m,d,k,t,s){var o=new Date(y,m,d),x=shift(new Date(y,m,d));E.push({d:x,k:k,t:t,s:s,moved:o.getDate()!==x.getDate()||o.getMonth()!==x.getMonth()?o:null})}
+    for(var m=0;m<12;m++){
+      var prevM=MON[(m+11)%12].toLowerCase();
+      if(emp&&r!=='ausn'){
+        add(m,25,'ntf','Уведомление по НДФЛ и взносам','за сотрудников, период до 22 '+MONG[m]);
+        add(m,28,'pay','Пополнить ЕНС: НДФЛ и взносы','за сотрудников');
+        add(m,25,'rep','Персонифицированные сведения в ФНС','по выплатам за '+prevM);
+      }
+      if(r==='ausn')add(m,25,'pay','Налог по АУСН','по сообщению ФНС за '+prevM);
+      if([0,3,6,9].indexOf(m)>=0){
+        var qn=QN[m];
+        if(emp&&r!=='ausn'){
+          add(m,25,'rep','РСВ',m===0?'за прошлый год':'за '+qn);
+          if(m!==0)add(m,25,'rep','6-НДФЛ','за '+qn);
+          add(m,25,'rep','ЕФС-1, взносы на травматизм',m===0?'за прошлый год':'за '+qn);
+        }
+        if((r==='usn6'||r==='usn15')&&m!==0){
+          add(m,25,'ntf','Уведомление по авансу УСН','за '+qn);
+          add(m,28,'pay','Аванс по УСН','за '+qn);
+        }
+        if(vat){add(m,25,'rep','Декларация по НДС','за '+qn)}
+        if(r==='osno'&&!ip&&m!==0){add(m,25,'rep','Декларация по налогу на прибыль','за '+qn);add(m,28,'pay','Налог на прибыль','аванс за '+qn)}
+        if(r==='osno'&&ip&&m!==0){add(m,25,'ntf','Уведомление по авансу НДФЛ ИП','за '+qn);add(m,28,'pay','Аванс НДФЛ ИП','за '+qn)}
+      }
+      if(vat)add(m,28,'pay','НДС: 1/3 суммы','за прошлый квартал');
+    }
+    if(emp&&r!=='ausn')add(1,25,'rep','6-НДФЛ за прошлый год','годовой расчёт');
+    if(r==='usn6'||r==='usn15'){
+      if(ip){add(3,25,'rep','Декларация по УСН','за прошлый год');add(3,28,'pay','Налог по УСН за год','');}
+      else{add(2,25,'rep','Декларация по УСН','за прошлый год');add(2,28,'pay','Налог по УСН за год','');}
+    }
+    if(!ip&&r!=='ausn')add(2,31,'rep','Бухгалтерская отчётность','баланс и отчёт о финансовых результатах');
+    if(!ip&&r==='ausn')add(2,31,'rep','Бухгалтерская отчётность','упрощённая форма');
+    if(r==='osno'&&!ip){add(2,25,'rep','Декларация по налогу на прибыль','за прошлый год');add(2,28,'pay','Налог на прибыль за год','')}
+    if(r==='osno'&&ip){add(3,30,'rep','Декларация 3-НДФЛ','за прошлый год');add(6,15,'pay','НДФЛ ИП за год','')}
+    if(ip&&r!=='ausn'){add(6,1,'pay','Взносы ИП 1% с дохода свыше 300 тыс. ₽','за прошлый год');add(11,28,'pay','Фиксированные взносы ИП','за текущий год')}
+    if(ip&&r==='psn')add(0,28,'ntf','Проверка сроков оплаты патента','сроки зависят от периода действия патента');
+    return E;
+  }
+  var view=new Date();view.setDate(1);
+  var today=new Date();today.setHours(0,0,0,0);
+  var sel=null;var show={pay:true,rep:true,ntf:true};
+  var cache={},cacheS='';
+  function evFor(y){var st=JSON.stringify(S);if(st!==cacheS){cache={};cacheS=st}if(!cache[y])cache[y]=events(y);return cache[y]}
+  function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+  function evOn(d){var y=d.getFullYear(),all=d.getMonth()===0?evFor(y).concat(evFor(y-1)):evFor(y);return all.filter(function(e){return sameDay(e.d,d)&&show[e.k]})}
+  var KN={pay:'уплата',rep:'отчёт',ntf:'уведомление'};
+  function renderCal(){
+    var y=view.getFullYear(),m=view.getMonth();
+    $('#mTitle').innerHTML=MON[m]+' <span class="mono">'+y+'</span>';
+    var g=$('#grid7'),h='';
+    WD.forEach(function(w,i){h+='<div class="wd" aria-hidden="true">'+w+'</div>'});
+    var first=new Date(y,m,1),off=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate();
+    for(var i=0;i<off;i++)h+='<div class="dc out" aria-hidden="true"></div>';
+    for(var d=1;d<=days;d++){
+      var dt=new Date(y,m,d),ev=evOn(dt),we=dt.getDay()===0||dt.getDay()===6;
+      var cls='dc'+(we?' we':'')+(ev.length?' has':'')+(sameDay(dt,today)?' today':'');
+      var marks=ev.map(function(e){return '<i class="k-'+e.k+'"></i>'}).join('');
+      var lbl=d+' '+MONG[m]+(ev.length?', сроков: '+ev.length:', сроков нет');
+      h+='<button type="button" class="'+cls+'" data-d="'+d+'" aria-pressed="'+(sel&&sameDay(sel,dt))+'" aria-label="'+lbl+'"><span class="n">'+d+'</span>'+(ev.length?'<span class="cnt">'+ev.length+' '+plural(ev.length,'срок','срока','сроков')+'</span><span class="marks">'+marks+'</span>':'')+'</button>';
+    }
+    var tail=(7-((off+days)%7))%7;for(var t=0;t<tail;t++)h+='<div class="dc out" aria-hidden="true"></div>';
+    g.innerHTML=h;
+    $$('.dc[data-d]',g).forEach(function(b){b.addEventListener('click',function(){sel=new Date(y,m,+b.dataset.d);$$('.dc[data-d]',g).forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderDay()})});
+    if(!sel||sel.getMonth()!==m||sel.getFullYear()!==y){
+      // auto-select first day with events in the month (or today)
+      var pick=null,any=null;for(var dd=1;dd<=days;dd++){var x=new Date(y,m,dd);if(evOn(x).length){if(!any)any=x;if(!pick&&x>=today)pick=x}}
+      sel=pick||any;
+      if(sel)$$('.dc[data-d]',g).forEach(function(x){x.setAttribute('aria-pressed',+x.dataset.d===sel.getDate())});
+    }
+    renderDay();renderNext();
+  }
+  function renderDay(){
+    var ul=$('#evs');
+    if(!sel){$('#dTitle').textContent='В этом месяце сроков нет';ul.innerHTML='<li class="empty">Под ваши настройки в этом месяце ничего сдавать и платить не нужно.</li>';return}
+    var ev=evOn(sel);
+    $('#dTitle').innerHTML=sel.getDate()+' '+MONG[sel.getMonth()]+'<span class="mono">'+WDF[sel.getDay()]+(ev.length?' · '+ev.length+' '+plural(ev.length,'срок','срока','сроков'):'')+'</span>';
+    if(!ev.length){ul.innerHTML='<li class="empty">В этот день сроков нет. Выберите день с отметкой.</li>';return}
+    ul.innerHTML=ev.map(function(e){return '<li class="ev"><i class="k-'+e.k+'" aria-hidden="true"></i><span><b>'+e.t+'</b><small>'+KN[e.k]+(e.s?', '+e.s:'')+'</small>'+(e.moved?'<span class="sh">перенесено с '+e.moved.getDate()+' '+MONG[e.moved.getMonth()]+' (выходной)</span>':'')+'</span></li>'}).join('');
+  }
+  function renderNext(){
+    var y=today.getFullYear(),all=evFor(y).concat(evFor(y+1)).filter(function(e){return e.d>=today&&show[e.k]});
+    all.sort(function(a,b){return a.d-b.d});
+    var list=all.slice(0,6);
+    $('#next').innerHTML=list.length?list.map(function(e,i){var dd=('0'+e.d.getDate()).slice(-2)+'.'+('0'+(e.d.getMonth()+1)).slice(-2)+'.'+String(e.d.getFullYear()).slice(2);return '<li><span class="mono">'+dd+'</span><button type="button" data-i="'+i+'">'+e.t+'</button></li>'}).join(''):'<li><span></span><span>Нет сроков под выбранные фильтры</span></li>';
+    $$('#next button').forEach(function(b){b.addEventListener('click',function(){var e=list[+b.dataset.i];view=new Date(e.d.getFullYear(),e.d.getMonth(),1);sel=new Date(e.d);renderCal();var c=$('.dc[aria-pressed="true"]');if(c)c.focus()})});
+  }
+  $('#mPrev').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()-1,1);sel=null;renderCal()});
+  $('#mNext').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()+1,1);sel=null;renderCal()});
+  $$('.chip').forEach(function(c){c.addEventListener('click',function(){var on=c.getAttribute('aria-pressed')!=='true';c.setAttribute('aria-pressed',on);show[c.dataset.k]=on;var keep=sel;renderCal();if(keep&&keep.getMonth()===view.getMonth()){sel=keep;$$('.dc[data-d]').forEach(function(x){x.setAttribute('aria-pressed',+x.dataset.d===sel.getDate())});renderDay()}})});
+
+  /* ---------- form ---------- */
+  var fp=$('#fp');
+  fp.addEventListener('input',function(){
+    var d=fp.value.replace(/\D/g,'');if(d[0]==='8')d='7'+d.slice(1);if(d&&d[0]!=='7')d='7'+d;d=d.slice(0,11);
+    var r='';if(d.length){r='+7';if(d.length>1)r+=' ('+d.slice(1,4);if(d.length>=4)r+=')';if(d.length>4)r+=' '+d.slice(4,7);if(d.length>7)r+='-'+d.slice(7,9);if(d.length>9)r+='-'+d.slice(9,11)}
+    fp.value=r;
+  });
+  var fi=$('#fi');fi.addEventListener('input',function(){fi.value=fi.value.replace(/\D/g,'').slice(0,12)});
+  var form=$('#form');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var ok=true,fn=$('#fn');
+    function err(el,id,msg){if(msg){el.setAttribute('aria-invalid','true');$(id).textContent=msg;ok=false}else{el.removeAttribute('aria-invalid');$(id).textContent=''}}
+    err(fn,'#fn-e',fn.value.trim()?'':'Как к вам обращаться?');
+    err(fp,'#fp-e',fp.value.replace(/\D/g,'').length<11?'Нужен номер из 11 цифр':'');
+    err(fi,'#fi-e',fi.value&&fi.value.length!==10&&fi.value.length!==12?'ИНН — 10 цифр для ООО или 12 для ИП':'');
+    if(!ok){var f=$('[aria-invalid="true"]',form);if(f)f.focus();return}
+    $('#doneTxt').textContent=fn.value.trim()+', главный бухгалтер позвонит на '+fp.value+' в течение рабочего дня и пришлёт договор со сметой.';
+    var pre=$('#donePre'),t=$('#fc').value.trim();if(t){pre.textContent=t;pre.hidden=false}else pre.hidden=true;
+    form.classList.add('sent');$('#done').focus();
+  });
+  $('#again').addEventListener('click',function(){form.reset();form.classList.remove('sent');$('#fn').focus()});
+
+  (function(){var y=today.getFullYear(),all=evFor(y).concat(evFor(y+1)).filter(function(e){return e.d>=today});all.sort(function(a,b){return a.d-b.d});if(all.length){view=new Date(all[0].d.getFullYear(),all[0].d.getMonth(),1)}})();
+  renderCalc();
+})();
+</script>
+</body>
+</html>

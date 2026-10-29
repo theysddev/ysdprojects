@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Смена — инвестиционная презентация</title>
+<meta name="description" content="Питч-дек SaaS-стартапа «Смена»: планирование смен для кофеен, ресторанов и ритейла. Живое демо расписания, рынок, трекшн, юнит-экономика с калькулятором и раунд. Демо-концепт студии YSD DEV.">
+<meta property="og:title" content="Смена — планирование смен для кофеен, ресторанов и ритейла">
+<meta property="og:description" content="Живой питч-дек: интерактивное расписание, калькулятор юнит-экономики, рынок и трекшн. Демо-данные.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/slides/favicon.ico" sizes="32x32"><link rel="icon" type="image/png" sizes="48x48" href="/slides/favicon-48.png"><link rel="icon" type="image/png" sizes="96x96" href="/slides/icon-96.png"><link rel="icon" type="image/png" sizes="192x192" href="/slides/icon-192.png"><link rel="apple-touch-icon" href="/slides/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;--lb:#E7E7E3;--ink:#141414;--ink2:#5E5E5E;--ink3:#A3A3A0;--rule:#DCDCD8;--soft:#F3F3F0;
+  --acc:#FF4A17;--acc-ink:#D63E0E;--acc-soft:#FFE6DD;
+  --f:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --e:cubic-bezier(.23,1,.32,1);--io:cubic-bezier(.65,0,.35,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--lb);color:var(--ink);font-family:var(--f);font-weight:400;-webkit-font-smoothing:antialiased;overflow:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+::selection{background:var(--acc);color:#fff}
+.tn{font-variant-numeric:tabular-nums}
+
+/* stage */
+#viewport{position:fixed;inset:0 0 60px 0;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:50% 50%;transform:translate(-50%,-50%)}
+.slide{position:absolute;inset:0;width:1600px;height:900px;padding:118px 88px 70px;background:var(--paper);overflow:hidden;visibility:hidden;z-index:0;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.slide.active{visibility:visible;z-index:2}
+.slide.leaving{visibility:visible;z-index:1}
+.slide>*{position:relative}
+.hd{position:absolute;top:40px;left:88px;right:88px;display:flex;align-items:baseline;gap:28px;padding-bottom:14px;border-bottom:2px solid var(--ink);font-size:15px;line-height:1}
+.hd-n{font-weight:600;font-variant-numeric:tabular-nums}
+.hd-s{font-weight:400}
+.hd-d{margin-left:auto;color:var(--ink2);display:inline-flex;align-items:center;gap:8px}
+.hd-d::before{content:"";width:8px;height:8px;border:1.5px solid var(--acc);border-radius:50%}
+
+[data-r]{opacity:0;transform:translateY(26px)}
+.in [data-r]{opacity:1;transform:none;transition:opacity .6s var(--e) calc(var(--i,0)*90ms + 120ms),transform .8s var(--e) calc(var(--i,0)*90ms + 120ms)}
+
+.t{font-weight:600;font-size:58px;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.t2{font-weight:600;font-size:30px;line-height:1.12;letter-spacing:-.02em}
+.lead{font-size:24px;line-height:1.42;color:var(--ink2);text-wrap:pretty}
+.p{font-size:19px;line-height:1.45;color:var(--ink2)}
+.cap{font-size:15px;line-height:1.4;color:var(--ink2)}
+.big{font-weight:600;letter-spacing:-.055em;line-height:.86}
+.acc{color:var(--acc)}
+.g{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
+
+/* S1 cover */
+.cv{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%;grid-template-rows:auto 1fr auto}
+.cv-tag{grid-column:1/7;font-weight:500;font-size:40px;line-height:1.12;letter-spacing:-.025em;margin-top:22px;text-wrap:balance}
+.cv-sched{grid-column:8/13;grid-row:1/3;margin-top:22px}
+.cv-word{grid-column:1/10;grid-row:3;font-weight:700;font-size:340px;line-height:.74;letter-spacing:-.07em;margin-left:-14px;padding-bottom:6px}
+.cv-round{grid-column:10/13;grid-row:3;align-self:end;text-align:right;padding-bottom:4px}
+.cv-round b{display:block;font-weight:600;font-size:52px;letter-spacing:-.035em;line-height:1}
+.cv-round span{font-size:17px;color:var(--ink2)}
+.cs-ax{display:grid;grid-template-columns:44px 1fr;font-size:13px;color:var(--ink2);margin-bottom:12px}
+.cs-ax div{display:flex;justify-content:space-between}
+.cs-row{display:grid;grid-template-columns:44px 1fr;align-items:center;height:42px;border-top:1px solid var(--rule)}
+.cs-row:last-child{border-bottom:1px solid var(--rule)}
+.cs-row>span{font-size:13px;font-weight:500;color:var(--ink2)}
+.cs-tr{position:relative;height:100%}
+.cs-b{position:absolute;top:10px;bottom:10px;left:calc((var(--a) - 7)/16*100%);width:calc((var(--z) - var(--a))/16*100%);background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--e)}
+.cs-b.ac{background:var(--acc)}
+.in .cs-b{transform:scaleX(1)}
+.cs-note{position:absolute;top:50%;transform:translateY(-50%);left:calc((var(--z) - 7)/16*100% + 10px);font-size:13px;color:var(--acc-ink);white-space:nowrap;font-weight:500}
+
+/* S2 problem */
+.pb{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;grid-template-rows:auto 1fr auto;height:100%}
+.pb .t{grid-column:1/8;font-size:64px}
+.chat{grid-column:9/13;grid-row:1/3;display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-top:6px}
+.bub{background:var(--soft);border-radius:16px 16px 16px 4px;padding:12px 16px;font-size:17px;line-height:1.35;max-width:100%}
+.bub small{display:block;font-size:12px;color:var(--ink2);margin-bottom:3px}
+.bub.me{align-self:flex-end;background:var(--ink);color:#fff;border-radius:16px 16px 4px 16px}
+.bub.me small{color:#BDBDBD}
+.nums{grid-column:1/13;grid-row:3;display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px;border-top:2px solid var(--ink);padding-top:26px}
+.num b{display:block;font-size:150px}
+.num b small{font-size:.36em;letter-spacing:-.02em;margin-left:8px;font-weight:500}
+.num p{margin-top:20px;font-size:21px;line-height:1.38;max-width:17em}
+.src{grid-column:1/13;grid-row:3;align-self:end;justify-self:end;font-size:13px;color:var(--ink2);transform:translateY(32px)!important}
+
+/* S3 solution */
+.so .t{max-width:15em;margin-bottom:44px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px}
+.st3{border-top:2px solid var(--ink);padding-top:20px}
+.st3 .nn{font-weight:300;font-size:22px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.st3 svg{display:block;width:100%;height:120px;margin:16px 0 22px}
+.st3 h3{font-weight:600;font-size:28px;letter-spacing:-.02em;margin-bottom:10px}
+.st3 p{font-size:18.5px;line-height:1.45;color:var(--ink2);max-width:22em}
+.res3{display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px;margin-top:40px;padding-top:22px;border-top:1px solid var(--rule)}
+.res3 b{display:block;font-weight:600;font-size:54px;letter-spacing:-.045em;line-height:1}
+.res3 span{display:block;margin-top:8px;font-size:16px;color:var(--ink2)}
+
+/* S4 demo */
+.dm{display:grid;grid-template-columns:364px 1fr;column-gap:44px;height:100%}
+.dm-l .t{font-size:46px;margin-bottom:16px}
+.dm-l .p{font-size:17px;margin-bottom:26px}
+.kpi{border-top:2px solid var(--ink)}
+.kpi div{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--rule)}
+.kpi dt{font-size:15px;color:var(--ink2)}
+.kpi dd{font-weight:600;font-size:24px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi dd.warn{color:var(--acc-ink)}
+.dm-btns{display:flex;gap:10px;margin-top:22px}
+.dm-btns .btn{white-space:nowrap;padding:0 18px}
+.dm-btns .btn.pri{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;font-weight:500;font-size:16px;border:1.5px solid var(--ink);color:var(--ink);background:var(--paper);text-decoration:none;transition:background-color .15s ease,color .15s ease,transform .12s ease}
+.btn:hover{background:var(--ink);color:#fff}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.btn.pri:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.issues{margin-top:20px;font-size:14.5px;line-height:1.45;color:var(--ink2);min-height:84px}
+.issues li{list-style:none;padding-left:16px;position:relative;margin-bottom:4px}
+.issues li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--acc);border-radius:50%}
+.issues li.ok::before{background:var(--ink)}
+.sch{border-top:2px solid var(--ink);user-select:none;-webkit-user-select:none}
+.sch-h,.sch-r,.sch-c{display:grid;grid-template-columns:200px repeat(7,1fr);column-gap:6px}
+.sch-h{padding:12px 0 10px;font-size:15px;color:var(--ink2)}
+.sch-h span b{color:var(--ink);font-weight:600;margin-right:6px}
+.sch-h span.wk b{color:var(--acc-ink)}
+.sch-r{border-top:1px solid var(--rule);padding:6px 0;align-items:center}
+.who b{display:block;font-weight:600;font-size:17px;letter-spacing:-.01em}
+.who span{font-size:13px;color:var(--ink2)}
+.cell{position:relative;height:62px;border-radius:6px;background:var(--soft);display:flex;align-items:stretch;justify-content:stretch;padding:0;transition:background-color .15s ease,box-shadow .15s ease}
+.cell:hover{background:#EAEAE6}
+.cell.drop{box-shadow:inset 0 0 0 2px var(--acc);background:var(--acc-soft)}
+.cell .chip{flex:1;border-radius:6px;display:flex;flex-direction:column;justify-content:center;padding:0 12px;text-align:left;font-size:17px;font-weight:600;line-height:1.15;touch-action:none;cursor:grab}
+.cell .chip small{font-size:12.5px;font-weight:400;opacity:.8}
+.cell .chip i{display:none;font-style:normal}
+.chip.m{background:var(--ink);color:#fff}
+.chip.e{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.chip.bad{box-shadow:inset 0 0 0 2.5px var(--acc)}
+.chip.m.bad{box-shadow:inset 0 0 0 2.5px var(--acc)}
+.cell .off{margin:auto;font-size:12px;color:var(--ink3)}
+.cell.pop .chip{animation:pop .45s var(--e)}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.dragging{cursor:grabbing}
+.ghost{position:fixed;z-index:80;pointer-events:none;border-radius:6px;display:flex;align-items:center;padding:0 10px;font:600 15px/1 var(--f);box-shadow:0 10px 30px rgba(0,0,0,.18);transform:rotate(-2deg)}
+.sch-c{padding:10px 0 0;border-top:2px solid var(--ink);margin-top:5px}
+.sch-c>span{font-size:13px;color:var(--ink2);align-self:center}
+.cov{display:flex;gap:4px}
+.cov span{flex:1;text-align:center;font-size:12.5px;font-weight:500;padding:5px 0;border-radius:4px;background:var(--soft);font-variant-numeric:tabular-nums}
+.cov span.short{background:var(--acc);color:var(--ink)}
+.cov span.over{background:none;box-shadow:inset 0 0 0 1px var(--ink3);color:var(--ink2)}
+.sch-lg{display:flex;gap:22px;margin-top:14px;font-size:13px;color:var(--ink2);align-items:center;flex-wrap:wrap}
+.sch-lg i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:8px}
+
+/* S5 market */
+.mk{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%}
+.mk-l{grid-column:1/7;position:relative}
+.mk svg{position:absolute;left:0;bottom:0;width:735px;height:712px;overflow:visible}
+.mk circle{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);transition:transform 1.1s var(--e),fill .2s ease,opacity .2s ease}
+.in .mk circle{transform:scale(1)}
+.in .mk circle.c2{transition-delay:.35s}.in .mk circle.c3{transition-delay:.6s}
+.mk-r{grid-column:8/13;display:flex;flex-direction:column}
+.mk-r .t{font-size:52px;margin-bottom:auto;padding-bottom:28px}
+.mk-rows{border-top:2px solid var(--ink)}
+.mrow{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--rule);width:100%;text-align:left;transition:background-color .15s ease}
+.mrow:hover{background:var(--soft)}
+.mrow .lb{font-weight:600;font-size:22px;padding-top:8px}
+.mrow b{display:block;font-weight:600;font-size:64px;letter-spacing:-.045em;line-height:1}
+.mrow b small{font-size:.4em;letter-spacing:-.01em;margin-left:6px;font-weight:500}
+.mrow p{font-size:17px;line-height:1.4;color:var(--ink2);margin-top:8px}
+.mrow[aria-pressed="true"] .lb{color:var(--acc-ink)}
+.mk[data-hl] circle{opacity:.25}
+.mk[data-hl="1"] .c1,.mk[data-hl="2"] .c2,.mk[data-hl="3"] .c3{opacity:1}
+.mk-cap{position:absolute;font-size:15px;font-weight:500;white-space:nowrap}
+
+/* S6 traction */
+.tr{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%}
+.tr-l{grid-column:1/5;display:flex;flex-direction:column}
+.tr-stats{margin-top:auto!important}
+.tr-big{font-size:160px;margin:22px 0 18px}
+.tr-big small{font-size:.3em;letter-spacing:-.02em;font-weight:500;margin-left:8px}
+.tr-sub{font-size:22px;line-height:1.35}
+.tr-stats{margin-top:34px;border-top:2px solid var(--ink)}
+.tr-stats div{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule);font-size:18px}
+.tr-stats b{font-weight:600;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.chart{grid-column:6/13;position:relative;display:flex;flex-direction:column;padding-top:44px}
+.ch-area{position:relative;flex:1;margin-left:64px}
+.ch-grid{position:absolute;inset:0;pointer-events:none}
+.ch-grid div{position:absolute;left:0;right:0;border-top:1px solid var(--rule);font-size:13px;color:var(--ink2)}
+.ch-grid div span{position:absolute;right:calc(100% + 12px);top:-8px;white-space:nowrap}
+.ch-grid div.z{border-top:2px solid var(--ink)}
+.bars{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:12px;align-items:end}
+.bar{position:relative;height:100%;display:flex;align-items:flex-end;padding:0}
+.bar i{display:block;width:100%;height:calc(var(--h)*100%);background:var(--ink);transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s var(--e),background-color .15s ease}
+.in .bar i{transform:scaleY(1);transition-delay:calc(var(--k)*55ms + 300ms),0s}
+.bar.last i{background:var(--acc)}
+.bar:hover i,.bar:focus-visible i{background:#4A4A4A}
+.bar.last:hover i{background:var(--acc)}
+.bar .v{position:absolute;left:50%;bottom:calc(var(--h)*100% + 8px);transform:translateX(-50%);font-weight:600;font-size:15px;white-space:nowrap;opacity:0;transition:opacity .15s ease;font-variant-numeric:tabular-nums}
+.bar:hover .v,.bar:focus .v,.bar.last .v{opacity:1}
+.in .bar.last .v{animation:fadeup .5s var(--e) 1.1s both}
+@keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+.ch-x{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:12px;margin-left:64px;padding-top:10px;font-size:13px;color:var(--ink2);text-align:center}
+.ch-x span b{display:block;font-weight:600;color:var(--ink);margin-top:2px}
+.ch-t{position:absolute;top:0;left:64px;font-size:15px;color:var(--ink2)}
+
+/* S7 model */
+.bm .t{max-width:14em;margin-bottom:40px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);column-gap:24px}
+.tier{border-top:2px solid var(--ink);padding-top:20px}
+.tier.hl{border-top-color:var(--acc)}
+.tier h3{font-weight:600;font-size:22px;display:flex;justify-content:space-between;align-items:baseline}
+.tier h3 span{font-size:14px;font-weight:500;color:var(--acc-ink)}
+.tier .pr{font-weight:600;font-size:84px;letter-spacing:-.05em;line-height:1;margin:16px 0 6px}
+.tier .pr small{font-size:.4em;font-weight:500;letter-spacing:-.02em}
+.tier .per{font-size:15px;color:var(--ink2)}
+.tier ul{list-style:none;margin-top:20px}
+.tier li{font-size:17.5px;padding:9px 0;border-top:1px solid var(--rule);line-height:1.35}
+.mix{margin-top:38px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}
+.mix-bar{grid-column:1/9}
+.mix-bar .cap{margin-bottom:10px}
+.mb{display:flex;height:44px;gap:3px}
+.mb i{display:flex;align-items:center;padding-left:12px;font-style:normal;font-weight:600;font-size:15px;color:#fff;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform 1s var(--e)}
+.mb i:nth-child(1){background:#7A7A7A;transition-delay:.5s}
+.mb i:nth-child(2){background:var(--ink);transition-delay:.62s}
+.mb i:nth-child(3){background:var(--acc);color:var(--ink);transition-delay:.74s}
+.in .mb i{transform:scaleX(1)}
+.mix-k{grid-column:9/13;display:grid;grid-template-columns:1fr 1fr;column-gap:24px}
+.mix-k b{display:block;font-weight:600;font-size:44px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.mix-k span{display:block;font-size:15px;color:var(--ink2);margin-top:6px;line-height:1.3}
+
+/* S8 unit economics */
+.ue{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%}
+.ue-l{grid-column:1/6}
+.ue-l .t{font-size:52px;margin-bottom:28px}
+.sl{border-top:2px solid var(--ink);padding:20px 0 14px}
+.sl+.sl{border-top:1px solid var(--rule)}
+.sl label{display:flex;justify-content:space-between;align-items:baseline;font-size:17px;color:var(--ink2)}
+.sl output{font-weight:600;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.sl output small{font-size:.5em;font-weight:500;margin-left:4px;letter-spacing:0}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;--p:50%}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:linear-gradient(90deg,var(--ink) var(--p),var(--rule) var(--p))}
+input[type=range]::-moz-range-track{height:4px;background:linear-gradient(90deg,var(--ink) var(--p),var(--rule) var(--p))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 0 0 1.5px var(--ink);margin-top:-11px;transition:transform .12s ease}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 0 0 1.5px var(--ink)}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+input[type=range]:focus-visible{outline:none}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 1.5px var(--ink),0 0 0 6px rgba(255,74,23,.3)}
+.presets{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.presets button{min-height:44px;padding:0 16px;border-radius:22px;border:1.5px solid var(--rule);font-size:15px;font-weight:500;transition:border-color .15s ease,background-color .15s ease}
+.presets button:hover{border-color:var(--ink)}
+.presets button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.ue-r{grid-column:7/13;display:flex;flex-direction:column}
+.ue-k{display:grid;grid-template-columns:1.25fr 1fr 1fr;column-gap:24px;border-top:2px solid var(--ink);padding-top:18px}
+.ue-k .cap{display:block}
+.ue-k b{display:block;font-weight:600;font-size:60px;letter-spacing:-.05em;line-height:1;margin-top:12px;white-space:nowrap}
+.ue-k b small{font-size:.42em;font-weight:500;letter-spacing:-.01em;margin-left:4px}
+.ue-k .hero b{font-size:112px;color:var(--acc)}
+.ue-k .hero b.low{color:var(--ink)}
+.chk{margin-top:12px;font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+.chk::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.2l2.6 2.6L12 5.4' fill='none' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E") center/16px no-repeat}
+.chk.no{color:var(--acc-ink)}
+.chk.no::before{background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 5l6 6M11 5l-6 6' fill='none' stroke='%23141414' stroke-width='1.8'/%3E%3C/svg%3E") center/16px no-repeat}
+.vs{margin-top:64px}
+.vs-row{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:14px;margin-top:10px;font-size:15px;color:var(--ink2)}
+.vs-tr{height:40px;position:relative}
+.vs-tr i{position:absolute;left:0;top:0;bottom:0;width:100%;transform-origin:0 50%;transform:scaleX(var(--w,0));transition:transform .5s var(--e)}
+.vs-tr.cac i{background:var(--ink)}
+.vs-tr.ltv i{background:var(--acc)}
+.vs-tr span{position:absolute;top:50%;transform:translateY(-50%);left:calc(var(--w,0)*100% + 10px);font-weight:600;font-size:15px;color:var(--ink);white-space:nowrap;transition:left .5s var(--e)}
+.vs-tr.ltv span.inside{left:auto;right:calc((1 - var(--w,0))*100% + 10px)}
+.pay{margin-top:52px}
+.ue-f{margin-top:auto;padding-top:14px;border-top:1px solid var(--rule)}
+.pay-tr{position:relative;height:48px;margin-top:12px;border-bottom:2px solid var(--ink)}
+.pay-tr .tk{position:absolute;bottom:-8px;width:1px;height:8px;background:var(--ink)}
+.pay-tr .tl{position:absolute;bottom:-28px;transform:translateX(-50%);font-size:12.5px;color:var(--ink2)}
+.pay-tr .tgt{position:absolute;top:0;bottom:0;border-left:1.5px dashed var(--ink3)}
+.pay-tr .tgt span{position:absolute;top:-2px;left:8px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+.pay-tr .fill{position:absolute;left:0;bottom:0;height:18px;background:var(--acc);transform-origin:0 50%;transform:scaleX(var(--w,0));width:100%;transition:transform .5s var(--e)}
+.pay-tr .fill.over{background:var(--ink)}
+
+/* S9 competitors */
+.cp{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%}
+.cp-l{grid-column:1/8;position:relative}
+.mtx{position:absolute;left:0;top:0;bottom:0;aspect-ratio:1}
+.mtx .ax{position:absolute;background:var(--ink)}
+.mtx .ax.x{left:0;right:0;top:50%;height:1.5px}
+.mtx .ax.y{top:0;bottom:0;left:50%;width:1.5px}
+.mtx .q{position:absolute;inset:0;border:1px solid var(--rule)}
+.mtx .al{position:absolute;font-size:14px;color:var(--ink2);line-height:1.3}
+.mtx .al.r{right:0;top:calc(50% + 10px);text-align:right}
+.mtx .al.l{left:0;top:calc(50% + 10px)}
+.mtx .al.t{left:calc(50% + 12px);top:0;font-weight:400;font-size:14px;letter-spacing:0}
+.mtx .al.b{left:calc(50% + 12px);bottom:0}
+.pt{--dh:15px;position:absolute;left:calc(var(--x)*100%);top:calc((1 - var(--y))*100%);transform:translate(calc(var(--dh)*-1),-50%);display:flex;align-items:center;gap:10px;min-height:44px;padding:0 6px;white-space:nowrap;font-size:16px;font-weight:500;transition:transform .2s var(--e)}
+.pt::before{content:"";width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--ink);flex:none;transition:background-color .15s ease,transform .2s var(--e)}
+.pt.lt{flex-direction:row-reverse;transform:translate(calc(-100% + var(--dh)),-50%)}
+.pt .sn{display:none}
+.pt:hover::before{transform:scale(1.2)}
+.pt[aria-pressed="true"]::before{background:var(--ink)}
+.pt.us{--dh:20px;font-weight:700;font-size:20px}
+.pt.us::before{width:28px;height:28px;background:var(--acc);box-shadow:none}
+.pt.us[aria-pressed="true"]::before{box-shadow:0 0 0 4px #fff,0 0 0 6px var(--acc)}
+.cp-r{grid-column:8/13;display:flex;flex-direction:column}
+.cp-r>.t{font-size:52px}
+.cp-lead{font-size:20px;margin:18px 0 auto;padding-bottom:24px}
+.cp-d{border-top:2px solid var(--ink);padding-top:20px}
+.cp-r h3{font-weight:600;font-size:34px;letter-spacing:-.025em}
+.cp-r .pr{font-size:17px;color:var(--ink2);margin-top:6px}
+.cp-r dl{margin-top:20px}
+.cp-r dl div{padding:14px 0;border-top:1px solid var(--rule)}
+.cp-r dt{font-size:14px;color:var(--ink2);margin-bottom:4px}
+.cp-r dd{font-size:19px;line-height:1.4}
+.cp-hint{margin-top:16px}
+
+/* S10 GTM */
+.gt .t{max-width:15em;margin-bottom:48px}
+.gt-g{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
+.ch{grid-column:1/8;border-top:2px solid var(--ink)}
+.chr{display:grid;grid-template-columns:1fr 130px 130px;column-gap:20px;padding:28px 0;border-bottom:1px solid var(--rule);align-items:start}
+.chr h3{font-weight:600;font-size:22px;letter-spacing:-.01em}
+.chr p{font-size:16px;color:var(--ink2);margin-top:6px;line-height:1.4}
+.chr .sh{display:block;font-weight:600;font-size:44px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.chr small{display:block;font-size:13px;color:var(--ink2);margin-top:6px}
+.chr .cac{display:block;font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1.1;margin-top:8px;font-variant-numeric:tabular-nums}
+.shbar{height:6px;background:var(--rule);margin-top:14px;position:relative}
+.shbar i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform 1s var(--e) .5s}
+.in .shbar i{transform:scaleX(var(--w))}
+.chr:first-child .shbar i{background:var(--acc)}
+.ch-tot{display:flex;justify-content:space-between;padding:16px 0;font-size:17px}
+.ch-tot b{font-weight:600}
+.fun{grid-column:9/13}
+.fun .cap{padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.fr{padding:18px 0 0}
+.fr div{display:flex;justify-content:space-between;font-size:16px;margin-bottom:8px}
+.fr b{font-weight:600;font-variant-numeric:tabular-nums}
+.fr i{display:block;height:46px;background:var(--ink);width:calc(var(--w)*100%);transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--e)}
+.in .fr i{transform:scaleX(1)}
+.fr:nth-child(3) i{transition-delay:.55s}.fr:nth-child(4) i{transition-delay:.7s}.fr:nth-child(5) i{transition-delay:.85s}.fr:nth-child(2) i{transition-delay:.4s}
+.fr:last-child i{background:var(--acc)}
+.geo{margin-top:22px;font-size:16px;line-height:1.45;color:var(--ink2)}
+.geo b{color:var(--ink);font-weight:600}
+
+/* S11 team */
+.tm .t{max-width:14em;margin-bottom:40px}
+.ppl{display:grid;grid-template-columns:repeat(4,1fr);column-gap:24px}
+.pp{border-top:2px solid var(--ink);padding-top:22px}
+.mono{width:96px;height:96px;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:600;font-size:34px;letter-spacing:-.03em;margin-bottom:22px}
+.pp:first-child .mono{background:var(--acc);color:var(--ink)}
+.pp h3{font-weight:600;font-size:25px;letter-spacing:-.02em}
+.pp .role{font-size:16px;color:var(--acc-ink);font-weight:500;margin-top:4px}
+.pp p{font-size:17px;line-height:1.45;color:var(--ink2);margin-top:14px;max-width:19em}
+.crew{margin-top:44px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;align-items:end}
+.crew-n{grid-column:1/4}
+.crew-n b{display:block;font-weight:600;font-size:96px;letter-spacing:-.06em;line-height:.85}
+.crew-n span{display:block;font-size:16px;color:var(--ink2);margin-top:10px}
+.crew-b{grid-column:4/13}
+.crew-bar{display:flex;gap:3px;height:40px}
+.crew-bar i{background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--e)}
+.in .crew-bar i{transform:scaleX(1)}
+.crew-bar i:nth-child(2){background:#6B6B6B;transition-delay:.1s}.crew-bar i:nth-child(3){background:var(--acc);transition-delay:.2s}.crew-bar i:nth-child(4){background:#B5B5B2;transition-delay:.3s}
+.crew-lg{display:flex;gap:3px;margin-top:10px}
+.crew-lg span{font-size:15px;color:var(--ink2);line-height:1.3}
+.crew-lg b{display:block;color:var(--ink);font-weight:600;font-size:20px}
+
+/* S12 roadmap */
+.rm .t{max-width:14em}
+.road{position:relative;margin-top:84px;display:grid;grid-template-columns:repeat(5,1fr);column-gap:24px}
+.road-line{position:absolute;left:0;right:0;top:101px;height:2px;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform 1.4s var(--io) .3s}
+.in .road-line{transform:scaleX(1)}
+.rq .q{font-weight:600;font-size:46px;letter-spacing:-.04em;line-height:1}
+.rq .y{font-size:15px;color:var(--ink2);margin-top:4px;height:20px}
+.rq .dot{width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--ink);margin:21px 0 26px;transform:scale(0);transition:transform .5s var(--e)}
+.in .rq .dot{transform:scale(1)}
+.rq:nth-child(2) .dot{transition-delay:.5s}.rq:nth-child(3) .dot{transition-delay:.75s}.rq:nth-child(4) .dot{transition-delay:1s}.rq:nth-child(5) .dot{transition-delay:1.25s}.rq:nth-child(6) .dot{transition-delay:1.5s}
+.rq.now .dot{background:var(--acc);box-shadow:none}
+.rq h3{font-weight:600;font-size:22px;letter-spacing:-.015em;line-height:1.2;min-height:2.4em}
+.rq .ds{font-size:16.5px;line-height:1.45;color:var(--ink2);margin-top:8px;min-height:4.35em}
+.rq .goal{margin-top:20px;padding-top:12px;border-top:1px solid var(--rule)}
+.rq .goal b{display:block;font-weight:600;font-size:40px;letter-spacing:-.04em}
+.rq .goal span{font-size:14px;color:var(--ink2)}
+.rq.now .y{color:var(--acc-ink);font-weight:500}
+
+/* S13 round */
+.rd{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%}
+.rd-l{grid-column:1/7;display:flex;flex-direction:column}
+.rd-big{font-size:330px;margin:4px 0 0 -12px;color:var(--ink)}
+.rd-big small{font-size:.17em;letter-spacing:-.02em;font-weight:500;margin-left:14px}
+.rd-terms{margin-top:auto;display:grid;grid-template-columns:repeat(2,1fr);column-gap:24px;border-top:2px solid var(--ink)}
+.rd-terms div{padding:14px 0;border-bottom:1px solid var(--rule)}
+.rd-terms dt{font-size:14px;color:var(--ink2)}
+.rd-terms dd{font-weight:600;font-size:24px;letter-spacing:-.02em;margin-top:4px}
+.rd-r{grid-column:8/13;display:flex;flex-direction:column}
+.donut{position:relative;width:390px;height:390px;align-self:center;margin-top:0}
+.donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+.donut circle{fill:none;stroke-width:34;transition:stroke-dashoffset 1.2s var(--io),opacity .2s ease,stroke-width .2s ease}
+.donut[data-hl] circle{opacity:.18}
+.donut[data-hl="0"] .d0,.donut[data-hl="1"] .d1,.donut[data-hl="2"] .d2,.donut[data-hl="3"] .d3{opacity:1;stroke-width:42}
+.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.dc b{font-weight:600;font-size:36px;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.dc span{font-size:15px;color:var(--ink2);max-width:10em;line-height:1.3;margin-top:4px}
+.dlg{margin-top:auto;border-top:2px solid var(--ink)}
+.dlg button{display:grid;grid-template-columns:18px 1fr auto auto;gap:14px;align-items:center;width:100%;min-height:52px;border-bottom:1px solid var(--rule);text-align:left;font-size:17px;transition:background-color .15s ease}
+.dlg button:hover,.dlg button[aria-pressed="true"]{background:var(--soft)}
+.dlg i{width:14px;height:14px;background:var(--c)}
+.dlg b{font-weight:600;font-variant-numeric:tabular-nums;min-width:48px;text-align:right}
+.dlg span.m{font-size:15px;color:var(--ink2);min-width:84px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* S14 contact */
+.ct{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;height:100%;grid-template-rows:auto 1fr auto}
+.ct-t{grid-column:1/9;grid-row:1;font-weight:600;font-size:96px;line-height:.98;letter-spacing:-.05em;text-wrap:balance}
+.ct-c{grid-column:9/13;grid-row:1/3;align-self:end;border-top:2px solid var(--ink);padding-top:20px}
+.ct-c h3{font-weight:600;font-size:26px}
+.ct-c .role{font-size:16px;color:var(--ink2);margin-top:4px}
+.ct-l{margin:18px 0 22px}
+.ct-l a,.ct-l div{display:flex;justify-content:space-between;align-items:center;min-height:50px;border-bottom:1px solid var(--rule);text-decoration:none;font-size:19px;gap:12px}
+.ct-l span{font-size:14px;color:var(--ink2)}
+.ct-l a:hover b{color:var(--acc-ink)}
+.ct-l b{font-weight:500;transition:color .15s ease}
+.ct-b{display:flex;flex-direction:column;gap:10px}
+.ct-foot{grid-column:1/13;grid-row:3;display:flex;justify-content:space-between;gap:20px;padding-top:18px;margin-top:40px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink2)}
+.ct-foot a{color:var(--ink);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--acc)}
+.ct-foot a:hover{color:var(--acc-ink)}
+.ct-sub{grid-column:1/8;grid-row:2;align-self:end;font-size:22px;line-height:1.45;color:var(--ink2);max-width:28em}
+
+/* chrome */
+#bar{position:fixed;left:0;right:0;bottom:0;height:60px;display:flex;align-items:center;gap:22px;padding:0 14px 0 24px;background:var(--lb);font-size:14px;color:var(--ink2);z-index:20}
+#bar .brand{color:var(--ink);text-decoration:none;font-weight:500;white-space:nowrap}
+#bar .brand:hover{color:var(--acc-ink)}
+#bar .ttl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:24vw}
+.prog{flex:1;height:3px;background:#D2D2CD;position:relative;min-width:60px}
+.prog i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform .5s var(--e)}
+.cnt{color:var(--ink);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+.cnt span{color:var(--ink2);font-weight:400}
+.ib{width:44px;height:44px;display:inline-grid;place-items:center;border-radius:50%;color:var(--ink);transition:background-color .15s ease;position:relative}
+.ib:hover:not(:disabled){background:rgba(0,0,0,.07)}
+.ib:active:not(:disabled){transform:scale(.94)}
+.ib:disabled{color:#B0B0AC;cursor:not-allowed}
+.ib svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+.btns{display:flex;gap:2px}
+.edge{position:fixed;top:50%;width:48px;height:48px;margin-top:-54px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;opacity:0;transition:opacity .2s ease;pointer-events:none;z-index:15}
+.edge svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+.edge.l{left:16px}.edge.r{right:16px}
+#viewport[data-edge="l"]{cursor:w-resize}#viewport[data-edge="r"]{cursor:e-resize}
+#viewport[data-edge="l"]~.edge.l,#viewport[data-edge="r"]~.edge.r{opacity:1}
+#fbar,#fnav{display:none}
+#overview{position:fixed;inset:0;z-index:40;background:#E7E7E3;display:flex;flex-direction:column;opacity:0;transition:opacity .25s var(--e)}
+#overview.open{opacity:1}
+#overview[hidden]{display:none}
+.ov-top{display:flex;align-items:center;gap:14px;padding:16px 28px;border-bottom:2px solid var(--ink)}
+.ov-top h2{font-weight:600;font-size:26px;letter-spacing:-.02em;margin-right:auto}
+.ov-top .cap{font-size:14px}
+#ovgrid{flex:1;overflow:auto;padding:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;align-content:start}
+.thumb{display:block;text-align:left;background:none;padding:0;transform:translateY(8px);opacity:0;transition:transform .45s var(--e),opacity .45s var(--e)}
+.open .thumb{transform:none;opacity:1}
+.tbox{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;pointer-events:none;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.08);transition:box-shadow .15s ease}
+.thumb:hover .tbox{box-shadow:0 0 0 2px var(--ink)}
+.thumb.cur .tbox{box-shadow:0 0 0 3px var(--acc)}
+.tbox>.slide{position:absolute;left:0;top:0;transform-origin:0 0;visibility:visible;z-index:0}
+.tbox *,.tbox *::before,.tbox *::after{transition:none!important;animation:none!important}
+.tcap{display:flex;gap:10px;padding:10px 2px;font-size:15px;color:var(--ink2)}
+.tcap b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.ov-foot{padding:14px 28px;border-top:1px solid #CFCFCB;display:flex;justify-content:space-between;gap:16px;font-size:13px;color:var(--ink2)}
+.ov-foot a{color:var(--ink)}
+#toast{position:fixed;left:50%;bottom:80px;transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:14px;line-height:1.4;padding:12px 18px;border-radius:24px;opacity:0;pointer-events:none;transition:opacity .25s var(--e),transform .25s var(--e);z-index:60;max-width:calc(100vw - 32px);text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast kbd{font:600 12px/1 var(--f);border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:2px 6px;margin:0 2px}
+
+/* FEED */
+@media screen{
+body.feed{height:auto;overflow:auto;overflow-x:hidden;background:var(--paper)}
+body.feed #viewport{position:static;overflow:visible}
+body.feed #stage{position:static;width:auto;height:auto;transform:none!important;padding-top:56px}
+body.feed .slide{position:relative;inset:auto;width:auto;height:auto;visibility:visible;padding:84px 20px 64px;overflow:visible;scroll-margin-top:56px;box-shadow:none;border-top:8px solid var(--lb)}
+body.feed .slide:first-child{border-top:0}
+body.feed .hd{top:28px;left:20px;right:20px;gap:14px;font-size:13px;padding-bottom:10px}
+body.feed .hd-s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+body.feed .hd-d{white-space:nowrap}
+body.feed #bar,body.feed .edge{display:none}
+body.feed .g,body.feed .cv,body.feed .pb,body.feed .mk,body.feed .tr,body.feed .ue,body.feed .cp,body.feed .rd,body.feed .ct,body.feed .dm{display:flex;flex-direction:column;gap:28px;height:auto}
+body.feed .t{font-size:clamp(30px,8.6vw,46px)}
+body.feed .lead{font-size:18px}
+body.feed .cv-tag{font-size:clamp(24px,6.6vw,34px);margin-top:4px}
+body.feed .cv-word{font-size:clamp(80px,26.5vw,200px);margin-left:-4px}
+body.feed .cv-round{text-align:left}
+body.feed .cv-round b{font-size:40px}
+body.feed .cs-row{height:36px}
+body.feed .pb .t{font-size:clamp(30px,8.6vw,46px)}
+body.feed .chat{gap:8px}
+body.feed .bub{font-size:15px}
+body.feed .nums{grid-template-columns:1fr;row-gap:26px}
+body.feed .num b{font-size:clamp(72px,24vw,120px)}
+body.feed .num p{font-size:18px;margin-top:12px}
+body.feed .src{transform:none!important;justify-self:start}
+body.feed .so .t{margin-bottom:26px}
+body.feed .steps3,body.feed .res3,body.feed .tiers,body.feed .ppl{grid-template-columns:1fr;row-gap:30px}
+body.feed .st3 svg{height:100px}
+body.feed .res3{row-gap:18px;margin-top:26px}
+body.feed .res3 b{font-size:42px}
+body.feed .dm-l .t{font-size:clamp(30px,8.6vw,46px)}
+body.feed .dm-btns{flex-wrap:wrap}
+body.feed .dm-btns .btn{flex:1 1 140px}
+body.feed .dm-l{display:contents}
+body.feed .dm-l .t{order:0;margin-bottom:-12px}
+body.feed .dm-l .p{order:1;margin-bottom:0}
+body.feed .sch{order:2}
+body.feed .kpi{order:3}
+body.feed .issues{order:4;margin-top:-8px;min-height:0}
+body.feed .dm-btns{order:5;margin-top:-8px}
+body.feed .sch-h,body.feed .sch-r,body.feed .sch-c{grid-template-columns:62px repeat(7,minmax(0,1fr));column-gap:3px}
+body.feed .sch-h{font-size:12px;text-align:center}
+body.feed .sch-h span:first-child{text-align:left}
+body.feed .sch-h span b{display:block;margin:0}
+body.feed .who b{font-size:13px}
+body.feed .who span{display:none}
+body.feed .cell{height:42px;border-radius:4px}
+body.feed .cell .chip{padding:0;align-items:center;font-size:14px;border-radius:4px}
+body.feed .cell .chip b,body.feed .cell .chip small{display:none}
+body.feed .cell .chip i{display:block}
+body.feed .cell .off{font-size:0}
+body.feed .cov{flex-direction:column;gap:2px}
+body.feed .cov span{font-size:10.5px;padding:3px 0}
+body.feed .sch-c>span{font-size:11px}
+body.feed .mk-l{min-height:0}
+body.feed .mk svg{position:relative;width:100%;height:auto;max-height:330px}
+body.feed .mrow{grid-template-columns:64px 1fr;gap:12px;padding:16px 0}
+body.feed .mrow .lb{font-size:18px}
+body.feed .mrow b{font-size:44px}
+body.feed .tr-big{font-size:clamp(72px,23vw,130px)}
+body.feed .chart{height:360px;padding-top:44px}
+body.feed .ch-area,body.feed .ch-x,body.feed .ch-t{margin-left:44px}
+body.feed .ch-t{left:0}
+body.feed .bars,body.feed .ch-x{column-gap:4px}
+body.feed .ch-x{font-size:10px;overflow:visible}
+body.feed .ch-x span{white-space:nowrap}
+body.feed .bar .v{font-size:12px}
+body.feed .ch-grid div span{font-size:11px}
+body.feed .tier .pr{font-size:64px}
+body.feed .mix{grid-template-columns:1fr;row-gap:24px;display:grid}
+body.feed .mix-bar,body.feed .mix-k{grid-column:auto}
+body.feed .mb i{font-size:12px;padding-left:6px}
+body.feed .ue-l .t{font-size:clamp(30px,8.6vw,46px)}
+body.feed .ue-k{grid-template-columns:1fr 1fr;row-gap:20px}
+body.feed .ue-k .hero{grid-column:1/3}
+body.feed .ue-k b{font-size:40px}
+body.feed .ue-k .hero b{font-size:84px}
+body.feed .vs{padding-top:10px}
+body.feed .pay{margin-bottom:30px}
+body.feed .ue-f{margin-top:12px}
+body.feed .cp-l{min-height:0}
+body.feed .cp-l .t{position:static;max-width:none;font-size:clamp(30px,8.6vw,46px);margin-bottom:24px}
+body.feed .mtx{position:relative;right:auto;top:auto;bottom:auto;width:100%;margin-bottom:24px}
+body.feed .pt{--dh:12px;font-size:12px;gap:5px;padding:0 5px}
+body.feed .pt .ln{display:none}
+body.feed .pt .sn{display:inline}
+body.feed .pt.us{--dh:15px}
+body.feed .pt.us{font-size:15px}
+body.feed .pt::before{width:14px;height:14px}
+body.feed .pt.us::before{width:20px;height:20px}
+body.feed .mtx .al{font-size:11px}
+body.feed .gt .t,body.feed .bm .t,body.feed .tm .t{margin-bottom:24px}
+body.feed .gt-g{display:flex;flex-direction:column;gap:32px}
+body.feed .chr{grid-template-columns:1fr 1fr;row-gap:12px}
+body.feed .chr>div:first-child{grid-column:1/3}
+body.feed .crew{display:flex;flex-direction:column;align-items:stretch;gap:20px}
+body.feed .crew-lg{flex-wrap:wrap}
+body.feed .crew-lg span{flex:1 1 40%!important;font-size:13px}
+body.feed .road{grid-template-columns:1fr;row-gap:0;margin-top:30px}
+body.feed .rq h3,body.feed .rq .ds{min-height:0}
+body.feed .road-line{left:10px;right:auto;top:0;bottom:0;width:2px;height:auto;transform-origin:50% 0;transform:scaleY(0)}
+body.feed .in .road-line{transform:scaleY(1)}
+body.feed .rq{display:grid;grid-template-columns:44px 1fr;padding-bottom:26px}
+body.feed .rq>*{grid-column:2}
+body.feed .rq .dot{grid-column:1;grid-row:1;margin:12px 0 0}
+body.feed .rq .q{font-size:32px}
+body.feed .rd-big{font-size:clamp(130px,44vw,260px)}
+body.feed .rd-terms{grid-template-columns:1fr 1fr}
+body.feed .donut{width:min(300px,80vw);height:min(300px,80vw)}
+body.feed .dlg button{font-size:15px;gap:10px}
+body.feed .ct-t{font-size:clamp(40px,12vw,80px)}
+body.feed .cv>*,body.feed .pb>*,body.feed .ct>*,body.feed .mk>*,body.feed .tr>*,body.feed .rd>*,body.feed .cp>*,body.feed .ue>*{align-self:stretch}
+body.feed .ct-foot{flex-direction:column;margin-top:10px}
+body.feed .ct-foot a{align-self:flex-start}
+body.feed #fbar{display:flex;position:fixed;top:0;left:0;right:0;height:56px;z-index:20;align-items:center;gap:10px;padding:0 6px 0 18px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);font-size:14px}
+body.feed #fbar .brand{font-weight:700;font-size:18px;letter-spacing:-.03em;text-decoration:none;margin-right:auto}
+body.feed #fbar .prog{position:absolute;left:0;right:0;bottom:-1px;height:3px;flex:none;background:transparent}
+body.feed #fbar .prog i{background:var(--acc)}
+body.feed #fbar .cnt{min-width:0}
+body.feed #fnav{display:flex;position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:20;gap:4px;background:var(--ink);border-radius:30px;padding:4px}
+body.feed #fnav .ib{width:48px;height:48px;color:#fff}
+body.feed #fnav .ib:disabled{color:#666}
+body.feed #ovgrid{grid-template-columns:1fr;padding:12px 16px;gap:0}
+body.feed .thumb .tcap{padding:16px 4px;font-size:16px;border-bottom:1px solid #CFCFCB;min-height:52px;align-items:center}
+body.feed #toast{bottom:86px}
+}
+@media screen and (max-width:360px){
+  body.feed .ue-k{grid-template-columns:1fr}
+  body.feed .ue-k .hero{grid-column:auto}
+  body.feed .pt{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-delay:0s!important}
+  [data-r]{transform:none}
+}
+@page{size:297mm 167mm;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #bar,#fbar,#fnav,#overview,#toast,.edge,.ct-b,.dm-btns,.presets{display:none!important}
+  #viewport{position:static;overflow:visible}
+  #stage{position:static;transform:none!important;width:auto;height:auto;padding:0}
+  .slide{position:relative!important;visibility:visible!important;inset:auto;width:1600px;height:900px;zoom:.701;break-after:page;page-break-after:always;box-shadow:none}
+  section.slide:last-of-type{break-after:auto;page-break-after:auto}
+  .sr{display:none!important}
+  [data-r]{opacity:1!important;transform:none!important}
+  .cs-b,.bar i,.mb i,.crew-bar i,.road-line,.rq .dot,.fr i,.mk circle{transform:none!important}
+  .shbar i{transform:scaleX(var(--w))!important}
+  .bar .v{opacity:0}.bar.last .v{opacity:1;animation:none}
+}
+</style>
+<meta property="og:image" content="https://ysddev.com/og/slides-pitch.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://ysddev.com/og/slides-pitch.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ru_RU"></head>
+<body>
+<header id="fbar" aria-label="Смена">
+  <a class="brand" href="#s1" data-go="0">Смена</a>
+  <span class="cnt" aria-hidden="true"><b data-cnt style="font-weight:600">01</b><span> / <i data-total style="font-style:normal">14</i></span></span>
+  <button class="ib" type="button" data-ov aria-label="Все слайды"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5"/><rect x="13.5" y="4" width="6.5" height="6.5"/><rect x="4" y="13.5" width="6.5" height="6.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5"/></svg></button>
+  <div class="prog" aria-hidden="true"><i></i></div>
+</header>
+
+<main id="viewport" aria-label="Питч-дек «Смена»">
+<div id="stage">
+
+<!-- 1 -->
+<section class="slide" id="s1" data-title="Смена" aria-label="Слайд 1: обложка">
+  <header class="hd"><span class="hd-n">Смена</span><span class="hd-s">Инвестиционная презентация, октябрь 2026</span><span class="hd-d">демо-данные</span></header>
+  <div class="cv">
+    <p class="cv-tag" data-r>Расписание смен для кофеен, ресторанов и&nbsp;магазинов. Собирается за&nbsp;15&nbsp;минут, а&nbsp;не&nbsp;за&nbsp;вечер.</p>
+    <div class="cv-sched" data-r aria-hidden="true">
+      <p class="cap" style="margin-bottom:14px">Пятница, 23 октября, кофейня на Садовой</p>
+      <div class="cs-ax"><span></span><div><span>07</span><span>11</span><span>15</span><span>19</span><span>23</span></div></div>
+      <div class="cs-row"><span>ВК</span><div class="cs-tr"><i class="cs-b" style="--a:7;--z:15"></i></div></div>
+      <div class="cs-row"><span>АМ</span><div class="cs-tr"><i class="cs-b" style="--a:7;--z:15;transition-delay:.1s"></i></div></div>
+      <div class="cs-row"><span>ТР</span><div class="cs-tr"><i class="cs-b" style="--a:11;--z:19;transition-delay:.2s"></i></div></div>
+      <div class="cs-row"><span>КЛ</span><div class="cs-tr"><i class="cs-b" style="--a:15;--z:23;transition-delay:.3s"></i></div></div>
+      <div class="cs-row"><span>ОД</span><div class="cs-tr"><i class="cs-b" style="--a:15;--z:23;transition-delay:.4s"></i></div></div>
+      <div class="cs-row"><span>ДС</span><div class="cs-tr"><i class="cs-b ac" style="--a:17;--z:23;transition-delay:.9s"></i></div></div>
+      <div class="cs-row"><span>ИП</span><div class="cs-tr"><i class="cs-b" style="--a:9;--z:13;transition-delay:.5s"></i></div></div>
+      <p class="cap" style="margin-top:14px"><span style="display:inline-block;width:10px;height:10px;background:var(--acc);margin-right:8px"></span>Вечерняя смена в пятницу: закрыта автоматически, по прогнозу кассы</p>
+    </div>
+    <h1 class="cv-word" data-r>Смена</h1>
+    <div class="cv-round" data-r><b>90 млн ₽</b><span>раунд seed+</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" id="s2" data-title="Проблема" aria-label="Слайд 2: проблема">
+  <header class="hd"><span class="hd-n">02</span><span class="hd-s">Проблема</span><span class="hd-d">демо-данные</span></header>
+  <div class="pb">
+    <h2 class="t" data-r>График смен до&nbsp;сих пор живёт в&nbsp;таблицах и&nbsp;чатах</h2>
+    <div class="chat" data-r aria-label="Пример переписки управляющего с сотрудниками">
+      <p class="bub me"><small>управляющая, 23:47</small>Кто может завтра с 7? Тимур заболел</p>
+      <p class="bub"><small>Алина, 23:58</small>Не могу, у меня пары до обеда</p>
+      <p class="bub"><small>Ксения, 00:09</small>Могу только с 11</p>
+      <p class="bub me"><small>управляющая, 00:16</small>Вера, выручишь? Закрою двойной ставкой</p>
+    </div>
+    <div class="nums">
+      <div class="num" data-r><b class="big"><span data-count="6.5" data-dec="1">6,5</span><small>ч</small></b><p>в неделю управляющий тратит на график и&nbsp;его правки</p></div>
+      <div class="num" data-r><b class="big">1&nbsp;из&nbsp;5</b><p>смен меняется меньше чем за&nbsp;сутки до&nbsp;выхода</p></div>
+      <div class="num" data-r><b class="big acc"><span data-count="3.8" data-dec="1">3,8</span><small>%</small></b><p>выручки уходит на&nbsp;переработки и&nbsp;пустые часы в&nbsp;зале</p></div>
+    </div>
+    <p class="src" data-r>Опрос 214 управляющих кофеен, ресторанов и магазинов, май–август 2026</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide so" id="s3" data-title="Решение" aria-label="Слайд 3: решение">
+  <header class="hd"><span class="hd-n">03</span><span class="hd-s">Решение</span><span class="hd-d">демо-данные</span></header>
+  <h2 class="t" data-r>Смена собирает график сама, а&nbsp;управляющий только проверяет</h2>
+  <div class="steps3">
+    <div class="st3" data-r><span class="nn">01</span>
+      <svg viewBox="0 0 400 120" aria-hidden="true"><path d="M0 92 L40 80 L80 86 L120 60 L160 66 L200 40 L240 50 L280 22 L320 34 L360 16 L400 28" fill="none" stroke="#141414" stroke-width="2.5"/><path d="M280 22 L320 34 L360 16 L400 28" fill="none" stroke="#FF4A17" stroke-width="2.5" stroke-dasharray="6 6"/><line x1="0" y1="118" x2="400" y2="118" stroke="#DCDCD8"/></svg>
+      <h3>Прогноз нагрузки</h3><p>Берём чеки из кассы, погоду и календарь. Видно, сколько людей нужно в каждый час.</p></div>
+    <div class="st3" data-r><span class="nn">02</span>
+      <svg viewBox="0 0 400 120" aria-hidden="true"><rect x="0" y="6" width="150" height="22" fill="#141414"/><rect x="60" y="36" width="170" height="22" fill="#141414"/><rect x="200" y="66" width="160" height="22" fill="#FF4A17"/><rect x="230" y="96" width="170" height="22" fill="none" stroke="#141414" stroke-width="2"/></svg>
+      <h3>График за 15 минут</h3><p>Автосборка с учётом навыков, пожеланий и трудового кодекса. Сотрудники меняются сменами в приложении.</p></div>
+    <div class="st3" data-r><span class="nn">03</span>
+      <svg viewBox="0 0 400 120" aria-hidden="true"><g font-family="Onest,sans-serif" font-size="15" fill="#141414"><text x="0" y="22">Вера К.</text><text x="300" y="22" text-anchor="end">38 ч</text><text x="0" y="58">Алина М.</text><text x="300" y="58" text-anchor="end">40 ч</text><text x="0" y="94">Тимур Р.</text><text x="300" y="94" text-anchor="end">32 ч</text></g><path d="M330 12l8 8 16-16M330 48l8 8 16-16M330 84l8 8 16-16" fill="none" stroke="#FF4A17" stroke-width="3"/><line x1="0" y1="118" x2="400" y2="118" stroke="#DCDCD8"/></svg>
+      <h3>Табель и ФОТ</h3><p>Отметки по геолокации, часы и переработки считаются сами и уходят в бухгалтерию.</p></div>
+  </div>
+  <div class="res3">
+    <div data-r><b>15 мин</b><span>вместо 6,5 часов на недельный график</span></div>
+    <div data-r><b>−2,1 п.п.</b><span>доля ФОТ в выручке через 3 месяца</span></div>
+    <div data-r><b>−64%</b><span>срочных замен накануне смены</span></div>
+  </div>
+</section>
+
+<!-- 4 demo -->
+<section class="slide" id="s4" data-title="Демо продукта" aria-label="Слайд 4: интерактивное демо расписания">
+  <header class="hd"><span class="hd-n">04</span><span class="hd-s">Демо продукта</span><span class="hd-d">демо-данные</span></header>
+  <div class="dm">
+    <div class="dm-l">
+      <h2 class="t" data-r>Попробуйте сами</h2>
+      <p class="p" data-r>Перетащите смену на&nbsp;другой день или нажмите на&nbsp;ячейку, чтобы сменить утро, вечер и&nbsp;выходной.</p>
+      <dl class="kpi" data-r>
+        <div><dt>Покрытие смен</dt><dd id="kCov">91%</dd></div>
+        <div><dt>Часы за неделю</dt><dd id="kHrs">240 ч</dd></div>
+        <div><dt>ФОТ недели</dt><dd id="kFot">71 840 ₽</dd></div>
+        <div><dt>ФОТ к выручке</dt><dd id="kPct">13,9%</dd></div>
+      </dl>
+      <ul class="issues" id="issues" data-r aria-live="polite"></ul>
+      <div class="dm-btns" data-r><button class="btn pri" type="button" id="autoBtn">Собрать автоматически</button><button class="btn" type="button" id="schReset">Сбросить</button></div>
+    </div>
+    <div class="sch" id="sch" data-r data-noswipe data-noedge>
+      <div class="sch-h" id="schH"></div>
+      <div id="schRows"></div>
+      <div class="sch-c" id="schCovM"></div>
+      <div class="sch-c" id="schCovE" style="border-top:0;margin-top:0;padding-top:6px"></div>
+      <div class="sch-lg"><span><i style="background:var(--ink)"></i>утро 07–15</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--ink)"></i>вечер 15–23</span><span><i style="background:var(--acc)"></i>не хватает людей</span><span><i style="box-shadow:inset 0 0 0 2.5px var(--acc)"></i>меньше 11 ч отдыха</span><span>Кофейня на Садовой, неделя 19–25 октября</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 market -->
+<section class="slide" id="s5" data-title="Рынок" aria-label="Слайд 5: рынок">
+  <header class="hd"><span class="hd-n">05</span><span class="hd-s">Рынок</span><span class="hd-d">демо-данные</span></header>
+  <div class="mk" id="mk">
+    <div class="mk-l">
+      <svg viewBox="0 0 640 620" aria-hidden="true">
+        <circle class="c1" cx="320" cy="310" r="300" fill="#141414"/>
+        <circle class="c2" cx="320" cy="460" r="150" fill="#6E6E6B"/>
+        <circle class="c3" cx="320" cy="573" r="37" fill="#FF4A17"/>
+        <g font-family="Onest,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle"><text x="320" y="170">TAM</text><text x="320" y="390">SAM</text></g>
+        <g font-family="Onest,sans-serif" font-size="20" font-weight="600" fill="#141414"><text x="372" y="580" fill="#fff">SOM</text></g>
+      </svg>
+    </div>
+    <div class="mk-r">
+      <h2 class="t" data-r>390 тысяч точек планируют смены вручную</h2>
+      <div class="mk-rows">
+      <button class="mrow" type="button" data-c="1" aria-pressed="false" data-r><span class="lb">TAM</span><span><b><span data-count="13.6" data-dec="1">13,6</span><small>млрд ₽ в год</small></b><p>390 тыс. точек общепита и розницы с посменным графиком × 34 800 ₽ в год</p></span></button>
+      <button class="mrow" type="button" data-c="2" aria-pressed="false" data-r><span class="lb">SAM</span><span><b><span data-count="3.4" data-dec="1">3,4</span><small>млрд ₽ в год</small></b><p>98 тыс. точек: сети от 3 заведений в городах от 250 тыс. жителей</p></span></button>
+      <button class="mrow" type="button" data-c="3" aria-pressed="false" data-r><span class="lb acc">SOM</span><span><b><span data-count="205">205</span><small>млн ₽ ARR к 2029</small></b><p>5 900 точек, 6% от SAM. Площадь кругов пропорциональна объёму</p></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 traction -->
+<section class="slide" id="s6" data-title="Трекшн" aria-label="Слайд 6: трекшн">
+  <header class="hd"><span class="hd-n">06</span><span class="hd-s">Трекшн</span><span class="hd-d">демо-данные</span></header>
+  <div class="tr">
+    <div class="tr-l">
+      <p class="cap" data-r style="margin-top:0">MRR, сентябрь 2026</p>
+      <p class="big tr-big" data-r><span data-count="1.84" data-dec="2">1,84</span><small>млн ₽</small></p>
+      <p class="tr-sub" data-r>×5,9 за год, в среднем +17,6% в&nbsp;месяц</p>
+      <div class="tr-stats" data-r>
+        <div><span>Платящих точек</span><b data-count="672">672</b></div>
+        <div><span>Сетей-клиентов</span><b data-count="118">118</b></div>
+        <div><span>Сотрудников в приложении</span><b data-count="9400">9 400</b></div>
+        <div><span>Отток точек в месяц</span><b>1,9%</b></div>
+      </div>
+    </div>
+    <div class="chart" data-r>
+      <p class="ch-t">MRR по месяцам, млн ₽</p>
+      <div class="ch-area">
+        <div class="ch-grid" aria-hidden="true"><div style="top:0"><span>2,0</span></div><div style="top:25%"><span>1,5</span></div><div style="top:50%"><span>1,0</span></div><div style="top:75%"><span>0,5</span></div><div class="z" style="top:100%"><span>0</span></div></div>
+        <div class="bars" id="bars"></div>
+      </div>
+      <div class="ch-x" id="chx"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 business model -->
+<section class="slide bm" id="s7" data-title="Бизнес-модель" aria-label="Слайд 7: бизнес-модель">
+  <header class="hd"><span class="hd-n">07</span><span class="hd-s">Бизнес-модель</span><span class="hd-d">демо-данные</span></header>
+  <h2 class="t" data-r>Подписка за точку в&nbsp;месяц. Чем больше сеть, тем выше тариф</h2>
+  <div class="tiers">
+    <div class="tier" data-r><h3>Старт <span>31% выручки</span></h3><p class="pr">1 990<small> ₽</small></p><p class="per">за точку в месяц, до 15 сотрудников</p><ul><li>График и обмен сменами</li><li>Табель по геолокации</li><li>Приложение сотрудника</li></ul></div>
+    <div class="tier hl" data-r><h3>Сеть <span>59% выручки</span></h3><p class="pr">3 490<small> ₽</small></p><p class="per">за точку в месяц, без ограничений</p><ul><li>Прогноз по данным кассы</li><li>Автосборка графика</li><li>Выгрузка ФОТ в учётную систему</li></ul></div>
+    <div class="tier" data-r><h3>Enterprise <span>10% выручки</span></h3><p class="pr"><small>от </small>5 900<small> ₽</small></p><p class="per">за точку в месяц, от 50 точек</p><ul><li>API и единый вход</li><li>Внедрение от 150 000 ₽</li><li>Персональный менеджер</li></ul></div>
+  </div>
+  <div class="mix">
+    <div class="mix-bar" data-r><p class="cap">Структура выручки, сентябрь 2026</p><div class="mb"><i style="flex:31">31%</i><i style="flex:59">59%</i><i style="flex:10">10%</i></div></div>
+    <div class="mix-k" data-r><div><b>2 740 ₽</b><span>средний доход с точки в месяц</span></div><div><b>82%</b><span>валовая маржа</span></div></div>
+  </div>
+</section>
+
+<!-- 8 unit economics -->
+<section class="slide" id="s8" data-title="Юнит-экономика" aria-label="Слайд 8: юнит-экономика, калькулятор">
+  <header class="hd"><span class="hd-n">08</span><span class="hd-s">Юнит-экономика</span><span class="hd-d">демо-данные</span></header>
+  <div class="ue">
+    <div class="ue-l" data-r>
+      <h2 class="t">Одна точка окупается меньше чем за&nbsp;год</h2>
+      <div class="sl"><label for="uArpu"><span>ARPU, доход с точки в месяц</span><output id="oArpu" for="uArpu">2 740<small>₽</small></output></label><input type="range" id="uArpu" min="1500" max="6000" step="20" value="2740"></div>
+      <div class="sl"><label for="uCac"><span>CAC, стоимость привлечения точки</span><output id="oCac" for="uCac">19 800<small>₽</small></output></label><input type="range" id="uCac" min="5000" max="60000" step="200" value="19800"></div>
+      <div class="sl"><label for="uChurn"><span>Отток точек в месяц</span><output id="oChurn" for="uChurn">1,9<small>%</small></output></label><input type="range" id="uChurn" min="0.5" max="6" step="0.1" value="1.9"></div>
+      <div class="presets" role="group" aria-label="Сценарии"><button type="button" data-p="cur" aria-pressed="true">Сейчас</button><button type="button" data-p="bad" aria-pressed="false">Пессимистичный</button><button type="button" data-p="plan" aria-pressed="false">План 2027</button></div>
+    </div>
+    <div class="ue-r" data-r aria-live="polite">
+      <div class="ue-k">
+        <div class="hero"><span class="cap">LTV / CAC</span><b id="rRatio">6,0×</b><span class="chk" id="cRatio">выше порога 3×</span></div>
+        <div><span class="cap">LTV точки</span><b id="rLtv">118<small>тыс. ₽</small></b></div>
+        <div><span class="cap">Окупаемость CAC</span><b id="rPay">8,8<small>мес</small></b><span class="chk" id="cPay">быстрее 12 месяцев</span></div>
+      </div>
+      <div class="vs">
+        <p class="cap">LTV против CAC, ₽ на точку</p>
+        <div class="vs-row"><span>CAC</span><div class="vs-tr cac" id="vCac"><i></i><span></span></div></div>
+        <div class="vs-row"><span>LTV</span><div class="vs-tr ltv" id="vLtv"><i></i><span></span></div></div>
+      </div>
+      <div class="pay">
+        <p class="cap">Окупаемость, месяцев: валовая прибыль 82% от ARPU</p>
+        <div class="pay-tr" id="payTr"><i class="fill"></i></div>
+      </div>
+      <p class="cap ue-f">LTV = ARPU × 82% / отток. Окупаемость = CAC / (ARPU × 82%). Подвигайте ползунки или выберите сценарий.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 competitors -->
+<section class="slide" id="s9" data-title="Конкуренты" aria-label="Слайд 9: конкуренты">
+  <header class="hd"><span class="hd-n">09</span><span class="hd-s">Конкуренты</span><span class="hd-d">демо-данные</span></header>
+  <div class="cp">
+    <div class="cp-l">
+      <div class="mtx" data-r data-noedge>
+        <div class="q"></div><div class="ax x"></div><div class="ax y"></div>
+        <span class="al t">запуск за день</span><span class="al b">внедрение месяцами</span>
+        <span class="al l">ручное<br>планирование</span><span class="al r">прогноз<br>и автосборка</span>
+        <button type="button" class="pt" data-k="xls" style="--x:.09;--y:.7" aria-pressed="false" aria-label="Таблицы и чаты"><span class="ln">Таблицы и чаты</span><span class="sn">Таблицы</span></button>
+        <button type="button" class="pt" data-k="simple" style="--x:.2;--y:.9" aria-pressed="false" aria-label="Онлайн-графики"><span class="ln">Онлайн-графики</span><span class="sn">Графики</span></button>
+        <button type="button" class="pt" data-k="erp" style="--x:.12;--y:.24" aria-pressed="false" aria-label="Модули учётных систем"><span class="ln">Модули учётных систем</span><span class="sn">Модули учёта</span></button>
+        <button type="button" class="pt lt" data-k="wfm" style="--x:.88;--y:.14" aria-pressed="false" aria-label="Корпоративные WFM"><span class="ln">Корпоративные WFM</span><span class="sn">WFM</span></button>
+        <button type="button" class="pt us lt" data-k="us" style="--x:.8;--y:.82" aria-pressed="true">Смена</button>
+      </div>
+    </div>
+    <div class="cp-r">
+      <h2 class="t" data-r>Простое, как таблица, умное, как&nbsp;WFM</h2>
+      <p class="lead cp-lead" data-r>Онлайн-графики не умеют прогнозировать, корпоративные системы внедряют полгода. Смена даёт прогноз и автосборку за 2–3 тыс. ₽ в месяц на точку.</p>
+      <div class="cp-d" data-r aria-live="polite">
+      <h3 id="cpN">Смена</h3><p class="pr" id="cpP">1 990–3 490 ₽ за точку в месяц</p>
+      <dl><div><dt>Сильная сторона</dt><dd id="cpPlus">Прогноз по чекам кассы и автосборка графика, запуск за один день</dd></div>
+      <div><dt>Ограничение</dt><dd id="cpMinus">Пока нет модуля для производств с 3-сменным циклом</dd></div>
+      <div><dt>Кому подходит</dt><dd id="cpWho">Сетям от 3 до 300 точек в общепите и рознице</dd></div></dl>
+      <p class="cap cp-hint">Нажмите на точку на матрице, чтобы сравнить</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 GTM -->
+<section class="slide gt" id="s10" data-title="Go-to-market" aria-label="Слайд 10: выход на рынок">
+  <header class="hd"><span class="hd-n">10</span><span class="hd-s">Go-to-market</span><span class="hd-d">демо-данные</span></header>
+  <h2 class="t" data-r>Три канала продаж и средний CAC 19&nbsp;800&nbsp;₽ за&nbsp;точку</h2>
+  <div class="gt-g">
+    <div class="ch">
+      <div class="chr" data-r><div><h3>Прямые продажи сетям от 10 точек</h3><p>Пилот на 2 точках, затем вся сеть. Цикл сделки 5 недель</p><div class="shbar"><i style="--w:.46"></i></div></div><div><span class="sh">46%</span><small>новых точек</small></div><div><small>CAC</small><span class="cac">27 000 ₽</span></div></div>
+      <div class="chr" data-r><div><h3>Партнёры: интеграторы касс и учёта</h3><p>Комиссия 20% от выручки первого года</p><div class="shbar"><i style="--w:.32"></i></div></div><div><span class="sh">32%</span><small>новых точек</small></div><div><small>CAC</small><span class="cac">16 000 ₽</span></div></div>
+      <div class="chr" data-r><div><h3>Самостоятельная регистрация</h3><p>Бесплатные 14 дней, контент для управляющих</p><div class="shbar"><i style="--w:.22"></i></div></div><div><span class="sh">22%</span><small>новых точек</small></div><div><small>CAC</small><span class="cac">10 200 ₽</span></div></div>
+    </div>
+    <div class="fun" data-r>
+      <p class="cap">Самостоятельная регистрация, сентябрь 2026</p>
+      <div class="fr"><div><span>Зарегистрировались</span><b>1 000</b></div><i style="--w:1"></i></div>
+      <div class="fr"><div><span>Собрали первый график</span><b>410</b></div><i style="--w:.41"></i></div>
+      <div class="fr"><div><span>Дошли до конца пробного периода</span><b>230</b></div><i style="--w:.23"></i></div>
+      <div class="fr"><div><span>Оплатили</span><b>94</b></div><i style="--w:.094"></i></div>
+      <p class="geo"><b>2026:</b> Москва и Петербург. <b>2027:</b> Казань, Екатеринбург, Новосибирск, Краснодар</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 team -->
+<section class="slide tm" id="s11" data-title="Команда" aria-label="Слайд 11: команда">
+  <header class="hd"><span class="hd-n">11</span><span class="hd-s">Команда</span><span class="hd-d">демо-данные</span></header>
+  <h2 class="t" data-r>Основатели, которые сами составляли графики по&nbsp;пятницам</h2>
+  <div class="ppl">
+    <div class="pp" data-r><div class="mono" aria-hidden="true">МО</div><h3>Мария Озерова</h3><p class="role">CEO</p><p>9 лет руководила операциями сети из 14 кофеен. Отвечает за продажи сетям и продукт.</p></div>
+    <div class="pp" data-r><div class="mono" aria-hidden="true">АЛ</div><h3>Артём Левин</h3><p class="role">CTO</p><p>12 лет в разработке, последние 5 — сервисы для розницы. Архитектура и прогнозная модель.</p></div>
+    <div class="pp" data-r><div class="mono" aria-hidden="true">КД</div><h3>Ксения Дронова</h3><p class="role">Продукт и дизайн</p><p>7 лет в исследованиях интерфейсов, вела приложение для курьеров. Отвечает за приложение сотрудника.</p></div>
+    <div class="pp" data-r><div class="mono" aria-hidden="true">ГШ</div><h3>Глеб Ширяев</h3><p class="role">Партнёрства</p><p>8 лет продавал кассовое ПО ресторанам. Построил партнёрский канал с нуля.</p></div>
+  </div>
+  <div class="crew" data-r>
+    <div class="crew-n"><b>17</b><span>человек в команде, октябрь 2026</span></div>
+    <div class="crew-b"><div class="crew-bar" aria-hidden="true"><i style="flex:9"></i><i style="flex:3"></i><i style="flex:3"></i><i style="flex:2"></i></div>
+      <div class="crew-lg"><span style="flex:9"><b>9</b>разработка</span><span style="flex:3"><b>3</b>продукт и дизайн</span><span style="flex:3"><b>3</b>продажи</span><span style="flex:2"><b>2</b>поддержка</span></div></div>
+  </div>
+</section>
+
+<!-- 12 roadmap -->
+<section class="slide rm" id="s12" data-title="Roadmap" aria-label="Слайд 12: дорожная карта">
+  <header class="hd"><span class="hd-n">12</span><span class="hd-s">Roadmap</span><span class="hd-d">демо-данные</span></header>
+  <h2 class="t" data-r>Пять кварталов до&nbsp;1&nbsp;900&nbsp;точек и&nbsp;5,5&nbsp;млн&nbsp;₽ MRR</h2>
+  <div class="road">
+    <div class="road-line" aria-hidden="true"></div>
+    <div class="rq now" data-r><p class="q">Q4</p><p class="y">2026, сейчас</p><div class="dot"></div><h3>Прогноз по кассе 2.0</h3><p class="ds">Учитываем доставку и погоду, точность прогноза до 88%</p><div class="goal"><b>820</b><span>точек</span></div></div>
+    <div class="rq" data-r><p class="q">Q1</p><p class="y">2027</p><div class="dot"></div><h3>Приложение сотрудника 2.0</h3><p class="ds">Обмен сменами без управляющего, аванс за отработанные часы</p><div class="goal"><b>1 050</b><span>точек</span></div></div>
+    <div class="rq" data-r><p class="q">Q2</p><p class="y">2027</p><div class="dot"></div><h3>Четыре новых города</h3><p class="ds">Казань, Екатеринбург, Новосибирск, Краснодар через партнёров</p><div class="goal"><b>1 350</b><span>точек</span></div></div>
+    <div class="rq" data-r><p class="q">Q3</p><p class="y">2027</p><div class="dot"></div><h3>Франшизы и мультибренд</h3><p class="ds">Единый кабинет для франчайзи и управляющей компании</p><div class="goal"><b>1 650</b><span>точек</span></div></div>
+    <div class="rq" data-r><p class="q">Q4</p><p class="y">2027</p><div class="dot"></div><h3>Подработки внутри сети</h3><p class="ds">Сотрудник берёт свободную смену в соседней точке</p><div class="goal"><b>1 900</b><span>точек, MRR 5,5 млн ₽</span></div></div>
+  </div>
+</section>
+
+<!-- 13 round -->
+<section class="slide" id="s13" data-title="Раунд" aria-label="Слайд 13: раунд">
+  <header class="hd"><span class="hd-n">13</span><span class="hd-s">Раунд</span><span class="hd-d">демо-данные</span></header>
+  <div class="rd">
+    <div class="rd-l">
+      <p class="cap" data-r>Привлекаем</p>
+      <p class="big rd-big" data-r><span data-count="90">90</span><small>млн ₽</small></p>
+      <dl class="rd-terms" data-r>
+        <div><dt>Раунд</dt><dd>Seed+</dd></div>
+        <div><dt>Оценка до раунда</dt><dd>410 млн ₽</dd></div>
+        <div><dt>Доля инвесторов</dt><dd>18%</dd></div>
+        <div><dt>Запас хода</dt><dd>22 месяца</dd></div>
+        <div><dt>Цель к концу 2027</dt><dd>1 900 точек</dd></div>
+        <div><dt>Безубыточность</dt><dd>II квартал 2028</dd></div>
+      </dl>
+    </div>
+    <div class="rd-r" data-r>
+      <div class="donut" id="donut">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><g id="dsegs"></g></svg>
+        <div class="dc"><b id="dcV">90 млн ₽</b><span id="dcL">на что пойдут деньги</span></div>
+      </div>
+      <div class="dlg" id="dlg" role="group" aria-label="Распределение средств"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 contact -->
+<section class="slide" id="s14" data-title="Контакты" aria-label="Слайд 14: контакты">
+  <header class="hd"><span class="hd-n">14</span><span class="hd-s">Контакты</span><span class="hd-d">демо-данные</span></header>
+  <div class="ct">
+    <h2 class="ct-t" data-r>Покажем продукт вживую и&nbsp;откроем данные</h2>
+    <p class="ct-sub" data-r>Доступ к дашборду метрик, когортам и договорам с сетями — после NDA. Первая встреча занимает 40 минут.</p>
+    <div class="ct-c" data-r>
+      <h3>Мария Озерова</h3><p class="role">CEO и сооснователь</p>
+      <div class="ct-l">
+        <a href="/cdn-cgi/l/email-protection#89e0e7ffecfafdc9fae4ece7e8a4e8f9f9a7fbfc"><b><span class="__cf_email__" data-cfemail="c1a8afb7a4b2b581b2aca4afa0eca0b1b1efb3b4">[email&#160;protected]</span></b><span>почта</span></a>
+        <a href="tel:+74954018832"><b>+7 495 401-88-32</b><span>телефон</span></a>
+      </div>
+      <div class="ct-b"><button class="btn pri" type="button" id="copyMail">Скопировать почту</button><button class="btn" type="button" data-go="3">Вернуться к демо продукта</button><button class="btn" type="button" id="printBtn">Сохранить в PDF</button></div>
+    </div>
+    <div class="ct-foot"><span>Демо · дизайн-концепт студии YSD DEV. Компания и данные вымышлены, все цифры — демо-данные.</span><a href="https://ysddev.com" target="_blank" rel="noopener">Сделано в YSD DEV</a></div>
+  </div>
+</section>
+
+</div>
+</main>
+<div class="edge l" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+<div class="edge r" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+
+<nav id="bar" aria-label="Управление презентацией">
+  <a class="brand" href="https://ysddev.com" target="_blank" rel="noopener">Сделано в YSD DEV</a>
+  <span class="ttl" id="ttl">Смена</span>
+  <div class="prog" aria-hidden="true"><i></i></div>
+  <span class="cnt" aria-hidden="true"><b data-cnt style="font-weight:600">01</b><span> / <i data-total style="font-style:normal">14</i></span></span>
+  <div class="btns">
+    <button class="ib" type="button" data-prev aria-label="Предыдущий слайд"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="ib" type="button" data-next aria-label="Следующий слайд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="ib" type="button" data-ov aria-label="Все слайды (клавиша O)"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5"/><rect x="13.5" y="4" width="6.5" height="6.5"/><rect x="4" y="13.5" width="6.5" height="6.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5"/></svg></button>
+    <button class="ib" type="button" data-fs aria-label="Полноэкранный режим (клавиша F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</nav>
+<nav id="fnav" aria-label="Листать слайды">
+  <button class="ib" type="button" data-prev aria-label="Предыдущий слайд"><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></button>
+  <button class="ib" type="button" data-next aria-label="Следующий слайд"><svg viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></svg></button>
+</nav>
+
+<div id="overview" role="dialog" aria-modal="true" aria-labelledby="ovTitle" hidden>
+  <div class="ov-top"><h2 id="ovTitle">Все слайды</h2><span class="cap">Esc — закрыть</span><button class="btn" type="button" id="resetDemo">Сбросить демо</button><button class="ib" type="button" id="ovClose" aria-label="Закрыть обзор"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="ovgrid"></div>
+  <div class="ov-foot"><span>Демо · дизайн-концепт студии YSD DEV. Компания и данные вымышлены.</span><a href="https://ysddev.com" target="_blank" rel="noopener">ysddev.com</a></div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="sr" id="announce" aria-live="polite"></div>
+
+<script data-cfasync="false" src="/slides/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+var KEY='smena-demo-';
+var LS={get:function(k,d){try{var v=localStorage.getItem(KEY+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set:function(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}},clear:function(){try{Object.keys(localStorage).forEach(function(k){if(k.indexOf(KEY)===0)localStorage.removeItem(k)})}catch(e){}}};
+var W=1600,H=900;
+var vp=$('#viewport'),stage=$('#stage'),slides=$$('.slide',stage),N=slides.length;
+var cur=0,mode='',ovOpen=false,anims=[];
+function pad(n){return (n<10?'0':'')+n}
+function fmt(n,d){return Number(n).toLocaleString('ru-RU',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})}
+function plural(n,a,b,c){n=Math.abs(Math.round(n));var m=n%10,h=n%100;return (m===1&&h!==11)?a:(m>=2&&m<=4&&(h<12||h>14))?b:c}
+slides.forEach(function(s){$$('[data-r]',s).forEach(function(el,i){el.style.setProperty('--i',i)})});
+var tEl=$('#toast'),tT;
+function toast(html,ms){tEl.innerHTML=html;tEl.classList.add('on');clearTimeout(tT);tT=setTimeout(function(){tEl.classList.remove('on')},ms||2600)}
+function countUp(root){
+  $$('[data-count]',root).forEach(function(el){
+    var to=parseFloat(el.getAttribute('data-count')),d=+(el.getAttribute('data-dec')||0);
+    if(RM.matches||!isFinite(to)){el.textContent=fmt(to,d);return}
+    var t0=performance.now(),dur=1200;
+    (function step(t){var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=fmt(to*e,d);if(p<1)requestAnimationFrame(step)})(t0);
+  });
+}
+var hooks={};
+function enter(i){var s=slides[i];countUp(s);if(hooks[s.id])hooks[s.id](s)}
+function decide(){var w=innerWidth,h=innerHeight;return (w<760||h<520||(w<1100&&w/h<1))?'feed':'stage'}
+var io=null;
+function layout(){
+  var m=decide();
+  if(m!==mode){
+    mode=m;document.body.classList.toggle('feed',m==='feed');document.body.classList.toggle('stagemode',m==='stage');
+    if(m==='feed'){
+      slides.forEach(function(s){s.inert=false;s.removeAttribute('aria-hidden');s.classList.remove('leaving')});
+      if(!io&&'IntersectionObserver' in window){io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var s=en.target;if(!s.classList.contains('in')){s.classList.add('in');enter(slides.indexOf(s))}}})},{threshold:0.12})}
+      slides.forEach(function(s){if(io)io.observe(s);else s.classList.add('in')});
+      var c=cur;requestAnimationFrame(function(){slides[c].scrollIntoView({block:'start'});ui()});
+    }else{
+      if(io)slides.forEach(function(s){io.unobserve(s)});
+      window.scrollTo(0,0);go(cur,{instant:true,force:true});
+    }
+    if(typeof onMode==='function')onMode();
+  }
+  if(mode==='stage'){var s=Math.min(vp.clientWidth/W,vp.clientHeight/H);stage.style.transform='translate(-50%,-50%) scale('+s+')'}
+  if(ovOpen)scaleThumbs();
+}
+function go(i,o){
+  o=o||{};i=Math.max(0,Math.min(N-1,i|0));
+  if(mode==='feed'){cur=i;ui();slides[i].scrollIntoView({behavior:(o.instant||RM.matches)?'auto':'smooth',block:'start'});return}
+  var prev=cur;if(i===prev&&!o.force)return;cur=i;
+  anims.forEach(function(a){try{a.finish()}catch(e){}});anims=[];
+  slides.forEach(function(s,k){var on=k===i;s.classList.toggle('active',on);s.inert=!on;s.setAttribute('aria-hidden',on?'false':'true');if(!on&&k!==prev)s.classList.remove('in','leaving')});
+  var nx=slides[i];
+  if(prev!==i&&!o.instant&&!RM.matches&&nx.animate){
+    var old=slides[prev];old.classList.add('leaving');
+    var a1=nx.animate([{opacity:0},{opacity:1}],{duration:340,easing:'cubic-bezier(.23,1,.32,1)'});
+    a1.onfinish=function(){if(cur!==prev){old.classList.remove('leaving','in')}};
+    anims.push(a1);
+  }else if(prev!==i){slides[prev].classList.remove('in','leaving')}
+  nx.classList.remove('in');void nx.offsetWidth;nx.classList.add('in');enter(i);
+  ui();
+  $('#announce').textContent='Слайд '+(i+1)+' из '+N+': '+(nx.getAttribute('data-title')||'');
+}
+function next(){go(cur+1)}function prev(){go(cur-1)}
+var lastHash='';
+function ui(){
+  var n=cur+1;
+  $$('[data-cnt]').forEach(function(e){e.textContent=pad(n)});$$('[data-total]').forEach(function(e){e.textContent=pad(N)});
+  $$('.prog i').forEach(function(e){e.style.transform='scaleX('+(n/N)+')'});
+  $$('[data-prev]').forEach(function(b){b.disabled=cur===0});$$('[data-next]').forEach(function(b){b.disabled=cur===N-1});
+  $('#ttl').textContent=slides[cur].getAttribute('data-title')||'';
+  var h='#'+n;if(h!==lastHash){lastHash=h;try{history.replaceState(null,'',h)}catch(e){}}
+}
+function fromHash(){var n=parseInt((location.hash||'').replace('#',''),10);return (n>=1&&n<=N)?n-1:null}
+addEventListener('hashchange',function(){var h=fromHash();lastHash=location.hash;if(h!==null&&h!==cur)go(h)});
+var sT=0;
+addEventListener('scroll',function(){if(mode!=='feed'||sT)return;sT=requestAnimationFrame(function(){sT=0;var y=innerHeight*0.38,idx=0;for(var k=0;k<N;k++){if(slides[k].getBoundingClientRect().top<=y)idx=k}
+  if(document.documentElement.scrollHeight-scrollY-innerHeight<4)idx=N-1;if(idx!==cur){cur=idx;ui()}})},{passive:true});
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-prev],[data-next],[data-ov],[data-fs],[data-go]');if(!t||t.closest('.tbox'))return;
+  if(t.hasAttribute('data-prev'))prev();else if(t.hasAttribute('data-next'))next();else if(t.hasAttribute('data-ov'))toggleOv();else if(t.hasAttribute('data-fs'))toggleFs();
+  else if(t.hasAttribute('data-go')){e.preventDefault();go(+t.getAttribute('data-go'))}
+});
+function toggleFs(){
+  try{
+    if(document.fullscreenElement){document.exitFullscreen().catch(function(){})}
+    else if(document.documentElement.requestFullscreen){var p=document.documentElement.requestFullscreen();if(p&&p.catch)p.catch(function(){toast('Браузер не разрешил полноэкранный режим')})}
+    else toast('Полноэкранный режим недоступен в этом браузере');
+  }catch(err){}
+}
+addEventListener('keydown',function(e){
+  if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.altKey)return;
+  var t=e.target,tag=t&&t.tagName||'',k=e.key,code=e.code;
+  if(ovOpen){if(k==='Escape'||code==='KeyO'){e.preventDefault();closeOv();return}
+    var th=$$('.thumb',grid),ix=th.indexOf(document.activeElement);if(ix<0||!/Arrow/.test(k))return;
+    var cols=1;for(var q=1;q<th.length;q++){if(th[q].offsetTop!==th[0].offsetTop)break;cols++}
+    var j=ix+(k==='ArrowRight'?1:k==='ArrowLeft'?-1:k==='ArrowDown'?cols:-cols);if(j>=0&&j<th.length){e.preventDefault();th[j].focus()}return}
+  if(/INPUT|TEXTAREA|SELECT/.test(tag)||(t&&t.isContentEditable))return;
+  var onBtn=/BUTTON|A/.test(tag);
+  if(code==='KeyO'){e.preventDefault();openOv();return}
+  if(code==='KeyF'){e.preventDefault();toggleFs();return}
+  if(mode==='feed'){
+    if(k==='ArrowRight'||k==='PageDown'){e.preventDefault();next()}else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();prev()}
+    return;
+  }
+  if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey&&!onBtn)){e.preventDefault();next()}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey&&!onBtn)){e.preventDefault();prev()}
+  else if(k==='Home'){e.preventDefault();go(0)}else if(k==='End'){e.preventDefault();go(N-1)}
+});
+var INTER='button,a,input,label,select,textarea,output,[role=tab],[data-noedge]';
+vp.addEventListener('mousemove',function(e){if(mode!=='stage'){vp.removeAttribute('data-edge');return}
+  var x=e.clientX/innerWidth,over=e.target.closest&&e.target.closest(INTER);
+  var v=over?'':(x<.08&&cur>0?'l':(x>.92&&cur<N-1?'r':''));if(vp.getAttribute('data-edge')!==v){if(v)vp.setAttribute('data-edge',v);else vp.removeAttribute('data-edge')}});
+vp.addEventListener('mouseleave',function(){vp.removeAttribute('data-edge')});
+var swiped=false;
+vp.addEventListener('click',function(e){if(mode!=='stage'||swiped)return;if(e.target.closest(INTER))return;var x=e.clientX/innerWidth;if(x<.08)prev();else if(x>.92)next()});
+var sx=0,sy=0,st=0,sOK=false;
+vp.addEventListener('touchstart',function(e){if(mode!=='stage'||e.touches.length>1){sOK=false;return}var t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();sOK=!e.target.closest('input[type=range],[data-noswipe]')},{passive:true});
+vp.addEventListener('touchend',function(e){if(!sOK||mode!=='stage')return;sOK=false;var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+  if(Math.abs(dx)>56&&Math.abs(dx)>Math.abs(dy)*1.3&&Date.now()-st<2500){swiped=true;setTimeout(function(){swiped=false},400);if(dx<0)next();else prev()}},{passive:true});
+var ov=$('#overview'),grid=$('#ovgrid'),ovT=0;
+function buildOv(){
+  grid.innerHTML='';
+  slides.forEach(function(s,k){
+    var b=document.createElement('button');b.type='button';b.className='thumb'+(k===cur?' cur':'');
+    b.setAttribute('aria-label','Слайд '+(k+1)+': '+s.getAttribute('data-title'));if(k===cur)b.setAttribute('aria-current','true');
+    if(mode==='stage'){
+      var box=document.createElement('span');box.className='tbox';box.setAttribute('aria-hidden','true');box.inert=true;
+      var c=s.cloneNode(true);c.removeAttribute('id');c.classList.remove('leaving');c.classList.add('in','active');c.removeAttribute('aria-hidden');c.removeAttribute('aria-label');c.inert=false;
+      $$('[id]',c).forEach(function(x){x.removeAttribute('id')});
+      $$('[data-count]',c).forEach(function(x){x.textContent=fmt(+x.getAttribute('data-count'),+(x.getAttribute('data-dec')||0))});
+      $$('input,button,select,textarea',c).forEach(function(x){x.removeAttribute('name');x.disabled=true;x.tabIndex=-1});
+      $$('label[for]',c).forEach(function(x){x.removeAttribute('for')});$$('output[for]',c).forEach(function(x){x.removeAttribute('for')});
+      $$('a',c).forEach(function(x){x.removeAttribute('href');x.tabIndex=-1});
+      box.appendChild(c);b.appendChild(box);
+    }
+    var cap=document.createElement('span');cap.className='tcap';cap.innerHTML='<b>'+pad(k+1)+'</b><span></span>';cap.lastChild.textContent=s.getAttribute('data-title');b.appendChild(cap);
+    b.addEventListener('click',function(){closeOv(true);go(k)});
+    grid.appendChild(b);
+  });
+}
+function scaleThumbs(){$$('.tbox',grid).forEach(function(b){var c=b.firstChild;if(c)c.style.transform='scale('+(b.clientWidth/W)+')'})}
+function openOv(){if(ovOpen)return;ovOpen=true;clearTimeout(ovT);buildOv();ov.hidden=false;vp.inert=true;$('#bar').inert=true;
+  $$('.thumb',grid).forEach(function(t,k){t.style.transitionDelay=Math.min(k*25,300)+'ms'});
+  requestAnimationFrame(function(){scaleThumbs();ov.classList.add('open');var t=grid.children[cur];if(t){t.focus({preventScroll:true});t.scrollIntoView({block:'nearest'})}})}
+function closeOv(silent){if(!ovOpen)return;ovOpen=false;ov.classList.remove('open');vp.inert=false;$('#bar').inert=false;ovT=setTimeout(function(){ov.hidden=true;grid.innerHTML=''},260);
+  if(!silent){var b=$(mode==='feed'?'#fbar [data-ov]':'#bar [data-ov]');if(b)b.focus({preventScroll:true})}}
+function toggleOv(){if(ovOpen)closeOv();else openOv()}
+$('#ovClose').addEventListener('click',function(){closeOv()});
+ov.addEventListener('click',function(e){if(e.target===grid)closeOv()});
+$('#resetDemo').addEventListener('click',function(){LS.clear();resetAll();closeOv(true);go(0);toast('Демо сброшено: расписание, калькулятор и выбор на слайдах вернулись к исходным')});
+
+/* ===== S4 schedule ===== */
+var EMP=[['Вера К.','старший бариста',360],['Алина М.','бариста',290],['Тимур Р.','бариста',290],['Ксения Л.','бариста',290],['Олег Д.','бариста-кассир',300],['Дина С.','бариста',290],['Илья П.','стажёр',230]];
+var DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],DATES=[19,20,21,22,23,24,25];
+var NEED={m:[2,2,2,2,2,3,3],e:[2,2,2,2,3,3,2]},REV=[62000,58000,64000,66000,84000,96000,88000];
+var INIT=[[1,1,1,1,1,0,0],[2,2,0,1,1,0,1],[1,2,1,2,1,0,0],[2,0,2,2,0,1,1],[0,1,2,0,2,2,2],[0,0,0,0,2,2,1],[0,0,0,0,0,1,2]];
+function cloneG(g){return g.map(function(r){return r.slice()})}
+function validG(g){return Array.isArray(g)&&g.length===7&&g.every(function(r){return Array.isArray(r)&&r.length===7&&r.every(function(v){return v===0||v===1||v===2})})}
+var G=LS.get('sched',null);if(!validG(G))G=cloneG(INIT);
+var rowsEl=$('#schRows');
+(function(){$('#schH').innerHTML='<span>Сотрудник</span>'+DAYS.map(function(d,i){return '<span class="'+(i>4?'wk':'')+'"><b>'+d+'</b>'+DATES[i]+'</span>'}).join('');
+  rowsEl.innerHTML=EMP.map(function(e,r){var h='<div class="sch-r"><div class="who"><b>'+e[0]+'</b><span>'+e[1]+'</span></div>';for(var d=0;d<7;d++)h+='<button type="button" class="cell" data-r-i="'+r+'" data-d="'+d+'"></button>';return h+'</div>'}).join('');})();
+function conflicts(g){var c={},list=[];for(var r=0;r<7;r++){var n=0;for(var d=0;d<7;d++){if(g[r][d])n++;if(d>0&&g[r][d]===1&&g[r][d-1]===2){c[r+'-'+d]=1;c[r+'-'+(d-1)]=1;list.push(EMP[r][0]+': вечер '+DAYS[d-1]+' → утро '+DAYS[d]+', отдых 8 ч')}}
+  if(n>5)list.push(EMP[r][0]+': '+n+' смен, больше 40 ч в неделю')}return {cells:c,list:list}}
+function stats(g){var cov=0,need=0,hrs=0,fot=0,gaps=[];for(var d=0;d<7;d++){var m=0,e=0;for(var r=0;r<7;r++){if(g[r][d]===1)m++;if(g[r][d]===2)e++}
+  cov+=Math.min(m,NEED.m[d])+Math.min(e,NEED.e[d]);need+=NEED.m[d]+NEED.e[d];if(m<NEED.m[d])gaps.push(DAYS[d]+' утро: '+m+' из '+NEED.m[d]);if(e<NEED.e[d])gaps.push(DAYS[d]+' вечер: '+e+' из '+NEED.e[d])}
+  for(var r2=0;r2<7;r2++)for(var d2=0;d2<7;d2++)if(g[r2][d2]){hrs+=8;fot+=8*EMP[r2][2]}
+  var rev=REV.reduce(function(a,b){return a+b},0);return {cov:cov/need,hrs:hrs,fot:fot,pct:fot/rev,gaps:gaps}}
+var popCells={};
+function renderSch(){
+  var cf=conflicts(G),s=stats(G);
+  $$('.cell',rowsEl).forEach(function(c){var r=+c.getAttribute('data-r-i'),d=+c.getAttribute('data-d'),v=G[r][d],bad=cf.cells[r+'-'+d];
+    var lab=EMP[r][0]+', '+DAYS[d]+' '+DATES[d]+' октября: ';
+    if(v===0){c.innerHTML='<span class="off">выходной</span>';c.setAttribute('aria-label',lab+'выходной. Нажмите, чтобы поставить утро')}
+    else{c.innerHTML='<span class="chip '+(v===1?'m':'e')+(bad?' bad':'')+'"><b>'+(v===1?'07–15':'15–23')+'</b><small>'+(v===1?'утро':'вечер')+'</small><i>'+(v===1?'У':'В')+'</i></span>';
+      c.setAttribute('aria-label',lab+(v===1?'утро 07–15':'вечер 15–23')+(bad?', мало отдыха':'')+'. Нажмите, чтобы поменять')}
+    c.classList.toggle('pop',!!popCells[r+'-'+d]&&!RM.matches)});
+  popCells={};
+  ['m','e'].forEach(function(t){var el=t==='m'?$('#schCovM'):$('#schCovE'),h='<span>'+(t==='m'?'Утро':'Вечер')+'</span>';
+    for(var d=0;d<7;d++){var n=0;for(var r=0;r<7;r++)if(G[r][d]===(t==='m'?1:2))n++;var nd=NEED[t][d];h+='<div class="cov"><span class="'+(n<nd?'short':n>nd?'over':'')+'" title="'+(t==='m'?'Утро':'Вечер')+' '+DAYS[d]+': '+n+' из '+nd+'">'+n+'/'+nd+'</span></div>'}
+    el.innerHTML=h});
+  $('#kCov').textContent=Math.round(s.cov*100)+'%';$('#kCov').classList.toggle('warn',s.cov<1);
+  $('#kHrs').textContent=fmt(s.hrs)+' ч';$('#kFot').textContent=fmt(s.fot)+' ₽';$('#kPct').textContent=fmt(s.pct*100,1)+'%';
+  var items=[];if(s.gaps.length)items.push('Не хватает: '+s.gaps.slice(0,3).join(', ')+(s.gaps.length>3?' и ещё '+(s.gaps.length-3):''));
+  cf.list.slice(0,2).forEach(function(x){items.push(x)});if(cf.list.length>2)items.push('Ещё нарушений: '+(cf.list.length-2));
+  $('#issues').innerHTML=items.length?items.map(function(x){return '<li>'+x+'</li>'}).join(''):'<li class="ok">График закрыт: все смены покрыты, отдых между сменами не меньше 11 часов</li>';
+  LS.set('sched',G);
+}
+function autoFill(){var g=[],cnt=[];for(var i=0;i<7;i++){g.push([0,0,0,0,0,0,0]);cnt.push(0)}
+  for(var d=0;d<7;d++){var m=[];for(var r=0;r<7;r++){if(cnt[r]<5&&!(d>0&&g[r][d-1]===2))m.push(r)}m.sort(function(a,b){return cnt[a]-cnt[b]||a-b});m.slice(0,NEED.m[d]).forEach(function(r){g[r][d]=1;cnt[r]++});
+    var e=[];for(var r3=0;r3<7;r3++){if(cnt[r3]<5&&g[r3][d]===0)e.push(r3)}e.sort(function(a,b){return cnt[a]-cnt[b]||b-a});e.slice(0,NEED.e[d]).forEach(function(r){g[r][d]=2;cnt[r]++})}
+  return g}
+$('#autoBtn').addEventListener('click',function(){var ng=autoFill();for(var r=0;r<7;r++)for(var d=0;d<7;d++)if(ng[r][d]&&ng[r][d]!==G[r][d])popCells[r+'-'+d]=1;G=ng;renderSch();toast('График собран за 0,4 секунды: все смены закрыты')});
+$('#schReset').addEventListener('click',function(){G=cloneG(INIT);renderSch();toast('Расписание вернулось к исходному')});
+/* click to cycle + drag to move */
+var drag=null,suppress=false;
+rowsEl.addEventListener('click',function(e){var c=e.target.closest('.cell');if(!c)return;if(suppress){suppress=false;return}var r=+c.getAttribute('data-r-i'),d=+c.getAttribute('data-d');G[r][d]=(G[r][d]+1)%3;if(G[r][d])popCells[r+'-'+d]=1;renderSch();var nc=$('.cell[data-r-i="'+r+'"][data-d="'+d+'"]',rowsEl);if(nc&&document.activeElement!==nc&&e.detail===0)nc.focus()});
+rowsEl.addEventListener('pointerdown',function(e){var chip=e.target.closest('.chip');if(!chip||e.button>0)return;var c=chip.closest('.cell');
+  drag={c:c,r:+c.getAttribute('data-r-i'),d:+c.getAttribute('data-d'),x:e.clientX,y:e.clientY,on:false,id:e.pointerId,ghost:null,over:null};
+  try{c.setPointerCapture(e.pointerId)}catch(err){}});
+rowsEl.addEventListener('pointermove',function(e){if(!drag||e.pointerId!==drag.id)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+  if(!drag.on){if(Math.hypot(dx,dy)<6)return;drag.on=true;var rc=drag.c.getBoundingClientRect(),v=G[drag.r][drag.d],gh=document.createElement('div');gh.className='ghost';
+    gh.style.width=rc.width+'px';gh.style.height=rc.height+'px';gh.style.background=v===1?'#141414':'#fff';gh.style.color=v===1?'#fff':'#141414';gh.style.boxShadow=(v===2?'inset 0 0 0 1.5px #141414,':'')+'0 10px 30px rgba(0,0,0,.18)';
+    gh.style.fontSize=Math.max(11,rc.height*.3)+'px';gh.textContent=v===1?'07–15':'15–23';document.body.appendChild(gh);drag.ghost=gh;drag.ox=e.clientX-rc.left;drag.oy=e.clientY-rc.top;document.body.classList.add('dragging');drag.c.style.opacity='.35'}
+  drag.ghost.style.left=(e.clientX-drag.ox)+'px';drag.ghost.style.top=(e.clientY-drag.oy)+'px';
+  var el=document.elementFromPoint(e.clientX,e.clientY),t=el&&el.closest?el.closest('#schRows .cell'):null;
+  if(drag.over&&drag.over!==t)drag.over.classList.remove('drop');if(t&&t!==drag.c){t.classList.add('drop');drag.over=t}else drag.over=null});
+function endDrag(e,cancel){if(!drag||(e&&e.pointerId!==drag.id))return;var d=drag;drag=null;document.body.classList.remove('dragging');
+  if(d.ghost)d.ghost.remove();d.c.style.opacity='';if(d.over)d.over.classList.remove('drop');
+  if(d.on){suppress=true;setTimeout(function(){suppress=false},50);if(!cancel&&d.over){var r2=+d.over.getAttribute('data-r-i'),d2=+d.over.getAttribute('data-d'),tmp=G[r2][d2];G[r2][d2]=G[d.r][d.d];G[d.r][d.d]=tmp;popCells[r2+'-'+d2]=1;renderSch();
+    toast(tmp?'Смены поменялись местами':'Смена перенесена: '+EMP[r2][0]+', '+DAYS[d2])}}}
+rowsEl.addEventListener('pointerup',function(e){endDrag(e,false)});
+rowsEl.addEventListener('pointercancel',function(e){endDrag(e,true)});
+renderSch();
+
+/* ===== S5 market ===== */
+var mk=$('#mk');
+$$('.mrow',mk).forEach(function(b){b.addEventListener('click',function(){var c=b.getAttribute('data-c'),on=mk.getAttribute('data-hl')===c;$$('.mrow',mk).forEach(function(x){x.setAttribute('aria-pressed','false')});
+  if(on)mk.removeAttribute('data-hl');else{mk.setAttribute('data-hl',c);b.setAttribute('aria-pressed','true')}})});
+
+/* ===== S6 chart ===== */
+var MRR=[0.31,0.38,0.44,0.53,0.66,0.79,0.92,1.05,1.19,1.38,1.61,1.84],MON=['окт','ноя','дек','янв','фев','мар','апр','май','июн','июл','авг','сен'],MONF=['Октябрь 2025','Ноябрь 2025','Декабрь 2025','Январь 2026','Февраль 2026','Март 2026','Апрель 2026','Май 2026','Июнь 2026','Июль 2026','Август 2026','Сентябрь 2026'];
+$('#bars').innerHTML=MRR.map(function(v,k){return '<button type="button" class="bar'+(k===11?' last':'')+'" style="--h:'+(v/2).toFixed(3)+';--k:'+k+'" aria-label="'+MONF[k]+': '+fmt(v,2)+' млн ₽"><i></i><span class="v">'+fmt(v,2)+'</span></button>'}).join('');
+$('#chx').innerHTML=MON.map(function(m,k){return '<span>'+m+(k===0?'<b>2025</b>':k===3?'<b>2026</b>':'')+'</span>'}).join('');
+
+/* ===== S8 unit economics ===== */
+var GM=0.82,PRE={cur:[2740,19800,1.9],bad:[2400,26000,2.8],plan:[3100,18000,1.4]};
+var uA=$('#uArpu'),uC=$('#uCac'),uH=$('#uChurn');
+var U=LS.get('ue',null);if(!U||!isFinite(U[0])||!isFinite(U[1])||!isFinite(U[2]))U=PRE.cur.slice();
+function setRange(el,v){el.value=v;var p=(el.value-el.min)/(el.max-el.min)*100;el.style.setProperty('--p',p+'%')}
+function money(v){return v>=1e6?fmt(v/1e6,1)+'<small>млн ₽</small>':fmt(Math.round(v/1000))+'<small>тыс. ₽</small>'}
+function renderUE(){
+  setRange(uA,U[0]);setRange(uC,U[1]);setRange(uH,U[2]);
+  var arpu=+uA.value,cac=+uC.value,ch=+uH.value/100,gp=arpu*GM,ltv=gp/ch,ratio=ltv/cac,pay=cac/gp;
+  $('#oArpu').innerHTML=fmt(arpu)+'<small>₽</small>';$('#oCac').innerHTML=fmt(cac)+'<small>₽</small>';$('#oChurn').innerHTML=fmt(+uH.value,1)+'<small>%</small>';
+  var rr=$('#rRatio');rr.textContent=fmt(ratio,1)+'×';rr.classList.toggle('low',ratio<3);
+  $('#rLtv').innerHTML=money(ltv);$('#rPay').innerHTML=fmt(pay,1)+'<small>мес</small>';
+  var c1=$('#cRatio');c1.textContent=ratio>=3?'выше порога 3×':'ниже порога 3×';c1.classList.toggle('no',ratio<3);
+  var c2=$('#cPay');c2.textContent=pay<=12?'быстрее 12 месяцев':'дольше 12 месяцев';c2.classList.toggle('no',pay>12);
+  var mx=Math.max(ltv,cac)*1.04;var vc=$('#vCac'),vl=$('#vLtv');vc.style.setProperty('--w',(cac/mx).toFixed(4));vl.style.setProperty('--w',(ltv/mx).toFixed(4));
+  $('span',vc).textContent=fmt(cac)+' ₽';var ls=$('span',vl);ls.textContent=fmt(Math.round(ltv/100)*100)+' ₽';ls.classList.toggle('inside',ltv/mx>.8);
+  $('#payTr .fill').style.setProperty('--w',Math.min(pay,24)/24);$('#payTr .fill').classList.toggle('over',pay>12);
+  $$('.presets button').forEach(function(b){var p=PRE[b.getAttribute('data-p')];b.setAttribute('aria-pressed',String(p[0]===arpu&&p[1]===cac&&Math.abs(p[2]-+uH.value)<.001))});
+  LS.set('ue',[arpu,cac,+uH.value]);
+}
+(function(){var t=$('#payTr'),h='';for(var m=0;m<=24;m+=3){h+='<i class="tk" style="left:'+(m/24*100)+'%"></i><span class="tl" style="left:'+(m/24*100)+'%">'+m+'</span>'}h+='<div class="tgt" style="left:50%"><span>цель: 12 месяцев</span></div>';t.insertAdjacentHTML('beforeend',h)})();
+[uA,uC,uH].forEach(function(el,i){el.addEventListener('input',function(){U[i]=+el.value;renderUE()})});
+$$('.presets button').forEach(function(b){b.addEventListener('click',function(){U=PRE[b.getAttribute('data-p')].slice();renderUE()})});
+renderUE();
+
+/* ===== S9 competitors ===== */
+var CP={us:['Смена','1 990–3 490 ₽ за точку в месяц','Прогноз по чекам кассы и автосборка графика, запуск за один день','Пока нет модуля для производств с трёхсменным циклом','Сетям от 3 до 300 точек в общепите и рознице'],
+  xls:['Таблицы и чаты','Бесплатно, но платит управляющий своим временем','Привычно и гибко, не нужно ничего внедрять','Всё вручную: нет прогноза, проверки отдыха и табеля','Одной точке с 5–7 сотрудниками'],
+  simple:['Онлайн-графики','300–900 ₽ за точку в месяц','Быстрый старт и приложение для сотрудников','Нет прогноза нагрузки и связи с кассой, график собирают руками','Небольшим сетям, где смены не меняются'],
+  erp:['Модули учётных систем','От 150 000 ₽ за внедрение и поддержка','Табель и зарплата в одной системе с бухгалтерией','График вручную, внедрение 2–3 месяца, нет приложения сотрудника','Компаниям, у которых уже есть учётная система'],
+  wfm:['Корпоративные WFM','От 1,5 млн ₽ за внедрение','Сильное прогнозирование и сложные правила','Внедрение от 4 месяцев и команда интеграторов','Федеральным сетям от 300 точек']};
+var cpSel=LS.get('cp','us');if(!CP[cpSel])cpSel='us';
+function renderCP(anim){var d=CP[cpSel];$('#cpN').textContent=d[0];$('#cpP').textContent=d[1];$('#cpPlus').textContent=d[2];$('#cpMinus').textContent=d[3];$('#cpWho').textContent=d[4];
+  $$('#s9 .pt').forEach(function(p){p.setAttribute('aria-pressed',String(p.getAttribute('data-k')===cpSel))});LS.set('cp',cpSel);
+  if(anim&&!RM.matches){var r=$('#s9 .cp-d');r.animate([{opacity:.3,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.23,1,.32,1)'})}}
+$$('#s9 .pt').forEach(function(p){p.addEventListener('click',function(){cpSel=p.getAttribute('data-k');renderCP(true)})});
+renderCP(false);
+
+/* ===== S13 donut ===== */
+var FUNDS=[['Продукт и разработка',40,36,'#FF4A17'],['Продажи и маркетинг',34,30.6,'#141414'],['Внедрение и поддержка',14,12.6,'#6E6E6B'],['Операционные расходы',12,10.8,'#BDBDB9']];
+(function(){var R=77,C=2*Math.PI*R,acc=0,h='';FUNDS.forEach(function(f,k){var len=C*f[1]/100,gap=1.5;h+='<circle class="d'+k+'" cx="100" cy="100" r="'+R+'" stroke="'+f[3]+'" stroke-dasharray="'+(len-gap).toFixed(2)+' '+(C-len+gap).toFixed(2)+'" stroke-dashoffset="'+(-acc).toFixed(2)+'" data-off="'+(-acc).toFixed(2)+'" data-len="'+len.toFixed(2)+'"></circle>';acc+=len});$('#dsegs').innerHTML=h;
+  $('#dlg').innerHTML=FUNDS.map(function(f,k){return '<button type="button" data-k="'+k+'" aria-pressed="false" style="--c:'+f[3]+'"><i></i><span>'+f[0]+'</span><b>'+f[1]+'%</b><span class="m">'+fmt(f[2],f[2]%1?1:0)+' млн ₽</span></button>'}).join('');})();
+var donut=$('#donut');
+function hlFund(k){if(k===null){donut.removeAttribute('data-hl');$('#dcV').textContent='90 млн ₽';$('#dcL').textContent='на что пойдут деньги';$$('#dlg button').forEach(function(b){b.setAttribute('aria-pressed','false')});return}
+  donut.setAttribute('data-hl',k);var f=FUNDS[k];$('#dcV').textContent=fmt(f[2],f[2]%1?1:0)+' млн ₽';$('#dcL').textContent=f[0];$$('#dlg button').forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-k')===k))})}
+$$('#dlg button').forEach(function(b){var k=+b.getAttribute('data-k');b.addEventListener('mouseenter',function(){hlFund(k)});b.addEventListener('focus',function(){hlFund(k)});b.addEventListener('click',function(){hlFund(donut.getAttribute('data-hl')===String(k)?null:k)})});
+$('#dlg').addEventListener('mouseleave',function(){hlFund(null)});
+hooks.s13=function(){if(RM.matches)return;$$('#dsegs circle').forEach(function(c,k){var off=+c.getAttribute('data-off'),len=+c.getAttribute('data-len');c.style.transition='none';c.style.strokeDashoffset=(off+len)+'';c.style.opacity='0';void c.getBoundingClientRect();
+  c.style.transition='stroke-dashoffset .9s cubic-bezier(.65,0,.35,1) '+(300+k*180)+'ms, opacity .3s ease '+(300+k*180)+'ms, stroke-width .2s ease';c.style.strokeDashoffset=off+'';c.style.opacity=''})};
+
+/* contacts */
+$('#copyMail').addEventListener('click',function(){var m='invest@smena-app.ru';function ok(){toast('Почта скопирована: '+m)}function fail(){toast('Почта: '+m)}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(m).then(ok,fail)}else fail()}catch(e){fail()}});
+$('#printBtn').addEventListener('click',function(){try{window.print()}catch(e){}});
+
+function resetAll(){G=cloneG(INIT);renderSch();U=PRE.cur.slice();renderUE();cpSel='us';renderCP(false);hlFund(null);mk.removeAttribute('data-hl');$$('.mrow',mk).forEach(function(x){x.setAttribute('aria-pressed','false')})}
+var h0=fromHash();if(h0!==null)cur=h0;
+layout();
+addEventListener('resize',layout);
+if(mode==='stage'&&!LS.get('hint',false)){setTimeout(function(){toast('<kbd>←</kbd> <kbd>→</kbd> листать, <kbd>O</kbd> все слайды, <kbd>F</kbd> полный экран',4200);LS.set('hint',true)},900)}
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"3de65751054e4e4fa4a90bed90d3aebe","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

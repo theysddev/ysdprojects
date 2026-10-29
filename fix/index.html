@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fix Point — ремонт смартфонов, ноутбуков и планшетов с ценой до визита</title>
+<meta name="description" content="Сервисный центр Fix Point: мастер диагностики онлайн покажет цену и срок ремонта до визита. Смартфоны, ноутбуки, планшеты, смарт-часы. Проверка статуса ремонта по номеру квитанции.">
+<meta property="og:title" content="Fix Point — цена ремонта до того, как вы приедете">
+<meta property="og:description" content="Выберите устройство, модель и поломку — получите стоимость и срок. Статус ремонта по номеру квитанции.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#17191b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317191b'/%3E%3Cpath d='M9 23V9h10M9 16h7' stroke='%23c6f432' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='22' r='2.6' fill='%23c6f432'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --bg:#17191b;
+  --bg2:#1d2023;
+  --panel:#23272a;
+  --panel2:#2a2f33;
+  --line:#353b40;
+  --line2:#464d53;
+  --text:#e9ecee;
+  --muted:#a3acb3;
+  --dim:#7f8890;
+  --lime:#c6f432;
+  --lime2:#d9ff5c;
+  --lime-ink:#151a02;
+  --warn:#ffb547;
+  --ok:#c6f432;
+  --err:#ff7a6b;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --sans:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --wrap:1320px;
+  --gut:clamp(16px,4vw,40px);
+  --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.05}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:0}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--lime);color:var(--lime-ink);padding:10px 14px;border-radius:8px;z-index:100;font-weight:500}
+.skip:focus{top:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;border:1px solid transparent;font-weight:500;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,border-color .2s ease,color .2s ease;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-lime{background:var(--lime);color:var(--lime-ink)}
+.btn-ghost{border-color:var(--line2);background:transparent;color:var(--text)}
+.btn svg{width:18px;height:18px;flex:none}
+@media (hover:hover) and (pointer:fine){
+  .btn-lime:hover{background:var(--lime2)}
+  .btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(23,25,27,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-family:var(--mono);font-weight:700;font-size:18px;letter-spacing:-.02em}
+.logo-mark{width:32px;height:32px;flex:none}
+.logo b{color:var(--lime);font-weight:700}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px;font-weight:400;transition:color .2s ease}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.hdr-phone{font-family:var(--mono);font-size:15px;text-decoration:none;color:var(--text);padding:10px 4px}
+.hdr .btn{min-height:44px;padding:0 16px;font-size:15px}
+.burger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line2);background:transparent;align-items:center;justify-content:center;cursor:pointer}
+.burger span{display:block;width:18px;height:2px;background:var(--text);position:relative;transition:transform .25s var(--ease)}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text);transition:transform .25s var(--ease)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.mnav{display:none}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--lime)}}
+@media (max-width:1080px){.nav{display:none}.burger{display:inline-flex}.hdr-phone{display:none}}
+@media (max-width:1080px){
+  .mnav{display:block;position:fixed;left:0;right:0;top:68px;background:var(--bg);border-bottom:1px solid var(--line);padding:12px var(--gut) 20px;transform:translateY(-8px);opacity:0;pointer-events:none;visibility:hidden;transition:opacity .2s var(--ease),transform .25s var(--ease),visibility 0s .25s;z-index:49}
+  .mnav.open{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .2s var(--ease),transform .25s var(--ease)}
+  .mnav a{display:flex;align-items:center;min-height:50px;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px}
+  .mnav .mono{color:var(--lime);margin-top:14px;display:block}
+}
+@media (max-width:520px){.hdr .btn-status-text{display:none}.hdr .wrap{gap:12px}}
+
+/* hero */
+.hero{position:relative;padding:clamp(40px,6vw,88px) 0 clamp(48px,6vw,96px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 10%,transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(28px,4vw,64px);align-items:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;color:var(--muted);margin-bottom:28px;padding:8px 12px 8px 10px;border:1px solid var(--line2);border-radius:999px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(198,244,50,.16);flex:none}
+.hero h1{font-size:clamp(40px,6.1vw,92px);font-weight:600;letter-spacing:-.045em;line-height:.98}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.hero h1 .mono{animation:blink 1.1s steps(1) infinite;font-weight:500;letter-spacing:-.06em;color:var(--lime);font-size:.86em}
+.hero-lead{margin-top:28px;max-width:560px;font-size:clamp(17px,1.4vw,20px);color:var(--muted);line-height:1.55}
+.hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-facts{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.hero-facts li{padding:18px 18px 0 0}
+.hero-facts li+li{padding-left:18px;border-left:1px solid var(--line)}
+.hero-facts b{display:block;font-family:var(--mono);font-weight:500;color:var(--text);font-size:15px}
+.hero-facts span{display:block;font-size:14px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+.hero-visual{position:relative;min-height:540px}
+.hero-photo{position:absolute;right:0;top:0;width:86%;height:86%;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#2c3236,#1f2326)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.05)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(23,25,27,.7))}
+.ticket{position:absolute;left:0;bottom:0;width:min(400px,78%);background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:20px 20px 18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);font-family:var(--mono);font-size:13.5px}
+.ticket-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px dashed var(--line2);margin-bottom:12px}
+.ticket-top strong{font-weight:700;font-size:16px;color:var(--text)}
+.ticket-top span{color:var(--muted)}
+.tl{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:7px 0;color:var(--muted)}
+.tl i{width:10px;height:10px;border-radius:50%;border:2px solid var(--line2);justify-self:center}
+.tl.done i{background:var(--lime);border-color:var(--lime)}
+.tl.now i{border-color:var(--lime);box-shadow:0 0 0 4px rgba(198,244,50,.18)}
+.tl.done,.tl.now{color:var(--text)}
+.tl time{color:var(--dim);font-size:12.5px}
+.ticket-bar{margin-top:12px;height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.ticket-bar span{display:block;height:100%;width:100%;background:var(--lime);transform-origin:left;transform:scaleX(.62);border-radius:6px}
+.js .ticket .tl{opacity:0;transform:translateY(6px)}
+.js .ticket.play .tl{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.js .ticket.play .tl:nth-child(2){transition-delay:.25s}
+.js .ticket.play .tl:nth-child(3){transition-delay:.45s}
+.js .ticket.play .tl:nth-child(4){transition-delay:.65s}
+.js .ticket.play .tl:nth-child(5){transition-delay:.85s}
+.js .ticket.play .tl:nth-child(6){transition-delay:1.05s}
+.js .ticket .ticket-bar span{transform:scaleX(0)}
+.js .ticket.play .ticket-bar span{transform:scaleX(.62);transition:transform 1.4s var(--ease) .4s}
+.chip-float{position:absolute;right:4%;top:5%;background:var(--lime);color:var(--lime-ink);font-family:var(--mono);font-weight:700;font-size:14px;padding:10px 14px;border-radius:10px}
+
+/* sections */
+.sec{padding:clamp(72px,9vw,128px) 0;position:relative}
+.sec-alt{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.sec-head h2{font-size:clamp(32px,4.4vw,60px);letter-spacing:-.04em}
+.sec-head p{color:var(--muted);max-width:520px;font-size:18px}
+.idx{font-family:var(--mono);color:var(--lime);font-size:14px;display:block;margin-bottom:18px}
+
+/* wizard */
+.wiz{display:grid;grid-template-columns:320px minmax(0,1fr);border:1px solid var(--line2);border-radius:22px;overflow:hidden;background:var(--panel)}
+.wiz-log{background:var(--bg);border-right:1px solid var(--line);padding:24px 20px;display:flex;flex-direction:column;gap:4px}
+.wiz-log-title{font-family:var(--mono);font-size:13px;color:var(--dim);margin:0 0 12px 8px}
+.step-btn{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;width:100%;text-align:left;padding:12px 10px;border-radius:12px;border:1px solid transparent;background:transparent;cursor:pointer;min-height:64px;transition:background-color .2s ease,border-color .2s ease}
+.step-btn:disabled{cursor:default;opacity:.55}
+.step-num{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-family:var(--mono);font-size:14px;border:1px solid var(--line2);color:var(--muted);transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.step-btn .t{display:block;font-size:15px;font-weight:500;color:var(--text);line-height:1.3;padding-top:1px}
+.step-btn .v{display:block;font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:3px;line-height:1.35;word-break:break-word}
+.step-btn[aria-current="step"]{background:var(--panel);border-color:var(--line2)}
+.step-btn[aria-current="step"] .step-num{border-color:var(--lime);color:var(--lime)}
+.step-btn.done .step-num{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+@media (hover:hover) and (pointer:fine){.step-btn:not(:disabled):not([aria-current="step"]):hover{background:var(--panel)}}
+.wiz-help{margin-top:auto;padding:18px 10px 4px;border-top:1px dashed var(--line2);font-size:14px;color:var(--muted);line-height:1.5}
+.wiz-help a{color:var(--lime);font-family:var(--mono);text-decoration:none;display:inline-block;margin-top:6px;padding:6px 0}
+.wiz-body{padding:clamp(22px,3vw,40px);min-height:560px;display:flex;flex-direction:column}
+.wiz-q{font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;margin-bottom:8px}
+.wiz-sub{color:var(--muted);margin-bottom:26px;font-size:16px}
+.pane{animation:pane .38s var(--ease)}
+@keyframes pane{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dev-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.opt{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:18px;border-radius:14px;border:1px solid var(--line2);background:var(--bg2);text-align:left;cursor:pointer;min-height:44px;transition:border-color .2s ease,background-color .2s ease,transform .16s var(--ease)}
+.opt:active{transform:scale(.97)}
+.opt svg{width:44px;height:44px;stroke:var(--text);transition:stroke .2s ease}
+.opt .on{font-size:17px;font-weight:500}
+.opt .os{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.opt[aria-pressed="true"]{border-color:var(--lime);background:#2a3220}
+.opt[aria-pressed="true"] svg{stroke:var(--lime)}
+@media (hover:hover) and (pointer:fine){.opt:hover{border-color:var(--muted)}}
+.dev-grid .opt{min-height:176px;justify-content:space-between}
+.brand-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.pill{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line2);background:transparent;cursor:pointer;font-size:15px;transition:border-color .2s ease,background-color .2s ease,color .2s ease}
+.pill:active{transform:scale(.97)}
+.pill[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+@media (hover:hover) and (pointer:fine){.pill:hover{border-color:var(--text)}}
+.search{position:relative;margin-bottom:18px}
+.search input{width:100%;min-height:52px;padding:0 16px 0 46px;border-radius:12px;border:1px solid var(--line2);background:var(--bg);font-family:var(--mono);font-size:15px}
+.search input::placeholder{color:var(--dim)}
+.search svg{position:absolute;left:16px;top:50%;width:18px;height:18px;transform:translateY(-50%);stroke:var(--muted)}
+.model-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.model{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:54px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);cursor:pointer;text-align:left;font-size:15px;transition:border-color .2s ease,background-color .2s ease}
+.model:active{transform:scale(.98)}
+.model .mono{font-size:12px;color:var(--dim)}
+.model[aria-pressed="true"]{border-color:var(--lime);background:#2a3220}
+@media (hover:hover) and (pointer:fine){.model:hover{border-color:var(--muted)}}
+.empty{padding:22px;border:1px dashed var(--line2);border-radius:12px;color:var(--muted);font-size:15px}
+.issues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.issue{display:grid;grid-template-columns:24px 1fr auto;gap:14px;align-items:center;min-height:62px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);cursor:pointer;transition:border-color .2s ease,background-color .2s ease}
+.issue input{position:absolute;opacity:0;width:1px;height:1px}
+.issue .box{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--line2);display:grid;place-items:center;transition:background-color .15s ease,border-color .15s ease}
+.issue .box svg{width:14px;height:14px;stroke:var(--lime-ink);opacity:0;transform:scale(.6);transition:opacity .15s ease,transform .2s var(--ease)}
+.issue .in{font-size:15px;line-height:1.3}
+.issue .in small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.issue .pr{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.issue:has(input:checked){border-color:var(--lime);background:#2a3220}
+.issue input:checked+.box{background:var(--lime);border-color:var(--lime)}
+.issue input:checked+.box svg{opacity:1;transform:none}
+.issue input:focus-visible+.box{outline:2px solid var(--lime);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.issue:hover{border-color:var(--muted)}}
+.wiz-foot{margin-top:auto;padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.wiz-foot .hint{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.back{background:none;border:0;color:var(--muted);cursor:pointer;min-height:44px;padding:0 4px;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.back svg{width:16px;height:16px}
+@media (hover:hover) and (pointer:fine){.back:hover{color:var(--text)}}
+
+.result{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px}
+.res-main{background:var(--bg);border:1px solid var(--line2);border-radius:16px;padding:24px}
+.res-model{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.res-price{font-family:var(--mono);font-weight:500;font-size:clamp(34px,4.2vw,56px);letter-spacing:-.04em;line-height:1.05;margin:14px 0 6px;color:var(--lime)}
+.res-price small{font-size:.42em;color:var(--muted);letter-spacing:0;margin-left:6px}
+.res-time{font-size:16px;color:var(--text)}
+.res-time b{font-family:var(--mono);font-weight:500}
+.seg{display:inline-grid;grid-template-columns:1fr 1fr;padding:4px;border-radius:12px;background:var(--panel2);margin:22px 0 4px;width:100%}
+.seg button{min-height:44px;border:0;border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;font-size:14.5px;padding:0 10px;transition:background-color .2s ease,color .2s ease}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--bg);font-weight:500}
+.seg-note{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.res-lines{margin-top:18px;border-top:1px dashed var(--line2)}
+.res-lines li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.res-lines li span:last-child{font-family:var(--mono);font-size:14px;white-space:nowrap;color:var(--muted)}
+.res-side{display:flex;flex-direction:column;gap:12px}
+.res-card{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg2)}
+.res-card h4{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px}
+.res-card p{font-size:14.5px;color:var(--muted);line-height:1.5}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{font-size:13.5px;color:var(--muted)}
+.field input,.field select,.field textarea{min-height:50px;padding:0 14px;border-radius:10px;border:1px solid var(--line2);background:var(--bg);font-size:16px;width:100%}
+.field textarea{padding:12px 14px;min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--lime)}
+.field .err{font-size:13px;color:var(--err);min-height:0}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.slot{min-height:44px;border-radius:10px;border:1px solid var(--line2);background:transparent;cursor:pointer;font-family:var(--mono);font-size:13px;line-height:1.2;padding:4px}
+.slot[aria-pressed="true"]{background:var(--lime);color:var(--lime-ink);border-color:var(--lime);font-weight:700}
+.done-box{text-align:left;padding:8px 0}
+.res-card.done-box{padding:22px}
+.done-box .ok{width:52px;height:52px;border-radius:14px;background:var(--lime);display:grid;place-items:center;margin-bottom:16px}
+.done-box .ok svg{width:26px;height:26px;stroke:var(--lime-ink)}
+.done-box h4{font-size:20px}
+.done-box .mono{color:var(--lime)}
+
+/* status */
+.status-wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.status-form{background:var(--panel);border:1px solid var(--line2);border-radius:20px;padding:clamp(22px,3vw,34px)}
+.status-form h3{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.03em}
+.status-form p{color:var(--muted);margin:10px 0 22px;font-size:16px}
+.rcpt{display:flex;gap:8px}
+.rcpt-in{flex:1;display:flex;align-items:center;min-height:56px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);padding-left:16px;font-family:var(--mono);font-size:18px;transition:border-color .2s ease}
+.rcpt-in:focus-within{border-color:var(--lime)}
+.rcpt-in span{color:var(--muted)}
+.rcpt-in input{flex:1;min-width:0;border:0;background:transparent;height:54px;padding:0 10px 0 2px;font-family:var(--mono);font-size:18px;letter-spacing:.06em}
+.rcpt-in input:focus{outline:none}
+.rcpt .btn{min-height:56px}
+.try{margin-top:16px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.try button{font-family:var(--mono);font-size:13px;min-height:40px;padding:0 12px;border-radius:8px;border:1px dashed var(--line2);background:transparent;color:var(--text);cursor:pointer}
+@media (hover:hover) and (pointer:fine){.try button:hover{border-color:var(--lime);color:var(--lime)}}
+.status-out{min-height:420px;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3vw,34px);background:var(--bg)}
+.st-empty{height:100%;display:flex;flex-direction:column;justify-content:center;gap:14px;color:var(--muted);min-height:360px}
+.st-empty svg{width:56px;height:56px;stroke:var(--line2)}
+.st-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px dashed var(--line2)}
+.st-head .num{font-family:var(--mono);font-size:22px;font-weight:700}
+.st-head .dev{color:var(--muted);font-size:15px;margin-top:4px}
+.badge{display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:0 12px;border-radius:999px;font-family:var(--mono);font-size:13px;border:1px solid currentColor}
+.badge.ok{color:var(--lime)}
+.badge.wait{color:var(--warn)}
+.badge.work{color:#8fd3ff}
+.st-steps{margin-top:22px;position:relative}
+.st-step{display:grid;grid-template-columns:28px 1fr auto;gap:14px;padding:12px 0;position:relative}
+.st-step::before{content:"";position:absolute;left:13px;top:34px;bottom:-12px;width:2px;background:var(--line)}
+.st-step:last-child::before{display:none}
+.st-step.done::before{background:var(--lime)}
+.st-step i{width:28px;height:28px;border-radius:50%;border:2px solid var(--line2);display:grid;place-items:center;background:var(--bg);position:relative;z-index:1}
+.st-step.done i{background:var(--lime);border-color:var(--lime)}
+.st-step.done i svg{width:14px;height:14px;stroke:var(--lime-ink)}
+.st-step.now i{border-color:var(--lime)}
+.st-step.now i::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--lime);animation:pulse 1.6s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.st-step .s1{font-weight:500;font-size:16px}
+.st-step .s2{font-size:14px;color:var(--muted);margin-top:2px;line-height:1.45}
+.st-step time{font-family:var(--mono);font-size:13px;color:var(--dim);white-space:nowrap}
+.st-step.todo .s1{color:var(--dim)}
+.st-note{margin-top:18px;padding:16px;border-radius:12px;background:var(--panel);font-size:15px;color:var(--muted);line-height:1.5}
+.st-note b{color:var(--text);font-weight:500}
+.st-err{color:var(--err);font-size:15px;margin-top:12px;min-height:22px}
+.st-anim{animation:pane .4s var(--ease)}
+
+/* process */
+.proc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid var(--line2);counter-reset:p}
+.proc li{padding:26px 22px 8px 0;position:relative}
+.proc li+li{padding-left:22px;border-left:1px solid var(--line)}
+.proc .pn{font-family:var(--mono);font-size:13px;color:var(--lime);display:block;margin-bottom:34px}
+.proc h3{font-size:21px;letter-spacing:-.02em;margin-bottom:10px}
+.proc p{font-size:15px;color:var(--muted);line-height:1.5}
+.proc-photo{margin-top:56px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+.ph{border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#2a2f33,#1f2326);position:relative}
+.ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3)}
+.proc-photo .ph{aspect-ratio:16/9}
+.proc-photo .ph:last-child{aspect-ratio:auto}
+.ph figcaption{position:absolute;left:14px;bottom:14px;font-family:var(--mono);font-size:12.5px;background:rgba(23,25,27,.86);padding:8px 10px;border-radius:8px;color:var(--text)}
+
+/* prices */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tab{min-height:46px;padding:0 18px;border-radius:10px;border:1px solid var(--line2);background:transparent;cursor:pointer;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.tab[aria-selected="true"]{background:var(--lime);color:var(--lime-ink);border-color:var(--lime);font-weight:500}
+@media (hover:hover) and (pointer:fine){.tab[aria-selected="false"]:hover{border-color:var(--text)}}
+.price-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+.ptable{width:100%;border-collapse:collapse;font-size:16px}
+.ptable th{font-weight:400;color:var(--dim);font-size:13px;text-align:left;padding:0 0 12px;font-family:var(--mono)}
+.ptable th:nth-child(n+2),.ptable td:nth-child(n+2){text-align:right}
+.ptable td{padding:16px 0;border-top:1px solid var(--line);vertical-align:top}
+.ptable td:first-child{padding-right:12px}
+.ptable td small{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.ptable td.mono{font-size:15px;white-space:nowrap;padding-left:12px}
+.ptable td.mono.l{color:var(--lime)}
+.price-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:14px}
+.price-side .ph{aspect-ratio:4/3}
+.price-note{border:1px solid var(--line);border-radius:16px;padding:20px;font-size:15px;color:var(--muted);line-height:1.55}
+.price-note b{color:var(--text);font-weight:500}
+
+/* rules */
+.rules{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.rules .ph{aspect-ratio:4/5;position:sticky;top:96px}
+.rule{padding:26px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:56px 1fr;gap:18px}
+.rule:last-child{border-bottom:1px solid var(--line)}
+.rule svg{width:40px;height:40px;stroke:var(--lime)}
+.rule h3{font-size:22px;letter-spacing:-.02em;margin-bottom:8px}
+.rule p{color:var(--muted);font-size:16px}
+
+/* faq */
+.faq{max-width:900px}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:72px;padding:16px 0;background:none;border:0;cursor:pointer;text-align:left;font-size:clamp(17px,1.6vw,20px);font-weight:500;letter-spacing:-.01em}
+.qa button svg{width:22px;height:22px;stroke:var(--lime);flex:none;transition:transform .25s var(--ease)}
+.qa button[aria-expanded="true"] svg{transform:rotate(45deg)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 0 22px;color:var(--muted);max-width:720px}
+.qa.open .ans{grid-template-rows:1fr}
+
+/* contacts */
+.cont{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.map{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line2);background:var(--bg2);display:flex;flex-direction:column}
+.map-vis{position:relative;flex:1;min-height:300px}
+.map-vis svg{position:absolute;inset:0;width:100%;height:100%}
+.map-card{margin:0 16px 16px;background:var(--panel);border:1px solid var(--line2);border-radius:14px;padding:18px;display:grid;gap:6px}
+.map-card b{font-size:18px;font-weight:500}
+.map-card span{color:var(--muted);font-size:15px}
+.map-card a{font-family:var(--mono);text-decoration:none;color:var(--lime);display:inline-flex;align-items:center;min-height:44px;margin-right:14px}
+.cform{background:var(--panel);border:1px solid var(--line2);border-radius:20px;padding:clamp(22px,3vw,34px)}
+.cform h3{font-size:clamp(24px,2.4vw,32px);letter-spacing:-.03em;margin-bottom:8px}
+#cfBody>p{color:var(--muted);margin-bottom:22px;font-size:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);margin:6px 0 18px;cursor:pointer;min-height:44px;padding-top:4px}
+.check input{width:20px;height:20px;accent-color:var(--lime);margin:2px 0 0;flex:none}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:15px;margin-top:6px}
+.hours dt{color:var(--muted)}
+.hours dd{margin:0;font-family:var(--mono);font-size:14px}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding:40px 0 48px;font-size:14px;color:var(--muted)}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.foot a{color:var(--lime)}
+.foot p+p{margin-top:6px}
+.foot .logo{color:var(--text);margin-bottom:14px}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(18px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0) * 80ms)}
+
+/* responsive */
+@media (max-width:1180px){
+  .dev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .model-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proc{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .proc li:nth-child(4){padding-left:0;border-left:0}
+  .proc li{border-top:1px solid var(--line)}
+}
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-visual{min-height:440px}
+  .sec-head{grid-template-columns:1fr;gap:16px}
+  .wiz{grid-template-columns:1fr}
+  .wiz-log{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;overflow-x:auto;padding:14px;gap:6px;scrollbar-width:none}
+  .wiz-log::-webkit-scrollbar{display:none}
+  .wiz-log-title,.wiz-help{display:none}
+  .step-btn{min-width:200px;flex:none}
+  .wiz-body{min-height:0}
+  .result{grid-template-columns:1fr}
+  .status-wrap{grid-template-columns:1fr}
+  .status-out{min-height:0}
+  .st-empty{min-height:200px}
+  .price-grid{grid-template-columns:1fr}
+  .price-side{position:static;display:grid;grid-template-columns:1fr 1fr}
+  .rules{grid-template-columns:1fr}
+  .rules .ph{position:static;aspect-ratio:16/10}
+  .cont{grid-template-columns:1fr}
+  .proc-photo{grid-template-columns:1fr}
+  .proc-photo .ph:last-child{aspect-ratio:16/9}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .hero-facts{grid-template-columns:1fr}
+  .hero-facts li+li{padding-left:0;border-left:0;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+  .hero-facts li{padding:14px 0 0}
+  .hero-visual{min-height:400px}
+  .hero-photo{width:100%;height:78%}
+  .ticket{width:92%}
+  .chip-float{display:none}
+  .dev-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .dev-grid .opt{min-height:140px;padding:14px}
+  .opt svg{width:36px;height:36px}
+  .model-list{grid-template-columns:1fr}
+  .issues{grid-template-columns:1fr}
+  .proc{grid-template-columns:1fr}
+  .proc li,.proc li+li{padding:22px 0 18px;border-left:0}
+  .proc .pn{margin-bottom:12px}
+  .price-side{grid-template-columns:1fr}
+  .rcpt{flex-direction:column}
+  .row2{grid-template-columns:1fr}
+  .ptable td small{font-size:13px}
+  .rule{grid-template-columns:1fr;gap:10px}
+  .st-step{grid-template-columns:28px 1fr}
+  .st-step time{grid-column:2}
+  .wiz-foot .btn{width:100%}
+  .hero-cta .btn{flex:1 1 100%}
+}
+@media (max-width:400px){
+  .hero h1{font-size:37px}
+  .slots{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv,.js .ticket .tl{opacity:1;transform:none}
+  .js .ticket .ticket-bar span{transform:scaleX(.62)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Fix Point, на главную">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#23272a"/><path d="M9 23V9h10M9 16h7" stroke="#c6f432" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="#c6f432"/></svg>
+      <span>Fix Point<b>_</b></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#calc">Расчёт ремонта</a>
+      <a href="#status">Статус</a>
+      <a href="#prices">Цены</a>
+      <a href="#process">Как работаем</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="hdr-right">
+      <a class="hdr-phone" href="tel:+74950000000">+7 (495) 000-00-00</a>
+      <a class="btn btn-ghost" href="#status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span class="btn-status-text">Статус ремонта</span></a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+  <a href="#calc">Расчёт ремонта</a>
+  <a href="#status">Статус ремонта</a>
+  <a href="#prices">Цены</a>
+  <a href="#process">Как работаем</a>
+  <a href="#contacts">Контакты</a>
+  <a class="mono" href="tel:+74950000000">+7 (495) 000-00-00</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="hero-kicker"><span class="dot" aria-hidden="true"></span>Открыто сегодня до&nbsp;21:00, м.&nbsp;Савёловская</p>
+      <h1>Цена ремонта&nbsp;— до&nbsp;того, как вы&nbsp;приедете<span class="mono">_</span></h1>
+      <p class="hero-lead">Смартфоны, ноутбуки, планшеты и&nbsp;смарт-часы. Выберите устройство и&nbsp;что с&nbsp;ним случилось&nbsp;— мастер диагностики покажет стоимость и&nbsp;срок. Уже сдали технику? Проверьте, на&nbsp;каком она этапе, по&nbsp;номеру квитанции.</p>
+      <div class="hero-cta">
+        <a class="btn btn-lime" href="#calc">Рассчитать ремонт
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#status">Проверить статус</a>
+      </div>
+      <ul class="hero-facts">
+        <li><b>0 ₽ диагностика</b><span>если ремонтируем у&nbsp;нас</span></li>
+        <li><b>Цена фиксируется</b><span>после диагностики, письменно</span></li>
+        <li><b>Старая деталь</b><span>отдаём вам вместе с&nbsp;устройством</span></li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1550041473-d296a3a8a18a?auto=format&fit=crop&w=1100&h=1200&q=72" width="1100" height="1200" alt="Мастер меняет деталь в смартфоне на рабочем столе" fetchpriority="high">
+      </div>
+      <div class="ticket" id="heroTicket" aria-label="Пример квитанции с этапами ремонта">
+        <div class="ticket-top"><strong>FP-240117</strong><span>iPhone 13 · экран</span></div>
+        <ul>
+          <li class="tl done"><i></i><span>Принят, описан внешний вид</span><time>10:12</time></li>
+          <li class="tl done"><i></i><span>Диагностика завершена</span><time>10:40</time></li>
+          <li class="tl done"><i></i><span>Цена согласована: 9 400 ₽</span><time>10:46</time></li>
+          <li class="tl now"><i></i><span>Замена дисплея</span><time>сейчас</time></li>
+          <li class="tl"><i></i><span>Проверка и выдача</span><time>~12:00</time></li>
+        </ul>
+        <div class="ticket-bar" aria-hidden="true"><span></span></div>
+      </div>
+      <div class="chip-float" aria-hidden="true">&gt; ready 12:00</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="calc" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Мастер диагностики</span><h2 id="calc-h">Четыре шага до&nbsp;цены и&nbsp;срока</h2></div>
+      <p>Расчёт на&nbsp;основе нашего прайса и&nbsp;среднего времени работ по&nbsp;вашей модели. Точную сумму мастер назовёт после бесплатной диагностики и&nbsp;не&nbsp;изменит её без вашего согласия.</p>
+    </div>
+    <div class="wiz rv">
+      <div class="wiz-log" role="list" aria-label="Шаги расчёта">
+        <p class="wiz-log-title">// ваш запрос</p>
+        <div role="listitem"><button class="step-btn" type="button" data-step="0"><span class="step-num">1</span><span><span class="t">Устройство</span><span class="v" data-v="0">не выбрано</span></span></button></div>
+        <div role="listitem"><button class="step-btn" type="button" data-step="1" disabled><span class="step-num">2</span><span><span class="t">Модель</span><span class="v" data-v="1">—</span></span></button></div>
+        <div role="listitem"><button class="step-btn" type="button" data-step="2" disabled><span class="step-num">3</span><span><span class="t">Что случилось</span><span class="v" data-v="2">—</span></span></button></div>
+        <div role="listitem"><button class="step-btn" type="button" data-step="3" disabled><span class="step-num">4</span><span><span class="t">Цена и&nbsp;срок</span><span class="v" data-v="3">—</span></span></button></div>
+        <div class="wiz-help">Не&nbsp;нашли свою модель или поломку? Опишите проблему по&nbsp;телефону&nbsp;— сориентируем сразу.<br><a href="tel:+74950000000">+7 (495) 000-00-00</a></div>
+      </div>
+      <div class="wiz-body" id="wizBody" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="status" aria-labelledby="status-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Статус ремонта</span><h2 id="status-h">Где сейчас ваше устройство</h2></div>
+      <p>Номер напечатан в&nbsp;правом верхнем углу квитанции и&nbsp;пришёл в&nbsp;СМС при приёме. Звонить и&nbsp;ждать на&nbsp;линии не&nbsp;нужно.</p>
+    </div>
+    <div class="status-wrap">
+      <form class="status-form rv" id="statusForm" novalidate>
+        <h3>Проверить по&nbsp;номеру квитанции</h3>
+        <p>Шесть цифр после FP. Без регистрации и&nbsp;паролей.</p>
+        <label class="sr" for="rcpt">Номер квитанции</label>
+        <div class="rcpt">
+          <div class="rcpt-in"><span aria-hidden="true">FP-</span><input id="rcpt" name="rcpt" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="000000" aria-describedby="rcptErr"></div>
+          <button class="btn btn-lime" type="submit">Проверить</button>
+        </div>
+        <p class="st-err" id="rcptErr" role="alert"></p>
+        <div class="try"><span>Демо-номера:</span>
+          <button type="button" data-try="240117">FP-240117</button>
+          <button type="button" data-try="240233">FP-240233</button>
+          <button type="button" data-try="240305">FP-240305</button>
+        </div>
+      </form>
+      <div class="status-out rv" style="--d:1" id="statusOut" aria-live="polite">
+        <div class="st-empty">
+          <svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h24v36l-6-4-6 4-6-4-6 4z"/><path d="M18 16h12M18 23h12M18 30h7"/></svg>
+          <p>Введите номер квитанции&nbsp;— здесь появится путь вашего устройства: от&nbsp;приёма до&nbsp;выдачи, с&nbsp;временем каждого этапа.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="prices" aria-labelledby="prices-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Цены</span><h2 id="prices-h">Частые ремонты и&nbsp;сколько они стоят</h2></div>
+      <p>Цены «от»&nbsp;— для базовых моделей с&nbsp;работой и&nbsp;деталью. Для конкретной модели точнее посчитает мастер диагностики выше.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Тип устройства" id="priceTabs"></div>
+    <div class="price-grid">
+      <div id="pricePanel" role="tabpanel" aria-live="polite"></div>
+      <aside class="price-side">
+        <figure class="ph" style="margin:0">
+          <img src="https://images.unsplash.com/photo-1758186378952-68ac2d1c8d39?auto=format&fit=crop&w=760&h=570&q=72" width="760" height="570" loading="lazy" alt="Два смартфона на столе после ремонта">
+        </figure>
+        <div class="price-note"><b>Детали на&nbsp;выбор.</b> Для большинства ремонтов есть оригинальная деталь и&nbsp;совместимая подешевле. Покажем обе, объясним разницу&nbsp;— решаете вы.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="process" aria-labelledby="process-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Как работаем</span><h2 id="process-h">Путь устройства по&nbsp;сервису</h2></div>
+      <p>Каждый этап фиксируется в&nbsp;квитанции. Вы&nbsp;видите его в&nbsp;статусе онлайн и&nbsp;получаете СМС, когда нужен ваш ответ.</p>
+    </div>
+    <ol class="proc">
+      <li class="rv"><span class="pn">01</span><h3>Приём</h3><p>Описываем внешний вид, комплектацию и&nbsp;неисправность с&nbsp;ваших слов. Фотографируем корпус при вас.</p></li>
+      <li class="rv" style="--d:1"><span class="pn">02</span><h3>Диагностика</h3><p>Разбираем, тестируем плату, батарею, шлейфы. Обычно занимает от&nbsp;20&nbsp;минут до&nbsp;пары часов.</p></li>
+      <li class="rv" style="--d:2"><span class="pn">03</span><h3>Согласование</h3><p>Звоним с&nbsp;точной ценой и&nbsp;сроком. Без вашего «да» к&nbsp;ремонту не&nbsp;приступаем.</p></li>
+      <li class="rv" style="--d:3"><span class="pn">04</span><h3>Ремонт</h3><p>Меняем деталь, чистим, пропаиваем. Если нужна запчасть под заказ&nbsp;— статус покажет дату поставки.</p></li>
+      <li class="rv" style="--d:4"><span class="pn">05</span><h3>Проверка и&nbsp;выдача</h3><p>Тестируем по&nbsp;чек-листу при вас, отдаём старую деталь и&nbsp;квитанцию с&nbsp;условиями гарантии.</p></li>
+    </ol>
+    <div class="proc-photo">
+      <figure class="ph rv" style="margin:0">
+        <img src="https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1100&h=620&q=72" width="1100" height="620" loading="lazy" alt="Плата электронного устройства крупным планом">
+        <figcaption>Диагностика платы под микроскопом</figcaption>
+      </figure>
+      <figure class="ph rv" style="margin:0;--d:1">
+        <img src="https://images.unsplash.com/photo-1769085794153-54fd3d57efaf?auto=format&fit=crop&w=760&h=620&q=72" width="760" height="620" loading="lazy" alt="Внутренние компоненты ноутбука при разборке">
+        <figcaption>Чистка системы охлаждения ноутбука</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" aria-labelledby="rules-h">
+  <div class="wrap rules">
+    <figure class="ph rv" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1639776738932-956082f0b704?auto=format&fit=crop&w=900&h=1125&q=72" width="900" height="1125" loading="lazy" alt="Мастер в синих перчатках работает с устройством">
+    </figure>
+    <div>
+      <span class="idx">Правила сервиса</span>
+      <h2 id="rules-h" style="font-size:clamp(32px,4.4vw,60px);letter-spacing:-.04em;margin-bottom:36px">Четыре вещи, которые мы обещаем каждому</h2>
+      <div class="rule rv">
+        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="26" height="30" rx="3"/><path d="M13 14h14M13 20h14M13 26h8"/></svg>
+        <div><h3>Цена на&nbsp;бумаге</h3><p>После диагностики сумма вписывается в&nbsp;квитанцию. Если в&nbsp;процессе найдём что-то ещё&nbsp;— сначала позвоним, потом будем делать.</p></div>
+      </div>
+      <div class="rule rv">
+        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5l12 5v9c0 8-5 13-12 16C13 32 8 27 8 19v-9z"/><path d="M15 20l4 4 7-8"/></svg>
+        <div><h3>Ваши данные не&nbsp;трогаем</h3><p>Пароль просим, только если без него не&nbsp;проверить работу. Можно включить режим ремонта или проверить при вас.</p></div>
+      </div>
+      <div class="rule rv">
+        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 28l10-10 4 4 10-10"/><path d="M25 12h7v7"/><path d="M8 34h24"/></svg>
+        <div><h3>Старая деталь&nbsp;— ваша</h3><p>Отдаём заменённую деталь вместе с&nbsp;устройством. Так видно, что замена действительно была.</p></div>
+      </div>
+      <div class="rule rv">
+        <svg viewBox="0 0 40 40" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M20 12v8l5 4"/></svg>
+        <div><h3>Срок называем заранее</h3><p>Если запчасть задерживается, статус ремонта обновится, а&nbsp;мы&nbsp;напишем новую дату. Без «позвоните завтра».</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Вопросы</span><h2 id="faq-h">Что спрашивают перед ремонтом</h2></div>
+      <p>Не&nbsp;нашли ответ&nbsp;— напишите или позвоните, ответит мастер, а&nbsp;не&nbsp;скрипт.</p>
+    </div>
+    <div class="faq" id="faq">
+      <div class="qa"><button type="button" aria-expanded="false">Сколько стоит диагностика?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="ans"><div><p>Если ремонт делаем мы&nbsp;— бесплатно. Если после диагностики вы&nbsp;решили не&nbsp;ремонтировать, диагностика стоит 900&nbsp;₽ для смартфонов и&nbsp;часов, 1&nbsp;500&nbsp;₽ для ноутбуков.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Можно ли подождать, пока чините?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="ans"><div><p>Да, для замены экрана, батареи, разъёма и&nbsp;стекла камеры на&nbsp;популярных моделях&nbsp;— если деталь есть в&nbsp;наличии. Мастер диагностики показывает примерное время, а&nbsp;в&nbsp;зоне ожидания есть розетки и&nbsp;кофе.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Что если устройство после воды?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="ans"><div><p>Выключите его и&nbsp;не&nbsp;заряжайте, не&nbsp;сушите феном и&nbsp;не&nbsp;кладите в&nbsp;рис. Привезите как можно скорее: чем раньше почистить плату, тем выше шанс обойтись без замены деталей.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Есть ли гарантия на&nbsp;ремонт?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="ans"><div><p>Да, на&nbsp;работу и&nbsp;установленные детали. Срок зависит от&nbsp;типа детали и&nbsp;указывается в&nbsp;квитанции при выдаче&nbsp;— до&nbsp;начала ремонта мастер скажет его заранее.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Можно ли сдать устройство без квитанции обратно?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="ans"><div><p>Если квитанция потерялась, устройство выдадим по&nbsp;паспорту владельца, указанного при приёме. Номер квитанции также можно найти в&nbsp;СМС.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="contacts" aria-labelledby="cont-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="idx">Контакты</span><h2 id="cont-h">Приезжайте или оставьте заявку</h2></div>
+      <p>Можно без записи. С&nbsp;заявкой мастер заранее проверит наличие детали и&nbsp;оставит для вас время.</p>
+    </div>
+    <div class="cont">
+      <div class="map rv" role="img" aria-label="Схема проезда: 4 минуты пешком от метро Савёловская">
+        <div class="map-vis"><svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="460" fill="#1d2023"/>
+          <g stroke="#2c3135" stroke-width="18" fill="none">
+            <path d="M-20 120 L620 90"/><path d="M-20 300 L620 330"/><path d="M180 -20 L150 480"/><path d="M430 -20 L470 480"/>
+          </g>
+          <g stroke="#262a2e" stroke-width="8" fill="none"><path d="M-20 210 L620 215"/><path d="M300 -20 L310 480"/></g>
+          <g fill="#23272a" stroke="#353b40">
+            <rect x="200" y="135" width="85" height="60" rx="4"/><rect x="200" y="230" width="85" height="55" rx="4"/><rect x="325" y="130" width="90" height="70" rx="4"/><rect x="40" y="140" width="95" height="50" rx="4"/><rect x="40" y="230" width="95" height="55" rx="4"/><rect x="490" y="140" width="90" height="55" rx="4"/><rect x="490" y="235" width="90" height="70" rx="4"/><rect x="200" y="20" width="85" height="60" rx="4"/><rect x="490" y="360" width="90" height="70" rx="4"/><rect x="40" y="350" width="95" height="70" rx="4"/>
+          </g>
+          <rect x="325" y="228" width="90" height="62" rx="4" fill="#2a3220" stroke="#c6f432" stroke-width="2"/>
+          <path d="M170 100 C 230 130, 250 210, 310 212 S 360 240, 368 252" stroke="#c6f432" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/>
+          <circle cx="168" cy="98" r="14" fill="#c6f432"/><text x="168" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#151a02">М</text>
+          <circle cx="370" cy="258" r="9" fill="#c6f432"/><circle cx="370" cy="258" r="20" fill="none" stroke="#c6f432" stroke-opacity=".4" stroke-width="2"/>
+          <text x="190" y="88" font-family="JetBrains Mono, monospace" font-size="12" fill="#a3acb3">Савёловская</text>
+          <text x="380" y="317" font-family="JetBrains Mono, monospace" font-size="12" fill="#a3acb3">ул. Бутырская</text>
+        </svg></div>
+        <div class="map-card">
+          <b>Москва, ул.&nbsp;Бутырская, 46, вход со&nbsp;двора</b>
+          <span>4&nbsp;минуты пешком от&nbsp;метро Савёловская, выход к&nbsp;ТЦ</span>
+          <dl class="hours"><dt>Пн–Пт</dt><dd>10:00–21:00</dd><dt>Сб–Вс</dt><dd>11:00–19:00</dd></dl>
+          <div><a href="tel:+74950000000">+7 (495) 000-00-00</a><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></div>
+        </div>
+      </div>
+      <form class="cform rv" style="--d:1" id="contactForm" novalidate>
+        <div id="cfBody">
+          <h3>Заявка на&nbsp;ремонт</h3>
+          <p>Перезвоним в&nbsp;течение рабочего дня, уточним модель и&nbsp;время визита.</p>
+          <div class="row2">
+            <div class="field"><label for="cfName">Имя</label><input id="cfName" name="name" autocomplete="given-name" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="cfPhone">Телефон</label><input id="cfPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required><span class="err" aria-live="polite"></span></div>
+          </div>
+          <div class="field"><label for="cfDev">Устройство</label>
+            <select id="cfDev" name="device"><option>Смартфон</option><option>Ноутбук</option><option>Планшет</option><option>Смарт-часы</option><option>Другое</option></select></div>
+          <div class="field"><label for="cfMsg">Что случилось</label><textarea id="cfMsg" name="msg" placeholder="Например: упал, экран в трещинах, сенсор работает"></textarea></div>
+          <label class="check"><input type="checkbox" checked required> <span>Согласен на&nbsp;обработку персональных данных для обратной связи</span></label>
+          <button class="btn btn-lime" type="submit" style="width:100%">Отправить заявку</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#23272a"/><path d="M9 23V9h10M9 16h7" stroke="#c6f432" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="#c6f432"/></svg><span>Fix Point<b>_</b></span></a>
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+    <p class="mono">Москва, ул. Бутырская, 46</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function fmt(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function r100(n){return Math.round(n/100)*100}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  /* mobile nav */
+  var burger=$('.burger'), mnav=$('#mnav');
+  burger.addEventListener('click',function(){
+    var o=burger.getAttribute('aria-expanded')==='true';
+    burger.setAttribute('aria-expanded',String(!o));
+    burger.setAttribute('aria-label',o?'Открыть меню':'Закрыть меню');
+    mnav.classList.toggle('open',!o);
+  });
+  $$('a',mnav).forEach(function(a){a.addEventListener('click',function(){burger.setAttribute('aria-expanded','false');mnav.classList.remove('open');burger.setAttribute('aria-label','Открыть меню')})});
+
+  /* hero ticket */
+  requestAnimationFrame(function(){setTimeout(function(){$('#heroTicket').classList.add('play')},120)});
+
+  /* reveal */
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('in')});
+
+  /* ===== data ===== */
+  var ICON={
+    phone:'<svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="13" y="4" width="22" height="40" rx="5"/><path d="M21 9h6M22 39h4"/></svg>',
+    laptop:'<svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="9" width="32" height="22" rx="2.5"/><path d="M3 37h42l-3 4H6z"/></svg>',
+    tablet:'<svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="34" height="38" rx="4"/><path d="M21 38h6"/></svg>',
+    watch:'<svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="12" width="24" height="24" rx="7"/><path d="M17 12l2-8h10l2 8M17 36l2 8h10l2-8M24 19v6l3 2"/></svg>'
+  };
+  var DEV=[
+    {id:'phone',name:'Смартфон',sub:'iPhone, Samsung, Xiaomi, Honor'},
+    {id:'laptop',name:'Ноутбук',sub:'MacBook, ASUS, Lenovo, HP'},
+    {id:'tablet',name:'Планшет',sub:'iPad, Galaxy Tab, Xiaomi Pad'},
+    {id:'watch',name:'Смарт-часы',sub:'Apple Watch, Galaxy, Huawei'}
+  ];
+  var MODELS={
+    phone:{Apple:[['iPhone 15 Pro',1.55],['iPhone 15',1.35],['iPhone 14',1.2],['iPhone 13',1.1],['iPhone 12',1],['iPhone 11',.9],['iPhone SE 2022',.8]],
+           Samsung:[['Galaxy S24',1.45],['Galaxy S23',1.3],['Galaxy A55',.95],['Galaxy A35',.85],['Galaxy A15',.7]],
+           Xiaomi:[['Xiaomi 14',1.25],['Redmi Note 13 Pro',.85],['Redmi Note 13',.75],['POCO X6',.8]],
+           Honor:[['Honor 90',.95],['Honor X8b',.7],['Honor Magic 6 Lite',.85]]},
+    laptop:{Apple:[['MacBook Air M2',1.45],['MacBook Air M1',1.3],['MacBook Pro 14',1.75]],
+           ASUS:[['VivoBook 15',.9],['ZenBook 14',1.1],['ROG Strix G16',1.3]],
+           Lenovo:[['IdeaPad Slim 5',.95],['ThinkPad T14',1.1],['Legion 5',1.3]],
+           HP:[['Pavilion 15',.9],['Victus 16',1.1],['EliteBook 840',1.15]]},
+    tablet:{Apple:[['iPad 10',1],['iPad Air M2',1.25],['iPad Pro 11',1.55],['iPad mini 6',1.1]],
+           Samsung:[['Galaxy Tab S9',1.3],['Galaxy Tab S9 FE',1],['Galaxy Tab A9',.7]],
+           Xiaomi:[['Xiaomi Pad 6',.85],['Redmi Pad SE',.65]]},
+    watch:{Apple:[['Apple Watch Series 9',1.2],['Apple Watch SE',.9],['Apple Watch Ultra 2',1.6]],
+           Samsung:[['Galaxy Watch 6',1],['Galaxy Watch 5',.9]],
+           Huawei:[['Watch GT 4',.85],['Watch Fit 3',.65]]}
+  };
+  /* [id, name, hint, min, max, minutes, partShare (0..1 доля детали в цене)] */
+  var ISSUES={
+    phone:[['scr','Разбит экран','трещины, полосы, не работает сенсор',5200,7400,60,.75],
+           ['bat','Быстро садится батарея','выключается на морозе, вздулась',2300,3100,40,.6],
+           ['port','Не заряжается','разъём, контроллер питания',1900,2800,50,.4],
+           ['back','Разбита задняя крышка','стекло корпуса',2900,4600,120,.6],
+           ['cam','Не работает камера','не фокусируется, чёрный экран',2600,4300,60,.65],
+           ['wat','Побывал в воде','включается с ошибками или нет',2900,5800,240,.3],
+           ['snd','Плохо слышно собеседника','динамик, микрофон',1700,2500,45,.5],
+           ['sw','Не включается или зависает','прошивка, перезагрузки',1300,2200,90,0]],
+    laptop:[['scr','Разбита матрица','полосы, пятна, нет изображения',6900,11500,120,.8],
+            ['kbd','Не работает клавиатура','западают или не нажимаются клавиши',3500,6200,120,.6],
+            ['heat','Греется и шумит','чистка, замена термопасты',1900,2900,90,.1],
+            ['bat','Не держит заряд','износ или вздутие батареи',3900,5600,60,.7],
+            ['pwr','Не включается','питание, плата, цепь заряда',3500,8900,1440,.4],
+            ['wat','Залит жидкостью','чай, кофе, вода',3600,9500,1440,.35],
+            ['hng','Сломан шарнир','крышка болтается или треснула',2900,4900,180,.4],
+            ['ssd','Медленно работает','замена диска на SSD, перенос данных',2400,5200,120,.55]],
+    tablet:[['scr','Разбит экран','стекло, сенсор, дисплей',5600,9400,120,.75],
+            ['bat','Быстро разряжается','износ батареи',3200,4600,90,.6],
+            ['port','Не заряжается','разъём или контроллер',2300,3200,60,.4],
+            ['wat','Побывал в воде','чистка платы',3200,6600,240,.3],
+            ['sw','Зависает или не загружается','прошивка, восстановление',1300,2200,90,0]],
+    watch:[['scr','Разбит экран','стекло или дисплей',4300,7600,90,.75],
+           ['bat','Не держит заряд','замена батареи',2900,3900,60,.6],
+           ['wat','Попала вода','после бассейна или душа',2600,4600,180,.3],
+           ['btn','Не работает кнопка','колёсико или боковая кнопка',1600,2400,60,.4]]
+  };
+
+  /* ===== wizard ===== */
+  var S={step:0,reached:0,dev:null,brand:null,model:null,tier:1,issues:[],part:'orig',q:'',booked:false,slot:null};
+  var body=$('#wizBody'), stepBtns=$$('.step-btn');
+  var CHECK='<svg viewBox="0 0 16 16" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>';
+  var ARR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var BACK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+
+  function devName(){var x=DEV.filter(function(v){return v.id===S.dev})[0];return x?x.name:''}
+  function issueList(){return (ISSUES[S.dev]||[]).filter(function(i){return S.issues.indexOf(i[0])>-1})}
+  function minsText(m){
+    if(m>=1440){var dd=Math.round(m/1440);return dd===1?'1 рабочий день':dd+' рабочих дня'}
+    if(m<60) return m+' минут';
+    var h=m/60; if(h<=1) return 'около часа';
+    return 'около '+(Math.round(h*2)/2).toString().replace('.',',')+' ч';
+  }
+  function calc(){
+    var lo=0,hi=0,mins=0,lines=[];
+    issueList().forEach(function(i){
+      var k=S.tier, ps=i[6], pm=(S.part==='orig'?1:.68);
+      var mult=(1-ps)+ps*pm;
+      var a=r100(i[3]*k*mult), b=r100(i[4]*k*mult);
+      lo+=a;hi+=b;mins=Math.max(mins,i[5]);
+      lines.push([i[1],a,b]);
+    });
+    var n=lines.length; if(n>1) mins+=30*(n-1);
+    if(n>1){lo=r100(lo*.92);hi=r100(hi*.92)}
+    return {lo:lo,hi:hi,mins:mins,lines:lines,disc:n>1};
+  }
+  function syncLog(){
+    stepBtns.forEach(function(b,i){
+      b.disabled=i>S.reached;
+      b.classList.toggle('done',i<S.reached||(i===3&&S.booked));
+      if(i===S.step)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');
+    });
+    $('[data-v="0"]').textContent=S.dev?devName():'не выбрано';
+    $('[data-v="1"]').textContent=S.model||'—';
+    $('[data-v="2"]').textContent=S.issues.length?issueList().map(function(i){return i[1].toLowerCase()}).join(', '):'—';
+    if(S.reached>=3&&S.issues.length){var c=calc();$('[data-v="3"]').textContent=fmt(c.lo)+'–'+fmt(c.hi)+' ₽'}else $('[data-v="3"]').textContent='—';
+  }
+  function go(n,focus){S.step=n;if(n>S.reached)S.reached=n;render(focus)}
+  function render(focus){
+    syncLog();
+    var h='';
+    if(S.step===0){
+      h='<div class="pane"><h3 class="wiz-q">Что ремонтируем?</h3><p class="wiz-sub">Выберите тип устройства&nbsp;— дальше покажем модели и&nbsp;типичные поломки.</p><div class="dev-grid">'+
+        DEV.map(function(v){return '<button class="opt" type="button" data-dev="'+v.id+'" aria-pressed="'+(S.dev===v.id)+'">'+ICON[v.id]+'<span><span class="on">'+v.name+'</span><br><span class="os">'+v.sub+'</span></span></button>'}).join('')+
+        '</div><div class="wiz-foot"><span class="hint">// шаг 1 из 4</span></div></div>';
+    } else if(S.step===1){
+      var brands=Object.keys(MODELS[S.dev]);
+      if(!S.brand||brands.indexOf(S.brand)<0)S.brand=brands[0];
+      h='<div class="pane"><h3 class="wiz-q">Какая модель?</h3><p class="wiz-sub">От&nbsp;модели зависит цена детали. Модель указана в&nbsp;настройках, на&nbsp;коробке или на&nbsp;корпусе.</p>'+
+        '<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="sr" for="mq">Поиск модели</label><input id="mq" type="search" placeholder="Поиск: например, 13 или ThinkPad" value="'+esc(S.q)+'" autocomplete="off"></div>'+
+        '<div class="brand-row" role="group" aria-label="Производитель">'+brands.map(function(b){return '<button class="pill" type="button" data-brand="'+b+'" aria-pressed="'+(S.brand===b&&!S.q)+'">'+b+'</button>'}).join('')+'</div>'+
+        '<div class="model-list" id="mlist"></div>'+
+        '<div class="wiz-foot"><button class="back" type="button" data-go="0">'+BACK+'Назад</button><span class="hint">// шаг 2 из 4</span></div></div>';
+    } else if(S.step===2){
+      var list=ISSUES[S.dev];
+      h='<div class="pane"><h3 class="wiz-q">Что случилось с&nbsp;'+esc(S.model)+'?</h3><p class="wiz-sub">Можно отметить несколько пунктов&nbsp;— при комплексном ремонте скидка на&nbsp;работу.</p><div class="issues">'+
+        list.map(function(i){var lo=r100(i[3]*S.tier);return '<label class="issue"><input type="checkbox" value="'+i[0]+'"'+(S.issues.indexOf(i[0])>-1?' checked':'')+'><span class="box">'+CHECK+'</span><span class="in">'+i[1]+'<small>'+i[2]+'</small></span><span class="pr">от '+fmt(lo)+' ₽</span></label>'}).join('')+
+        '</div><div class="wiz-foot"><button class="back" type="button" data-go="1">'+BACK+'Назад</button><button class="btn btn-lime" type="button" id="toRes"'+(S.issues.length?'':' disabled')+'>Показать цену и срок'+ARR+'</button></div></div>';
+    } else {
+      h=resultHTML();
+    }
+    body.innerHTML=h;
+    bind();
+    if(S.step===1)renderModels();
+    var act=stepBtns[S.step];if(act&&act.parentNode.parentNode.scrollWidth>act.parentNode.parentNode.clientWidth){var lg=act.parentNode.parentNode;lg.scrollTo({left:Math.max(0,act.parentNode.offsetLeft-14),behavior:reduce?'auto':'smooth'})}
+    if(focus){var f=body.querySelector('.wiz-q');if(f){f.setAttribute('tabindex','-1');f.focus({preventScroll:true})}}
+  }
+  function resultHTML(){
+    var c=calc();
+    var lines=c.lines.map(function(l){return '<li><span>'+l[0]+'</span><span>'+fmt(l[1])+'–'+fmt(l[2])+' ₽</span></li>'}).join('');
+    if(c.disc)lines+='<li><span>Скидка на работу при комплексном ремонте</span><span>−8%</span></li>';
+    lines+='<li><span>Диагностика</span><span>0 ₽</span></li>';
+    var side;
+    if(S.booked){
+      side='<div class="res-card done-box"><div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h4>Заявка принята</h4><p style="margin-top:8px">Номер записи <span class="mono">'+S.bookNo+'</span>. Ждём вас '+esc(S.slot.charAt(0).toLowerCase()+S.slot.slice(1))+'. Мастер проверит наличие детали и&nbsp;пришлёт СМС с&nbsp;подтверждением.</p><button class="back" type="button" id="reset" style="margin-top:10px">'+BACK+'Рассчитать другой ремонт</button></div>';
+    } else {
+      var slots=nextSlots();
+      side='<form class="res-card" id="bookForm" novalidate><h4>Записаться на&nbsp;ремонт</h4><p style="margin-bottom:14px">Выберите время&nbsp;— к&nbsp;вашему приходу деталь будет на&nbsp;столе у&nbsp;мастера.</p>'+
+        '<div class="slots" role="group" aria-label="Время визита">'+slots.map(function(s){return '<button class="slot" type="button" data-slot="'+s+'" aria-pressed="'+(S.slot===s)+'">'+s.replace(', ','<br>')+'</button>'}).join('')+'</div>'+
+        '<div class="field"><label for="bkPhone">Телефон для СМС</label><input id="bkPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00"><span class="err" id="bkErr" aria-live="polite"></span></div>'+
+        '<button class="btn btn-lime" type="submit" style="width:100%">Записаться</button></form>';
+    }
+    return '<div class="pane"><h3 class="wiz-q">Предварительная цена</h3><p class="wiz-sub">'+devName()+', '+esc(S.model)+'. Итог фиксируем после диагностики.</p>'+
+      '<div class="result"><div class="res-main"><div class="res-model">// '+esc(S.model)+'</div>'+
+      '<div class="res-price" id="resPrice">'+fmt(c.lo)+'–'+fmt(c.hi)+'<small>₽</small></div>'+
+      '<p class="res-time">Срок: <b>'+minsText(c.mins)+'</b>'+(c.mins<=90?', можно подождать в&nbsp;сервисе':'')+'</p>'+
+      '<div class="seg" role="group" aria-label="Тип детали"><button type="button" data-part="orig" aria-pressed="'+(S.part==='orig')+'">Оригинальная деталь</button><button type="button" data-part="comp" aria-pressed="'+(S.part==='comp')+'">Совместимая</button></div>'+
+      '<p class="seg-note">'+(S.part==='orig'?'Деталь производителя устройства или снятая с&nbsp;нового. Цвета, яркость и&nbsp;энергопотребление как в&nbsp;заводской.':'Качественный аналог: дешевле, работает так же, может немного отличаться яркостью или ёмкостью.')+'</p>'+
+      '<ul class="res-lines">'+lines+'</ul></div>'+
+      '<div class="res-side">'+side+'</div></div>'+
+      '<div class="wiz-foot"><button class="back" type="button" data-go="2">'+BACK+'Изменить поломки</button><span class="hint">// шаг 4 из 4</span></div></div>';
+  }
+  function nextSlots(){
+    var days=['Сегодня','Завтра'], times=['12:00','15:30','18:00'], out=[];
+    days.forEach(function(dd){times.forEach(function(t){out.push(dd+', '+t)})});
+    return out;
+  }
+  function renderModels(){
+    var box=$('#mlist'); if(!box)return;
+    var q=S.q.trim().toLowerCase(), rows=[];
+    Object.keys(MODELS[S.dev]).forEach(function(b){
+      MODELS[S.dev][b].forEach(function(m){
+        var full=(b==='Apple'||m[0].indexOf(b)===0?'':b+' ')+m[0];
+        if(q){ if((b+' '+m[0]).toLowerCase().indexOf(q)>-1) rows.push([full,m[1],b]); }
+        else if(b===S.brand) rows.push([full,m[1],b]);
+      });
+    });
+    if(!rows.length){box.innerHTML='<p class="empty" style="grid-column:1/-1">Такой модели нет в&nbsp;быстром списке. Выберите ближайшую по&nbsp;году&nbsp;— или позвоните, посчитаем вручную.</p>';return}
+    box.innerHTML=rows.map(function(r){var lvl=r[1]>=1.3?'флагман':r[1]>=.95?'средний':'базовый';return '<button class="model" type="button" data-model="'+esc(r[0])+'" data-tier="'+r[1]+'" aria-pressed="'+(S.model===r[0])+'"><span>'+esc(r[0])+'</span><span class="mono">'+lvl+'</span></button>'}).join('');
+    $$('.model',box).forEach(function(b){b.addEventListener('click',function(){
+      if(S.model!==b.dataset.model){S.issues=[];S.booked=false;S.slot=null}
+      S.model=b.dataset.model;S.tier=parseFloat(b.dataset.tier);if(S.reached>2)S.reached=2;go(2,true);
+    })});
+  }
+  function bind(){
+    $$('[data-dev]',body).forEach(function(b){b.addEventListener('click',function(){
+      if(S.dev!==b.dataset.dev){S.model=null;S.brand=null;S.issues=[];S.q='';S.reached=1;S.booked=false;S.slot=null}
+      S.dev=b.dataset.dev;go(1,true);
+    })});
+    $$('[data-brand]',body).forEach(function(b){b.addEventListener('click',function(){
+      S.brand=b.dataset.brand;S.q='';var i=$('#mq');if(i)i.value='';
+      $$('[data-brand]',body).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});renderModels();
+    })});
+    var mq=$('#mq');
+    if(mq)mq.addEventListener('input',function(){S.q=mq.value;$$('[data-brand]',body).forEach(function(x){x.setAttribute('aria-pressed',String(!S.q&&x.dataset.brand===S.brand))});renderModels()});
+    $$('[data-go]',body).forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.go,true)})});
+    $$('.issue input',body).forEach(function(inp){inp.addEventListener('change',function(){
+      S.issues=$$('.issue input:checked',body).map(function(x){return x.value});
+      S.booked=false;if(S.reached>2)S.reached=2;
+      $('#toRes').disabled=!S.issues.length;syncLog();
+    })});
+    var tr=$('#toRes'); if(tr)tr.addEventListener('click',function(){if(S.issues.length)go(3,true)});
+    $$('[data-part]',body).forEach(function(b){b.addEventListener('click',function(){S.part=b.dataset.part;render(false);var p=$('#resPrice');if(p&&!reduce){p.animate([{opacity:.3,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:280,easing:'cubic-bezier(0.23,1,0.32,1)'})}})});
+    $$('[data-slot]',body).forEach(function(b){b.addEventListener('click',function(){S.slot=b.dataset.slot;$$('[data-slot]',body).forEach(function(x){x.setAttribute('aria-pressed',String(x===b))})})});
+    var bf=$('#bookForm');
+    if(bf)bf.addEventListener('submit',function(e){
+      e.preventDefault();var ph=$('#bkPhone'),err=$('#bkErr');
+      var digits=ph.value.replace(/\D/g,'');
+      if(!S.slot){err.textContent='Выберите время визита.';return}
+      if(digits.length<10){err.textContent='Введите телефон: 10 цифр после +7.';ph.focus();return}
+      S.booked=true;S.bookNo='FP-'+(240400+Math.floor(Math.random()*90));render(false);
+    });
+    var rs=$('#reset'); if(rs)rs.addEventListener('click',function(){S={step:0,reached:0,dev:null,brand:null,model:null,tier:1,issues:[],part:'orig',q:'',booked:false,slot:null};render(true)});
+  }
+  stepBtns.forEach(function(b,i){b.addEventListener('click',function(){if(i<=S.reached)go(i,true)})});
+  render(false);
+
+  /* ===== status ===== */
+  var DONE='<svg viewBox="0 0 16 16" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>';
+  var RC={
+    '240117':{dev:'iPhone 13, замена дисплея',badge:['work','В ремонте'],steps:[
+      ['done','Принят','Внешний вид: царапины на рамке, экран в трещинах','28 окт, 10:12'],
+      ['done','Диагностика','Повреждён дисплейный модуль, остальное в норме','28 окт, 10:40'],
+      ['done','Цена согласована','9 400 ₽, оригинальный дисплей','28 окт, 10:46'],
+      ['now','Ремонт','Мастер меняет дисплей и проверяет Face ID',''],
+      ['todo','Проверка и выдача','Пришлём СМС, когда можно забирать','~ 12:00']],
+      note:'<b>Ничего делать не нужно.</b> Ремонт идёт по плану, итоговая сумма не изменится.'},
+    '240233':{dev:'MacBook Air M1, чистка и замена термопасты',badge:['ok','Готов к выдаче'],steps:[
+      ['done','Принят','Комплект: ноутбук, зарядное устройство','27 окт, 17:05'],
+      ['done','Диагностика','Забита система охлаждения, термопаста высохла','27 окт, 18:20'],
+      ['done','Цена согласована','2 700 ₽','27 окт, 18:31'],
+      ['done','Ремонт','Чистка, замена термопасты, стресс-тест 30 минут','28 окт, 13:10'],
+      ['done','Проверка и выдача','Готов. Ждём вас с квитанцией или паспортом','28 окт, 13:25']],
+      note:'<b>Можно забирать</b> сегодня до 21:00. Оплата картой или наличными при получении.'},
+    '240305':{dev:'Galaxy S23, замена задней крышки',badge:['wait','Ждём деталь'],steps:[
+      ['done','Принят','Разбито стекло задней крышки','28 окт, 15:44'],
+      ['done','Диагностика','Камера и корпус не повреждены','28 окт, 16:10'],
+      ['done','Цена согласована','3 800 ₽, оригинальная крышка','28 окт, 16:15'],
+      ['now','Ожидание детали','Крышка в пути от поставщика','поставка 30 окт'],
+      ['todo','Ремонт и выдача','Около двух часов после поставки','']],
+      note:'<b>Новая дата: 30 октября.</b> Если нужен телефон на это время, можно забрать его и вернуть в день поставки.'}
+  };
+  var sf=$('#statusForm'), rin=$('#rcpt'), out=$('#statusOut'), rerr=$('#rcptErr');
+  rin.addEventListener('input',function(){rin.value=rin.value.replace(/\D/g,'').slice(0,6);rerr.textContent=''});
+  function showStatus(n){
+    var r=RC[n];
+    if(n.length!==6){rerr.textContent='Номер состоит из шести цифр, например 240117.';rin.focus();return}
+    if(!r){rerr.textContent='Квитанция FP-'+n+' не найдена. Проверьте номер в СМС или попробуйте демо-номер ниже.';
+      out.innerHTML='<div class="st-empty st-anim"><svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 15v11M24 32v.5"/></svg><p>По номеру FP-'+esc(n)+' ничего не нашлось. Номер напечатан на квитанции справа вверху и пришёл в СМС при приёме.</p></div>';return}
+    rerr.textContent='';
+    out.innerHTML='<div class="st-anim"><div class="st-head"><div><div class="num">FP-'+n+'</div><div class="dev">'+r.dev+'</div></div><span class="badge '+r.badge[0]+'"><span class="dot" style="background:currentColor;box-shadow:none" aria-hidden="true"></span>'+r.badge[1]+'</span></div>'+
+      '<ol class="st-steps">'+r.steps.map(function(s){return '<li class="st-step '+s[0]+'"><i>'+(s[0]==='done'?DONE:'')+'</i><div><div class="s1">'+s[1]+'</div><div class="s2">'+s[2]+'</div></div><time>'+s[3]+'</time></li>'}).join('')+'</ol>'+
+      '<p class="st-note">'+r.note+'</p></div>';
+  }
+  sf.addEventListener('submit',function(e){e.preventDefault();showStatus(rin.value.trim())});
+  $$('[data-try]').forEach(function(b){b.addEventListener('click',function(){rin.value=b.dataset.try;showStatus(b.dataset.try)})});
+
+  /* ===== prices ===== */
+  var tabs=$('#priceTabs'), panel=$('#pricePanel'), cur='phone';
+  tabs.innerHTML=DEV.map(function(v,i){return '<button class="tab" role="tab" type="button" id="tab-'+v.id+'" aria-controls="pricePanel" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'" data-tab="'+v.id+'">'+v.name+'</button>'}).join('');
+  function renderPrices(){
+    panel.setAttribute('aria-labelledby','tab-'+cur);
+    panel.innerHTML='<table class="ptable"><thead><tr><th scope="col">Ремонт</th><th scope="col">Цена от</th><th scope="col">Срок</th></tr></thead><tbody>'+
+      ISSUES[cur].map(function(i){return '<tr><td>'+i[1]+'<small>'+i[2]+'</small></td><td class="mono l">'+fmt(r100(i[3]*.8))+' ₽</td><td class="mono">'+minsText(i[5]).replace('около часа','~1 ч').replace('около ','~').replace('рабочий день','раб. день').replace('рабочих дня','раб. дня')+'</td></tr>'}).join('')+'</tbody></table>';
+  }
+  var tabBtns=$$('.tab',tabs);
+  function selTab(b,focus){tabBtns.forEach(function(x){var on=x===b;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1});cur=b.dataset.tab;renderPrices();if(focus)b.focus()}
+  tabBtns.forEach(function(b,i){
+    b.addEventListener('click',function(){selTab(b)});
+    b.addEventListener('keydown',function(e){var k=e.key,n=null;if(k==='ArrowRight')n=tabBtns[(i+1)%tabBtns.length];if(k==='ArrowLeft')n=tabBtns[(i-1+tabBtns.length)%tabBtns.length];if(n){e.preventDefault();selTab(n,true)}});
+  });
+  renderPrices();
+
+  /* ===== faq ===== */
+  $$('.qa').forEach(function(q){var b=$('button',q);b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));q.classList.toggle('open',!o)})});
+
+  /* ===== contact form ===== */
+  var cf=$('#contactForm');
+  cf.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#cfName'),p=$('#cfPhone'),ok=true;
+    [n,p].forEach(function(f){f.nextElementSibling.textContent=''});
+    if(!n.value.trim()){n.nextElementSibling.textContent='Как к вам обращаться?';ok=false}
+    if(p.value.replace(/\D/g,'').length<10){p.nextElementSibling.textContent='Нужен телефон: 10 цифр после +7.';ok=false}
+    if(!ok){(n.value.trim()?p:n).focus();return}
+    $('#cfBody').innerHTML='<div class="done-box"><div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h4>Заявка принята</h4><p style="color:var(--muted);margin-top:8px">'+esc(n.value.trim())+', мастер перезвонит в течение рабочего дня. Если устройство не включается, захватите зарядку и чехол.</p></div>';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Автошкола «Старт» — обучение вождению категорий A, B, C в Екатеринбурге</title>
+<meta name="description" content="Автошкола «Старт»: подберите категорию, коробку передач и график — сразу увидите стоимость, срок и план занятий по неделям. Группы утром, вечером, в выходные и интенсив.">
+<meta property="og:title" content="Автошкола «Старт» — план обучения и цена до первого занятия">
+<meta property="og:description" content="Категория, КПП, график → стоимость, срок и план занятий. Ближайшие группы и запись онлайн.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffd21a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='5' width='22' height='22' rx='3' transform='rotate(45 16 16)' fill='%23fff' stroke='%232a2c30' stroke-width='2'/%3E%3Crect x='9.5' y='9.5' width='13' height='13' rx='1.5' transform='rotate(45 16 16)' fill='%23ffd21a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Onest:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;
+  --paper:#f6f5f0;
+  --y:#ffd21a;
+  --y2:#ffe270;
+  --ys:#fff4c2;
+  --asph:#2a2c30;
+  --asph2:#3b3e44;
+  --grey:#62666d;
+  --line:#e3e2dc;
+  --mark:#f2f2ee;
+  --red:#d63b2f;
+  --green:#1d8a52;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --disp:"Unbounded","Arial Black",sans-serif;
+  --sans:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1280px;
+  --gut:clamp(16px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--white);color:var(--asph);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--disp);font-weight:600;line-height:1.08;letter-spacing:-.02em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--asph);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--asph);color:#fff;padding:10px 14px;border-radius:10px;z-index:100}
+.skip:focus{top:12px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;border:2px solid transparent;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .16s var(--ease),background-color .2s ease,border-color .2s ease,color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-y{background:var(--y);color:var(--asph)}
+.btn-a{background:var(--asph);color:#fff}
+.btn-o{border-color:var(--asph);background:transparent}
+@media (hover:hover) and (pointer:fine){
+  .btn-y:hover{background:var(--y2)}
+  .btn-a:hover{background:var(--asph2)}
+  .btn-o:hover{background:var(--asph);color:#fff}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--disp);font-weight:700;font-size:20px;min-height:44px}
+.logo svg{width:40px;height:40px;flex:none}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;font-size:15.5px;font-weight:500;transition:background-color .2s ease}
+.hdr-ph{text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:44px}
+.hdr .btn{min-height:46px;padding:0 20px;font-size:15px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--asph);background:transparent;cursor:pointer;align-items:center;justify-content:center}
+.burger svg{width:20px;height:20px}
+@media (hover:hover) and (pointer:fine){.nav a:hover{background:var(--ys)}}
+.mnav{display:none}
+@media (max-width:1060px){
+  .nav,.hdr-ph{display:none}
+  .hdr .btn{margin-left:auto}
+  .burger{display:inline-flex}
+  .mnav{display:block;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:8px var(--gut) 22px;z-index:49;opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .2s var(--ease),transform .25s var(--ease),visibility 0s .25s}
+  .mnav.open{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity .2s var(--ease),transform .25s var(--ease)}
+  .mnav a{display:flex;align-items:center;min-height:52px;font-family:var(--disp);font-size:19px;font-weight:500;text-decoration:none;border-bottom:2px dashed var(--line)}
+  .mnav a:last-child{border-bottom:0;font-family:var(--sans);font-weight:600;font-size:18px}
+}
+@media (max-width:440px){.hdr .btn{padding:0 16px;font-size:14px}.logo{font-size:18px}.logo svg{width:34px;height:34px}}
+
+/* hero */
+.hero{padding:clamp(36px,5vw,72px) 0 0;position:relative}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero-k{display:inline-flex;align-items:center;gap:10px;background:var(--ys);border-radius:999px;padding:8px 16px 8px 8px;font-weight:500;font-size:15px;margin-bottom:26px}
+.hero-k b{background:var(--asph);color:var(--y);border-radius:999px;padding:3px 10px;font-weight:600;font-size:13px}
+.hero h1{font-size:clamp(38px,5.3vw,76px);font-weight:600;letter-spacing:-.035em;line-height:1.04}
+.hero h1 .hl{background:linear-gradient(transparent 58%,var(--y) 58%,var(--y) 92%,transparent 92%);padding:0 .06em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero-lead{margin-top:24px;font-size:clamp(17px,1.4vw,20px);color:var(--grey);max-width:540px}
+.hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-vis{position:relative;aspect-ratio:5/5.4;max-height:620px}
+.hero-ph{position:absolute;inset:0 0 0 8%;border-radius:36px;overflow:hidden;background:linear-gradient(150deg,#d9d8d0,#bdbcb4)}
+.hero-ph img{width:100%;height:100%;object-fit:cover}
+.sign{position:absolute;left:0;bottom:12%;width:clamp(110px,12vw,168px);aspect-ratio:1;filter:drop-shadow(0 18px 30px rgba(42,44,48,.25))}
+.js .sign{transform:rotate(-30deg) scale(.6);opacity:0}
+.js .hero.go .sign{transform:none;opacity:1;transition:transform .9s var(--ease) .25s,opacity .5s var(--ease) .25s}
+.bubble{position:absolute;right:-4px;top:8%;background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 18px 40px -18px rgba(42,44,48,.35);font-size:14px;line-height:1.35;max-width:220px}
+.bubble b{display:block;font-family:var(--disp);font-size:15px;font-weight:600;margin-bottom:2px}
+.road{margin-top:clamp(40px,6vw,80px);background:var(--asph);color:#fff;position:relative;overflow:hidden}
+.road::before,.road::after{content:"";position:absolute;left:0;right:0;height:4px;background:var(--mark)}
+.road::before{top:10px}.road::after{bottom:10px}
+.road .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
+.road li{padding:34px 20px 34px 0;display:flex;gap:14px;align-items:flex-start}
+.road li+li{padding-left:20px;border-left:3px dashed rgba(255,255,255,.28)}
+.road svg{width:30px;height:30px;stroke:var(--y);flex:none;margin-top:2px}
+.road b{display:block;font-family:var(--disp);font-weight:500;font-size:16px;line-height:1.25}
+.road span{display:block;font-size:14.5px;color:#c9cbd0;margin-top:4px;line-height:1.4}
+
+/* sections */
+.sec{padding:clamp(72px,9vw,128px) 0}
+.sec-paper{background:var(--paper)}
+.sh{max-width:820px;margin-bottom:clamp(36px,5vw,56px)}
+.sh h2{font-size:clamp(30px,4vw,54px);letter-spacing:-.03em}
+.sh p{margin-top:18px;color:var(--grey);font-size:18px;max-width:640px}
+.dash{display:block;width:120px;height:6px;background:repeating-linear-gradient(90deg,var(--y) 0 26px,transparent 26px 40px);margin-bottom:26px;border-radius:3px}
+
+/* picker */
+.pick{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px;align-items:start}
+.pick-in{background:#fff;border:2px solid var(--asph);border-radius:28px;padding:clamp(20px,2.6vw,34px);display:grid;gap:28px}
+.q h3{font-size:18px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.q h3 i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--y);display:grid;place-items:center;font-size:14px;flex:none}
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cat{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border-radius:20px;border:2px solid var(--line);background:#fff;cursor:pointer;text-align:left;min-height:126px;transition:border-color .2s ease,background-color .2s ease,transform .16s var(--ease)}
+.cat:active{transform:scale(.97)}
+.cat .L{font-family:var(--disp);font-weight:700;font-size:34px;line-height:1}
+.cat b{font-weight:600;font-size:15px;line-height:1.25}
+.cat small{color:var(--grey);font-size:13px;line-height:1.3}
+.cat svg{position:absolute;right:12px;top:14px;width:34px;height:34px;stroke:var(--asph);opacity:.85}
+.cat[aria-pressed="true"]{border-color:var(--asph);background:var(--y)}
+.cat[aria-pressed="true"] small{color:var(--asph)}
+@media (hover:hover) and (pointer:fine){.cat[aria-pressed="false"]:hover{border-color:var(--asph)}}
+.seg{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:6px;padding:6px;background:var(--paper);border-radius:999px}
+.seg button{min-height:50px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-weight:500;font-size:15px;line-height:1.2;padding:4px 12px;transition:background-color .2s ease,color .2s ease}
+.seg button[aria-pressed="true"]{background:var(--asph);color:#fff}
+.seg button:disabled{opacity:.4;cursor:not-allowed}
+.seg-note{font-size:14px;color:var(--grey);margin-top:10px;min-height:22px}
+.sched{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sc{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:14px;border-radius:18px;border:2px solid var(--line);background:#fff;cursor:pointer;text-align:left;min-height:44px;transition:border-color .2s ease,background-color .2s ease}
+.sc svg{width:26px;height:26px;stroke:var(--asph);margin-top:1px}
+.sc b{display:block;font-weight:600;font-size:15.5px;line-height:1.25}
+.sc small{display:block;color:var(--grey);font-size:13.5px;margin-top:3px;line-height:1.35}
+.sc[aria-pressed="true"]{border-color:var(--asph);background:var(--ys)}
+@media (hover:hover) and (pointer:fine){.sc[aria-pressed="false"]:hover{border-color:var(--asph)}}
+.extra{display:grid;gap:10px}
+.tg{display:flex;align-items:center;gap:14px;cursor:pointer;min-height:48px}
+.tg input{position:absolute;opacity:0;width:1px;height:1px}
+.sw{width:52px;height:30px;border-radius:999px;background:var(--line);position:relative;flex:none;transition:background-color .2s ease}
+.sw::after{content:"";position:absolute;left:4px;top:4px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .22s var(--ease)}
+.tg input:checked+.sw{background:var(--asph)}
+.tg input:checked+.sw::after{transform:translateX(22px);background:var(--y)}
+.tg input:focus-visible+.sw{outline:3px solid var(--asph);outline-offset:3px}
+.tg span:last-child{font-size:15.5px;line-height:1.35}
+.tg small{display:block;color:var(--grey);font-size:13.5px}
+.stepper{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.stp{display:inline-flex;align-items:center;border:2px solid var(--asph);border-radius:999px}
+.stp button{width:48px;height:48px;border:0;background:transparent;cursor:pointer;font-size:22px;font-weight:600;border-radius:50%}
+.stp button:disabled{opacity:.3;cursor:not-allowed}
+.stp output{min-width:36px;text-align:center;font-family:var(--disp);font-weight:600;font-size:18px}
+.stepper p{font-size:14.5px;color:var(--grey);flex:1;min-width:180px}
+@media (hover:hover) and (pointer:fine){.stp button:not(:disabled):hover{background:var(--ys)}}
+
+.res{background:var(--asph);color:#fff;border-radius:28px;overflow:hidden;position:sticky;top:90px}
+.res-top{padding:clamp(22px,2.6vw,32px);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;border-bottom:3px dashed rgba(255,255,255,.22)}
+.res-k{font-size:14px;color:#c9cbd0}
+.res-price{font-family:var(--disp);font-weight:600;font-size:clamp(34px,3.8vw,52px);letter-spacing:-.03em;line-height:1.05;margin-top:6px;color:var(--y)}
+.res-sub{font-size:14.5px;color:#c9cbd0;margin-top:6px}
+.res-term{text-align:right}
+.res-term b{display:block;font-family:var(--disp);font-size:clamp(22px,2.2vw,30px);font-weight:600;line-height:1.1}
+.res-term span{font-size:13.5px;color:#c9cbd0}
+.res-body{padding:clamp(22px,2.6vw,32px)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:24px}
+.facts div{background:var(--asph2);border-radius:16px;padding:12px 14px}
+.facts dt{font-size:12.5px;color:#c9cbd0}
+.facts dd{margin:2px 0 0;font-family:var(--disp);font-weight:500;font-size:19px}
+.plan-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.plan-h h3{font-size:16px;font-weight:500}
+.plan-h span{font-size:13px;color:#c9cbd0}
+/* two-lane road plan */
+.lanes{position:relative;background:#1f2124;border-radius:16px;padding:10px 0 0}
+.lane{position:relative;height:44px;margin:0 12px}
+.lane+.lane{margin-top:14px}
+.lane::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:3px;background:repeating-linear-gradient(90deg,#fff 0 18px,transparent 18px 32px);opacity:.55}
+.lane:last-of-type::after{display:none}
+.lane-n{position:absolute;left:0;top:-1px;font-size:11.5px;color:#c9cbd0;z-index:2}
+.seg-b{position:absolute;top:16px;height:24px;border-radius:7px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;transition:left .5s var(--ease),width .5s var(--ease)}
+.seg-b.t{background:#fff;color:var(--asph)}
+.seg-b.p1{background:var(--y);color:var(--asph)}
+.seg-b.p2{background:#ffb81a;color:var(--asph)}
+.seg-b.ex{background:var(--green);color:#fff}
+.weeks{display:flex;justify-content:space-between;padding:12px 12px 10px;font-size:11.5px;color:#9a9da3}
+.plan-list{margin-top:18px;display:grid;gap:2px}
+.plan-list li{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1);font-size:14.5px;line-height:1.4}
+.plan-list li b{font-family:var(--disp);font-weight:500;font-size:13px;color:var(--y);padding-top:1px}
+.plan-list li span small{display:block;color:#c9cbd0;font-size:13px}
+.groups{margin-top:22px}
+.groups h3{font-size:16px;font-weight:500;margin-bottom:10px}
+.gl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.gbtn{border:2px solid rgba(255,255,255,.18);background:transparent;color:#fff;border-radius:16px;padding:10px 12px;text-align:left;cursor:pointer;min-height:64px;line-height:1.3;transition:border-color .2s ease,background-color .2s ease}
+.gbtn b{display:block;font-family:var(--disp);font-weight:500;font-size:15px}
+.gbtn small{font-size:12.5px;color:#c9cbd0}
+.gbtn[aria-pressed="true"]{background:var(--y);color:var(--asph);border-color:var(--y)}
+.gbtn[aria-pressed="true"] small{color:var(--asph)}
+@media (hover:hover) and (pointer:fine){.gbtn[aria-pressed="false"]:hover{border-color:#fff}}
+.res-cta{margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.res-cta p{font-size:13.5px;color:#c9cbd0;line-height:1.4}
+.pulse{animation:pop .35s var(--ease)}
+@keyframes pop{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* steps */
+.route{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.route::before{content:"";position:absolute;left:0;right:0;top:34px;height:6px;background:repeating-linear-gradient(90deg,var(--asph) 0 30px,transparent 30px 48px);border-radius:3px}
+.rt{position:relative;padding-top:84px}
+.rt i{position:absolute;top:10px;left:0;width:54px;height:54px;border-radius:50%;background:var(--y);border:4px solid #fff;box-shadow:0 0 0 2px var(--asph);display:grid;place-items:center;font-style:normal;font-family:var(--disp);font-weight:600;font-size:18px}
+.rt:last-child i{background:var(--asph);color:var(--y)}
+.rt h3{font-size:19px;font-weight:600;margin-bottom:10px;letter-spacing:-.01em}
+.rt p{color:var(--grey);font-size:15.5px}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:start}
+.qz-card{background:#fff;border:2px solid var(--asph);border-radius:28px;padding:clamp(20px,2.6vw,34px)}
+.qz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.qz-dots{display:flex;gap:6px}
+.qz-dots i{width:34px;height:8px;border-radius:4px;background:var(--line);transition:background-color .2s ease}
+.qz-dots i.on{background:var(--asph)}
+.qz-dots i.ok{background:var(--green)}
+.qz-dots i.no{background:var(--red)}
+.qz-n{font-size:14px;color:var(--grey)}
+.qz-q{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;margin-bottom:20px}
+.qz-q svg{width:72px;height:72px;flex:none}
+.qz-q h3{font-size:clamp(18px,1.7vw,22px);line-height:1.3}
+.qz-opts{display:grid;gap:8px}
+.qz-o{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:12px 16px;border:2px solid var(--line);border-radius:16px;background:#fff;text-align:left;cursor:pointer;font-size:16px;line-height:1.35;transition:border-color .2s ease,background-color .2s ease}
+.qz-o i{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-style:normal;font-family:var(--disp);font-size:12px;font-weight:600}
+.qz-o:disabled{cursor:default}
+.qz-o.ok{border-color:var(--green);background:#e9f6ef}
+.qz-o.ok i{background:var(--green);border-color:var(--green);color:#fff}
+.qz-o.no{border-color:var(--red);background:#fdeceb}
+.qz-o.no i{background:var(--red);border-color:var(--red);color:#fff}
+@media (hover:hover) and (pointer:fine){.qz-o:not(:disabled):hover{border-color:var(--asph)}}
+.qz-fb{margin-top:16px;min-height:26px;font-size:15.5px;color:var(--grey)}
+.qz-fb b{color:var(--asph)}
+.qz-foot{margin-top:16px;display:flex;justify-content:flex-end}
+.qz-res{text-align:left}
+.qz-res .big{font-family:var(--disp);font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1;margin-bottom:12px}
+.qz-res p{color:var(--grey);margin-bottom:20px}
+.qz-res .row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* fleet / instructors */
+.duo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px}
+.card{border-radius:28px;overflow:hidden;background:var(--paper);position:relative}
+.card .ph{background:linear-gradient(150deg,#d9d8d0,#c4c3bb);position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.c-a{grid-column:1/8}
+.c-a .ph{aspect-ratio:16/10}
+.c-b{grid-column:8/13;display:flex;flex-direction:column}
+.c-b .ph{aspect-ratio:4/3}
+.card .ct{padding:clamp(20px,2.4vw,30px)}
+.card h3{font-size:clamp(20px,1.8vw,24px);margin-bottom:10px}
+.card p{color:var(--grey);font-size:16px}
+.ticks{margin-top:16px;display:grid;gap:8px}
+.ticks li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:15.5px;line-height:1.45}
+.ticks svg{width:22px;height:22px;stroke:var(--asph);margin-top:1px}
+.c-y{grid-column:1/6;background:var(--y);padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:280px}
+.c-y h3{font-size:clamp(24px,2.4vw,34px)}
+.c-y p{color:var(--asph)}
+.c-c{grid-column:6/13;display:grid;grid-template-columns:1fr 1fr}
+.c-c .ph{height:100%;min-height:280px}
+
+/* prices */
+.ptab{width:100%;border-collapse:separate;border-spacing:0;font-size:16px;background:#fff;border:2px solid var(--asph);border-radius:24px;overflow:hidden}
+.ptab th,.ptab td{padding:18px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.ptab thead th{background:var(--asph);color:#fff;font-weight:500;font-size:14px;border-bottom:0}
+.ptab tbody tr:last-child td,.ptab tbody tr:last-child th{border-bottom:0}
+.ptab tbody th{font-family:var(--disp);font-weight:600;font-size:16px}
+.ptab tbody th small{display:block;font-family:var(--sans);font-weight:400;font-size:13.5px;color:var(--grey);margin-top:4px}
+.ptab td.n{font-family:var(--disp);font-weight:500;white-space:nowrap}
+.pnote{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.pnote div{border-radius:20px;background:#fff;padding:18px 20px;font-size:15px;color:var(--grey);border:2px dashed var(--line)}
+.pnote b{display:block;color:var(--asph);font-weight:600;margin-bottom:4px;font-size:16px}
+
+/* faq */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:start}
+.qa{border-bottom:2px dashed var(--line)}
+.qa:first-child{border-top:2px dashed var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:76px;padding:16px 0;background:none;border:0;cursor:pointer;text-align:left;font-weight:600;font-size:clamp(17px,1.5vw,19px)}
+.qa button span.pm{width:36px;height:36px;border-radius:50%;background:var(--y);display:grid;place-items:center;flex:none;transition:transform .25s var(--ease)}
+.qa button span.pm svg{width:18px;height:18px}
+.qa button[aria-expanded="true"] span.pm{transform:rotate(45deg)}
+.ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.ans>div{overflow:hidden}
+.ans p{padding:0 0 22px;color:var(--grey);max-width:640px}
+.qa.open .ans{grid-template-rows:1fr}
+
+/* signup */
+.sign-up{background:var(--asph);color:#fff;border-radius:36px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.su-l{padding:clamp(26px,4vw,56px);position:relative}
+.su-l h2{font-size:clamp(28px,3.6vw,48px);color:#fff}
+.su-l>p{color:#c9cbd0;margin-top:16px;max-width:460px}
+.su-sum{margin-top:26px;background:var(--asph2);border-radius:20px;padding:18px 20px;font-size:15px;line-height:1.5}
+.su-sum b{color:var(--y);font-family:var(--disp);font-weight:500}
+.contacts{margin-top:28px;display:grid;gap:4px;font-size:15.5px;color:#c9cbd0}
+.contacts a{color:#fff;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:44px}
+.su-r{background:#fff;color:var(--asph);padding:clamp(26px,4vw,56px);border-radius:32px;margin:8px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.fld label{font-size:14px;font-weight:500}
+.fld input,.fld select{min-height:54px;border-radius:16px;border:2px solid var(--line);background:#fff;padding:0 16px;font-size:16px;width:100%}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--asph)}
+.fld .err{font-size:13.5px;color:var(--red)}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--grey);margin:4px 0 18px;cursor:pointer;min-height:44px}
+.chk input{width:20px;height:20px;accent-color:var(--asph);margin:2px 0 0;flex:none}
+.done .ok{width:64px;height:64px;border-radius:50%;background:var(--y);display:grid;place-items:center;margin-bottom:20px}
+.done .ok svg{width:30px;height:30px;stroke:var(--asph)}
+.done h3{font-size:26px;margin-bottom:10px}
+.done p{color:var(--grey)}
+.done ul{margin-top:18px;display:grid;gap:10px}
+.done li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15px}
+.done li i{width:24px;height:24px;border-radius:50%;background:var(--ys);display:grid;place-items:center;font-style:normal;font-family:var(--disp);font-size:12px;font-weight:600}
+
+.foot{padding:40px 0 52px;font-size:14px;color:var(--grey)}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;border-top:3px dashed var(--line);padding-top:32px}
+.foot .logo{color:var(--asph);margin-bottom:10px}
+.foot a{color:var(--asph);font-weight:600}
+.foot p+p{margin-top:6px}
+
+.js .rv{opacity:0;transform:translateY(18px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+
+@media (max-width:1100px){
+  .pick{grid-template-columns:1fr}
+  .res{position:static}
+  .route{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:36px}
+  .route::before{display:none}
+  .rt{padding-top:74px}
+}
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-vis{aspect-ratio:4/3;max-height:none}
+  .road .wrap{grid-template-columns:1fr 1fr}
+  .road li:nth-child(3){padding-left:0;border-left:0}
+  .road li:nth-child(n+3){border-top:3px dashed rgba(255,255,255,.28)}
+  .c-a,.c-b,.c-y,.c-c{grid-column:1/-1}
+  .faq,.quiz{grid-template-columns:1fr}
+  .sign-up{grid-template-columns:1fr}
+  .pnote{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero h1{font-size:clamp(32px,9.4vw,44px)}
+  .hero-vis{aspect-ratio:1/1}
+  .hero-ph{inset:0;border-radius:28px}
+  .sign{left:12px;bottom:12px;width:96px}
+  .bubble{right:10px;top:10px;max-width:190px;font-size:13px}
+  .hero-cta .btn{flex:1 1 100%}
+  .road .wrap{grid-template-columns:1fr}
+  .road li,.road li+li{padding:20px 0;border-left:0}
+  .road li+li{border-top:3px dashed rgba(255,255,255,.28)}
+  .road li:nth-child(3){border-top:3px dashed rgba(255,255,255,.28)}
+  .cats{gap:8px}
+  .cat{padding:12px;min-height:116px}
+  .cat svg{display:none}
+  .cat .L{font-size:28px}
+  .sched{grid-template-columns:1fr}
+  .seg button{font-size:14px}
+  .res-top{grid-template-columns:1fr}
+  .res-term{text-align:left}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:last-child{grid-column:1/-1}
+  .gl{grid-template-columns:1fr}
+  .res-cta{grid-template-columns:1fr}
+  .res-cta .btn{width:100%}
+  .route{grid-template-columns:1fr;row-gap:0}
+  .rt{padding:0 0 28px 72px;position:relative}
+  .rt i{top:0;left:0}
+  .rt::before{content:"";position:absolute;left:25px;top:54px;bottom:0;width:4px;background:repeating-linear-gradient(180deg,var(--asph) 0 16px,transparent 16px 26px)}
+  .rt:last-child::before{display:none}
+  .c-c{grid-template-columns:1fr}
+  .c-c .ph{min-height:220px}
+  .ptab thead{display:none}
+  .ptab,.ptab tbody,.ptab tr,.ptab th,.ptab td{display:block;width:100%}
+  .ptab tr{padding:16px 18px;border-bottom:1px solid var(--line)}
+  .ptab tbody tr:last-child{border-bottom:0}
+  .ptab th,.ptab td{padding:2px 0;border:0}
+  .ptab td.n{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+  .ptab td.n::before{content:attr(data-l);font-family:var(--sans);font-weight:400;color:var(--grey);white-space:normal}
+  .su-r{margin:6px;border-radius:28px}
+  .qz-q{grid-template-columns:1fr;gap:12px}
+  .qz-q svg{width:56px;height:56px}
+  .qz-dots i{width:24px}
+  .lane-n{font-size:10.5px}
+  .seg-b{font-size:11px;padding:0 6px}
+}
+@media (max-width:400px){
+  .cat{padding:10px}
+  .cat b{font-size:13.5px}
+  .cat small{font-size:12px}
+  .plan-h{flex-direction:column;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv{opacity:1;transform:none}
+  .js .sign{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Автошкола Старт, на главную">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4" transform="rotate(45 20 20)" fill="#fff" stroke="#2a2c30" stroke-width="2.5"/><rect x="12.5" y="12.5" width="15" height="15" rx="2" transform="rotate(45 20 20)" fill="#ffd21a"/></svg>
+      <span>Старт</span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#pick">Подбор обучения</a>
+      <a href="#route">Как учимся</a>
+      <a href="#prices">Цены</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#signup">Контакты</a>
+    </nav>
+    <a class="hdr-ph" href="tel:+73430000000">+7 (343) 000-00-00</a>
+    <a class="btn btn-y" href="#signup">Записаться</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path class="b1" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Мобильная навигация">
+  <a href="#pick">Подбор обучения</a>
+  <a href="#route">Как учимся</a>
+  <a href="#prices">Цены</a>
+  <a href="#faq">Вопросы</a>
+  <a href="#signup">Запись и контакты</a>
+  <a href="tel:+73430000000">+7 (343) 000-00-00</a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="hero-k"><b>Набор открыт</b>группы стартуют каждую неделю</p>
+      <h1>Учиться водить по&nbsp;понятному плану</h1>
+      <p class="hero-lead">Выберите категорию, коробку передач и&nbsp;удобный график&nbsp;— сразу покажем стоимость, срок и&nbsp;что будет на&nbsp;каждой неделе. Без доплат за&nbsp;топливо и&nbsp;внутренний экзамен.</p>
+      <div class="hero-cta">
+        <a class="btn btn-a" href="#pick">Подобрать обучение<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-o" href="#prices">Цены</a>
+      </div>
+    </div>
+    <div class="hero-vis">
+      <div class="hero-ph"><img src="https://images.unsplash.com/photo-1527593167147-e9c94a5883e6?auto=format&fit=crop&w=900&h=980&q=72" width="900" height="980" alt="Девушка за рулём автомобиля улыбается" fetchpriority="high"></div>
+      <svg class="sign" viewBox="0 0 120 120" aria-hidden="true"><rect x="22" y="22" width="76" height="76" rx="8" transform="rotate(45 60 60)" fill="#fff" stroke="#2a2c30" stroke-width="3"/><rect x="36" y="36" width="48" height="48" rx="4" transform="rotate(45 60 60)" fill="#ffd21a"/></svg>
+      <p class="bubble"><b>Первое занятие</b>на&nbsp;закрытой площадке, без машин вокруг</p>
+    </div>
+  </div>
+  <div class="road">
+    <ul class="wrap">
+      <li><svg viewBox="0 0 30 30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="15" cy="15" r="11"/><circle cx="15" cy="15" r="3"/><path d="M15 4v8M5 18l7-2M25 18l-7-2"/></svg><span><b>Категории A, B, C</b><span>мотоцикл, легковой, грузовой</span></span></li>
+      <li><svg viewBox="0 0 30 30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6v18M15 6v18M22 6v9M8 15h14"/><circle cx="8" cy="5" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="22" cy="5" r="2"/></svg><span><b>АКПП и&nbsp;МКПП</b><span>учебные машины с&nbsp;двойными педалями</span></span></li>
+      <li><svg viewBox="0 0 30 30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="22" height="20" rx="3"/><path d="M4 12h22M10 3v6M20 3v6"/></svg><span><b>Утро, вечер, выходные</b><span>или интенсив за&nbsp;полтора месяца</span></span></li>
+      <li><svg viewBox="0 0 30 30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="24" height="15" rx="3"/><path d="M3 13h24M8 19h5"/></svg><span><b>Оплата частями</b><span>три платежа без процентов</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="pick" aria-labelledby="pick-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="pick-h">Подберите обучение&nbsp;— и&nbsp;увидите весь маршрут</h2>
+      <p>Три вопроса, и&nbsp;справа появится стоимость, срок, план занятий по&nbsp;неделям и&nbsp;ближайшие группы. Можно менять ответы и&nbsp;сравнивать.</p>
+    </div>
+    <div class="pick">
+      <div class="pick-in rv">
+        <div class="q">
+          <h3><i>1</i>Какая категория?</h3>
+          <div class="cats" role="group" aria-label="Категория" id="cats"></div>
+        </div>
+        <div class="q">
+          <h3><i>2</i>Коробка передач</h3>
+          <div class="seg" style="--n:2" role="group" aria-label="Коробка передач" id="kpp">
+            <button type="button" data-kpp="m" aria-pressed="true">Механика</button>
+            <button type="button" data-kpp="a" aria-pressed="false">Автомат</button>
+          </div>
+          <p class="seg-note" id="kppNote" aria-live="polite"></p>
+        </div>
+        <div class="q">
+          <h3><i>3</i>Когда удобно учиться?</h3>
+          <div class="sched" role="group" aria-label="График" id="sched"></div>
+        </div>
+        <div class="q">
+          <h3><i>+</i>Дополнительно</h3>
+          <div class="extra">
+            <label class="tg"><input type="checkbox" id="online"><span class="sw" aria-hidden="true"></span><span>Теория онлайн<small>лекции в&nbsp;записи и&nbsp;вебинары, на&nbsp;площадку&nbsp;— очно</small></span></label>
+            <div class="stepper">
+              <div class="stp"><button type="button" id="exMinus" aria-label="Меньше дополнительных занятий">−</button><output id="exN" aria-live="polite">0</output><button type="button" id="exPlus" aria-label="Больше дополнительных занятий">+</button></div>
+              <p>Дополнительные занятия по&nbsp;городу, по&nbsp;2&nbsp;часа&nbsp;— если хочется больше практики перед ГИБДД</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="res rv" style="--d:1" aria-label="Результат подбора">
+        <div class="res-top" aria-live="polite" aria-atomic="true">
+          <div>
+            <p class="res-k" id="resK">Категория B, механика</p>
+            <p class="res-price" id="resPrice">—</p>
+            <p class="res-sub" id="resSub"></p>
+          </div>
+          <div class="res-term"><b id="resTerm">—</b><span id="resTermSub">до экзамена в&nbsp;ГИБДД</span></div>
+        </div>
+        <div class="res-body">
+          <dl class="facts">
+            <div><dt>Теория</dt><dd id="fT">—</dd></div>
+            <div><dt>Вождение</dt><dd id="fP">—</dd></div>
+            <div><dt>Частями</dt><dd id="fM">—</dd></div>
+          </dl>
+          <div class="plan-h"><h3>План по&nbsp;неделям</h3><span id="planSpan"></span></div>
+          <div class="lanes" id="lanes" aria-hidden="true">
+            <div class="lane" id="laneT"><span class="lane-n">Теория</span></div>
+            <div class="lane" id="laneP"><span class="lane-n">Вождение</span></div>
+            <div class="weeks" id="weeks"></div>
+          </div>
+          <ol class="plan-list" id="planList"></ol>
+          <div class="groups">
+            <h3>Ближайшие группы</h3>
+            <div class="gl" role="group" aria-label="Дата старта группы" id="groups"></div>
+          </div>
+          <div class="res-cta">
+            <p id="ctaNote">Место в&nbsp;группе держим три дня после заявки.</p>
+            <a class="btn btn-y" href="#signup" id="toSign">Записаться в&nbsp;группу</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-paper" id="route" aria-labelledby="route-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="route-h">Как проходит обучение</h2>
+      <p>Одна и&nbsp;та&nbsp;же дорога для всех категорий&nbsp;— отличается только длина отрезков.</p>
+    </div>
+    <ol class="route">
+      <li class="rt rv"><i>1</i><h3>Договор и&nbsp;медсправка</h3><p>Заключаем договор, вы&nbsp;оформляете медсправку на&nbsp;водительскую комиссию&nbsp;— подскажем, где это сделать рядом.</p></li>
+      <li class="rt rv" style="--d:1"><i>2</i><h3>Теория</h3><p>ПДД, устройство автомобиля, первая помощь. Тренируемся на&nbsp;билетах в&nbsp;приложении между занятиями.</p></li>
+      <li class="rt rv" style="--d:2"><i>3</i><h3>Автодром</h3><p>Трогание, парковка, эстакада, разворот. Ровно те упражнения, что будут на&nbsp;экзамене.</p></li>
+      <li class="rt rv" style="--d:3"><i>4</i><h3>Город</h3><p>Маршруты рядом с&nbsp;экзаменационным отделом ГИБДД: перекрёстки, перестроения, пешеходы.</p></li>
+      <li class="rt rv" style="--d:4"><i>5</i><h3>Экзамены</h3><p>Внутренний экзамен в&nbsp;школе, затем&nbsp;— теория и&nbsp;вождение в&nbsp;ГИБДД. На&nbsp;экзамен едете на&nbsp;учебной машине.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="quiz" aria-labelledby="quiz-h">
+  <div class="wrap quiz">
+    <div class="sh" style="margin-bottom:0">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="quiz-h">Три вопроса из&nbsp;билетов</h2>
+      <p>Так выглядит тренажёр, который ученики проходят между лекциями. Ошибки разбираем на&nbsp;следующем занятии&nbsp;— а&nbsp;здесь сразу покажем пояснение.</p>
+    </div>
+    <div class="qz-card rv" id="qz" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="fleet-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="fleet-h">Спокойный инструктор важнее модели машины</h2>
+      <p>Но&nbsp;машины тоже важны: учитесь на&nbsp;той коробке, на&nbsp;которой будете ездить.</p>
+    </div>
+    <div class="duo">
+      <article class="card c-a rv">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1553782097-130fef5d3e27?auto=format&fit=crop&w=1000&h=625&q=72" width="1000" height="625" loading="lazy" alt="Инструктор и ученик в салоне автомобиля"></div>
+        <div class="ct">
+          <h3>Один инструктор на&nbsp;всё обучение</h3>
+          <p>Выбираете инструктора после пробного занятия и&nbsp;ездите с&nbsp;ним до&nbsp;экзамена. Не&nbsp;сошлись характерами&nbsp;— поменяем без вопросов.</p>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Запись на&nbsp;вождение в&nbsp;приложении, без звонков</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Забираем у&nbsp;метро, если удобнее начать оттуда</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>После каждого занятия&nbsp;— короткий разбор и&nbsp;задание</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card c-b rv" style="--d:1">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1516862523118-a3724eb136d7?auto=format&fit=crop&w=800&h=600&q=72" width="800" height="600" loading="lazy" alt="Водитель за рулём во время учебной поездки днём"></div>
+        <div class="ct">
+          <h3>Учебные машины</h3>
+          <p>Легковые с&nbsp;механикой и&nbsp;автоматом, мотоциклы для категории A&nbsp;и&nbsp;грузовик для C. Все с&nbsp;дублирующими педалями и&nbsp;зеркалами для инструктора.</p>
+        </div>
+      </article>
+      <div class="card c-y rv">
+        <h3>Боитесь сесть за&nbsp;руль?</h3>
+        <p>Это нормально. Первые два занятия проходят на&nbsp;закрытом автодроме&nbsp;— в&nbsp;город выезжаем, когда вы&nbsp;сами скажете «готов».</p>
+        <a class="btn btn-a" href="#signup" style="align-self:flex-start">Записаться на&nbsp;пробное</a>
+      </div>
+      <div class="card c-c rv" style="--d:1">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1612709060421-596380268eaf?auto=format&fit=crop&w=600&h=600&q=72" width="600" height="600" loading="lazy" alt="Девушка в белом за рулём"></div>
+        <div class="ph"><img src="https://images.unsplash.com/photo-1485463611174-f302f6a5c1c9?auto=format&fit=crop&w=600&h=600&q=72" width="600" height="600" loading="lazy" alt="Ночная дорога со световыми следами машин"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-paper" id="prices" aria-labelledby="prices-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="prices-h">Цены за&nbsp;полный курс</h2>
+      <p>В&nbsp;стоимость входят теория, вождение по&nbsp;программе, топливо, учебная машина на&nbsp;экзамен и&nbsp;внутренний экзамен.</p>
+    </div>
+    <table class="ptab rv">
+      <thead><tr><th scope="col">Категория</th><th scope="col">Будни, утро</th><th scope="col">Будни, вечер</th><th scope="col">Выходные</th><th scope="col">Интенсив</th></tr></thead>
+      <tbody id="ptBody"></tbody>
+    </table>
+    <div class="pnote">
+      <div class="rv"><b>Оплата частями</b>Три равных платежа: при записи, в&nbsp;начале вождения и&nbsp;перед внутренним экзаменом.</div>
+      <div class="rv" style="--d:1"><b>Пересдача в&nbsp;ГИБДД</b>Учебная машина на&nbsp;повторный экзамен&nbsp;— 2&nbsp;400&nbsp;₽, госпошлину платите сами.</div>
+      <div class="rv" style="--d:2"><b>Налоговый вычет</b>Выдаём документы для социального вычета на&nbsp;обучение.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap faq">
+    <div class="sh" style="margin-bottom:0">
+      <span class="dash" aria-hidden="true"></span>
+      <h2 id="faq-h">Что спрашивают перед записью</h2>
+      <p>Если вопроса нет в&nbsp;списке&nbsp;— позвоните, ответит администратор школы.</p>
+    </div>
+    <div>
+      <div class="qa"><button type="button" aria-expanded="false">С&nbsp;какого возраста можно учиться?<span class="pm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div><p>Учиться на&nbsp;категорию B&nbsp;можно с&nbsp;16&nbsp;лет, сдавать экзамен в&nbsp;ГИБДД&nbsp;— с&nbsp;17, а&nbsp;водительское удостоверение выдадут в&nbsp;18. Для несовершеннолетних договор подписывает родитель.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Какие документы нужны?<span class="pm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div><p>Паспорт, СНИЛС и&nbsp;медицинская справка для водителей. Справку можно донести до&nbsp;начала вождения&nbsp;— на&nbsp;теорию пускаем и&nbsp;без неё.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Что если пропущу занятия?<span class="pm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div><p>Лекции есть в&nbsp;записи, а&nbsp;вождение переносится в&nbsp;приложении, если предупредить за&nbsp;сутки. Теорию можно догнать с&nbsp;другой группой без доплат.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Механика или автомат?<span class="pm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div><p>Если сдаёте на&nbsp;автомате, в&nbsp;правах будет отметка «AT» и&nbsp;ездить на&nbsp;механике будет нельзя без дополнительного обучения. Если планируете свою машину с&nbsp;автоматом&nbsp;— учиться на&nbsp;нём проще и&nbsp;быстрее.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Можно ли сначала попробовать?<span class="pm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div><p>Да, пробное занятие на&nbsp;автодроме&nbsp;— 1&nbsp;200&nbsp;₽. Если после него запишетесь на&nbsp;курс, эту сумму вычтем из&nbsp;стоимости.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="signup" aria-labelledby="su-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sign-up rv">
+      <div class="su-l">
+        <span class="dash" aria-hidden="true"></span>
+        <h2 id="su-h">Запись в&nbsp;группу</h2>
+        <p>Перезвоним, ответим на&nbsp;вопросы и&nbsp;пригласим подписать договор. Место держим три дня.</p>
+        <div class="su-sum" id="suSum" aria-live="polite">—</div>
+        <div class="contacts">
+          <span>Учебный класс: Екатеринбург, ул.&nbsp;Шейнкмана, 75, 2&nbsp;этаж</span>
+          <span>Автодром: ул.&nbsp;Посадская, 23, за&nbsp;торговым центром</span>
+          <a href="tel:+73430000000">+7 (343) 000-00-00</a>
+          <a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a>
+        </div>
+      </div>
+      <form class="su-r" id="suForm" novalidate>
+        <div id="suBody">
+          <div class="fld"><label for="sName">Имя</label><input id="sName" autocomplete="given-name"><span class="err" aria-live="polite"></span></div>
+          <div class="fld"><label for="sPhone">Телефон</label><input id="sPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00"><span class="err" aria-live="polite"></span></div>
+          <div class="fld"><label for="sAge">Возраст</label><select id="sAge"><option>18 лет и старше</option><option>16–17 лет</option></select></div>
+          <label class="chk"><input type="checkbox" checked> <span>Согласен на&nbsp;обработку персональных данных для связи по&nbsp;заявке</span></label>
+          <button class="btn btn-y" type="submit" style="width:100%">Записаться</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4" transform="rotate(45 20 20)" fill="#fff" stroke="#2a2c30" stroke-width="2.5"/><rect x="12.5" y="12.5" width="15" height="15" rx="2" transform="rotate(45 20 20)" fill="#ffd21a"/></svg><span>Старт</span></a>
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+    <p>Екатеринбург, ул. Шейнкмана, 75</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document;d.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function sp(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function pl(n,a,b,c){n=Math.abs(n)%100;var m=n%10;if(n>10&&n<20)return c;if(m>1&&m<5)return b;if(m===1)return a;return c}
+
+  var burger=$('.burger'),mnav=$('#mnav');
+  function setNav(o){burger.setAttribute('aria-expanded',String(o));burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');mnav.classList.toggle('open',o);$('.b1',burger).setAttribute('d',o?'M6 6l12 12M18 6L6 18':'M4 7h16M4 12h16M4 17h16')}
+  burger.addEventListener('click',function(){setNav(burger.getAttribute('aria-expanded')!=='true')});
+  $$('a',mnav).forEach(function(a){a.addEventListener('click',function(){setNav(false)})});
+
+  requestAnimationFrame(function(){setTimeout(function(){$('.hero').classList.add('go')},60)});
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window&&!reduce){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});rv.forEach(function(el){io.observe(el)})}
+  else rv.forEach(function(el){el.classList.add('in')});
+
+  /* ===== data ===== */
+  var CAT={
+    A:{n:'Мотоцикл',s:'от 16 лет, мотоциклы и мопеды',th:108,pr:{m:18,a:18},price:{m:38000,a:38000},kpp:['m'],note:'На мотоциклах учимся с механической коробкой.',w:{morning:8,evening:8,weekend:11,intensive:5},
+      ic:'<circle cx="8" cy="24" r="5"/><circle cx="28" cy="24" r="5"/><path d="M8 24l7-10h7l6 10M17 14l-3-4h-4M22 14l2-5h4"/>'},
+    B:{n:'Легковой',s:'самая частая категория',th:134,pr:{m:56,a:54},price:{m:62000,a:68000},kpp:['m','a'],w:{morning:12,evening:12,weekend:16,intensive:7},
+      ic:'<path d="M4 23v-5l4-7h20l4 7v5z"/><circle cx="10" cy="24" r="3"/><circle cx="26" cy="24" r="3"/><path d="M9 18h18"/>'},
+    C:{n:'Грузовой',s:'для тех, у кого уже есть B',th:120,pr:{m:72,a:72},price:{m:79000,a:79000},kpp:['m'],note:'Грузовой автомобиль — только механика.',w:{morning:12,evening:13,weekend:17,intensive:8},
+      ic:'<path d="M3 23V9h18v14M21 14h7l4 5v4H21"/><circle cx="9" cy="24" r="3"/><circle cx="26" cy="24" r="3"/>'}
+  };
+  var SCH=[
+    {id:'morning',n:'Будни, утро',s:'теория пн/ср в 10:00, вождение днём',add:-2000,
+     ic:'<circle cx="13" cy="15" r="5"/><path d="M13 4v3M13 23v3M2 15h3M21 15h3M5 7l2 2M19 7l-2 2"/>'},
+    {id:'evening',n:'Будни, вечер',s:'теория вт/чт в 19:00, вождение вечером',add:0,
+     ic:'<path d="M20 16A8 8 0 1 1 11 6a6 6 0 0 0 9 10z"/>'},
+    {id:'weekend',n:'Выходные',s:'теория в субботу, вождение в выходные',add:3000,
+     ic:'<rect x="3" y="5" width="20" height="18" rx="3"/><path d="M3 10h20M8 2v5M18 2v5M14 15h4v4h-4z"/>'},
+    {id:'intensive',n:'Интенсив',s:'каждый день, теория и вождение',add:9000,
+     ic:'<path d="M14 2L5 15h7l-1 10 9-13h-7z"/>'}
+  ];
+  var S={cat:'B',kpp:'m',sch:'evening',online:false,extra:0,group:0};
+
+  /* render choices */
+  $('#cats').innerHTML=Object.keys(CAT).map(function(k){var c=CAT[k];return '<button class="cat" type="button" data-cat="'+k+'" aria-pressed="'+(S.cat===k)+'"><svg viewBox="0 0 34 34" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c.ic+'</svg><span class="L">'+k+'</span><b>'+c.n+'</b><small>'+c.s+'</small></button>'}).join('');
+  $('#sched').innerHTML=SCH.map(function(s){return '<button class="sc" type="button" data-sch="'+s.id+'" aria-pressed="'+(S.sch===s.id)+'"><svg viewBox="0 0 26 28" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+s.ic+'</svg><span><b>'+s.n+'</b><small>'+s.s+'</small></span></button>'}).join('');
+
+  $$('[data-cat]').forEach(function(b){b.addEventListener('click',function(){S.cat=b.dataset.cat;if(CAT[S.cat].kpp.indexOf(S.kpp)<0)S.kpp='m';S.group=0;update(true)})});
+  $$('[data-kpp]').forEach(function(b){b.addEventListener('click',function(){if(b.disabled)return;S.kpp=b.dataset.kpp;update(true)})});
+  $$('[data-sch]').forEach(function(b){b.addEventListener('click',function(){S.sch=b.dataset.sch;S.group=0;update(true)})});
+  $('#online').addEventListener('change',function(e){S.online=e.target.checked;update(true)});
+  $('#exMinus').addEventListener('click',function(){S.extra=Math.max(0,S.extra-1);update(true)});
+  $('#exPlus').addEventListener('click',function(){S.extra=Math.min(10,S.extra+1);update(true)});
+
+  /* groups dates: from today, next weekday starts */
+  var MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var DOW=['вс','пн','вт','ср','чт','пт','сб'];
+  function nextGroups(sch){
+    var now=new Date(), out=[], dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);
+    var want=sch==='weekend'?6:sch==='morning'?1:sch==='evening'?2:1;
+    while(out.length<3){if(dt.getDay()===want){out.push(new Date(dt));dt.setDate(dt.getDate()+(sch==='intensive'?14:7))}else dt.setDate(dt.getDate()+1)}
+    return out;
+  }
+  function dstr(x){return x.getDate()+' '+MON[x.getMonth()]}
+
+  function compute(){
+    var c=CAT[S.cat], sc=SCH.filter(function(x){return x.id===S.sch})[0];
+    var base=c.price[S.kpp]+sc.add+(S.online?-4000:0);
+    var extra=S.extra*2400;
+    var total=base+extra;
+    var weeks=c.w[S.sch]+(S.online&&S.sch!=='intensive'?-1:0)+Math.ceil(S.extra/(S.sch==='intensive'?5:3));
+    var pr=c.pr[S.kpp]+S.extra*2;
+    var lessons=Math.round(c.pr[S.kpp]/2)+S.extra;
+    return {c:c,sc:sc,base:base,extra:extra,total:total,weeks:weeks,pr:pr,lessons:lessons};
+  }
+  function update(anim){
+    var r=compute(), c=r.c;
+    $$('[data-cat]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.cat===S.cat))});
+    $$('[data-sch]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.sch===S.sch))});
+    $$('[data-kpp]').forEach(function(b){var ok=c.kpp.indexOf(b.dataset.kpp)>-1;b.disabled=!ok;b.setAttribute('aria-pressed',String(b.dataset.kpp===S.kpp))});
+    $('#kppNote').textContent=c.note||(S.kpp==='a'?'В правах будет отметка AT: только автомобили с автоматом.':'Сможете водить и механику, и автомат.');
+    $('#exN').textContent=S.extra;$('#exMinus').disabled=S.extra===0;$('#exPlus').disabled=S.extra===10;
+    $('#resK').textContent='Категория '+S.cat+', '+(S.cat==='B'?(S.kpp==='m'?'механика':'автомат'):c.n.toLowerCase())+', '+r.sc.n.toLowerCase();
+    $('#resPrice').textContent=sp(r.total)+' ₽';
+    $('#resSub').textContent='Всё включено'+(S.extra?', из них '+sp(r.extra)+' ₽ за '+S.extra+' доп. '+pl(S.extra,'занятие','занятия','занятий'):'')+(S.online?', теория онлайн':'');
+    var months=r.weeks/4.3;
+    $('#resTerm').textContent=r.weeks+' '+pl(r.weeks,'неделя','недели','недель');
+    $('#resTermSub').textContent=months>=1.6?'≈ '+(Math.round(months*2)/2).toString().replace('.',',')+' мес. до экзамена в ГИБДД':'до экзамена в ГИБДД';
+    $('#fT').textContent=c.th+' ч';
+    $('#fP').textContent=r.lessons+' '+pl(r.lessons,'занятие','занятия','занятий');
+    $('#fM').textContent='3 × '+sp(Math.ceil(r.total/3/100)*100)+' ₽';
+    renderPlan(r);
+    renderGroups(r);
+    if(anim&&!reduce){var el=$('#resPrice');el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse')}
+  }
+  function renderPlan(r){
+    var W=r.weeks;
+    var thW=Math.max(2,Math.round(W*(S.sch==='intensive'?.55:.5)));
+    var drStart=Math.max(1,Math.round(thW*.45));
+    var siteW=Math.max(1,Math.round((W-drStart-1)*.3));
+    var cityStart=drStart+siteW, cityW=W-1-cityStart;
+    var LW=$('#laneT').clientWidth||300;
+    function seg(cls,start,len,txt){var l=start/W*100,w=len/W*100;if(LW*len/W<txt.length*7.2+14)txt='';return '<span class="seg-b '+cls+'" style="left:'+l+'%;width:calc('+w+'% - 3px)">'+txt+'</span>'}
+    $('#laneT').innerHTML='<span class="lane-n">Теория</span>'+seg('t',0,thW,S.online?'онлайн':'ПДД, устройство')+seg('ex',W-1,1,'ГИБДД');
+    $('#laneP').innerHTML='<span class="lane-n">Вождение</span>'+seg('p1',drStart,siteW,'автодром')+seg('p2',cityStart,cityW,'город')+seg('ex',W-1,1,'');
+    var wk=[];var stepN=W>12?(LW<400?5:3):W>8?2:1;for(var i=1;i<=W;i+=stepN){if(W-i<stepN/2&&i!==1)break;wk.push('<span>'+i+'</span>')}wk.push('<span>'+W+'</span>');
+    $('#weeks').innerHTML=wk.join('');
+    $('#planSpan').textContent=W+' '+pl(W,'неделя','недели','недель')+', номер — неделя';
+    var perWeekDr=Math.max(1,Math.floor(r.lessons/Math.max(1,W-1-drStart)));
+    var items=[
+      ['1–'+thW,'Теория: '+r.c.th+' ч','ПДД, устройство, первая помощь'+(S.online?' — в записи и на вебинарах':', '+(S.sch==='weekend'?'по субботам':S.sch==='intensive'?'каждый день':'дважды в неделю'))],
+      [(drStart+1)+'–'+(drStart+siteW),'Автодром','упражнения из экзамена, '+perWeekDr+'–'+(perWeekDr+1)+' '+pl(perWeekDr+1,'занятие','занятия','занятий')+' в неделю'],
+      [(cityStart+1)+'–'+(W-1),'Город','экзаменационные маршруты'+(S.extra?', плюс '+S.extra+' доп. '+pl(S.extra,'занятие','занятия','занятий'):'')],
+      [String(W),'Экзамены','внутренний в школе, затем ГИБДД']
+    ];
+    $('#planList').innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'<small>'+x[2]+'</small></span></li>'}).join('');
+    $('#lanes').setAttribute('aria-hidden','true');
+  }
+  var curGroups=[];
+  function renderGroups(r){
+    curGroups=nextGroups(S.sch);
+    $('#groups').innerHTML=curGroups.map(function(g,i){var end=new Date(g);end.setDate(end.getDate()+r.weeks*7);return '<button class="gbtn" type="button" data-g="'+i+'" aria-pressed="'+(S.group===i)+'"><b>'+DOW[g.getDay()]+', '+dstr(g)+'</b><small>экзамен ~ '+dstr(end)+'</small></button>'}).join('');
+    $$('.gbtn').forEach(function(b){b.addEventListener('click',function(){S.group=+b.dataset.g;$$('.gbtn').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});summary()})});
+    summary();
+  }
+  function summary(){
+    var r=compute(), g=curGroups[S.group];
+    $('#suSum').innerHTML='Ваш выбор: <b>категория '+S.cat+(S.cat==='B'?(S.kpp==='m'?', МКПП':', АКПП'):'')+'</b>, '+r.sc.n.toLowerCase()+', старт <b>'+dstr(g)+'</b>.<br>Стоимость '+sp(r.total)+' ₽, срок '+r.weeks+' '+pl(r.weeks,'неделя','недели','недель')+'. <a href="#pick" style="color:#fff">Изменить</a>';
+  }
+  update(false);
+  var rT;window.addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){renderPlan(compute())},150)});
+
+  /* quiz */
+  var QZ=[
+    {q:'Что означает этот знак?',ic:'<rect x="17" y="17" width="38" height="38" rx="4" transform="rotate(45 36 36)" fill="#fff" stroke="#2a2c30" stroke-width="3"/><rect x="25" y="25" width="22" height="22" rx="2" transform="rotate(45 36 36)" fill="#ffd21a"/>',
+     o:['Вы едете по главной дороге: на перекрёстках вам уступают','Обязательная остановка перед перекрёстком','Конец зоны ограничения скорости'],a:0,
+     e:'Знак 2.1 «Главная дорога». Его же мы взяли в логотип: со «Старта» вы едете с преимуществом.'},
+    {q:'Красный и жёлтый сигналы светофора горят одновременно. Что это значит?',ic:'<rect x="24" y="6" width="24" height="60" rx="8" fill="#2a2c30"/><circle cx="36" cy="20" r="7" fill="#d63b2f"/><circle cx="36" cy="36" r="7" fill="#ffd21a"/><circle cx="36" cy="52" r="7" fill="#4a4d52"/>',
+     o:['Можно начинать движение','Движение запрещено, скоро включится зелёный','Светофор неисправен, действуйте как на нерегулируемом перекрёстке'],a:1,
+     e:'Сочетание красного и жёлтого запрещает движение и предупреждает о скором включении зелёного.'},
+    {q:'Можно ли говорить по телефону за рулём, держа его в руке?',ic:'<rect x="24" y="8" width="24" height="44" rx="5" fill="none" stroke="#2a2c30" stroke-width="3"/><path d="M33 46h6" stroke="#2a2c30" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="52" r="13" fill="#d63b2f"/><path d="M44 46l12 12" stroke="#fff" stroke-width="3"/>',
+     o:['Можно, если стоишь в пробке','Можно на загородной дороге','Нельзя: только через громкую связь или гарнитуру'],a:2,
+     e:'Водителю запрещено пользоваться телефоном без технических устройств, позволяющих вести переговоры без рук.'}
+  ];
+  var qzBox=$('#qz'),qi=0,qs=[];
+  function qzRender(){
+    if(qi>=QZ.length){var ok=qs.filter(Boolean).length;
+      qzBox.innerHTML='<div class="qz-res"><div class="big">'+ok+' из '+QZ.length+'</div><p>'+(ok===3?'Отлично — теорию вы сдадите. Осталось научиться водить так же уверенно.':ok===2?'Почти. В билетах около восьмисот вопросов — с тренажёром их выучивают за время курса.':'Нормально для старта: для этого и есть теория. С тренажёром вопросы запоминаются за пару недель.')+'</p><div class="row"><a class="btn btn-y" href="#pick">Подобрать обучение</a><button class="btn btn-o" type="button" id="qzAgain">Пройти ещё раз</button></div></div>';
+      $('#qzAgain').addEventListener('click',function(){qi=0;qs=[];qzRender();var f=$('#qz h3');if(f){f.setAttribute('tabindex','-1');f.focus()}});return}
+    var q=QZ[qi];
+    qzBox.innerHTML='<div class="qz-top"><div class="qz-dots" aria-hidden="true">'+QZ.map(function(_,i){return '<i class="'+(i<qi?(qs[i]?'ok':'no'):i===qi?'on':'')+'"></i>'}).join('')+'</div><span class="qz-n">Вопрос '+(qi+1)+' из '+QZ.length+'</span></div>'+
+      '<div class="qz-q"><svg viewBox="0 0 72 72" aria-hidden="true">'+q.ic+'</svg><h3>'+q.q+'</h3></div>'+
+      '<div class="qz-opts" role="group" aria-label="Варианты ответа">'+q.o.map(function(o,i){return '<button class="qz-o" type="button" data-o="'+i+'"><i>'+(i+1)+'</i><span>'+o+'</span></button>'}).join('')+'</div>'+
+      '<p class="qz-fb" id="qzFb"></p><div class="qz-foot"></div>';
+    $$('.qz-o',qzBox).forEach(function(b){b.addEventListener('click',function(){
+      var k=+b.dataset.o, right=k===q.a; qs[qi]=right;
+      $$('.qz-o',qzBox).forEach(function(x,i){x.disabled=true;if(i===q.a)x.classList.add('ok');else if(i===k)x.classList.add('no')});
+      $('#qzFb').innerHTML='<b>'+(right?'Верно.':'Не совсем.')+'</b> '+q.e;
+      var nx=d.createElement('button');nx.type='button';nx.className='btn btn-a';nx.id='qzNext';nx.textContent=qi<QZ.length-1?'Следующий вопрос':'Узнать результат';
+      $('.qz-foot',qzBox).appendChild(nx);nx.focus({preventScroll:true});
+      nx.addEventListener('click',function(){qi++;qzRender();var f=$('#qz h3, #qz .big');if(f){f.setAttribute('tabindex','-1');f.focus({preventScroll:true})}});
+    })});
+  }
+  qzRender();
+
+  /* price table */
+  $('#ptBody').innerHTML=['A','Bm','Ba','C'].map(function(k){
+    var cat=k.charAt(0), kp=k.charAt(1)||'m', c=CAT[cat];
+    var name=cat==='B'?(kp==='m'?'B, механика':'B, автомат'):cat+', '+c.n.toLowerCase();
+    var sub=c.th+' ч теории, '+c.pr[kp]+' ч вождения';
+    return '<tr><th scope="row">'+name+'<small>'+sub+'</small></th>'+SCH.map(function(s){return '<td class="n" data-l="'+s.n+'">'+sp(c.price[kp]+s.add)+' ₽</td>'}).join('')+'</tr>';
+  }).join('');
+
+  /* faq */
+  $$('.qa').forEach(function(q){var b=$('button',q);b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));q.classList.toggle('open',!o)})});
+
+  /* form */
+  $('#suForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#sName'),p=$('#sPhone'),ok=true;
+    n.nextElementSibling.textContent='';p.nextElementSibling.textContent='';
+    if(!n.value.trim()){n.nextElementSibling.textContent='Как к вам обращаться?';ok=false}
+    if(p.value.replace(/\D/g,'').length<10){p.nextElementSibling.textContent='Введите телефон: 10 цифр после +7.';ok=false}
+    if(!ok){(n.value.trim()?p:n).focus();return}
+    var r=compute(),g=curGroups[S.group];
+    $('#suBody').innerHTML='<div class="done"><div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>Заявка принята</h3><p>'+esc(n.value.trim())+', место в группе '+dstr(g)+' за вами на три дня. Администратор позвонит сегодня.</p><ul><li><i>1</i>Возьмите паспорт и СНИЛС на подписание договора</li><li><i>2</i>Запишитесь на медкомиссию — подскажем адрес рядом</li><li><i>3</i>Первый платёж — '+sp(Math.ceil(r.total/3/100)*100)+' ₽</li></ul></div>';
+  });
+})();
+</script>
+</body>
+</html>
