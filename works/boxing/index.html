@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Клуб единоборств «Удар» — бокс, кикбоксинг, ММА в Казани</title>
+<meta name="description" content="Клуб единоборств «Удар»: бокс, кикбоксинг, ММА и грэпплинг для взрослых и подростков. Подбор абонемента, расписание с фильтрами и бесплатная пробная тренировка.">
+<meta property="og:title" content="«Удар» — научим бить и держать удар">
+<meta property="og:description" content="Соберите абонемент под себя, посмотрите расписание и запишитесь на бесплатную пробную тренировку.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0B0B'/%3E%3Cpath d='M14 50L30 14h8L22 50z' fill='%23D11A24'/%3E%3Cpath d='M30 50l16-36h6L36 50z' fill='%23CFCBC4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0B0B0B;--coal:#161616;--coal2:#202020;--line:#2E2E2E;
+  --red:#D11A24;--blood:#9E1018;--red-t:#FF4D55;
+  --concrete:#CFCBC4;--concrete2:#BDB8AF;--ash:#9C9891;--muted:#A9A59E;
+  --ink:#111;--ink2:#3E3C38;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --disp:"Oswald","Arial Narrow",sans-serif;--sans:"Fira Sans",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:#F2F0EC;font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red-t);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--disp);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.005em;margin:0}
+h2{font-size:clamp(2.6rem,6.4vw,5.6rem)}
+h3{font-size:1.5rem;line-height:1.05}
+p{margin:0}
+.lead{font-size:1.1rem;color:var(--muted);max-width:56ch}
+section{padding:clamp(80px,11vw,144px) 0}
+.sec-head{display:grid;grid-template-columns:1fr minmax(0,440px);gap:24px 48px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border:0;border-radius:0;font-family:var(--disp);font-weight:600;font-size:1.12rem;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;cursor:pointer;transition:transform .14s var(--ease),background-color .18s ease,color .18s ease}
+.btn:active{transform:scale(.97)}
+.btn-red{background:var(--red);color:#fff}
+.btn-white{background:#F2F0EC;color:var(--ink)}
+.btn-line{background:transparent;color:#F2F0EC;box-shadow:inset 0 0 0 2px #F2F0EC}
+.btn svg{width:20px;height:20px}
+@media (hover:hover) and (pointer:fine){
+  .btn-red:hover{background:#E8222D}
+  .btn-white:hover{background:#fff}
+  .btn-line:hover{background:#F2F0EC;color:var(--ink)}
+}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(11,11,11,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--disp);font-weight:700;font-size:1.9rem;letter-spacing:.02em;line-height:1}
+.logo svg{width:34px;height:34px}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;color:var(--muted);transition:color .18s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:#fff}}
+.hdr .btn{min-height:46px;padding:0 20px;font-size:1rem}
+@media (max-width:980px){.nav{display:none}.hdr .btn{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;padding:0;min-height:min(900px,calc(100svh - 72px));display:grid;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-img{position:absolute;top:0;bottom:0;right:0;width:56%;background:#1C1C1C;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.hero-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,11,.6),transparent 40%),linear-gradient(0deg,rgba(158,16,24,.35),transparent 50%)}
+.slash{position:absolute;top:0;bottom:0;left:41%;width:7%;background:var(--red);clip-path:polygon(60% 0,100% 0,40% 100%,0 100%);z-index:1}
+.hero .wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding-top:56px;padding-bottom:56px;width:100%}
+.hero h1{font-size:clamp(3.4rem,8.8vw,8.8rem);line-height:.86;max-width:7.5ch;letter-spacing:-.01em}
+.hero h1 span{display:block}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px #F2F0EC}
+.hero .lead{margin-top:28px;max-width:44ch;color:#C9C5BE}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;list-style:none;padding:0}
+.hero-facts li{padding:0 22px;border-left:2px solid var(--red);font-size:.95rem;color:var(--muted);line-height:1.35}
+.hero-facts li:first-child{padding-left:14px}
+.hero-facts b{display:block;font-family:var(--disp);font-size:1.6rem;color:#F2F0EC;font-weight:600;text-transform:uppercase}
+.hero h1 span{animation:punch .7s var(--ease) both}
+.hero h1 span:nth-child(2){animation-delay:.09s}.hero h1 span:nth-child(3){animation-delay:.18s}
+.hero .lead,.hero-cta,.hero-facts{animation:up .8s var(--ease) both .3s}
+.slash{animation:slash .8s var(--ease) both .1s}
+@keyframes punch{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes slash{from{transform:translateY(-100%)}to{transform:none}}
+@media (max-width:900px){
+  .hero{min-height:auto}
+  .hero-img{position:relative;width:100%;height:56vw;max-height:420px;clip-path:polygon(0 0,100% 0,100% 82%,0 100%);order:2}
+  .slash{display:none}
+  .hero .wrap{padding-top:36px;padding-bottom:28px}
+  .hero-facts li{padding:0 14px}
+}
+@media (max-width:480px){.hero-cta .btn{flex:1 1 100%}.hero-facts{gap:14px 0}.hero h1 .o{-webkit-text-stroke:1.5px #F2F0EC}}
+
+/* ticker */
+.tick{background:var(--red);color:#fff;overflow:hidden;padding:14px 0;border-bottom:1px solid var(--blood)}
+.tick-row{display:flex;gap:36px;width:max-content;animation:run 34s linear infinite}
+.tick-row span{font-family:var(--disp);font-size:1.4rem;font-weight:600;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:36px}
+.tick-row span::after{content:"";width:12px;height:12px;background:var(--black);transform:rotate(45deg)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* builder */
+.builder{background:var(--concrete);color:var(--ink);position:relative}
+.builder::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(0,0,0,.08) 1px,transparent 1.2px),radial-gradient(rgba(255,255,255,.25) 1px,transparent 1.2px);background-size:7px 7px,11px 11px;background-position:0 0,3px 5px}
+.builder .wrap{position:relative}
+.builder .lead{color:var(--ink2)}
+.b-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:clamp(24px,4vw,48px);align-items:start}
+.q{padding:24px 0;border-top:2px solid var(--ink)}
+.q:first-child{padding-top:0;border-top:0}
+.q-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}
+.q-h h3{font-size:1.6rem}
+.q-h span{font-size:.92rem;color:var(--ink2)}
+.opts{display:grid;gap:8px}
+.o4{grid-template-columns:repeat(4,1fr)}
+.o3{grid-template-columns:repeat(3,1fr)}
+.o2{grid-template-columns:repeat(2,1fr)}
+.ob{position:relative;display:grid;gap:2px;text-align:left;min-height:64px;padding:12px 14px;background:#E2DED7;border:2px solid transparent;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.ob b{font-family:var(--disp);font-weight:600;font-size:1.25rem;text-transform:uppercase;line-height:1.1}
+.ob small{font-size:.84rem;color:var(--ink2);line-height:1.3}
+.ob[aria-pressed=true]{background:var(--ink);color:#F2F0EC;border-color:var(--ink)}
+.ob[aria-pressed=true] small{color:#BDB8AF}
+.ob[aria-pressed=true]::after{content:"";position:absolute;top:0;right:0;width:18px;height:18px;background:var(--red);clip-path:polygon(0 0,100% 0,100% 100%)}
+@media (hover:hover) and (pointer:fine){.ob:hover{border-color:var(--ink)}}
+.res{position:sticky;top:96px;background:var(--black);color:#F2F0EC;padding:28px;clip-path:polygon(0 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%)}
+.res-k{font-size:.9rem;color:var(--muted)}
+.res h3{font-size:2.3rem;margin:6px 0 4px}
+.res-sub{color:var(--muted);font-size:.95rem}
+.price{display:flex;align-items:baseline;gap:10px;margin:22px 0 4px;flex-wrap:wrap}
+.price b{font-family:var(--disp);font-weight:700;font-size:4.2rem;line-height:.9;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.price span{font-size:1rem;color:var(--muted)}
+.per{font-size:.95rem;color:#C9C5BE}
+.per strong{color:var(--red-t);font-weight:600}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:22px 0 8px}
+.wd{display:grid;gap:4px;text-align:center}
+.wd span{font-size:.75rem;color:var(--muted);font-weight:600}
+.wd i{display:block;height:44px;background:var(--coal2);position:relative}
+.wd i.on{background:var(--red)}
+.wd i.pt{background:repeating-linear-gradient(135deg,var(--red) 0 4px,var(--coal2) 4px 8px)}
+.wd small{font-size:.72rem;color:#D8D4CD;min-height:1.1em;font-variant-numeric:tabular-nums}
+.week-note{font-size:.84rem;color:var(--muted);min-height:2.6em}
+.lines{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line)}
+.lines li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem;color:#D8D4CD}
+.lines li span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.lines li.save span:last-child{color:var(--red-t)}
+.res .btn{width:100%;margin-top:20px}
+.tip{margin-top:14px;font-size:.88rem;color:var(--muted);border-left:2px solid var(--red);padding-left:12px}
+.flash{animation:flash .45s var(--ease)}
+@keyframes flash{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:1060px){.b-grid{grid-template-columns:1fr}.res{position:relative;top:0;max-width:560px}}
+@media (max-width:720px){.o4{grid-template-columns:1fr 1fr}.o3{grid-template-columns:1fr 1fr 1fr}.ob b{font-size:1.05rem}.ob{padding:10px}}
+@media (max-width:420px){.o3{grid-template-columns:1fr}.res{padding:22px}.price b{font-size:3.4rem}.wrap{padding:0 18px}}
+
+/* schedule */
+.filters{display:flex;flex-wrap:wrap;gap:20px 32px;margin-bottom:28px}
+.fg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fg>span{font-size:.88rem;color:var(--muted);margin-right:6px;width:100%}
+.fb{min-height:44px;padding:0 16px;background:transparent;border:2px solid var(--line);cursor:pointer;font-weight:600;color:#D8D4CD;transition:background-color .15s ease,border-color .15s ease,color .15s ease}
+.fb[aria-pressed=true]{background:#F2F0EC;border-color:#F2F0EC;color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.fb:hover{border-color:#6A6A6A}}
+.days-tabs{display:none}
+.sched{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;background:var(--line);border:2px solid var(--line)}
+.day{background:var(--black);min-height:320px;display:flex;flex-direction:column}
+.day-h{padding:12px 12px 10px;font-family:var(--disp);font-size:1.3rem;font-weight:600;text-transform:uppercase;border-bottom:2px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.day-h small{font-family:var(--sans);font-size:.78rem;color:var(--muted);text-transform:none;font-weight:500}
+.slots{display:grid;gap:2px;padding:6px;align-content:start}
+.cls{display:grid;gap:2px;text-align:left;padding:10px 10px 10px 12px;background:var(--coal);border:0;border-left:4px solid var(--c,#555);cursor:pointer;min-height:44px;transition:background-color .15s ease,transform .14s var(--ease)}
+.cls:active{transform:scale(.98)}
+.cls time{font-family:var(--disp);font-size:1.25rem;font-weight:600;line-height:1}
+.cls b{font-weight:600;font-size:.93rem;line-height:1.2}
+.cls small{font-size:.78rem;color:var(--muted);line-height:1.3}
+.cls[aria-pressed=true]{background:#F2F0EC;color:var(--ink)}
+.cls[aria-pressed=true] small{color:var(--ink2)}
+.cls.hide{display:none}
+@media (hover:hover) and (pointer:fine){.cls:hover{background:var(--coal2)}.cls[aria-pressed=true]:hover{background:#fff}}
+.empty{font-size:.84rem;color:#6E6B66;padding:10px 8px}
+.sch-foot{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-top:22px}
+.keys{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.88rem;color:var(--muted)}
+.keys span{display:inline-flex;align-items:center;gap:8px}
+.keys i{width:14px;height:14px;display:inline-block}
+.picked{font-weight:600;color:#F2F0EC;min-height:1.6em}
+.picked span{color:var(--red-t)}
+@media (max-width:1100px){.cls time{font-size:1.1rem}.cls b{font-size:.85rem}}
+@media (max-width:900px){
+  .days-tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:12px}
+  .dt{min-height:52px;background:var(--coal);border:2px solid transparent;cursor:pointer;display:grid;place-items:center;font-family:var(--disp);font-size:1.1rem;font-weight:600;text-transform:uppercase;line-height:1}
+  .dt small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:500;text-transform:none;margin-top:3px}
+  .dt[aria-selected=true]{background:var(--red);color:#fff}
+  .dt[aria-selected=true] small{color:#FFD7D9}
+  .sched{grid-template-columns:1fr;border:0;background:none}
+  .day{display:none;min-height:0}
+  .day.cur{display:flex}
+  .day-h{display:none}
+  .slots{padding:0;gap:6px}
+  .cls{grid-template-columns:72px 1fr;column-gap:14px;padding:14px}
+  .cls time{grid-row:span 2;font-size:1.5rem;align-self:center}
+}
+
+/* gym */
+.gym{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(150px,17vw,240px);gap:4px}
+.gym figure{margin:0;position:relative;overflow:hidden;background:#1C1C1C}
+.gym img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(1.1)}
+.gym figcaption{position:absolute;left:0;bottom:0;background:var(--black);padding:8px 14px;font-family:var(--disp);font-size:1.1rem;font-weight:600;text-transform:uppercase}
+.g1{grid-column:span 7;grid-row:span 2}.g2{grid-column:span 5}.g3{grid-column:span 5}.g4{grid-column:span 4}.g5{grid-column:span 4}
+.g6{grid-column:span 4;background:var(--red)!important;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.g6 b{font-family:var(--disp);font-size:clamp(1.6rem,2.6vw,2.4rem);text-transform:uppercase;line-height:1}
+.g6 p{color:#FFE3E4;font-size:.95rem}
+@media (max-width:800px){.gym{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.g1{grid-column:span 2;grid-row:span 1}.g2,.g3,.g4,.g5{grid-column:span 1}.g6{grid-column:span 2}}
+
+/* first */
+.first{background:var(--concrete);color:var(--ink)}
+.first-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,5vw,80px);align-items:start}
+.first .lead{color:var(--ink2);margin-top:18px}
+.bring{margin-top:28px;background:var(--ink);color:#F2F0EC;padding:22px 24px}
+.bring h3{font-size:1.4rem;margin-bottom:10px}
+.bring ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.bring li{display:flex;gap:10px;color:#D8D4CD}
+.bring li svg{width:20px;height:20px;flex:none;margin-top:3px;color:var(--red-t)}
+.flow{list-style:none;margin:0;padding:0}
+.flow li{display:grid;grid-template-columns:92px 1fr;gap:20px;padding:22px 0;border-top:2px solid var(--ink)}
+.flow li:last-child{border-bottom:2px solid var(--ink)}
+.flow .min{font-family:var(--disp);font-weight:700;font-size:2.4rem;line-height:.9}
+.flow .min small{display:block;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--ink2);margin-top:6px}
+.flow h3{font-size:1.5rem;margin-bottom:6px}
+.flow p{color:var(--ink2)}
+@media (max-width:860px){.first-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.flow li{grid-template-columns:64px 1fr;gap:14px}.flow .min{font-size:1.9rem}}
+
+/* coaches */
+.coaches{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--line);border:2px solid var(--line)}
+.coach{background:var(--black);padding:22px 20px 20px;display:flex;flex-direction:column;gap:10px;min-height:340px}
+.ini{font-family:var(--disp);font-weight:700;font-size:4.4rem;line-height:.8;color:transparent;-webkit-text-stroke:1.5px #6A6762}
+.coach h3{font-size:1.6rem}
+.coach .dsc{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;color:#D8D4CD;font-weight:500}
+.coach .dsc i{width:12px;height:12px;flex:none}
+.coach p{color:var(--muted);font-size:.93rem}
+.coach button{margin-top:auto;min-height:44px;background:transparent;border:2px solid var(--line);color:#F2F0EC;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;transition:border-color .15s ease,background-color .15s ease}
+.coach button svg{width:18px;height:18px}
+.coach button[aria-pressed=true]{background:var(--red);border-color:var(--red)}
+@media (hover:hover) and (pointer:fine){.coach button:hover{border-color:#F2F0EC}}
+@media (max-width:1100px){.coaches{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){.coaches{grid-template-columns:1fr 1fr}.coach{min-height:0}.ini{font-size:3.4rem}}
+@media (max-width:440px){.coaches{grid-template-columns:1fr}}
+.coach-f{display:none;align-items:center;flex-wrap:wrap;gap:10px;margin:-8px 0 20px;font-weight:600}
+.coach-f.on{display:flex}
+.coach-f button{min-height:44px;padding:0 14px;background:var(--coal2);border:0;cursor:pointer;font-weight:600;color:#F2F0EC}
+/* prices */
+.plist{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line);margin-top:clamp(36px,5vw,56px)}
+.plist div{background:var(--black);padding:20px}
+.plist span{display:block;color:var(--muted);font-size:.9rem}
+.plist b{font-family:var(--disp);font-size:2.2rem;font-weight:600;line-height:1.1}
+.plist small{display:block;color:#8A867F;font-size:.82rem;margin-top:4px}
+@media (max-width:800px){.plist{grid-template-columns:1fr 1fr}}
+
+/* teens */
+.teen{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.teen-card{background:var(--coal);border-top:6px solid var(--red);padding:clamp(22px,3vw,34px)}
+.teen-card .pp{font-family:var(--disp);font-size:3.4rem;font-weight:700;line-height:1}
+.teen-card .pp small{font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--muted)}
+.teen-card ul{list-style:none;margin:18px 0 22px;padding:0;display:grid;gap:8px}
+.teen-card li{display:flex;gap:10px;color:#D8D4CD}
+.teen-card li svg{width:20px;height:20px;flex:none;margin-top:3px;color:var(--red-t)}
+.rules{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:0;border-top:2px solid var(--line)}
+.rules li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:2px solid var(--line)}
+.rules b{font-family:var(--disp);font-size:1.9rem;line-height:1;color:var(--red-t)}
+.rules h3{font-size:1.25rem;margin-bottom:4px}
+.rules p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.teen{grid-template-columns:1fr}}
+
+/* faq */
+.faq{border-top:2px solid var(--line)}
+.faq details{border-bottom:2px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:72px;padding:16px 0;font-family:var(--disp);font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:600;text-transform:uppercase;line-height:1.1}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:40px;height:40px;display:grid;place-items:center;background:var(--coal2);transition:transform .25s var(--ease),background-color .2s ease}
+.faq summary i svg{width:18px;height:18px}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--red)}
+.faq .a{padding:0 0 24px;color:var(--muted);max-width:70ch}
+.faq details[open] .a{animation:up .35s var(--ease)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,80px)}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}}
+
+/* trial */
+.trial{position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.trial-bg{position:absolute;inset:0;background:#1A1A1A}
+.trial-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);opacity:.32}
+.trial .wrap{position:relative;display:grid;grid-template-columns:1fr minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:center}
+.trial h2{font-size:clamp(3rem,7.6vw,6.8rem)}
+.trial .lead{margin-top:20px;color:#C9C5BE}
+.form{background:#F2F0EC;color:var(--ink);padding:clamp(22px,3vw,34px)}
+.form h3{font-size:1.8rem;margin-bottom:16px}
+.fld{display:grid;gap:6px;margin-bottom:14px}
+.fld label{font-weight:600;font-size:.92rem}
+.fld input,.fld select{min-height:52px;border:2px solid #CFCBC4;border-radius:0;background:#fff;padding:0 14px;width:100%;transition:border-color .15s ease}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--ink)}
+.fld input[aria-invalid=true]{border-color:var(--red)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ferr{color:var(--blood);font-size:.85rem;font-weight:600}
+.slot-pick{padding:12px 14px;background:#E2DED7;font-size:.92rem;margin-bottom:14px;border-left:4px solid var(--red)}
+.slot-pick b{font-weight:600}
+.form .btn{width:100%}
+.form small{display:block;margin-top:12px;font-size:.84rem;color:var(--ink2)}
+.ok{padding:8px 0}
+.ok .mark{width:64px;height:64px;background:var(--red);display:grid;place-items:center;margin-bottom:18px;clip-path:polygon(0 0,100% 0,100% 75%,75% 100%,0 100%)}
+.ok .mark svg{width:32px;height:32px;color:#fff}
+.ok h3{font-size:2.4rem;margin-bottom:10px}
+.ok p{color:var(--ink2)}
+.ok dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:18px 0 0;padding:14px;background:#E2DED7}
+.ok dt{color:var(--ink2)}
+.ok dd{margin:0;font-weight:600}
+@media (max-width:900px){.trial .wrap{grid-template-columns:1fr}}
+@media (max-width:480px){.f-row{grid-template-columns:1fr;gap:0}}
+
+/* footer */
+.ftr{padding:64px 0 40px;border-top:1px solid var(--line)}
+.ftr-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.ftr h3{font-size:1.2rem;margin-bottom:12px}
+.ftr ul{list-style:none;margin:0;padding:0}
+.ftr a{text-decoration:none;display:inline-flex;min-height:40px;align-items:center;color:#D8D4CD}
+@media (hover:hover) and (pointer:fine){.ftr a:hover{color:#fff}}
+.ftr p{color:var(--muted)}
+.legal{padding-top:22px;font-size:.9rem;color:var(--muted);display:grid;gap:4px}
+.legal a{display:inline;min-height:0;color:var(--red-t)}
+@media (max-width:760px){.ftr-grid{grid-template-columns:1fr}}
+
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="b-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+  <symbol id="b-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="2.4"/></symbol>
+  <symbol id="b-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+  <symbol id="b-glove" viewBox="0 0 24 24"><path d="M7 21v-4.5C5 15 4 13 4 10.5V8a4 4 0 0 1 4-4h5a5 5 0 0 1 5 5v1.5a3 3 0 0 0-3 0V9H9M17 21v-4c2-1 3-3 3-5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Клуб «Удар» — в начало"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 56L30 8h10L18 56z" fill="#D11A24"/><path d="M30 56L52 8h6L36 56z" fill="#F2F0EC"/></svg>УДАР</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#abonement">Абонемент</a>
+      <a href="#raspisanie">Расписание</a>
+      <a href="#treneri">Тренеры</a>
+      <a href="#pervaya">Первая тренировка</a>
+      <a href="#podrostki">Подросткам</a>
+      <a href="#voprosy">Вопросы</a>
+    </nav>
+    <a class="btn btn-red" href="#probnaya">Пробная — 0 ₽</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1773289338309-50476faedda2?auto=format&fit=crop&w=1300&h=1100&q=72&crop=entropy" width="1300" height="1100" alt="Девушка отрабатывает удары в зале" fetchpriority="high"></div>
+  <div class="slash" aria-hidden="true"></div>
+  <div class="wrap">
+    <h1 id="h1"><span>Научим</span><span>бить.</span><span class="o">И&nbsp;держать удар</span></h1>
+    <p class="lead">Бокс, кикбоксинг, ММА и&nbsp;грэпплинг в&nbsp;Казани. Новички тренируются в&nbsp;отдельных группах: в&nbsp;спарринг не&nbsp;выпустим, пока вы сами не&nbsp;будете готовы.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="#probnaya">Записаться на пробную</a>
+      <a class="btn btn-line" href="#abonement">Собрать абонемент</a>
+    </div>
+    <ul class="hero-facts">
+      <li><b>4 дисциплины</b>одна карта</li>
+      <li><b>7:00–23:00</b>без выходных</li>
+      <li><b>с 12 лет</b>подростковые группы</li>
+    </ul>
+  </div>
+</section>
+
+<div class="tick" aria-hidden="true"><div class="tick-row">
+  <span>Бокс</span><span>Кикбоксинг</span><span>ММА</span><span>Грэпплинг</span><span>Пробная бесплатно</span><span>Перчатки выдадим</span><span>Бокс</span><span>Кикбоксинг</span><span>ММА</span><span>Грэпплинг</span><span>Пробная бесплатно</span><span>Перчатки выдадим</span>
+</div></div>
+
+<section class="builder" id="abonement" aria-labelledby="ab-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="ab-h">Абонемент под ваш ритм</h2>
+      <p class="lead">Пять вопросов&nbsp;— и&nbsp;вы видите цену в&nbsp;месяц, цену одной тренировки и&nbsp;свою неделю по&nbsp;реальному расписанию клуба.</p>
+    </div>
+    <div class="b-grid">
+      <div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q1">Дисциплина</h3><span>можно сменить в любой месяц</span></div>
+          <div class="opts o4" role="group" aria-labelledby="q1" data-q="disc">
+            <button class="ob" type="button" data-v="box" aria-pressed="true"><b>Бокс</b><small>руки, ноги, корпус</small></button>
+            <button class="ob" type="button" data-v="kick" aria-pressed="false"><b>Кикбоксинг</b><small>руки и ноги</small></button>
+            <button class="ob" type="button" data-v="mma" aria-pressed="false"><b>ММА</b><small>стойка и партер</small></button>
+            <button class="ob" type="button" data-v="grap" aria-pressed="false"><b>Грэпплинг</b><small>борьба без ударов</small></button>
+          </div>
+        </div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q2">Опыт</h3></div>
+          <div class="opts o2" role="group" aria-labelledby="q2" data-q="lvl">
+            <button class="ob" type="button" data-v="new" aria-pressed="true"><b>Начинаю с нуля</b><small>группы для новичков, без спаррингов</small></button>
+            <button class="ob" type="button" data-v="pro" aria-pressed="false"><b>Уже тренировался</b><small>общие группы, спарринги по пятницам</small></button>
+          </div>
+        </div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q3">Сколько раз в неделю</h3></div>
+          <div class="opts o3" role="group" aria-labelledby="q3" data-q="freq">
+            <button class="ob" type="button" data-v="2" aria-pressed="false"><b>2 раза</b><small>8 в месяц</small></button>
+            <button class="ob" type="button" data-v="3" aria-pressed="true"><b>3 раза</b><small>12 в месяц</small></button>
+            <button class="ob" type="button" data-v="99" aria-pressed="false"><b>Безлимит</b><small>все группы своего уровня</small></button>
+          </div>
+        </div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q4">Когда удобно</h3><span>дневные дешевле на 20%</span></div>
+          <div class="opts o2" role="group" aria-labelledby="q4" data-q="time">
+            <button class="ob" type="button" data-v="eve" aria-pressed="true"><b>Вечером и в выходные</b><small>любое время работы клуба</small></button>
+            <button class="ob" type="button" data-v="day" aria-pressed="false"><b>Утром и днём</b><small>по будням до 17:00</small></button>
+          </div>
+        </div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q5">Персональные тренировки</h3><span>в месяц, 60 минут</span></div>
+          <div class="opts o3" role="group" aria-labelledby="q5" data-q="pt">
+            <button class="ob" type="button" data-v="0" aria-pressed="true"><b>Не нужны</b><small>только группа</small></button>
+            <button class="ob" type="button" data-v="4" aria-pressed="false"><b>4 занятия</b><small>2 300 ₽ за одно</small></button>
+            <button class="ob" type="button" data-v="8" aria-pressed="false"><b>8 занятий</b><small>2 200 ₽ за одно</small></button>
+          </div>
+        </div>
+        <div class="q rv">
+          <div class="q-h"><h3 id="q6">Срок</h3></div>
+          <div class="opts o3" role="group" aria-labelledby="q6" data-q="term">
+            <button class="ob" type="button" data-v="1" aria-pressed="true"><b>1 месяц</b><small>без скидки</small></button>
+            <button class="ob" type="button" data-v="3" aria-pressed="false"><b>3 месяца</b><small>−10%, заморозка 14 дней</small></button>
+            <button class="ob" type="button" data-v="6" aria-pressed="false"><b>6 месяцев</b><small>−15%, заморозка 30 дней</small></button>
+          </div>
+        </div>
+      </div>
+      <aside class="res rv" style="--d:.08s" aria-labelledby="resH">
+        <div id="resBody" aria-live="polite"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="raspisanie" aria-labelledby="sch-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="sch-h">Расписание</h2>
+      <p class="lead">Отфильтруйте по&nbsp;дисциплине и&nbsp;уровню, нажмите на&nbsp;тренировку&nbsp;— она подставится в&nbsp;заявку на&nbsp;пробную.</p>
+    </div>
+    <div class="filters rv">
+      <div class="fg" role="group" aria-label="Дисциплина" id="fDisc">
+        <span>Дисциплина</span>
+        <button class="fb" type="button" data-v="all" aria-pressed="true">Все</button>
+        <button class="fb" type="button" data-v="box" aria-pressed="false">Бокс</button>
+        <button class="fb" type="button" data-v="kick" aria-pressed="false">Кикбоксинг</button>
+        <button class="fb" type="button" data-v="mma" aria-pressed="false">ММА</button>
+        <button class="fb" type="button" data-v="grap" aria-pressed="false">Грэпплинг</button>
+      </div>
+      <div class="fg" role="group" aria-label="Уровень" id="fLvl">
+        <span>Уровень</span>
+        <button class="fb" type="button" data-v="all" aria-pressed="true">Все</button>
+        <button class="fb" type="button" data-v="new" aria-pressed="false">Новички</button>
+        <button class="fb" type="button" data-v="pro" aria-pressed="false">С опытом</button>
+        <button class="fb" type="button" data-v="teen" aria-pressed="false">Подростки</button>
+      </div>
+    </div>
+    <div class="coach-f" id="coachF" aria-live="polite"><span id="coachFT"></span><button type="button" id="coachX">Показать всех</button></div>
+    <div class="days-tabs" role="tablist" aria-label="День недели" id="dTabs"></div>
+    <div class="sched rv" id="sched"></div>
+    <div class="sch-foot">
+      <div class="keys" aria-hidden="true"><span><i style="background:#D11A24"></i>Бокс</span><span><i style="background:#E8A23A"></i>Кикбоксинг</span><span><i style="background:#F2F0EC"></i>ММА</span><span><i style="background:#6F8FA8"></i>Грэпплинг</span></div>
+      <p class="picked" id="picked" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section id="zal" aria-labelledby="zal-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="zal-h">Зал</h2>
+      <p class="lead">900&nbsp;м² на&nbsp;цокольном этаже бывшего завода: ринг, клетка, ковёр для борьбы, 24 мешка и&nbsp;зона функционалки. Душевые и&nbsp;раздевалки отдельно для мужчин и&nbsp;женщин.</p>
+    </div>
+    <div class="gym">
+      <figure class="g1 rv"><img src="https://images.unsplash.com/photo-1716307043003-dbe6a5cc496e?auto=format&fit=crop&w=1200&h=820&q=72&crop=entropy" width="1200" height="820" loading="lazy" alt="Боксёрский ринг в зале"><figcaption>Ринг 6×6</figcaption></figure>
+      <figure class="g2 rv" style="--d:.06s"><img src="https://images.unsplash.com/photo-1575747515871-2e323827539e?auto=format&fit=crop&w=800&h=480&q=72&crop=entropy" width="800" height="480" loading="lazy" alt="Боксёрский мешок"><figcaption>24 мешка</figcaption></figure>
+      <figure class="g3 rv" style="--d:.1s"><img src="https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=800&h=480&q=72&crop=entropy" width="800" height="480" loading="lazy" alt="Двое мужчин в спарринге"><figcaption>Спарринги по пятницам</figcaption></figure>
+      <figure class="g4 rv"><img src="https://images.unsplash.com/photo-1773289338198-65476cc90fb2?auto=format&fit=crop&w=700&h=480&q=72&crop=entropy" width="700" height="480" loading="lazy" alt="Ринг с канатами"><figcaption>Канаты и углы</figcaption></figure>
+      <figure class="g5 rv" style="--d:.06s"><img src="https://images.unsplash.com/photo-1633394782368-6e7260566004?auto=format&fit=crop&w=700&h=480&q=72&crop=entropy" width="700" height="480" loading="lazy" alt="Пара боксёрских перчаток"><figcaption>Экипировка в прокат</figcaption></figure>
+      <figure class="g6 rv" style="--d:.1s"><b>Свои перчатки не&nbsp;нужны</b><p>На&nbsp;первый месяц выдаём перчатки, бинты и&nbsp;шлем. Потом подскажем, что купить и&nbsp;какого размера.</p></figure>
+    </div>
+  </div>
+</section>
+
+<section id="treneri" aria-labelledby="tr-head" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="tr-head">Тренеры</h2>
+      <p class="lead">Пять тренеров, у&nbsp;каждого своя дисциплина и&nbsp;свои группы. Нажмите «Группы тренера»&nbsp;— расписание покажет только его тренировки.</p>
+    </div>
+    <div class="coaches" id="coaches">
+      <article class="coach rv"><span class="ini" aria-hidden="true">ТХ</span><h3>Тимур Х.</h3><span class="dsc"><i style="background:#D11A24"></i>Бокс, группы с&nbsp;опытом</span><p>Ведёт утренние группы и&nbsp;пятничные спарринги. Строгий к&nbsp;технике, спокойный к&nbsp;ошибкам.</p><button type="button" data-coach="Тимур Х." aria-pressed="false">Группы тренера<svg aria-hidden="true"><use href="#b-arrow"/></svg></button></article>
+      <article class="coach rv" style="--d:.05s"><span class="ini" aria-hidden="true">ДС</span><h3>Дамир С.</h3><span class="dsc"><i style="background:#D11A24"></i>Бокс с&nbsp;нуля</span><p>Отвечает за&nbsp;всех, кто пришёл впервые: стойка, дыхание, первые связки на&nbsp;лапах.</p><button type="button" data-coach="Дамир С." aria-pressed="false">Группы тренера<svg aria-hidden="true"><use href="#b-arrow"/></svg></button></article>
+      <article class="coach rv" style="--d:.1s"><span class="ini" aria-hidden="true">ОР</span><h3>Олег Р.</h3><span class="dsc"><i style="background:#E8A23A"></i>Кикбоксинг, подростки</span><p>Работа ногами и&nbsp;дистанция. Ведёт подростковые группы по&nbsp;вторникам и&nbsp;четвергам.</p><button type="button" data-coach="Олег Р." aria-pressed="false">Группы тренера<svg aria-hidden="true"><use href="#b-arrow"/></svg></button></article>
+      <article class="coach rv" style="--d:.15s"><span class="ini" aria-hidden="true">РБ</span><h3>Руслан Б.</h3><span class="dsc"><i style="background:#F2F0EC"></i>ММА</span><p>Соединяет удары и&nbsp;борьбу. Новичков сначала учит падать и&nbsp;вставать, потом&nbsp;— всё остальное.</p><button type="button" data-coach="Руслан Б." aria-pressed="false">Группы тренера<svg aria-hidden="true"><use href="#b-arrow"/></svg></button></article>
+      <article class="coach rv" style="--d:.2s"><span class="ini" aria-hidden="true">ИШ</span><h3>Ильнар Ш.</h3><span class="dsc"><i style="background:#6F8FA8"></i>Грэпплинг</span><p>Борьба в&nbsp;партере без ударов. Хороший вход в&nbsp;единоборства для тех, кто не&nbsp;хочет получать по&nbsp;лицу.</p><button type="button" data-coach="Ильнар Ш." aria-pressed="false">Группы тренера<svg aria-hidden="true"><use href="#b-arrow"/></svg></button></article>
+    </div>
+    <div class="plist rv" aria-label="Разовые услуги">
+      <div><span>Пробная тренировка</span><b>0 ₽</b><small>одна на человека</small></div>
+      <div><span>Разовая групповая</span><b>900 ₽</b><small>без абонемента</small></div>
+      <div><span>Персональная</span><b>2 500 ₽</b><small>60 минут, разово</small></div>
+      <div><span>Сплит на двоих</span><b>3 600 ₽</b><small>60 минут, за двоих</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="first" id="pervaya" aria-labelledby="first-h">
+  <div class="wrap first-grid">
+    <div>
+      <h2 id="first-h" class="rv">Первая тренировка</h2>
+      <p class="lead rv">Бесплатно, в&nbsp;группе для новичков. Никто не&nbsp;будет бить вас и&nbsp;проверять на&nbsp;прочность. Задача тренера&nbsp;— поставить стойку и&nbsp;показать, как бить, чтобы не&nbsp;травмировать руки.</p>
+      <div class="bring rv">
+        <h3>Что взять</h3>
+        <ul>
+          <li><svg aria-hidden="true"><use href="#b-check"/></svg>Шорты или спортивные штаны, футболку</li>
+          <li><svg aria-hidden="true"><use href="#b-check"/></svg>Кроссовки без чёрной подошвы или борцовки</li>
+          <li><svg aria-hidden="true"><use href="#b-check"/></svg>Воду и&nbsp;полотенце</li>
+          <li><svg aria-hidden="true"><use href="#b-check"/></svg>Перчатки и&nbsp;бинты не&nbsp;нужны&nbsp;— выдадим</li>
+        </ul>
+      </div>
+    </div>
+    <ol class="flow">
+      <li class="rv"><span class="min">15<small>минут до начала</small></span><div><h3>Знакомство</h3><p>Приходите чуть раньше: администратор покажет раздевалку, тренер спросит про травмы и&nbsp;давление.</p></div></li>
+      <li class="rv" style="--d:.05s"><span class="min">15<small>минут</small></span><div><h3>Разминка</h3><p>Суставы, скакалка, лёгкий бег. Темп&nbsp;— ваш, никто не&nbsp;гоняет до&nbsp;тошноты.</p></div></li>
+      <li class="rv" style="--d:.1s"><span class="min">30<small>минут</small></span><div><h3>Стойка и&nbsp;удары</h3><p>Как стоять, двигаться и&nbsp;бить прямой и&nbsp;боковой. Перед зеркалом, потом по&nbsp;мешку.</p></div></li>
+      <li class="rv" style="--d:.15s"><span class="min">10<small>минут</small></span><div><h3>Лапы с&nbsp;тренером</h3><p>Короткие связки по&nbsp;лапам. Здесь становится понятно, почему это затягивает.</p></div></li>
+      <li class="rv" style="--d:.2s"><span class="min">5<small>минут</small></span><div><h3>Заминка и&nbsp;разговор</h3><p>Растяжка. Тренер скажет, какая группа и&nbsp;какой абонемент вам подойдут, без навязывания.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="podrostki" aria-labelledby="teen-h">
+  <div class="wrap teen">
+    <div>
+      <h2 id="teen-h" class="rv">Подросткам 12–16</h2>
+      <p class="lead rv" style="margin-top:18px">Отдельные группы по&nbsp;будням в&nbsp;17:00, сразу после школы. Здесь учат не&nbsp;драться, а&nbsp;держать себя в&nbsp;руках: дисциплина, режим и&nbsp;уважение к&nbsp;сопернику&nbsp;— часть тренировки.</p>
+      <ol class="rules">
+        <li class="rv"><b>14</b><div><h3>Спарринги только с&nbsp;14&nbsp;лет</h3><p>И&nbsp;только с&nbsp;письменного согласия родителя. До&nbsp;этого&nbsp;— лапы, мешки, работа на&nbsp;защиту.</p></div></li>
+        <li class="rv" style="--d:.05s"><b>10</b><div><h3>Не больше 10 в&nbsp;группе</h3><p>Тренер видит каждого и&nbsp;успевает поправить технику, а&nbsp;не&nbsp;только следит за&nbsp;порядком.</p></div></li>
+        <li class="rv" style="--d:.1s"><b>0</b><div><h3>Ноль ударов в&nbsp;голову без шлема</h3><p>Шлем, капа и&nbsp;бинты обязательны в&nbsp;любой парной работе. Экипировку на&nbsp;первый месяц выдаём.</p></div></li>
+      </ol>
+    </div>
+    <div class="teen-card rv" style="--d:.08s">
+      <h3 style="font-size:1.8rem;margin-bottom:14px">Подростковый абонемент</h3>
+      <p class="pp">5 200 <small>₽ в месяц</small></p>
+      <ul>
+        <li><svg aria-hidden="true"><use href="#b-check"/></svg>3 тренировки в&nbsp;неделю: бокс пн, ср, пт или кикбоксинг вт, чт</li>
+        <li><svg aria-hidden="true"><use href="#b-check"/></svg>Родители могут смотреть тренировку с&nbsp;балкона над залом</li>
+        <li><svg aria-hidden="true"><use href="#b-check"/></svg>Раз в&nbsp;месяц тренер пишет родителям, как идут дела</li>
+        <li><svg aria-hidden="true"><use href="#b-check"/></svg>Пробная бесплатно, приходите вместе с&nbsp;ребёнком</li>
+      </ul>
+      <button class="btn btn-red" type="button" id="teenGo">Записать подростка на пробную</button>
+    </div>
+  </div>
+</section>
+
+<section id="voprosy" aria-labelledby="faq-h">
+  <div class="wrap faq-grid">
+    <h2 id="faq-h" class="rv">Перед тем как прийти</h2>
+    <div class="faq rv">
+      <details><summary>Я в&nbsp;плохой форме. Мне рано?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Нет. Форма появляется от&nbsp;тренировок, а&nbsp;не&nbsp;до&nbsp;них. В&nbsp;группах для новичков нагрузка растёт постепенно, а&nbsp;отдыхать можно, когда нужно. Если есть проблемы с&nbsp;сердцем или давлением&nbsp;— сначала к&nbsp;врачу.</div></details>
+      <details><summary>Меня не&nbsp;будут бить?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">В группах для новичков спаррингов нет совсем. Работа в&nbsp;парах&nbsp;— только по&nbsp;лапам и&nbsp;на&nbsp;защиту, в&nbsp;полсилы. Спарринги по&nbsp;пятницам&nbsp;— для тех, кто сам захочет, в&nbsp;шлеме и&nbsp;с&nbsp;капой.</div></details>
+      <details><summary>Есть ли женские группы?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Женского бокса как отдельной группы нет, но&nbsp;в&nbsp;новичковых группах обычно треть&nbsp;— девушки. Пары подбираем по&nbsp;весу и&nbsp;опыту, а&nbsp;раздевалки и&nbsp;душевые отдельные.</div></details>
+      <details><summary>С&nbsp;какого возраста?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Подростковые группы&nbsp;— с&nbsp;12 до&nbsp;16 лет, по&nbsp;будням в&nbsp;17:00. На&nbsp;пробную подростка приводит родитель и&nbsp;подписывает согласие. Взрослые группы&nbsp;— с&nbsp;16 лет.</div></details>
+      <details><summary>А&nbsp;если травмирую руку?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Большинство травм у&nbsp;новичков&nbsp;— от&nbsp;неправильно сжатого кулака и&nbsp;плохо намотанных бинтов. Поэтому первые две недели тренер сам проверяет бинты и&nbsp;ставит удар медленно. Если что-то болит, скажите: упражнение заменим, а&nbsp;не&nbsp;«потерпим».</div></details>
+      <details><summary>Можно платить по&nbsp;месяцу, а&nbsp;не&nbsp;сразу за&nbsp;полгода?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Да, месячный абонемент без скидки за&nbsp;срок. Скидки 10% и&nbsp;15% действуют, когда оплачиваете 3 или 6 месяцев сразу. Оплата картой, по&nbsp;СБП или наличными на&nbsp;ресепшене.</div></details>
+      <details><summary>Можно заморозить абонемент?<i aria-hidden="true"><svg><use href="#b-plus"/></svg></i></summary><div class="a">Абонемент на&nbsp;3 месяца замораживается на&nbsp;14 дней, на&nbsp;6 месяцев&nbsp;— на&nbsp;30 дней. По&nbsp;больничному&nbsp;— на&nbsp;срок больничного, с&nbsp;любым абонементом.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="trial" id="probnaya" aria-labelledby="tr-h">
+  <div class="trial-bg"><img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1800&h=1100&q=72&crop=entropy" width="1800" height="1100" loading="lazy" alt="Пара чёрных боксёрских перчаток"></div>
+  <div class="wrap">
+    <div class="rv">
+      <h2 id="tr-h">Пробная —<br>0&nbsp;₽</h2>
+      <p class="lead">Выберите тренировку в&nbsp;расписании или оставьте поле пустым&nbsp;— администратор предложит ближайшую группу для новичков.</p>
+    </div>
+    <div class="form rv" style="--d:.08s" id="formBox">
+      <form id="form" novalidate>
+        <h3>Заявка на пробную</h3>
+        <div class="slot-pick" id="slotPick">Тренировка не выбрана&nbsp;— подберём сами. <a href="#raspisanie">Выбрать в&nbsp;расписании</a></div>
+        <div class="f-row">
+          <div class="fld"><label for="fName">Имя</label><input id="fName" autocomplete="given-name"><span class="ferr" id="eName"></span></div>
+          <div class="fld"><label for="fTel">Телефон</label><input id="fTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"><span class="ferr" id="eTel"></span></div>
+        </div>
+        <div class="fld"><label for="fDiscSel">Дисциплина</label>
+          <select id="fDiscSel"><option value="box">Бокс</option><option value="kick">Кикбоксинг</option><option value="mma">ММА</option><option value="grap">Грэпплинг</option></select>
+        </div>
+        <button class="btn btn-red" type="submit">Записаться на пробную</button>
+        <small>Это демо-форма: данные никуда не&nbsp;отправляются.</small>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 56L30 8h10L18 56z" fill="#D11A24"/><path d="M30 56L52 8h6L36 56z" fill="#F2F0EC"/></svg>УДАР</a>
+        <p style="margin-top:14px;max-width:36ch">Клуб единоборств: бокс, кикбоксинг, ММА, грэпплинг. Открыто каждый день с&nbsp;7:00 до&nbsp;23:00.</p>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul>
+          <li><a href="tel:+78430000000">+7 (843) 000-00-00</a></li>
+          <li><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></li>
+          <li><p>Казань, ул.&nbsp;Габдуллы Тукая,&nbsp;58, цокольный этаж</p></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Разделы</h3>
+        <ul>
+          <li><a href="#abonement">Абонемент</a></li>
+          <li><a href="#raspisanie">Расписание</a></li>
+          <li><a href="#probnaya">Пробная тренировка</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var d=document;d.documentElement.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+  function money(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'}
+  function plural(n,a,b,c){var m=n%10,h=n%100;if(m===1&&h!==11)return a;if(m>=2&&m<=4&&(h<12||h>14))return b;return c}
+
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px',threshold:.06});
+    $$('.rv').forEach(function(el){io.observe(el)});
+  } else $$('.rv').forEach(function(el){el.classList.add('in')});
+  if(reduce){var tr=$('.tick-row');if(tr)tr.style.animation='none'}
+
+  var DISC={box:{n:'Бокс',c:'#D11A24'},kick:{n:'Кикбоксинг',c:'#E8A23A'},mma:{n:'ММА',c:'#F2F0EC'},grap:{n:'Грэпплинг',c:'#6F8FA8'}};
+  var LVL={new:'Новички',pro:'С опытом',teen:'Подростки 12–16'};
+  var DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], DAYSF=['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];
+  /* day, time, discipline, level, coach */
+  var S=[
+    [0,'07:30','box','pro','Тимур Х.'],[0,'12:00','kick','new','Олег Р.'],[0,'17:00','box','teen','Тимур Х.'],[0,'19:00','box','new','Дамир С.'],[0,'19:00','grap','pro','Ильнар Ш.'],[0,'20:30','mma','pro','Ильнар Ш.'],
+    [1,'09:00','mma','new','Руслан Б.'],[1,'13:00','box','new','Дамир С.'],[1,'17:00','kick','teen','Олег Р.'],[1,'19:00','kick','new','Олег Р.'],[1,'20:30','box','pro','Тимур Х.'],[1,'20:30','grap','new','Ильнар Ш.'],
+    [2,'07:30','box','pro','Тимур Х.'],[2,'12:00','kick','new','Олег Р.'],[2,'17:00','box','teen','Тимур Х.'],[2,'19:00','box','new','Дамир С.'],[2,'19:00','mma','new','Руслан Б.'],[2,'20:30','kick','pro','Олег Р.'],
+    [3,'09:00','grap','new','Ильнар Ш.'],[3,'13:00','box','new','Дамир С.'],[3,'17:00','kick','teen','Олег Р.'],[3,'19:00','kick','new','Олег Р.'],[3,'20:30','mma','pro','Руслан Б.'],[3,'20:30','box','pro','Тимур Х.'],
+    [4,'07:30','box','pro','Тимур Х.'],[4,'12:00','mma','new','Руслан Б.'],[4,'17:00','box','teen','Тимур Х.'],[4,'19:00','box','new','Дамир С.'],[4,'19:30','box','pro','Тимур Х.'],[4,'20:30','grap','pro','Ильнар Ш.'],
+    [5,'11:00','box','new','Дамир С.'],[5,'11:00','grap','new','Ильнар Ш.'],[5,'13:00','kick','pro','Олег Р.'],[5,'15:00','mma','pro','Руслан Б.'],
+    [6,'11:00','kick','new','Олег Р.'],[6,'12:00','mma','new','Руслан Б.'],[6,'14:00','box','pro','Тимур Х.']
+  ].map(function(a,i){return {i:i,day:a[0],t:a[1],disc:a[2],lvl:a[3],coach:a[4],spar:a[0]===4&&a[1]==='19:30'}});
+
+  /* ---------- builder ---------- */
+  var B={disc:'box',lvl:'new',freq:'3',time:'eve',pt:'0',term:'1'};
+  var BASE={'2':4900,'3':6400,'99':7900};
+  var PT={'0':0,'4':9200,'8':17600};
+  var SINGLE=900;
+  function isDay(s){return s.day<5&&parseInt(s.t,10)<17}
+  function weekPlan(){
+    // classes that match discipline & level & time window
+    var lvl=B.lvl;
+    var c=S.filter(function(s){return s.disc===B.disc&&s.lvl===lvl&&(B.time==='eve'||isDay(s))});
+    var n=B.freq==='99'?7:+B.freq;
+    // pick spread-out days: prefer one class per day, with gaps
+    var byDay={};c.forEach(function(s){if(!byDay[s.day])byDay[s.day]=s});
+    var days=Object.keys(byDay).map(Number).sort(function(a,b){return a-b});
+    var pick=[];
+    if(B.freq==='99')pick=days.slice();
+    else{
+      var pref=n===2?[[0,3],[1,3],[0,2],[1,4],[2,5]]:[[0,2,4],[1,3,5],[0,2,5],[1,3,6],[0,3,5]];
+      for(var k=0;k<pref.length&&!pick.length;k++){if(pref[k].every(function(x){return byDay[x]}))pick=pref[k].slice()}
+      if(!pick.length)pick=days.slice(0,n);
+    }
+    return {list:pick.map(function(x){return byDay[x]}),avail:days.length,need:n};
+  }
+  function calc(){
+    var m=BASE[B.freq];
+    if(B.disc==='mma')m+=600;
+    var dayDisc=B.time==='day'?Math.round(m*.2):0;
+    var group=m-dayDisc;
+    var pt=PT[B.pt];
+    var monthly=group+pt;
+    var tf=B.term==='3'?.10:B.term==='6'?.15:0;
+    var termDisc=Math.round(group*tf);
+    var monthlyNet=monthly-termDisc;
+    var total=monthlyNet*(+B.term);
+    var sessions=B.freq==='99'?null:(+B.freq)*4;
+    var perOne=sessions?(group-termDisc)/sessions:null;
+    return {m:m,dayDisc:dayDisc,group:group,pt:pt,monthly:monthly,termDisc:termDisc,monthlyNet:monthlyNet,total:total,sessions:sessions,perOne:perOne};
+  }
+  function renderRes(){
+    var r=calc(), wp=weekPlan(), box=$('#resBody');
+    var name=DISC[B.disc].n+' · '+(B.freq==='99'?'безлимит':B.freq+' раза в неделю');
+    var sub=(B.lvl==='new'?'Группа для новичков':'Общая группа')+(B.time==='day'?', утро и день':', любое время')+(B.pt!=='0'?', '+B.pt+' персональных':'');
+    var weekHtml='';
+    for(var i=0;i<7;i++){
+      var s=wp.list.filter(function(x){return x.day===i})[0];
+      weekHtml+='<div class="wd"><span>'+DAYS[i]+'</span><i class="'+(s?'on':'')+'"></i><small>'+(s?s.t:'')+'</small></div>';
+    }
+    var note;
+    if(!wp.avail)note='В это время групп такого уровня нет. Попробуйте «вечером» или другую дисциплину.';
+    else if(B.freq!=='99'&&wp.list.length<wp.need)note='По этому расписанию получается только '+wp.list.length+' '+plural(wp.list.length,'тренировка','тренировки','тренировок')+' в неделю — остальные можно добирать в соседней группе.';
+    else note=B.freq==='99'?'Все '+wp.avail+' '+plural(wp.avail,'группа','группы','групп')+' вашего уровня в неделю — ходите, когда удобно.':'Пример недели по расписанию. Дни можно менять от недели к неделе.';
+    var lines='<li><span>Группа, '+(B.freq==='99'?'безлимит':(+B.freq*4)+' тренировок')+'</span><span>'+money(r.m)+'</span></li>';
+    if(r.dayDisc)lines+='<li class="save"><span>Дневное время −20%</span><span>−'+money(r.dayDisc)+'</span></li>';
+    if(r.pt)lines+='<li><span>Персональные × '+B.pt+'</span><span>'+money(r.pt)+'</span></li>';
+    if(r.termDisc)lines+='<li class="save"><span>Скидка за срок '+B.term+' мес.</span><span>−'+money(r.termDisc)+'/мес</span></li>';
+    if(B.term!=='1')lines+='<li><span>Оплата за '+B.term+' мес.</span><span>'+money(r.total)+'</span></li>';
+    var per=r.perOne?'Одна групповая — <strong>'+money(r.perOne)+'</strong> вместо '+money(SINGLE)+' разовой':'Безлимит окупается с <strong>'+Math.ceil(r.group/SINGLE)+'-й</strong> тренировки в месяц';
+    var tip=B.lvl==='new'&&B.pt==='0'?'Новичкам советуем 4 персональные в первый месяц: техника ставится быстрее, чем в группе.':B.lvl==='new'&&B.disc==='mma'?'В ММА с нуля начинаем со стойки и борьбы, удары в партере — через пару месяцев.':'Пробная тренировка бесплатно, абонемент оформляете уже после неё.';
+    box.innerHTML='<div class="'+(reduce?'':'flash')+'"><span class="res-k">Ваш абонемент</span><h3 id="resH">'+name+'</h3><p class="res-sub">'+sub+'</p>'+
+      '<div class="price"><b>'+money(r.monthlyNet).replace(' ₽','')+'</b><span>₽ в месяц</span></div><p class="per">'+per+'</p>'+
+      '<div class="week" aria-label="Пример недели">'+weekHtml+'</div><p class="week-note">'+note+'</p>'+
+      '<ul class="lines">'+lines+'</ul>'+
+      '<a class="btn btn-red" href="#probnaya" id="resGo">Сначала пробная — 0 ₽</a><p class="tip">'+tip+'</p></div>';
+    $('#resGo').addEventListener('click',function(){$('#fDiscSel').value=B.disc;if(wp.list[0]&&!picked)pickClass(wp.list[0].i,true)});
+  }
+  $$('.opts').forEach(function(g){
+    var q=g.getAttribute('data-q');
+    $$('.ob',g).forEach(function(b){b.addEventListener('click',function(){
+      B[q]=b.getAttribute('data-v');
+      $$('.ob',g).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      renderRes();
+    })});
+  });
+
+  /* ---------- schedule ---------- */
+  var F={disc:'all',lvl:'all'}, curDay=(new Date().getDay()+6)%7, picked=null;
+  var sched=$('#sched'), tabs=$('#dTabs');
+  function renderSched(){
+    var h='';
+    for(var i=0;i<7;i++){
+      var list=S.filter(function(s){return s.day===i}).sort(function(a,b){return a.t<b.t?-1:a.t>b.t?1:0});
+      var vis=list.filter(match);
+      h+='<div class="day'+(i===curDay?' cur':'')+'" id="day'+i+'" role="tabpanel" aria-label="'+DAYSF[i]+'"><div class="day-h">'+DAYS[i]+'<small>'+vis.length+' '+plural(vis.length,'тренировка','тренировки','тренировок')+'</small></div><div class="slots">'+
+        (vis.length?vis.map(function(s){
+          return '<button type="button" class="cls" data-i="'+s.i+'" style="--c:'+DISC[s.disc].c+'" aria-pressed="'+(picked===s.i)+'" aria-label="'+DAYSF[i]+', '+s.t+', '+DISC[s.disc].n+', '+LVL[s.lvl]+', тренер '+s.coach+'"><time>'+s.t+'</time><b>'+DISC[s.disc].n+(s.spar?' · спарринги':'')+'</b><small>'+LVL[s.lvl]+' · '+s.coach+'</small></button>';
+        }).join(''):'<p class="empty">Нет тренировок по фильтру</p>')+'</div></div>';
+    }
+    sched.innerHTML=h;
+    tabs.innerHTML=DAYS.map(function(dn,i){
+      var n=S.filter(function(s){return s.day===i&&match(s)}).length;
+      return '<button type="button" class="dt" role="tab" id="tab'+i+'" aria-controls="day'+i+'" aria-selected="'+(i===curDay)+'" tabindex="'+(i===curDay?0:-1)+'" data-d="'+i+'">'+dn+'<small>'+n+'</small></button>';
+    }).join('');
+  }
+  function match(s){return (F.disc==='all'||s.disc===F.disc)&&(F.lvl==='all'||s.lvl===F.lvl)&&(!F.coach||s.coach===F.coach)}
+  function setCoach(c){
+    F.coach=c;
+    $$('#coaches button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-coach')===c)});
+    var cf=$('#coachF');cf.classList.toggle('on',!!c);
+    if(c){F.disc='all';F.lvl='all';$$('#fDisc .fb,#fLvl .fb').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-v')==='all')});
+      var mine=S.filter(function(s){return s.coach===c});$('#coachFT').textContent='Тренировки тренера '+c+': '+mine.length+' в неделю';
+      if(!mine.some(function(s){return s.day===curDay}))curDay=mine.sort(function(a,b){return a.day-b.day})[0].day;}
+    renderSched();
+  }
+  $$('#coaches button').forEach(function(b){b.addEventListener('click',function(){
+    var c=b.getAttribute('data-coach');setCoach(F.coach===c?null:c);
+    if(F.coach)$('#raspisanie').scrollIntoView({behavior:reduce?'auto':'smooth'});
+  })});
+  $('#coachX').addEventListener('click',function(){setCoach(null)});
+  $('#teenGo').addEventListener('click',function(){
+    var t=S.filter(function(s){return s.lvl==='teen'})[0];
+    setCoach(null);
+    F.lvl='teen';$$('#fLvl .fb').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-v')==='teen')});
+    curDay=t.day;renderSched();pickClass(t.i,true);
+    $('#probnaya').scrollIntoView({behavior:reduce?'auto':'smooth'});
+  });
+  function bindFilter(id,key){
+    $$('#'+id+' .fb').forEach(function(b){b.addEventListener('click',function(){
+      F[key]=b.getAttribute('data-v');
+      $$('#'+id+' .fb').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      renderSched();
+    })});
+  }
+  bindFilter('fDisc','disc');bindFilter('fLvl','lvl');
+  tabs.addEventListener('click',function(e){var b=e.target.closest('.dt');if(!b)return;curDay=+b.getAttribute('data-d');renderSched();var nb=$('#tab'+curDay);if(nb)nb.focus()});
+  tabs.addEventListener('keydown',function(e){
+    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+    e.preventDefault();curDay=(curDay+(e.key==='ArrowRight'?1:6))%7;renderSched();$('#tab'+curDay).focus();
+  });
+  sched.addEventListener('click',function(e){var b=e.target.closest('.cls');if(!b)return;pickClass(+b.getAttribute('data-i'))});
+  function pickClass(i,silent){
+    picked=picked===i&&!silent?null:i;
+    $$('.cls',sched).forEach(function(b){b.setAttribute('aria-pressed',+b.getAttribute('data-i')===picked)});
+    var s=S[i];
+    if(picked===null){$('#picked').textContent='';$('#slotPick').innerHTML='Тренировка не выбрана — подберём сами. <a href="#raspisanie">Выбрать в расписании</a>';return}
+    var txt=DAYSF[s.day]+', '+s.t+' — '+DISC[s.disc].n+', '+LVL[s.lvl].toLowerCase();
+    $('#picked').innerHTML='Выбрано: <span>'+txt+'</span>';
+    $('#slotPick').innerHTML='<b>'+txt.charAt(0).toUpperCase()+txt.slice(1)+'</b><br>тренер '+s.coach+' · <a href="#raspisanie">изменить</a>';
+    $('#fDiscSel').value=s.disc;
+  }
+
+  /* ---------- form ---------- */
+  var tel=$('#fTel');
+  tel.addEventListener('input',function(){
+    var v=tel.value.replace(/\D/g,'');if(v[0]==='8')v='7'+v.slice(1);if(v&&v[0]!=='7')v='7'+v;v=v.slice(0,11);
+    var o='';if(v.length){o='+7';if(v.length>1)o+=' ('+v.slice(1,4);if(v.length>=4)o+=')';if(v.length>4)o+=' '+v.slice(4,7);if(v.length>7)o+='-'+v.slice(7,9);if(v.length>9)o+='-'+v.slice(9,11)}
+    tel.value=o;
+  });
+  $('#form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#fName'),ok=true;
+    if(n.value.trim().length<2){n.setAttribute('aria-invalid','true');$('#eName').textContent='Как к вам обращаться?';ok=false}else{n.removeAttribute('aria-invalid');$('#eName').textContent=''}
+    if(tel.value.replace(/\D/g,'').length<11){tel.setAttribute('aria-invalid','true');$('#eTel').textContent='Нужен номер из 11 цифр';ok=false}else{tel.removeAttribute('aria-invalid');$('#eTel').textContent=''}
+    if(!ok)return;
+    var s=picked!==null?S[picked]:null, ds=$('#fDiscSel');
+    var box=$('#formBox');
+    box.innerHTML='<div class="ok" tabindex="-1"><div class="mark"><svg aria-hidden="true"><use href="#b-check"/></svg></div><h3>Заявка принята</h3><p>'+n.value.trim().replace(/[<>&"]/g,'')+', администратор позвонит, чтобы подтвердить время. Возьмите форму и воду — остальное выдадим.</p>'+
+      '<dl><dt>Дисциплина</dt><dd>'+ds.options[ds.selectedIndex].text+'</dd><dt>Тренировка</dt><dd>'+(s?DAYSF[s.day]+', '+s.t:'подберём')+'</dd><dt>Стоимость</dt><dd>0 ₽</dd></dl><p style="margin-top:14px;font-size:.88rem">Это демо: заявка никуда не отправлена.</p></div>';
+    box.querySelector('.ok').focus();
+  });
+
+  renderRes();renderSched();
+})();
+</script>
+</body>
+</html>
