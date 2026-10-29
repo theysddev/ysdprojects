@@ -81,6 +81,7 @@ section[id]{scroll-margin-top:72px}
 .hero__dates span{display:block;color:var(--muted);font-family:var(--sans);font-weight:400;font-size:16px;margin-top:6px}
 .kin{position:relative;margin:clamp(18px,3vw,36px) 0 0;padding:0 .04em .14em 0;font-family:var(--disp);font-weight:900;font-size:clamp(72px,17vw,300px);line-height:.8;white-space:nowrap;letter-spacing:-.045em;display:flex;justify-content:space-between;user-select:none}
 @media (max-width:600px){.kin{font-size:14.6vw}}
+.kin{min-width:0;max-width:100%}
 .kin span{display:inline-block;will-change:transform;transform:translate3d(var(--x,0),var(--y,0),0) skewX(var(--sk,0deg))}
 .kin span:nth-child(even){color:var(--acid)}
 .js .kin.pre span{opacity:0}
@@ -631,7 +632,7 @@ section[id]{scroll-margin-top:72px}
   function fitKin(){
     kin.style.fontSize='100px';
     var w=0;letters.forEach(function(l){w+=l.getBoundingClientRect().width});
-    var avail=kin.clientWidth;
+    var pp=kin.parentNode,cs=getComputedStyle(pp),avail=Math.min(kin.clientWidth,pp.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight));
     if(w>0&&avail>0){var fs=Math.min(320,100*avail*0.94/w);kin.style.fontSize=fs.toFixed(1)+'px'}
   }
   fitKin();
