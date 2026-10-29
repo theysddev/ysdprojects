@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Око — видеонаблюдение под ключ в Новосибирске</title>
+<meta name="description" content="Видеонаблюдение «Око»: расставьте камеры на плане квартиры, дома, офиса или магазина — планировщик покажет зону обзора, слепые зоны, комплект оборудования и цену с монтажом.">
+<meta property="og:title" content="Око — видеонаблюдение, которое видит то, что нужно">
+<meta property="og:description" content="Интерактивный планировщик: кликните по плану, чтобы поставить камеру, и получите комплект и смету.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A1428">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1428'/%3E%3Cpath d='M8 32c6-10 14-15 24-15s18 5 24 15c-6 10-14 15-24 15S14 42 8 32z' fill='none' stroke='%232EE6CF' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%232EE6CF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0A1428;
+  --panel:#101D37;
+  --panel-2:#16284A;
+  --line:#22395F;
+  --line-2:#2F4C7A;
+  --tq:#2EE6CF;
+  --tq-d:#16A898;
+  --text:#E4ECF7;
+  --mut:#8FA3C0;
+  --amber:#FFB547;
+  --red:#FF7A7A;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --sans:"Geologica","Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --pad:clamp(16px,4vw,48px);
+  --wrap:1360px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--night);color:var(--text);font:400 17px/1.6 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto;color:transparent}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--tq);outline-offset:3px;border-radius:6px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;font-weight:600}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;border:1px solid var(--line-2);background:var(--panel-2);font-weight:500;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .16s var(--ease),background-color .2s ease,border-color .2s ease,color .2s ease}
+.btn:active{transform:scale(.97)}
+.btn-tq{background:var(--tq);border-color:var(--tq);color:var(--night);font-weight:600}
+.btn svg{width:20px;height:20px}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{border-color:var(--tq)}
+  .btn-tq:hover{background:#6AF0DE}
+}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:#0A1428e8;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:24px;text-decoration:none;letter-spacing:-.02em}
+.logo svg{width:34px;height:34px}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{text-decoration:none;padding:10px 12px;min-height:44px;display:flex;align-items:center;color:var(--mut);font-size:15px;border-radius:10px;transition:color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--text)}}
+.tel{font-family:var(--mono);font-size:15px;text-decoration:none;min-height:44px;display:flex;align-items:center;white-space:nowrap}
+.top .btn{min-height:44px;padding:0 18px;font-size:15px}
+@media (max-width:1100px){.nav{display:none}.tel{margin-left:auto}}
+@media (max-width:560px){.tel{display:none}.top .btn{margin-left:auto}}
+
+/* hero */
+.hero{padding:clamp(32px,5vw,72px) 0 clamp(56px,7vw,96px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 70%);mask-image:radial-gradient(ellipse at 70% 40%,#000 0,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,4vw,64px);align-items:center;position:relative}
+.status{display:inline-flex;align-items:center;gap:10px;padding:6px 12px 6px 10px;border:1px solid var(--line-2);border-radius:999px;font-size:14px;color:var(--mut);margin-bottom:22px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--tq);box-shadow:0 0 0 4px #2EE6CF33}
+.hero h1{font-size:clamp(38px,5vw,76px);line-height:1;font-weight:600;letter-spacing:-.035em}
+.hero .lead{color:var(--mut);font-size:clamp(17px,1.4vw,20px);margin-top:22px;max-width:32em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:40px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.specs div{background:var(--night);padding:14px 16px}
+.specs b{display:block;font-family:var(--mono);font-weight:500;font-size:20px;color:var(--tq)}
+.specs span{font-size:13px;color:var(--mut);line-height:1.35;display:block}
+
+.monitor{background:var(--panel);border:1px solid var(--line-2);border-radius:20px;padding:12px;box-shadow:0 40px 80px -40px #000,0 0 0 6px #10203a80}
+.mon-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 6px 12px;font-size:13px;color:var(--mut)}
+.mon-bar .mono{color:var(--text)}
+.rec{display:inline-flex;align-items:center;gap:6px;color:var(--red)}
+.rec i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{position:relative;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#0C1830;border:1px solid var(--line)}
+.tile svg{position:absolute;inset:0;width:100%;height:100%}
+.tile::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#ffffff07 0 1px,transparent 1px 3px);pointer-events:none}
+.tile .cap{position:absolute;left:8px;top:6px;font-size:12px;color:var(--text);background:#0A1428b3;padding:2px 8px;border-radius:6px}
+.tile .ts{position:absolute;right:8px;bottom:6px;font-family:var(--mono);font-size:11px;color:var(--mut)}
+.tile.alert{border-color:var(--amber)}
+.tile .mbox{position:absolute;left:52%;top:38%;width:20%;height:42%;border:1.5px dashed var(--amber);border-radius:4px}
+.tile .mbox span{position:absolute;top:-20px;left:-1px;background:var(--amber);color:var(--night);font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.mon-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip-s{font-size:12.5px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:4px 10px;display:inline-flex;gap:6px;align-items:center}
+.chip-s b{color:var(--text);font-weight:500}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr}.monitor{max-width:640px}}
+@media (max-width:520px){.specs{grid-template-columns:1fr}.specs div{display:flex;gap:12px;align-items:baseline}.specs b{min-width:90px;font-size:18px}}
+
+/* sections */
+.sec{padding:clamp(72px,9vw,128px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:20px 56px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head p{color:var(--mut);font-size:18px;max-width:34em}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+/* planner */
+.planner{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}
+.pl-main{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:14px;min-width:0}
+.pl-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tabs{display:flex;gap:4px;background:var(--night);border:1px solid var(--line);border-radius:12px;padding:4px;flex-wrap:wrap}
+.tabs button{min-height:40px;padding:0 14px;border:0;border-radius:9px;background:transparent;cursor:pointer;font-size:15px;color:var(--mut);display:inline-flex;align-items:center;gap:8px;transition:background-color .2s ease,color .2s ease}
+.tabs button svg{width:18px;height:18px}
+.tabs button[aria-pressed="true"]{background:var(--panel-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-2)}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.tool{min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:14px;color:var(--mut);display:inline-flex;align-items:center;gap:8px;transition:color .2s ease,border-color .2s ease,background-color .2s ease}
+.tool svg{width:16px;height:16px}
+.tool[aria-pressed="true"]{color:var(--red);border-color:#FF7A7A80;background:#FF7A7A14}
+.tool:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.tool:hover,.tabs button:hover{color:var(--text)}}
+.plan-wrap{position:relative;border-radius:14px;overflow:hidden;background:#0B1730;border:1px solid var(--line)}
+#plan{display:block;width:100%;height:auto;touch-action:manipulation;cursor:crosshair;user-select:none;-webkit-user-select:none}
+#plan .wall{stroke:#C9D6EA;stroke-width:6;stroke-linecap:square}
+#plan .obst{fill:#1B2E52;stroke:#C9D6EA;stroke-width:4}
+#plan .fence{fill:none;stroke:#5C7AA8;stroke-width:2;stroke-dasharray:8 6}
+#plan .deco{fill:none;stroke:#2F4C7A;stroke-width:2}
+#plan .room{font-family:var(--mono);font-size:14px;fill:#6F87AB}
+#plan .fov{fill:#2EE6CF1f;stroke:#2EE6CF66;stroke-width:1}
+#plan .fov.sel{fill:#2EE6CF33;stroke:#2EE6CF}
+#plan .blind rect{fill:#FF7A7A}
+#plan .cable{stroke:#FFB54766;stroke-width:1.5;stroke-dasharray:4 5;fill:none}
+#plan .cam{cursor:grab;touch-action:none;outline:none}
+#plan .cam:active{cursor:grabbing}
+#plan .cam .body{fill:#0A1428;stroke:#2EE6CF;stroke-width:2.5}
+#plan .cam .nose{fill:#2EE6CF}
+#plan .cam text{font-family:var(--mono);fill:#E4ECF7;font-weight:500;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#plan .cam.sel .body{fill:#2EE6CF}
+#plan .cam.sel text{fill:#0A1428}
+#plan .cam:focus-visible .ring{stroke:#FFB547;stroke-width:3}
+#plan .ring{fill:none;stroke:#2EE6CF;stroke-width:1.5;stroke-dasharray:3 4}
+#plan .handle{cursor:grab;touch-action:none}
+#plan .handle circle{fill:#FFB547;stroke:#0A1428;stroke-width:2}
+#plan .cam .hit,#plan .handle .hit{fill:transparent;stroke:none}
+#plan .handle line{stroke:#FFB547;stroke-width:1.5}
+#plan .nvr rect{fill:#FFB547}
+#plan .nvr text{font-family:var(--mono);fill:#0A1428;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.cam-new{animation:camIn .4s var(--ease)}
+@keyframes camIn{from{opacity:0}to{opacity:1}}
+.plan-hint{position:absolute;left:12px;bottom:12px;right:12px;display:flex;justify-content:space-between;gap:10px;pointer-events:none;flex-wrap:wrap}
+.plan-hint span{background:#0A1428d9;border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:13px;color:var(--mut)}
+.plan-hint b{color:var(--text);font-weight:500}
+.pl-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:13px;color:var(--mut)}
+.pl-legend span{display:inline-flex;gap:8px;align-items:center}
+.pl-legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+
+.side{display:grid;gap:12px;position:sticky;top:84px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}
+.card h3{font-size:15px;font-weight:500;color:var(--mut);margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.cov{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center}
+.gauge{position:relative;width:96px;height:96px}
+.gauge svg{width:96px;height:96px;transform:rotate(-90deg)}
+.gauge circle{fill:none;stroke-width:9}
+.gauge .bg{stroke:var(--line)}
+.gauge .fg{stroke:var(--tq);stroke-linecap:round;transition:stroke-dashoffset .5s var(--ease),stroke .3s ease}
+.gauge b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-weight:500;font-size:22px}
+.cov p{font-size:14px;color:var(--mut);line-height:1.45}
+.cov p strong{color:var(--text);font-weight:500}
+.empty-sel{font-size:15px;color:var(--mut)}
+.seg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:var(--night);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg3 button{min-height:52px;border:0;border-radius:9px;background:transparent;cursor:pointer;font-size:13px;line-height:1.2;color:var(--mut);padding:4px;transition:background-color .2s ease,color .2s ease}
+.seg3 button small{display:block;font-family:var(--mono);font-size:11px;opacity:.85;margin-top:2px}
+.seg3 button[aria-pressed="true"]{background:var(--panel-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--tq)}
+.rot{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;margin-top:12px}
+.rot button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center}
+.rot button svg{width:18px;height:18px}
+.rot button:active{transform:scale(.95)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line-2)}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--line-2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--tq);border:4px solid var(--night);margin-top:-9px;box-shadow:0 0 0 1px var(--tq)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--tq);border:4px solid var(--night)}
+.sel-row{display:flex;gap:8px;margin-top:10px}
+.sel-row .tool{flex:1;justify-content:center;min-height:44px}
+.sel-row .tool.del{color:var(--red)}
+.opt-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;font-size:14px;color:var(--mut);flex-wrap:wrap}
+.mini{display:inline-flex;gap:2px;background:var(--night);border:1px solid var(--line);border-radius:10px;padding:3px}
+.mini button{min-height:38px;min-width:44px;padding:0 10px;border:0;border-radius:7px;background:transparent;cursor:pointer;font-size:13px;color:var(--mut)}
+.mini button[aria-pressed="true"]{background:var(--panel-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-2)}
+.kit{width:100%;border-collapse:collapse;font-size:14px}
+.kit th,.kit td{padding:8px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.kit th{font-weight:400;color:var(--text)}
+.kit th small{display:block;color:var(--mut);font-size:12.5px}
+.kit td{text-align:right;font-family:var(--mono);font-size:13px;white-space:nowrap;padding-left:10px}
+.kit td.q{color:var(--mut);width:48px}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:14px}
+.total span{color:var(--mut);font-size:14px}
+.total b{font-family:var(--mono);font-weight:500;font-size:clamp(26px,2.4vw,32px);color:var(--tq)}
+.card .btn{width:100%;margin-top:14px}
+.note{font-size:12.5px;color:var(--mut);margin-top:10px;line-height:1.45}
+@media (max-width:1180px){.planner{grid-template-columns:minmax(0,1fr) 360px}}
+@media (max-width:980px){.planner{grid-template-columns:1fr}.side{position:static;grid-template-columns:1fr 1fr}.side .card.kitc{grid-column:1/-1}}
+@media (max-width:640px){.side{grid-template-columns:1fr}.pl-main{padding:8px;border-radius:16px}.plan-wrap{border-radius:10px}.plan-hint{position:static;padding:8px 2px 0}.plan-hint span{background:none;border:0;padding:0}.tabs{width:100%}.tabs button{flex:1;justify-content:center;padding:0 6px;font-size:14px}.tabs button svg{display:none}.plan-hint span:last-child{display:none}}
+
+/* packages */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pack{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.pack .pic{height:120px;border-radius:12px;background:#0B1730;border:1px solid var(--line);display:grid;place-items:center}
+.pack .pic svg{width:100%;height:100%}
+.pack h3{font-size:24px}
+.pack ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px;color:var(--mut)}
+.pack li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.pack li b{color:var(--text);font-weight:500;font-family:var(--mono);font-size:14px;white-space:nowrap}
+.pack .pr{margin-top:auto;display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+.pack .pr span{font-family:var(--mono);font-size:26px;color:var(--tq)}
+.pack .pr small{display:block;font-family:var(--sans);font-size:13px;color:var(--mut)}
+.pack .btn{min-height:46px;font-size:15px}
+@media (max-width:980px){.packs{grid-template-columns:1fr}}
+
+/* app */
+.app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.app-photos{position:relative;aspect-ratio:1/1;max-width:560px}
+.app-photos .a1{position:absolute;inset:0 18% 18% 0;border-radius:20px;overflow:hidden;background:var(--panel-2);border:1px solid var(--line)}
+.app-photos .a2{position:absolute;right:0;bottom:0;width:52%;aspect-ratio:1;border-radius:20px;overflow:hidden;background:var(--panel);border:1px solid var(--line-2);box-shadow:0 30px 60px -30px #000}
+.app-photos img{width:100%;height:100%;object-fit:cover}
+.notif{position:absolute;left:6%;bottom:8%;width:min(300px,64%);background:#101D37f2;border:1px solid var(--line-2);border-radius:14px;padding:12px 14px;font-size:13px;display:grid;grid-template-columns:28px 1fr;gap:10px;box-shadow:0 20px 40px -20px #000}
+.notif svg{width:28px;height:28px}
+.notif b{display:block;font-size:14px;font-weight:600}
+.notif span{color:var(--mut)}
+.feat{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
+.feat li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+.feat li:last-child{border-bottom:1px solid var(--line)}
+.feat .ic{width:44px;height:44px;border-radius:12px;background:var(--panel-2);display:grid;place-items:center;color:var(--tq)}
+.feat .ic svg{width:22px;height:22px}
+.feat h3{font-size:18px;font-weight:500;margin-bottom:2px}
+.feat p{color:var(--mut);font-size:15px}
+@media (max-width:900px){.app{grid-template-columns:1fr}.app-photos{max-width:460px;width:100%}}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative}
+.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);color:var(--tq);font-size:14px;display:block;margin-bottom:28px}
+.steps h3{font-size:19px;font-weight:500;margin-bottom:6px;line-height:1.2}
+.steps p{color:var(--mut);font-size:14.5px}
+@media (max-width:1100px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.steps{grid-template-columns:1fr}.steps li::before{margin-bottom:10px}}
+
+/* faq */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px)}
+details{border-top:1px solid var(--line)}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;min-height:44px;font-weight:500;font-size:clamp(17px,1.5vw,20px);line-height:1.3}
+summary::-webkit-details-marker{display:none}
+summary svg{width:20px;height:20px;flex:none;color:var(--tq);transition:transform .3s var(--ease)}
+details[open] summary svg{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--mut);max-width:40em}
+@media (max-width:860px){.faq{grid-template-columns:1fr}}
+
+/* request */
+.req{background:var(--panel);border:1px solid var(--line-2);border-radius:24px;padding:clamp(22px,4vw,48px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px)}
+.req h2{font-size:clamp(30px,3.6vw,48px);line-height:1.05}
+.req .sub{color:var(--mut);margin-top:14px}
+.req .rec-box{margin-top:20px;border:1px dashed var(--line-2);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--mut)}
+.req .rec-box b{color:var(--text);font-weight:500}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:4px}
+.field.full{grid-column:1/-1}
+.field label{font-size:14px;color:var(--mut)}
+.field input,.field select{min-height:50px;border-radius:12px;border:1px solid var(--line-2);background:var(--night);padding:0 14px;font-size:16px}
+.field input:focus-visible,.field select:focus-visible{outline:none;border-color:var(--tq);box-shadow:0 0 0 3px #2EE6CF33}
+.field input[aria-invalid="true"]{border-color:var(--red)}
+.err{color:var(--red);font-size:13px}
+.form .btn{grid-column:1/-1}
+.form .fine{grid-column:1/-1;font-size:12.5px;color:var(--mut)}
+.done{grid-column:1/-1;display:grid;gap:10px;justify-items:start;padding:12px 0}
+.done svg{width:64px;height:64px}
+.done h3{font-size:30px}
+.done p{color:var(--mut)}
+@media (max-width:860px){.req{grid-template-columns:1fr}}
+@media (max-width:520px){.form{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:clamp(72px,9vw,120px);font-size:15px;color:var(--mut)}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+footer a{color:var(--text)}
+footer .logo{margin-bottom:10px}
+footer h3{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:4px}
+footer ul a{min-height:32px;display:inline-flex;align-items:center}
+.legal{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);display:grid;gap:4px;font-size:14px}
+@media (max-width:760px){.f-grid{grid-template-columns:1fr}}
+
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.tile{animation:tileIn .7s var(--ease) both}
+.tile:nth-child(2){animation-delay:.08s}.tile:nth-child(3){animation-delay:.16s}.tile:nth-child(4){animation-delay:.24s}
+@keyframes tileIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="eye" viewBox="0 0 34 34"><rect width="34" height="34" rx="9" fill="#16284A"/><path d="M5 17c3.5-5.5 7.5-8 12-8s8.5 2.5 12 8c-3.5 5.5-7.5 8-12 8s-8.5-2.5-12-8z" fill="none" stroke="#2EE6CF" stroke-width="2"/><circle cx="17" cy="17" r="4" fill="#2EE6CF"/></symbol>
+<symbol id="i-apt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M10 21v-4h4v4"/></g></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10M10 20v-5h4v5"/></g></symbol>
+<symbol id="i-office" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></g></symbol>
+<symbol id="i-shop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4z"/><path d="M9 20v-6h6v6"/></g></symbol>
+<symbol id="i-l" viewBox="0 0 24 24"><path d="M9 7H4V2M4.5 7A9 9 0 1 1 3 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-r" viewBox="0 0 24 24"><path d="M15 7h5V2M19.5 7A9 9 0 1 0 21 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12c2.5-4 5.5-6 9-6s6.5 2 9 6c-2.5 4-5.5 6-9 6s-6.5-2-9-6z"/><path d="M4 4l16 16"/></g></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></g></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></g></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></g></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></g></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></g></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Око — на главную"><svg aria-hidden="true"><use href="#eye"/></svg>Око</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#planner">Планировщик</a>
+      <a href="#packs">Комплекты</a>
+      <a href="#app">Приложение</a>
+      <a href="#steps">Монтаж</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="tel" href="tel:+73830000000">+7 (383) 000-00-00</a>
+    <a class="btn btn-tq" href="#req">Выезд инженера</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="status"><i aria-hidden="true"></i>Монтаж по&nbsp;Новосибирску и&nbsp;области</p>
+      <h1>Камеры там, где они действительно видят</h1>
+      <p class="lead">Расставьте камеры на&nbsp;плане своей квартиры, дома или магазина. Планировщик покажет зону обзора с&nbsp;учётом стен, слепые зоны, комплект оборудования и&nbsp;цену с&nbsp;монтажом.</p>
+      <div class="hero-cta">
+        <a class="btn btn-tq" href="#planner">Открыть планировщик</a>
+        <a class="btn" href="#packs">Готовые комплекты</a>
+      </div>
+      <div class="specs">
+        <div><b>4 Мп</b><span>камеры с&nbsp;ИК-подсветкой до&nbsp;30&nbsp;м</span></div>
+        <div><b>до 30 дн</b><span>архив на&nbsp;регистраторе у&nbsp;вас</span></div>
+        <div><b>1 день</b><span>монтаж для&nbsp;квартиры и&nbsp;дома</span></div>
+      </div>
+    </div>
+    <div class="monitor" aria-label="Пример экрана видеонаблюдения" role="img">
+      <div class="mon-bar"><span class="rec"><i aria-hidden="true"></i>Запись</span><span>4 камеры онлайн</span><span class="mono" id="clock">00:00:00</span></div>
+      <div class="tiles" aria-hidden="true">
+        <div class="tile alert"><svg viewBox="0 0 160 100" preserveAspectRatio="none"><g fill="none" stroke="#2EE6CF" stroke-opacity=".55" stroke-width=".8"><path d="M0 70L160 60M0 85L160 78"/><path d="M10 70V40l30-14 30 14v30"/><path d="M28 70V52h12v18"/><path d="M100 62V48M112 62V47M124 61V46M136 61V45M148 60V44M100 50L160 44"/></g><g fill="none" stroke="#FFB547" stroke-width="1"><circle cx="93" cy="52" r="3"/><path d="M93 55v12M93 59l-5 4M93 59l5 4M93 67l-4 8M93 67l4 8"/></g></svg><span class="cap">Двор, ворота</span><span class="mbox"><span>движение</span></span><span class="ts" data-ts>00:00:00</span></div>
+        <div class="tile"><svg viewBox="0 0 160 100" preserveAspectRatio="none"><g fill="none" stroke="#2EE6CF" stroke-opacity=".55" stroke-width=".8"><path d="M0 0L50 30H110L160 0M0 100L50 75H110L160 100M50 30V75M110 30V75"/><path d="M65 75V40h30v35"/><circle cx="90" cy="58" r="1.5"/><path d="M14 60h22v20H14z"/></g></svg><span class="cap">Прихожая</span><span class="ts" data-ts>00:00:00</span></div>
+        <div class="tile"><svg viewBox="0 0 160 100" preserveAspectRatio="none"><g fill="none" stroke="#2EE6CF" stroke-opacity=".55" stroke-width=".8"><path d="M0 100L60 40M160 100L100 40M60 40h40"/><path d="M10 90V30l40 12v40M150 90V30l-40 12v40"/><path d="M10 50l40 6M10 70l40 4M150 50l-40 6M150 70l-40 4"/></g></svg><span class="cap">Склад, проход</span><span class="ts" data-ts>00:00:00</span></div>
+        <div class="tile"><svg viewBox="0 0 160 100" preserveAspectRatio="none"><g fill="none" stroke="#2EE6CF" stroke-opacity=".55" stroke-width=".8"><path d="M0 80L160 66"/><path d="M20 78l4-14h34l6 13M24 64l6-10h22l6 10"/><circle cx="30" cy="79" r="5"/><circle cx="56" cy="77" r="5"/><path d="M96 70l3-10h26l5 9M99 60l5-8h17l4 8"/><circle cx="104" cy="71" r="4"/><circle cx="124" cy="70" r="4"/><path d="M0 40h160" stroke-dasharray="3 4"/></g></svg><span class="cap">Парковка</span><span class="ts" data-ts>00:00:00</span></div>
+      </div>
+      <div class="mon-foot"><span class="chip-s">Архив: <b>14 дней</b></span><span class="chip-s">Диск: <b>2 ТБ</b></span><span class="chip-s">Уведомления: <b>включены</b></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="planner" aria-labelledby="pl-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 class="h2" id="pl-h">Планировщик видеонаблюдения</h2>
+      <p>Нажмите на&nbsp;план, чтобы поставить камеру,&nbsp;— она сама развернётся к&nbsp;непросмотренной зоне. Камеру можно перетащить, а&nbsp;направление поменять оранжевой ручкой или стрелками.</p>
+    </div>
+    <div class="planner">
+      <div class="pl-main rv">
+        <div class="pl-top">
+          <div class="tabs" role="group" aria-label="Тип объекта" id="tabs">
+            <button type="button" data-plan="apt" aria-pressed="true"><svg aria-hidden="true"><use href="#i-apt"/></svg>Квартира</button>
+            <button type="button" data-plan="house" aria-pressed="false"><svg aria-hidden="true"><use href="#i-house"/></svg>Дом</button>
+            <button type="button" data-plan="office" aria-pressed="false"><svg aria-hidden="true"><use href="#i-office"/></svg>Офис</button>
+            <button type="button" data-plan="shop" aria-pressed="false"><svg aria-hidden="true"><use href="#i-shop"/></svg>Магазин</button>
+          </div>
+          <div class="tools">
+            <button type="button" class="tool" id="blindBtn" aria-pressed="false"><svg aria-hidden="true"><use href="#i-eye-off"/></svg>Слепые зоны</button>
+            <button type="button" class="tool" id="resetBtn"><svg aria-hidden="true"><use href="#i-reset"/></svg>Сбросить</button>
+          </div>
+        </div>
+        <div class="plan-wrap">
+          <svg id="plan" viewBox="0 0 800 520" role="application" aria-label="План объекта. Нажмите, чтобы поставить камеру. Камеры доступны с клавиатуры: стрелки поворачивают, Delete удаляет." aria-describedby="planStatus">
+            <defs>
+              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#16284A" stroke-width="1"/></pattern>
+              <clipPath id="clip"><rect id="clipRect" x="0" y="0" width="800" height="520"/></clipPath>
+            </defs>
+            <rect width="800" height="520" fill="url(#grid)"/>
+            <g id="gDeco"></g>
+            <g id="gFov" clip-path="url(#clip)"></g>
+            <g id="gBlind" class="blind"></g>
+            <g id="gCable"></g>
+            <g id="gWalls"></g>
+            <g id="gRooms"></g>
+            <g id="gNvr" class="nvr"></g>
+            <g id="gCams"></g>
+          </svg>
+          <div class="plan-hint" aria-hidden="true"><span>Камер: <b id="camCount">0</b> из&nbsp;16</span><span>Масштаб: клетка&nbsp;= <b id="scaleLab">0,4 м</b></span></div>
+        </div>
+        <div class="pl-legend" aria-hidden="true"><span><i style="background:#2EE6CF55;border:1px solid #2EE6CF"></i>зона обзора</span><span><i style="background:#FF7A7A"></i>не просматривается</span><span><i style="background:#FFB547"></i>регистратор и&nbsp;кабель</span></div>
+        <p class="sr" id="planStatus" aria-live="polite"></p>
+      </div>
+
+      <div class="side">
+        <div class="card rv">
+          <h3>Покрытие объекта</h3>
+          <div class="cov">
+            <div class="gauge"><svg viewBox="0 0 96 96" aria-hidden="true"><circle class="bg" cx="48" cy="48" r="40"/><circle class="fg" id="gaugeFg" cx="48" cy="48" r="40" stroke-dasharray="251.3" stroke-dashoffset="251.3"/></svg><b id="covPct">0%</b></div>
+            <p id="covText">Поставьте хотя&nbsp;бы одну камеру.</p>
+          </div>
+        </div>
+        <div class="card rv" id="selCard">
+          <h3><span id="selTitle">Камера</span><span class="mono" id="selAngle"></span></h3>
+          <div id="selBody"></div>
+        </div>
+        <div class="card kitc rv">
+          <h3>Комплект и&nbsp;монтаж</h3>
+          <div class="opt-row"><span>Архив</span><div class="mini" role="group" aria-label="Глубина архива" id="days"><button type="button" data-d="7" aria-pressed="false">7 дн</button><button type="button" data-d="14" aria-pressed="true">14 дн</button><button type="button" data-d="30" aria-pressed="false">30 дн</button></div></div>
+          <div class="opt-row" style="margin-bottom:8px"><span>Запись</span><div class="mini" role="group" aria-label="Режим записи" id="mode"><button type="button" data-m="motion" aria-pressed="true">По движению</button><button type="button" data-m="always" aria-pressed="false">Постоянно</button></div></div>
+          <table class="kit" id="kit" aria-live="polite"></table>
+          <div class="total"><span>Итого с&nbsp;монтажом</span><b id="total">0 ₽</b></div>
+          <a class="btn btn-tq" href="#req" id="toReq">Заказать монтаж по&nbsp;плану</a>
+          <p class="note">Предварительная смета. Инженер проверит места крепления и&nbsp;трассы кабеля на&nbsp;выезде&nbsp;— бесплатно в&nbsp;пределах города.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="packs" aria-labelledby="pk-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 class="h2" id="pk-h">Готовые комплекты</h2><p>Если не&nbsp;хочется расставлять самому: типовые решения, которые подходят большинству объектов. Любой можно открыть в&nbsp;планировщике и&nbsp;поправить.</p></div>
+    <div class="packs" id="packList"></div>
+  </div>
+</section>
+
+<section class="sec" id="app" aria-labelledby="app-h" style="padding-top:0">
+  <div class="wrap app">
+    <div class="app-photos rv">
+      <div class="a1"><img src="https://images.unsplash.com/photo-1723186773193-621feea595c5?auto=format&fit=crop&w=800&h=800&q=72" width="800" height="800" alt="Смартфон и камера видеонаблюдения на столе" loading="lazy"></div>
+      <div class="a2"><img src="https://images.unsplash.com/photo-1650682009477-52fd77302b78?auto=format&fit=crop&w=600&h=600&q=72" width="600" height="600" alt="Белый планшет на столе" loading="lazy"></div>
+      <div class="notif" aria-hidden="true"><svg><use href="#eye"/></svg><div><b>Движение у ворот</b><span>Двор, камера 1, только что</span></div></div>
+    </div>
+    <div class="rv">
+      <h2 class="h2" id="app-h">Смотрите с&nbsp;телефона, где&nbsp;бы ни&nbsp;были</h2>
+      <ul class="feat">
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><div><h3>Уведомления о&nbsp;движении</h3><p>Только по&nbsp;выбранным зонам: калитка и&nbsp;крыльцо, а&nbsp;не&nbsp;ветки деревьев.</p></div></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><div><h3>Архив по&nbsp;шкале времени</h3><p>Найти момент можно за&nbsp;секунды: события подсвечены на&nbsp;таймлайне.</p></div></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-users"/></svg></span><div><h3>Доступ для&nbsp;семьи и&nbsp;сотрудников</h3><p>Каждому&nbsp;— свои камеры и&nbsp;права: смотреть онлайн или ещё и&nbsp;архив.</p></div></li>
+        <li><span class="ic"><svg aria-hidden="true"><use href="#i-moon"/></svg></span><div><h3>Ночью тоже видно</h3><p>ИК-подсветка даёт чёткую чёрно-белую картинку в&nbsp;полной темноте.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="steps" aria-labelledby="st-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 class="h2" id="st-h">Как проходит монтаж</h2><p>Кабель прячем в&nbsp;кабель-каналы или штробы&nbsp;— как договоримся на&nbsp;выезде.</p></div>
+    <ol class="steps">
+      <li class="rv"><h3>Заявка</h3><p>Присылаете план из&nbsp;планировщика или просто адрес.</p></li>
+      <li class="rv"><h3>Выезд инженера</h3><p>Проверяем места крепления, освещение и&nbsp;трассы кабеля.</p></li>
+      <li class="rv"><h3>Смета</h3><p>Фиксируем цену оборудования и&nbsp;работ в&nbsp;договоре.</p></li>
+      <li class="rv"><h3>Монтаж</h3><p>Квартира и&nbsp;дом&nbsp;— за&nbsp;один день, офис и&nbsp;магазин&nbsp;— по&nbsp;графику.</p></li>
+      <li class="rv"><h3>Настройка</h3><p>Ставим приложение, настраиваем зоны движения и&nbsp;доступы.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap faq">
+    <h2 class="h2 rv" id="faq-h">Вопросы</h2>
+    <div class="rv">
+      <details open><summary>Нужен ли интернет?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Запись идёт на&nbsp;регистратор и&nbsp;без интернета. Интернет нужен только для&nbsp;просмотра с&nbsp;телефона и&nbsp;уведомлений.</p></details>
+      <details><summary>Что будет, если отключат электричество?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Можно добавить источник бесперебойного питания: регистратор и&nbsp;камеры продолжат работать и&nbsp;писать архив, пока не&nbsp;сядет батарея.</p></details>
+      <details><summary>Можно ли ставить камеру в&nbsp;подъезде или на&nbsp;парковке ЖК?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Камеру в&nbsp;общем имуществе дома согласуют с&nbsp;собственниками или управляющей компанией. Внутри своей квартиры и&nbsp;на&nbsp;своём участке согласование не&nbsp;нужно, но&nbsp;камера не&nbsp;должна смотреть в&nbsp;чужие окна.</p></details>
+      <details><summary>Почему в&nbsp;квартире не&nbsp;считается санузел?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Камеры в&nbsp;санузлах и&nbsp;раздевалках мы не&nbsp;ставим, поэтому планировщик исключает их&nbsp;из&nbsp;расчёта покрытия.</p></details>
+      <details><summary>Есть ли обслуживание после монтажа?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Да, по&nbsp;желанию: раз в&nbsp;полгода чистим объективы уличных камер, проверяем диск и&nbsp;обновляем прошивки.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="req" aria-labelledby="req-h">
+  <div class="wrap">
+    <div class="req rv">
+      <div>
+        <h2 id="req-h">Вызвать инженера на&nbsp;замер</h2>
+        <p class="sub">Приедет в&nbsp;удобный день, проверит план на&nbsp;месте и&nbsp;зафиксирует цену в&nbsp;договоре.</p>
+        <div class="rec-box" id="recBox"></div>
+      </div>
+      <form class="form" id="form" novalidate>
+        <div class="field"><label for="fName">Имя</label><input id="fName" autocomplete="name" required><span class="err" aria-live="polite"></span></div>
+        <div class="field"><label for="fTel">Телефон</label><input id="fTel" type="tel" autocomplete="tel" required placeholder="+7"><span class="err" aria-live="polite"></span></div>
+        <div class="field full"><label for="fAddr">Адрес объекта</label><input id="fAddr" autocomplete="street-address" required><span class="err" aria-live="polite"></span></div>
+        <div class="field full"><label for="fType">Тип объекта</label><select id="fType"><option value="apt">Квартира</option><option value="house">Частный дом</option><option value="office">Офис</option><option value="shop">Магазин или склад</option></select></div>
+        <button class="btn btn-tq" type="submit">Отправить заявку с&nbsp;планом</button>
+        <p class="fine">Это демо: данные никуда не&nbsp;отправляются.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div><a class="logo" href="#top"><svg aria-hidden="true"><use href="#eye"/></svg>Око</a><p>Видеонаблюдение под&nbsp;ключ. Новосибирск, ул.&nbsp;Кирова, 44, офис 12. Пн–Пт 9:00–19:00, выезды и&nbsp;в&nbsp;выходные.</p></div>
+      <div><h3>Связь</h3><ul><li><a href="tel:+73830000000">+7 (383) 000-00-00</a></li><li><a href="mailto:hello@ysdprojects.space">hello@ysdprojects.space</a></li></ul></div>
+      <div><h3>Разделы</h3><ul><li><a href="#planner">Планировщик</a></li><li><a href="#packs">Комплекты</a></li><li><a href="#faq">Вопросы</a></li></ul></div>
+    </div>
+    <div class="legal">
+      <p>Дизайн-концепт · сайт разработан <a href="https://ysddev.com">YSD DEV</a></p>
+      <p>Демо-проект студии YSD DEV. Компания, цены и реквизиты вымышлены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var fmt=function(n){return Math.round(n).toLocaleString('ru-RU').replace(/,/g,' ')};
+function plural(n,a,b,c){n=Math.abs(n)%100;var m=n%10;if(n>10&&n<20)return c;if(m>1&&m<5)return b;if(m===1)return a;return c}
+var NS='http://www.w3.org/2000/svg';
+
+/* reveal */
+var rv=$$('.rv'),io=null;
+if('IntersectionObserver' in window){
+  io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+  rv.forEach(function(el){var i=Array.prototype.indexOf.call(el.parentElement.children,el);el.style.setProperty('--d',Math.min(i,5)*0.06+'s');io.observe(el)});
+}else rv.forEach(function(el){el.classList.add('in')});
+
+/* clock */
+function tick(){var d=new Date(),s=d.toLocaleTimeString('ru-RU',{hour12:false});$('#clock').textContent=s;$$('[data-ts]').forEach(function(t){t.textContent=d.toLocaleDateString('ru-RU')+' '+s})}
+tick();setInterval(tick,1000);
+
+/* ---------- data ---------- */
+var TYPES={
+  dome:{name:'Купольная 4 Мп',short:'Купольная',fov:100,range:9,price:6900,out:false},
+  bullet:{name:'Уличная цилиндрическая 4 Мп',short:'Уличная',fov:85,range:25,price:8400,out:true},
+  pano:{name:'Панорамная 5 Мп',short:'Панорамная',fov:180,range:10,price:14900,out:false}
+};
+function rectSegs(r){return [[r[0],r[1],r[2],r[1]],[r[2],r[1],r[2],r[3]],[r[2],r[3],r[0],r[3]],[r[0],r[3],r[0],r[1]]]}
+var PLANS={
+  apt:{name:'Квартира',scale:50,bounds:[60,40,740,480],type:'dome',
+    walls:[[60,40,740,40],[740,40,740,380],[740,430,740,480],[740,480,60,480],[60,480,60,40],
+      [420,40,420,160],[420,210,420,250],[420,250,420,290],
+      [60,290,330,290],[330,290,350,290],[410,290,420,290],
+      [420,250,600,250],[660,250,740,250],
+      [330,350,330,480],
+      [330,360,380,360],[430,360,470,360],[470,360,470,480]],
+    obst:[],excl:[[330,360,470,480]],
+    rooms:[['Гостиная',150,165],['Кухня',545,145],['Спальня',150,390],['С/у',400,425],['Прихожая',560,330]],
+    deco:'<rect x="90" y="190" width="170" height="70" rx="10"/><rect x="300" y="60" width="90" height="40" rx="4"/><rect x="440" y="60" width="280" height="40" rx="4"/><circle cx="600" cy="170" r="34"/><rect x="80" y="330" width="130" height="120" rx="6"/><rect x="350" y="400" width="40" height="60" rx="16"/><path d="M740 380a50 50 0 0 0-50 50"/>',
+    nvr:[700,280],defaults:[[715,455,-130,'dome'],[85,65,40,'dome']]},
+  house:{name:'Частный дом',scale:18,bounds:[30,30,770,490],type:'bullet',
+    walls:[],obst:[[300,170,520,350],[580,60,720,170],[80,360,190,450]],excl:[],
+    fence:[30,30,770,490],
+    rooms:[['Дом',410,262],['Гараж',650,118],['Баня',135,408],['Ворота',400,470],['Двор',170,120]],
+    deco:'<path d="M360 490h80" stroke="#FFB547" stroke-width="4"/><path d="M400 350v138" stroke-dasharray="4 6"/><circle cx="660" cy="380" r="26"/><circle cx="700" cy="420" r="18"/><circle cx="110" cy="210" r="22"/><path d="M560 230h120v70H560z"/><path d="M650 170v100" stroke-dasharray="4 6"/>',
+    nvr:[410,300],defaults:[[296,166,-135,'bullet'],[524,166,-60,'bullet'],[524,354,45,'bullet'],[296,354,135,'bullet']]},
+  office:{name:'Офис',scale:40,bounds:[40,40,760,480],type:'dome',
+    walls:[[40,40,760,40],[760,40,760,480],[760,480,40,480],[40,480,40,160],[40,100,40,40],
+      [260,40,260,120],[260,180,260,380],[260,440,260,480],[40,240,260,240],
+      [620,40,620,180],[620,230,620,280],[620,320,620,400],[620,440,620,480],[620,250,760,250],[620,340,760,340]],
+    obst:[],excl:[[620,340,760,480]],
+    rooms:[['Ресепшен',150,80],['Переговорная',150,300],['Опенспейс',440,80],['Кабинет',690,90],['Серверная',690,295],['С/у',690,410]],
+    deco:'<rect x="90" y="140" width="120" height="40" rx="8"/><rect x="80" y="300" width="140" height="120" rx="10"/><rect x="300" y="130" width="120" height="60" rx="4"/><rect x="460" y="130" width="120" height="60" rx="4"/><rect x="300" y="260" width="120" height="60" rx="4"/><rect x="460" y="260" width="120" height="60" rx="4"/><rect x="300" y="390" width="280" height="50" rx="4"/><rect x="650" y="120" width="80" height="50" rx="4"/>',
+    nvr:[690,270],defaults:[[60,60,40,'dome'],[600,60,140,'dome'],[280,460,-40,'dome'],[60,460,-40,'dome']]},
+  shop:{name:'Магазин и склад',scale:30,bounds:[40,40,760,480],type:'dome',
+    walls:[[40,40,760,40],[760,40,760,480],[760,480,180,480],[100,480,40,480],[40,480,40,40],
+      [560,40,560,250],[560,300,560,380],[560,420,560,480],[560,330,760,330]],
+    obst:[[150,130,450,150],[150,230,450,250],[150,330,450,350],[600,70,615,300],[690,70,705,300]],excl:[],
+    rooms:[['Торговый зал',300,90],['Склад',655,60],['Кабинет',660,400],['Касса',270,440],['Вход',140,462]],
+    deco:'<rect x="220" y="410" width="100" height="40" rx="4"/><path d="M100 480h80" stroke="#FFB547" stroke-width="4"/>',
+    nvr:[720,440],defaults:[[60,460,-40,'dome'],[545,190,180,'dome'],[545,290,180,'dome'],[740,60,120,'dome'],[60,60,40,'dome'],[540,60,135,'dome']]}
+};
+var HDD=[[1,5900],[2,7900],[4,11900],[6,16900],[8,21900]];
+var NVR=[[4,12900],[8,18900],[16,32900]];
+
+/* ---------- state ---------- */
+var st={plan:'apt',cams:[],sel:null,blind:false,days:14,mode:'motion',nextId:1};
+var P,SEGS,SAMPLES,STEP=12;
+var svg=$('#plan');
+
+function inRect(x,y,r,m){m=m||0;return x>r[0]+m&&x<r[2]-m&&y>r[1]+m&&y<r[3]-m}
+function buildPlan(){
+  P=PLANS[st.plan];
+  SEGS=P.walls.slice();
+  P.obst.forEach(function(r){SEGS=SEGS.concat(rectSegs(r))});
+  SAMPLES=[];
+  var b=P.bounds;
+  for(var y=b[1]+STEP/2;y<b[3];y+=STEP)for(var x=b[0]+STEP/2;x<b[2];x+=STEP){
+    var bad=false;
+    P.obst.forEach(function(r){if(inRect(x,y,r,-3))bad=true});
+    P.excl.forEach(function(r){if(inRect(x,y,r,-2))bad=true});
+    if(!bad)SAMPLES.push([x,y]);
+  }
+  var cr=$('#clipRect');cr.setAttribute('x',b[0]);cr.setAttribute('y',b[1]);cr.setAttribute('width',b[2]-b[0]);cr.setAttribute('height',b[3]-b[1]);
+  $('#gWalls').innerHTML=(P.fence?'<rect class="fence" x="'+P.fence[0]+'" y="'+P.fence[1]+'" width="'+(P.fence[2]-P.fence[0])+'" height="'+(P.fence[3]-P.fence[1])+'"/>':'')+
+    P.obst.map(function(r){return '<rect class="obst" x="'+r[0]+'" y="'+r[1]+'" width="'+(r[2]-r[0])+'" height="'+(r[3]-r[1])+'"/>'}).join('')+
+    P.walls.map(function(s){return '<line class="wall" x1="'+s[0]+'" y1="'+s[1]+'" x2="'+s[2]+'" y2="'+s[3]+'"/>'}).join('');
+  $('#gDeco').innerHTML='<g class="deco">'+P.deco+'</g>';
+  $('#gRooms').innerHTML=P.rooms.map(function(r){return '<text class="room" x="'+r[1]+'" y="'+r[2]+'" text-anchor="middle">'+r[0]+'</text>'}).join('');
+  $('#gNvr').innerHTML='<rect x="'+(P.nvr[0]-22)+'" y="'+(P.nvr[1]-11)+'" width="44" height="22" rx="4"/><text x="'+P.nvr[0]+'" y="'+P.nvr[1]+'" font-size="11">NVR</text>';
+  $('#scaleLab').textContent=String(Math.round(20/P.scale*10)/10).replace('.',',')+' м';
+}
+
+/* ---------- geometry ---------- */
+function rayHit(x,y,ang,R){
+  var dx=Math.cos(ang),dy=Math.sin(ang),best=R;
+  for(var i=0;i<SEGS.length;i++){
+    var s=SEGS[i],sx=s[2]-s[0],sy=s[3]-s[1];
+    var den=dx*sy-dy*sx; if(Math.abs(den)<1e-9)continue;
+    var qx=s[0]-x,qy=s[1]-y;
+    var t=(qx*sy-qy*sx)/den,u=(qx*dy-qy*dx)/den;
+    if(t>2&&u>=0&&u<=1&&t<best)best=t;
+  }
+  return [x+dx*best,y+dy*best];
+}
+function blocked(x,y,px,py){
+  var rx=px-x,ry=py-y,len=Math.sqrt(rx*rx+ry*ry);
+  for(var i=0;i<SEGS.length;i++){
+    var s=SEGS[i],sx=s[2]-s[0],sy=s[3]-s[1];
+    var den=rx*sy-ry*sx; if(Math.abs(den)<1e-9)continue;
+    var qx=s[0]-x,qy=s[1]-y;
+    var t=(qx*sy-qy*sx)/den,u=(qx*ry-qy*rx)/den;
+    if(t*len>2&&t<1&&u>=0&&u<=1)return true;
+  }
+  return false;
+}
+function sees(c,px,py){
+  var T=TYPES[c.t],R=T.range*P.scale,dx=px-c.x,dy=py-c.y,d2=dx*dx+dy*dy;
+  if(d2>R*R)return false;
+  var a=Math.atan2(dy,dx),diff=Math.abs(((a-c.a*Math.PI/180)+Math.PI*3)%(Math.PI*2)-Math.PI);
+  if(diff>T.fov*Math.PI/360)return false;
+  return !blocked(c.x,c.y,px,py);
+}
+function fovPoly(c){
+  var T=TYPES[c.t],R=T.range*P.scale,a0=(c.a-T.fov/2)*Math.PI/180,n=Math.ceil(T.fov/2),pts=[[c.x,c.y]];
+  for(var i=0;i<=n;i++){pts.push(rayHit(c.x,c.y,a0+(T.fov*Math.PI/180)*i/n,R))}
+  return pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' ');
+}
+function coverage(except){
+  var cov=new Uint8Array(SAMPLES.length);
+  st.cams.forEach(function(c){if(c===except)return;for(var i=0;i<SAMPLES.length;i++){if(!cov[i]&&sees(c,SAMPLES[i][0],SAMPLES[i][1]))cov[i]=1}});
+  return cov;
+}
+function placeable(x,y){
+  if(!inRect(x,y,P.bounds,-1))return false;
+  for(var i=0;i<P.obst.length;i++)if(inRect(x,y,P.obst[i],6))return false;
+  return true;
+}
+function autoAim(c){
+  var cov=coverage(c),best=-1,bestA=c.a;
+  for(var a=0;a<360;a+=15){
+    c.a=a;var n=0;
+    for(var i=0;i<SAMPLES.length;i++){if(!cov[i]&&sees(c,SAMPLES[i][0],SAMPLES[i][1]))n++}
+    if(n>best){best=n;bestA=a}
+  }
+  c.a=bestA;
+}
+
+/* ---------- render ---------- */
+var k=1;
+function unitsPerPx(){var w=svg.getBoundingClientRect().width||800;return 800/w}
+function render(full){
+  k=unitsPerPx();
+  st.cams.forEach(function(c){c.a=((Math.round(c.a)%360)+360)%360});
+  $$('#gRooms text').forEach(function(t){t.setAttribute('font-size',Math.max(14,Math.min(26,11*k)).toFixed(1))});
+  var r0=Math.max(10,Math.min(26,13*k)),hit=Math.max(18,22*k);
+  $('#gFov').innerHTML=st.cams.map(function(c){return '<polygon class="fov'+(c.id===st.sel?' sel':'')+'" points="'+fovPoly(c)+'"/>'}).join('');
+  $('#gCable').innerHTML=st.cams.map(function(c){return '<path class="cable" d="M'+P.nvr[0]+' '+P.nvr[1]+'H'+c.x.toFixed(1)+'V'+c.y.toFixed(1)+'"/>'}).join('');
+  var html='';
+  st.cams.forEach(function(c,i){
+    var T=TYPES[c.t],sel=c.id===st.sel,rad=c.a*Math.PI/180,L=r0*3.4;
+    html+='<g class="cam'+(sel?' sel':'')+(c.fresh?' cam-new':'')+'" data-id="'+c.id+'" tabindex="0" role="button" aria-pressed="'+sel+'" aria-label="Камера '+(i+1)+', '+T.short.toLowerCase()+', направление '+Math.round(c.a)+' градусов" transform="translate('+c.x.toFixed(1)+' '+c.y.toFixed(1)+')">'+
+      '<circle class="hit" r="'+hit+'"/>'+(sel?'<circle class="ring" r="'+(r0+6*k/1.2)+'"/>':'')+
+      '<path class="nose" transform="rotate('+c.a+')" d="M'+(r0-2)+' '+(-r0*.55)+'L'+(r0*1.7)+' 0L'+(r0-2)+' '+(r0*.55)+'z"/>'+
+      '<circle class="body" r="'+r0+'"/><text font-size="'+(r0*1.05).toFixed(1)+'">'+(i+1)+'</text></g>';
+    if(sel)html+='<g class="handle" data-handle="'+c.id+'"><line x1="'+c.x+'" y1="'+c.y+'" x2="'+(c.x+Math.cos(rad)*L)+'" y2="'+(c.y+Math.sin(rad)*L)+'"/><circle cx="'+(c.x+Math.cos(rad)*L)+'" cy="'+(c.y+Math.sin(rad)*L)+'" r="'+(r0*.75)+'"/><circle cx="'+(c.x+Math.cos(rad)*L)+'" cy="'+(c.y+Math.sin(rad)*L)+'" r="'+hit+'" class="hit"/></g>';
+    c.fresh=false;
+  });
+  $('#gCams').innerHTML=html;
+  if(full!==false)stats();
+}
+var statsT=null;
+function stats(){
+  var cov=coverage(),n=0,bl='';
+  for(var i=0;i<cov.length;i++){if(cov[i])n++;else if(st.blind)bl+='<rect x="'+(SAMPLES[i][0]-2.5)+'" y="'+(SAMPLES[i][1]-2.5)+'" width="5" height="5" rx="1"/>'}
+  $('#gBlind').innerHTML=bl;
+  var pct=SAMPLES.length?Math.round(n/SAMPLES.length*100):0;
+  $('#covPct').textContent=pct+'%';
+  var fg=$('#gaugeFg');fg.style.strokeDashoffset=(251.3*(1-pct/100)).toFixed(1);fg.style.stroke=pct>=80?'#2EE6CF':pct>=50?'#FFB547':'#FF7A7A';
+  var area=Math.round(SAMPLES.length*STEP*STEP/(P.scale*P.scale));
+  var blindM=Math.round((SAMPLES.length-n)*STEP*STEP/(P.scale*P.scale));
+  $('#covText').innerHTML=st.cams.length?('Видно <strong>'+pct+'%</strong> из&nbsp;'+area+'&nbsp;м². Не&nbsp;просматривается около <strong>'+blindM+'&nbsp;м²</strong>'+(pct<80?'. Включите «Слепые зоны», чтобы увидеть, куда добавить камеру.':'. Хорошее покрытие.')):'Поставьте хотя&nbsp;бы одну камеру: нажмите на&nbsp;план.';
+  $('#camCount').textContent=st.cams.length;
+  st.pct=pct;
+  kit();selPanel();
+}
+
+/* ---------- selected panel ---------- */
+function selCam(){return st.cams.filter(function(c){return c.id===st.sel})[0]}
+function selPanel(){
+  var c=selCam(),body=$('#selBody');
+  if(!c){$('#selTitle').textContent='Камера';$('#selAngle').textContent='';body.innerHTML='<p class="empty-sel">Нажмите на&nbsp;план, чтобы поставить камеру, или выберите уже поставленную.</p>';return}
+  var idx=st.cams.indexOf(c)+1;
+  $('#selTitle').textContent='Камера '+idx;
+  $('#selAngle').textContent=Math.round(c.a)+'°';
+  if(body.dataset.for!==String(c.id)){
+    body.dataset.for=c.id;
+    body.innerHTML='<div class="seg3" role="group" aria-label="Тип камеры">'+Object.keys(TYPES).map(function(t){var T=TYPES[t];return '<button type="button" data-t="'+t+'" aria-pressed="false">'+T.short+'<small>'+T.fov+'°, '+T.range+' м</small></button>'}).join('')+'</div>'+
+      '<div class="rot"><button type="button" data-rot="-15" aria-label="Повернуть против часовой"><svg aria-hidden="true"><use href="#i-l"/></svg></button><input type="range" id="rotR" min="0" max="355" step="5" aria-label="Направление камеры, градусов"><button type="button" data-rot="15" aria-label="Повернуть по часовой"><svg aria-hidden="true"><use href="#i-r"/></svg></button></div>'+
+      '<div class="sel-row"><button type="button" class="tool" id="aimBtn"><svg aria-hidden="true"><use href="#i-target"/></svg>На слепую зону</button><button type="button" class="tool del" id="delBtn"><svg aria-hidden="true"><use href="#i-trash"/></svg>Удалить</button></div>';
+    $$('.seg3 button',body).forEach(function(b){b.addEventListener('click',function(){var cc=selCam();if(!cc)return;cc.t=b.dataset.t;render()})});
+    $$('[data-rot]',body).forEach(function(b){b.addEventListener('click',function(){var cc=selCam();if(!cc)return;cc.a=((cc.a+ +b.dataset.rot)%360+360)%360;render()})});
+    $('#rotR').addEventListener('input',function(){var cc=selCam();if(!cc)return;cc.a=+this.value;render(false);schedStats()});
+    $('#aimBtn').addEventListener('click',function(){var cc=selCam();if(!cc)return;autoAim(cc);render();announce('Камера '+(st.cams.indexOf(cc)+1)+' развёрнута на '+Math.round(cc.a)+' градусов')});
+    $('#delBtn').addEventListener('click',function(){removeCam(st.sel)});
+  }
+  $$('.seg3 button',body).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.t===c.t)});
+  var rr=$('#rotR');if(rr&&document.activeElement!==rr)rr.value=Math.round(((c.a%360)+360)%360/5)*5%360;
+}
+var raf=null;
+function schedStats(){if(statsT)clearTimeout(statsT);statsT=setTimeout(stats,60)}
+function announce(t){$('#planStatus').textContent=t}
+
+/* ---------- kit ---------- */
+function calcKit(cams,planId,days,mode){
+  var p=PLANS[planId],rows=[],n=cams.length,cnt={};
+  cams.forEach(function(c){cnt[c.t]=(cnt[c.t]||0)+1});
+  Object.keys(TYPES).forEach(function(t){if(cnt[t])rows.push([TYPES[t].name,TYPES[t].fov+'°, ИК до '+(TYPES[t].out?30:15)+' м',cnt[t],cnt[t]*TYPES[t].price])});
+  if(n){
+    var nv=NVR.filter(function(x){return x[0]>=n})[0];
+    rows.push(['Регистратор на '+nv[0]+' каналов','питание камер по кабелю (PoE)',1,nv[1]]);
+    var gb=n*(mode==='always'?26:10)*days,tb=gb/1000/0.9,h=HDD.filter(function(x){return x[0]>=tb})[0],disks=1;
+    if(!h){h=HDD[HDD.length-1];disks=Math.ceil(tb/8)}
+    rows.push(['Жёсткий диск '+h[0]+' ТБ','≈ '+fmt(gb)+' ГБ на '+days+' '+plural(days,'день','дня','дней'),disks,disks*h[1]]);
+    var m=0;cams.forEach(function(c){m+=(Math.abs(c.x-p.nvr[0])+Math.abs(c.y-p.nvr[1]))/p.scale*1.2+3});
+    m=Math.ceil(m/5)*5;
+    rows.push(['Кабель UTP и крепёж','трасса от регистратора, ≈ '+m+' м',1,m*55]);
+    var out=cams.filter(function(c){return TYPES[c.t].out}).length;
+    rows.push(['Монтаж камер',((out?out+' уличн., ':'')+(n-out?(n-out)+' внутр.':'')).replace(/, $/,''),n,n*2900+out*1000]);
+    rows.push(['Настройка и приложение','регистратор, зоны движения, доступы',1,4500]);
+  }
+  var sum=rows.reduce(function(a,r){return a+r[3]},0);
+  return {rows:rows,sum:sum};
+}
+function kit(){
+  var K=calcKit(st.cams,st.plan,st.days,st.mode);
+  $('#kit').innerHTML='<caption class="sr">Комплект оборудования</caption>'+(K.rows.length?K.rows.map(function(r){return '<tr><th scope="row">'+r[0]+'<small>'+r[1]+'</small></th><td class="q">×'+r[2]+'</td><td>'+fmt(r[3])+' ₽</td></tr>'}).join(''):'<tr><th>Пока пусто</th><td></td><td></td></tr>');
+  $('#total').textContent=fmt(K.sum)+' ₽';
+  st.sum=K.sum;
+  $('#recBox').innerHTML=st.cams.length?'Из планировщика: <b>'+P.name.toLowerCase()+'</b>, '+st.cams.length+' '+plural(st.cams.length,'камера','камеры','камер')+', покрытие '+st.pct+'%, архив '+st.days+' дн. Предварительно <b>'+fmt(K.sum)+' ₽</b> с монтажом.':'План пока пустой&nbsp;— инженер подберёт камеры на&nbsp;месте.';
+}
+
+/* ---------- actions ---------- */
+function addCam(x,y){
+  if(st.cams.length>=16){announce('Максимум 16 камер на один регистратор');return}
+  if(!placeable(x,y))return;
+  var c={id:st.nextId++,x:x,y:y,a:0,t:P.type,fresh:true};
+  st.cams.push(c);autoAim(c);st.sel=c.id;render();
+  announce('Камера '+st.cams.length+' поставлена и развёрнута на '+Math.round(c.a)+' градусов');
+}
+function removeCam(id){
+  var i=st.cams.findIndex(function(c){return c.id===id});if(i<0)return;
+  st.cams.splice(i,1);st.sel=st.cams.length?st.cams[Math.max(0,i-1)].id:null;
+  $('#selBody').dataset.for='';render();announce('Камера удалена');
+}
+function loadDefaults(){
+  st.cams=P.defaults.map(function(d){return {id:st.nextId++,x:d[0],y:d[1],a:(d[2]+360)%360,t:d[3],fresh:true}});
+  for(var pass=0;pass<2;pass++)st.cams.forEach(function(c){autoAim(c)});
+  st.sel=st.cams.length?st.cams[0].id:null;$('#selBody').dataset.for='';
+}
+function setPlan(id,cams){
+  st.plan=id;buildPlan();
+  if(cams){st.cams=cams;st.sel=cams[0]?cams[0].id:null;$('#selBody').dataset.for=''}else loadDefaults();
+  $$('#tabs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.plan===id)});
+  $('#fType').value=id;
+  render();
+}
+$$('#tabs button').forEach(function(b){b.addEventListener('click',function(){setPlan(b.dataset.plan)})});
+$('#resetBtn').addEventListener('click',function(){loadDefaults();render();announce('Расстановка сброшена к типовой')});
+$('#blindBtn').addEventListener('click',function(){st.blind=!st.blind;this.setAttribute('aria-pressed',st.blind);stats()});
+$$('#days button').forEach(function(b,_,all){b.addEventListener('click',function(){st.days=+b.dataset.d;all.forEach(function(x){x.setAttribute('aria-pressed',x===b)});kit()})});
+$$('#mode button').forEach(function(b,_,all){b.addEventListener('click',function(){st.mode=b.dataset.m;all.forEach(function(x){x.setAttribute('aria-pressed',x===b)});kit()})});
+
+/* pointer */
+function pt(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;var m=svg.getScreenCTM();return m?p.matrixTransform(m.inverse()):{x:0,y:0}}
+var drag=null;
+svg.addEventListener('pointerdown',function(e){
+  if(e.button!==undefined&&e.button!==0)return;
+  var h=e.target.closest('.handle'),cg=e.target.closest('.cam'),p=pt(e);
+  if(h){drag={mode:'rot',id:+h.dataset.handle};}
+  else if(cg){var id=+cg.dataset.id;var c=st.cams.filter(function(x){return x.id===id})[0];drag={mode:'move',id:id,sx:e.clientX,sy:e.clientY,ox:c.x-p.x,oy:c.y-p.y,moved:false};if(st.sel!==id){st.sel=id;render()}}
+  else{drag={mode:'add',sx:e.clientX,sy:e.clientY,x:p.x,y:p.y};return}
+  e.preventDefault();
+  try{svg.setPointerCapture(e.pointerId)}catch(_){}
+});
+svg.addEventListener('pointermove',function(e){
+  if(!drag||drag.mode==='add')return;
+  var p=pt(e),c=st.cams.filter(function(x){return x.id===drag.id})[0];if(!c)return;
+  if(drag.mode==='rot'){c.a=(Math.atan2(p.y-c.y,p.x-c.x)*180/Math.PI+360)%360}
+  else{
+    if(!drag.moved&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<4)return;
+    drag.moved=true;var nx=p.x+drag.ox,ny=p.y+drag.oy;if(placeable(nx,ny)){c.x=nx;c.y=ny}
+  }
+  if(!raf)raf=requestAnimationFrame(function(){raf=null;render(false);schedStats()});
+});
+function endDrag(e){
+  if(!drag)return;
+  if(drag.mode==='add'&&Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)<8){addCam(drag.x,drag.y)}
+  else if(drag.mode!=='add'){render()}
+  drag=null;
+}
+svg.addEventListener('pointerup',endDrag);
+svg.addEventListener('pointercancel',function(){drag=null});
+svg.addEventListener('keydown',function(e){
+  var cg=e.target.closest&&e.target.closest('.cam');if(!cg)return;
+  var id=+cg.dataset.id,c=st.cams.filter(function(x){return x.id===id})[0];if(!c)return;
+  var used=true;
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')c.a=(c.a+345)%360;
+  else if(e.key==='ArrowRight'||e.key==='ArrowDown')c.a=(c.a+15)%360;
+  else if(e.key==='Delete'||e.key==='Backspace'){removeCam(id);var f=$('#gCams .cam');f&&f.focus();e.preventDefault();return}
+  else if(e.key==='Enter'||e.key===' '){st.sel=id}
+  else used=false;
+  if(used){e.preventDefault();st.sel=id;render();var g=$('#gCams .cam[data-id="'+id+'"]');g&&g.focus();announce('Камера '+(st.cams.indexOf(c)+1)+': '+Math.round(c.a)+' градусов')}
+});
+var rT;window.addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){render(false)},150)});
+
+/* packages */
+var PACKS=[
+  ['apt','Квартира','Прихожая и гостиная: видно входную дверь и основную комнату.','<path d="M20 20h160v80H20z M90 20v50M20 60h70"/>'],
+  ['house','Частный дом','Четыре уличные камеры по углам дома: двор, ворота и подходы.','<path d="M70 40h60v45H70z"/><path d="M20 15h160v95H20z" stroke-dasharray="5 5"/>'],
+  ['shop','Магазин и склад','Вход и касса, торговый зал между стеллажами и склад.','<path d="M20 15h160v95H20zM130 15v95M45 40h60M45 62h60M45 84h60"/>']
+];
+$('#packList').innerHTML=PACKS.map(function(p){
+  var pl=PLANS[p[0]],cams=pl.defaults.map(function(d){return {x:d[0],y:d[1],a:d[2],t:d[3]}}),K=calcKit(cams,p[0],14,'motion');
+  var items=K.rows.slice(0,3).map(function(r){return '<li>'+r[0]+'<b>×'+r[2]+'</b></li>'}).join('');
+  return '<article class="pack rv"><div class="pic" aria-hidden="true"><svg viewBox="0 0 200 125"><g fill="none" stroke="#C9D6EA" stroke-width="2">'+p[3]+'</g>'+pl.defaults.map(function(d){var sx=(d[0]-pl.bounds[0])/(pl.bounds[2]-pl.bounds[0])*160+20,sy=(d[1]-pl.bounds[1])/(pl.bounds[3]-pl.bounds[1])*95+15;return '<circle cx="'+sx.toFixed(0)+'" cy="'+sy.toFixed(0)+'" r="5" fill="#2EE6CF"/>'}).join('')+'</svg></div><h3>'+p[1]+'</h3><p style="color:var(--mut);font-size:15px">'+p[2]+'</p><ul>'+items+'</ul><div class="pr"><span>'+fmt(K.sum)+' ₽<small>с монтажом, архив 14 дней</small></span><button class="btn" type="button" data-pack="'+p[0]+'">Открыть на плане</button></div></article>';
+}).join('');
+$$('#packList .rv').forEach(function(el,i){el.style.setProperty('--d',i*0.07+'s');if(io)io.observe(el);else el.classList.add('in')});
+$$('[data-pack]').forEach(function(b){b.addEventListener('click',function(){setPlan(b.dataset.pack);$('#planner').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})})});
+
+/* form */
+$('#form').addEventListener('submit',function(e){
+  e.preventDefault();var first=null;
+  ['fName','fTel','fAddr'].forEach(function(id){var i=$('#'+id),v=i.value.trim(),bad=!v||(id==='fTel'&&v.replace(/\D/g,'').length<10);i.setAttribute('aria-invalid',bad);i.nextElementSibling.textContent=bad?(id==='fTel'?'Укажите номер полностью':'Заполните поле'):'';if(bad&&!first)first=i});
+  if(first){first.focus();return}
+  this.innerHTML='<div class="done"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="none" stroke="#2EE6CF" stroke-width="2"/><path d="M20 33l8 8 16-18" fill="none" stroke="#2EE6CF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 tabindex="-1">Заявка принята</h3><p>Инженер позвонит в&nbsp;течение рабочего дня и&nbsp;согласует время выезда.'+(st.cams.length?' План с&nbsp;'+st.cams.length+'&nbsp;'+plural(st.cams.length,'камерой','камерами','камерами')+' приложен к&nbsp;заявке.':'')+'</p></div>';
+  $('.done h3',this).focus();
+});
+
+setPlan('apt');
+})();
+</script>
+</body>
+</html>
