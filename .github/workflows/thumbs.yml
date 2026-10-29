@@ -1,0 +1,29 @@
+name: thumbs
+on:
+  workflow_dispatch:
+    inputs:
+      only: { description: 'slugs через запятую (пусто = все)', required: false, default: '' }
+  push:
+    paths: ['works/**', 'tools/thumbs.mjs', '.github/workflows/thumbs.yml']
+permissions:
+  contents: write
+concurrency: { group: thumbs, cancel-in-progress: true }
+jobs:
+  thumbs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm init -y >/dev/null && npm i playwright@1.48.2 sharp@0.33.5 && npx playwright install --with-deps chromium
+      - run: node tools/thumbs.mjs
+        env: { ONLY: '${{ github.event.inputs.only }}' }
+      - name: Publish to thumbs branch
+        run: |
+          cd thumbs-out
+          git init -q -b thumbs
+          git config user.name "ysd-thumbs"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A; if git diff --cached --quiet; then echo "нет обложек"; exit 0; fi; git commit -q -m "Обложки работ $(date -u +%F)"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" thumbs
