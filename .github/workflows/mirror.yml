@@ -1,0 +1,33 @@
+name: mirror
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tools/mirror.py', '.github/workflows/mirror.yml', 'clients/**']
+permissions:
+  contents: write
+concurrency: { group: mirror, cancel-in-progress: false }
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy works from Cloudflare
+        run: python3 tools/mirror.py site
+      - name: Add temporary client sites
+        run: |
+          if [ -d clients ]; then mkdir -p site/clients && cp -R clients/. site/clients/; fi
+      - name: Publish to gh-pages branch
+        run: |
+          cd site
+          echo "ysdprojects.space" > CNAME
+          touch .nojekyll
+          printf '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=https://ysddev.com/#works"><title>YSD DEV</title><a href="https://ysddev.com/#works">ysddev.com</a>' > index.html
+          cp index.html 404.html
+          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+          git init -q -b gh-pages
+          git config user.name "ysd-mirror"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Зеркало работ портфолио $(date -u +%F)"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages

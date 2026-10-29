@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ПаркетДекор — макет интернет-магазина</title>
+<meta name="description" content="Макет интернет-магазина: главная, каталог с фильтрами и карточка товара. Паркет собственного производства, ламинат, обои, краска, плинтус и молдинги.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="ПаркетДекор — макет интернет-магазина">
+<meta property="og:description" content="Главная, каталог и карточка товара. Прототип для согласования.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://winwoodmsk.ru/image/catalog/image_new/galereja_rabot/1(16).jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F4D3B'/%3E%3Crect x='18' y='18' width='28' height='28' rx='6' fill='none' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://winwoodmsk.ru">
+<link rel="preconnect" href="https://cdn.profi.ru">
+<link rel="preload" as="font" type="font/woff2" href="commissioner-cyrillic-700-normal.woff2" crossorigin>
+<link rel="preload" as="image" href="https://winwoodmsk.ru/image/cache/catalog/galereya/243-1540x426.jpg" fetchpriority="high">
+<style>
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:400;font-display:swap;src:url(commissioner-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:400;font-display:swap;src:url(commissioner-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:500;font-display:swap;src:url(commissioner-cyrillic-500-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:500;font-display:swap;src:url(commissioner-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:600;font-display:swap;src:url(commissioner-cyrillic-600-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:600;font-display:swap;src:url(commissioner-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:700;font-display:swap;src:url(commissioner-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Commissioner';font-style:normal;font-weight:700;font-display:swap;src:url(commissioner-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid #1F4D3B;outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.site{--ease:cubic-bezier(.23,1,.32,1);--gut:clamp(16px,4vw,56px);
+  --bg:#FFFFFF;--panel:#F1F2EF;--ink:#17201B;--muted:#56605A;--green:#1F4D3B;--green-d:#163A2C;--mint:#E2EBE5;--line:#E1E4E0;
+  background:var(--bg);color:var(--ink);font-family:'Commissioner',system-ui,sans-serif;font-size:16px;line-height:1.5;min-height:100vh}
+[hidden]{display:none!important}
+
+/* entrance: one orchestrated moment on the home hero */
+[data-in]{opacity:0;transform:translateY(14px)}
+.is-in [data-in]{opacity:1;transform:none;transition:opacity .7s var(--ease) calc(var(--d,0)*70ms),transform .7s var(--ease) calc(var(--d,0)*70ms)}
+[data-in="photo"]{transform:scale(1.035)}
+
+/* ---------- шапка ---------- */
+.b-top{background:var(--panel);font-size:13px;color:var(--muted)}
+.b-top .in{display:flex;align-items:center;gap:24px;height:38px;padding:0 var(--gut)}
+.b-top a{padding:8px 0}
+.b-top .r{margin-left:auto;display:flex;gap:18px;align-items:center}
+.b-top .tel{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.b-head{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s ease}
+.b-head.scrolled{border-bottom-color:var(--line)}
+.b-row{display:flex;align-items:center;gap:16px;height:80px;padding:0 var(--gut)}
+/* временный текстовый логотип до фирменного */
+.wm{display:inline-flex;align-items:baseline;font-weight:700;font-size:22px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;flex:none}
+.wm span{color:var(--green)}
+.logo-ph{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;border:1.5px dashed #9DB3A7;border-radius:10px;background:#F6F9F7;color:var(--green);font-weight:600;font-size:15px;white-space:nowrap;flex:none}
+.b-catbtn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 20px;border-radius:10px;background:var(--green);color:#fff;font-weight:600;flex:none;transition:background-color .15s ease,transform .12s ease}
+.b-catbtn:active{transform:scale(.97)}
+.b-search{flex:1;position:relative;min-width:0}
+.b-search input{width:100%;height:50px;border-radius:10px;border:1px solid var(--line);background:var(--panel);padding:0 92px 0 48px;font-size:15px;transition:border-color .15s ease,background-color .15s ease}
+.b-search input::placeholder{color:#6E7771}
+.b-search input:focus{outline:none;border-color:var(--green);background:#fff}
+.b-search .icon{position:absolute;left:16px;top:14px;color:var(--muted)}
+.b-search button{position:absolute;right:6px;top:6px;height:38px;padding:0 14px;border-radius:7px;background:#fff;border:1px solid var(--line);font-weight:500;font-size:14px;color:var(--ink)}
+.b-acts{display:flex;gap:4px;flex:none}
+.b-act{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:64px;padding:6px 4px;border-radius:10px;font-size:12px;color:var(--muted);transition:background-color .15s ease}
+.b-act .icon{color:var(--ink)}
+.count{position:absolute;top:2px;right:12px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;font-size:11px;line-height:17px;text-align:center;font-weight:600;background:var(--green);color:#fff;transition:transform .25s var(--ease)}
+.count.bump{transform:scale(1.3)}
+.b-nav{display:flex;gap:6px;padding:0 var(--gut) 12px;overflow-x:auto;scrollbar-width:none}
+.b-nav::-webkit-scrollbar{display:none}
+.b-nav a{flex:none;padding:9px 14px;border-radius:999px;font-size:15px;font-weight:500;transition:background-color .15s ease}
+.b-nav a[aria-current="page"]{background:var(--mint);color:var(--green)}
+@media (hover:hover) and (pointer:fine){
+  .b-catbtn:hover{background:var(--green-d)}
+  .b-act:hover,.b-nav a:hover{background:var(--panel)}
+  .b-nav a[aria-current="page"]:hover{background:var(--mint)}
+}
+
+/* ---------- общие ---------- */
+.bbtn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:10px;font-weight:600;white-space:nowrap;transition:background-color .15s ease,transform .12s ease}
+.bbtn:active{transform:scale(.97)}
+.bbtn-g{background:var(--green);color:#fff}
+.bbtn-s{background:var(--panel)}
+@media (hover:hover) and (pointer:fine){.bbtn-g:hover{background:var(--green-d)}.bbtn-s:hover{background:var(--line)}}
+.b-sec{padding:clamp(44px,5vw,72px) var(--gut) 0}
+.b-sec h2,.h2{font-size:clamp(24px,2.2vw,32px);font-weight:700;letter-spacing:-.015em;line-height:1.15;margin:0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px}
+.sec-head a{font-weight:600;color:var(--green);white-space:nowrap}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:20px var(--gut) 0;font-size:14px;color:var(--muted)}
+.crumbs li+li::before{content:"/";margin-right:6px;color:#A3ABA6}
+@media (hover:hover) and (pointer:fine){.crumbs a:hover{color:var(--ink)}}
+.mk{border:1.5px dashed #9DB3A7;border-radius:12px;padding:16px 18px;background:#F6F9F7;font-size:15px;line-height:1.5;max-width:68ch}
+.mk b{display:block;color:var(--green);margin-bottom:4px}
+.mk p{margin:0}
+
+/* карточка товара в сетке */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:28px 18px;list-style:none;margin:0;padding:0}
+.pgrid.row4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:860px){.pgrid.row4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pc{position:relative;display:flex;flex-direction:column;height:100%}
+.pc-ph{display:block;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--panel)}
+.pc-ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.pc-fav{position:absolute;top:8px;right:8px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--ink);transition:transform .12s ease}
+.pc-fav:active{transform:scale(.9)}
+.pc-fav[aria-pressed="true"] .icon{fill:var(--green);stroke:var(--green)}
+.pc-nm{display:block;font-weight:600;font-size:17px;line-height:1.3;margin-top:12px}
+.pc-mt{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.pc-ft{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px}
+.pc-pr{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pc-pr small{font-weight:500;font-size:14px;color:var(--muted)}
+.pc-add{min-height:42px;padding:0 14px;border-radius:9px;background:var(--mint);color:var(--green);font-weight:600;font-size:14px;transition:background-color .15s ease,color .15s ease,transform .12s ease}
+.pc-add:active{transform:scale(.96)}
+.pc-add.done{background:var(--green);color:#fff}
+@media (hover:hover) and (pointer:fine){.pc-ph:hover img{transform:scale(1.04)}.pc-nm:hover{color:var(--green)}.pc-add:hover{background:#D3E1D8}.pc-add.done:hover{background:var(--green-d)}}
+
+/* ---------- главная ---------- */
+.b-hero{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px;padding:8px var(--gut) 0}
+.b-show{position:relative;min-height:clamp(420px,58vh,540px);border-radius:16px;overflow:hidden;background:var(--panel);display:flex;align-items:flex-end}
+.b-show>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 70%}
+.b-card{position:relative;margin:clamp(14px,2.2vw,28px);padding:clamp(22px,2.6vw,34px);background:#fff;border-radius:12px;max-width:520px}
+.b-card h1{font-weight:700;font-size:clamp(28px,3vw,42px);line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.b-card p{color:var(--muted);margin:14px 0 0;max-width:42ch}
+.b-card .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.b-side{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.b-tile{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-radius:16px;overflow:hidden;background:var(--panel);min-height:200px}
+.b-tile.mint{background:var(--mint)}
+.b-tile .tx{padding:22px 18px 22px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.b-tile b{display:block;font-size:19px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.b-tile span{display:block;font-size:14px;color:var(--muted);margin-top:6px}
+.b-tile em{font-style:normal;font-size:14px;font-weight:600;color:var(--green)}
+.b-tile .im{position:relative;overflow:hidden}
+.b-tile .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+@media (hover:hover) and (pointer:fine){.b-tile:hover .im img{transform:scale(1.04)}}
+.b-cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0}
+.b-cats a{display:block;border-radius:14px;padding:10px 10px 14px;background:var(--panel);height:100%;transition:background-color .15s ease}
+.b-cats .ph{aspect-ratio:1;border-radius:10px;overflow:hidden;background:#fff}
+.b-cats .ph svg{width:100%;height:100%;display:block}
+.b-cats img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.b-cats .nm{display:block;font-weight:600;font-size:16px;margin:12px 4px 0}
+.b-cats .sub{display:block;font-size:13px;color:var(--muted);margin:2px 4px 0}
+@media (hover:hover) and (pointer:fine){.b-cats a:hover{background:var(--line)}.b-cats a:hover img{transform:scale(1.04)}}
+.b-plus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:clamp(44px,5vw,72px) var(--gut) 0}
+.b-plus li{border-top:2px solid var(--ink);padding-top:16px}
+.b-plus b{display:block;font-size:17px;font-weight:700;line-height:1.25}
+.b-plus span{display:block;font-size:14px;color:var(--muted);margin-top:6px;max-width:30ch}
+
+/* ---------- каталог ---------- */
+.c-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;padding:10px var(--gut) 0}
+.c-head h1{font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+.c-head .n{color:var(--muted);font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:16px var(--gut) 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;padding:9px 14px;border-radius:999px;background:var(--panel);font-size:15px;font-weight:500;transition:background-color .15s ease}
+.chips a[aria-current="page"]{background:var(--ink);color:#fff}
+@media (hover:hover) and (pointer:fine){.chips a:not([aria-current]):hover{background:var(--line)}}
+.c-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(24px,3vw,40px);padding:24px var(--gut) 0;align-items:start}
+.filters{position:sticky;top:146px;max-height:calc(100vh - 160px);overflow:auto;padding-right:6px;scrollbar-width:thin}
+.f-top{display:none}
+.fg{border:0;margin:0;padding:0 0 18px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.fg legend{font-weight:700;font-size:15px;padding:0;margin-bottom:10px}
+.ck{display:flex;align-items:center;gap:10px;min-height:36px;font-size:15px;cursor:pointer}
+.ck input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:0;border-radius:5px;border:1.5px solid #A9B2AC;background:#fff;display:grid;place-items:center;flex:none;transition:background-color .12s ease,border-color .12s ease}
+.ck input:checked{background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5 10.5 3.2 3L15 6.5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;border-color:var(--green)}
+.pr{display:flex;gap:8px}
+.pr label{flex:1;position:relative}
+.pr span{position:absolute;left:12px;top:12px;font-size:14px;color:var(--muted);pointer-events:none}
+.pr input{width:100%;height:44px;border-radius:9px;border:1px solid var(--line);background:var(--panel);padding:0 10px 0 34px;font-size:15px;font-variant-numeric:tabular-nums}
+.pr input:focus{outline:none;border-color:var(--green);background:#fff}
+.f-reset{font-weight:600;color:var(--green);min-height:40px}
+.f-apply{display:none}
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;min-height:44px}
+.toolbar .found{color:var(--muted);font-size:15px;margin-right:auto;font-variant-numeric:tabular-nums}
+.sel{position:relative}
+.sel select{appearance:none;-webkit-appearance:none;height:44px;border-radius:9px;border:1px solid var(--line);background:#fff;padding:0 40px 0 14px;font-size:15px;cursor:pointer}
+.sel .icon{position:absolute;right:10px;top:11px;width:20px;height:20px;pointer-events:none;color:var(--muted)}
+.f-open{display:none;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:9px;background:var(--panel);font-weight:600}
+.f-open .n{min-width:20px;height:20px;border-radius:10px;background:var(--green);color:#fff;font-size:12px;line-height:20px;text-align:center}
+.f-open .n:empty{display:none}
+.empty{padding:40px 0;display:grid;gap:14px;justify-items:start}
+.empty h2{font-size:22px;margin:0}
+.empty p{margin:0;color:var(--muted);max-width:52ch}
+.pager{display:flex;gap:6px;margin-top:36px;list-style:none;padding:0}
+.pager a{display:grid;place-items:center;min-width:44px;height:44px;border-radius:9px;background:var(--panel);font-weight:600;font-variant-numeric:tabular-nums}
+.pager a[aria-current="page"]{background:var(--ink);color:#fff}
+.pager .gap{display:grid;place-items:center;min-width:28px;color:var(--muted)}
+.sec-ban{position:relative;margin:20px var(--gut) 0;border-radius:16px;overflow:hidden;height:clamp(200px,26vw,320px);background:#47534D}
+.sec-ban img{width:100%;height:100%;object-fit:cover}
+.sec-ban svg{width:100%;height:100%;display:block}
+.sec-empty{padding:28px var(--gut) 0;display:grid;gap:18px;justify-items:start}
+.scrim{position:fixed;inset:0;background:rgba(23,32,27,.4);z-index:105;opacity:0;pointer-events:none;transition:opacity .2s ease}
+.scrim.on{opacity:1;pointer-events:auto}
+
+/* ---------- товар ---------- */
+.p-wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);padding:20px var(--gut) 0;align-items:start}
+.gal{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px}
+.gal-th{display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0}
+.gal-th button{display:block;width:76px;height:76px;border-radius:10px;overflow:hidden;opacity:.7;box-shadow:inset 0 0 0 1px var(--line);transition:opacity .15s ease,box-shadow .15s ease}
+.gal-th button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--green)}
+.gal-th img{width:100%;height:100%;object-fit:cover}
+.gal-main{position:relative;margin:0;aspect-ratio:1;border-radius:16px;overflow:hidden;background:var(--panel)}
+.gal-main img{width:100%;height:100%;object-fit:cover}
+.gal-main figcaption{position:absolute;left:12px;bottom:12px;font-size:13px;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.92);color:var(--muted)}
+.gal-main figcaption:empty{display:none}
+.p-info h1{font-size:clamp(26px,2.6vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0;text-wrap:balance}
+.p-sub{color:var(--muted);margin:10px 0 0}
+.p-price{display:flex;align-items:baseline;gap:8px;margin-top:22px;font-variant-numeric:tabular-nums}
+.p-price b{font-size:34px;line-height:1;font-weight:700;letter-spacing:-.01em}
+.p-price span{color:var(--muted)}
+.calc{margin-top:20px;padding:18px;border-radius:14px;background:var(--panel);display:grid;gap:14px}
+.calc-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.calc-row label{font-weight:600}
+.step{display:flex;align-items:center;height:50px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.step button{width:48px;height:48px;display:grid;place-items:center;border-radius:10px;transition:background-color .12s ease}
+.step button:active{background:var(--panel)}
+.step input{width:64px;height:48px;border:0;text-align:center;font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;background:transparent;-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.step input:focus{outline:none}
+.step:focus-within{border-color:var(--green)}
+.step .u{padding-right:14px;color:var(--muted)}
+.total{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.total b{font-size:24px;font-variant-numeric:tabular-nums}
+.p-btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.p-btns .bbtn-g{flex:1;min-width:200px}
+.p-rows{margin:22px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.p-rows li{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.p-rows .icon{color:var(--green);margin-top:1px}
+.p-rows a{color:var(--green);font-weight:600}
+.p-more{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);padding:clamp(44px,5vw,72px) var(--gut) 0}
+.spec{width:100%;border-collapse:collapse;font-size:15px;margin-top:16px}
+.spec th,.spec td{text-align:left;padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:400;color:var(--muted);width:48%;padding-right:16px}
+.desc p{margin:16px 0 0;max-width:60ch}
+@media (hover:hover) and (pointer:fine){.gal-th button:hover{opacity:1}.step button:hover{background:var(--panel)}}
+
+/* ---------- подвал ---------- */
+.foot{margin-top:clamp(56px,6vw,96px);background:var(--panel);padding:44px var(--gut) 130px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;font-size:15px}
+.foot h3{font-size:15px;margin:0 0 12px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot .tel{display:block;font-size:22px;font-weight:700;margin-top:16px;font-variant-numeric:tabular-nums}
+.foot .muted{color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.foot a:hover{color:var(--green)}}
+
+/* ---------- переключатель макета ---------- */
+.switch{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:100;width:max-content;display:flex;align-items:center;gap:14px;padding:6px 6px 6px 18px;background:#17201B;color:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(15,22,18,.3);font-family:'Commissioner',system-ui,sans-serif;max-width:calc(100% - 24px)}
+.switch .note{font-size:13px;line-height:1.3;color:#C2CAC5;max-width:300px;margin:0}
+.switch .note b{display:block;color:#fff;font-weight:600}
+.seg{display:flex;background:#2C3631;border-radius:10px;padding:3px;flex:none}
+.seg a{display:grid;place-items:center;min-height:44px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;color:#D5DCD7;transition:background-color .15s ease,color .15s ease;white-space:nowrap}
+.seg a[aria-current="page"]{background:#fff;color:#17201B}
+.toast{position:fixed;left:50%;bottom:92px;z-index:120;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;font-size:15px;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(15,22,18,.25);transition:opacity .2s ease,transform .35s var(--ease)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- адаптив ---------- */
+@media (max-width:1100px){
+  .b-cats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .b-acts .lbl{display:none}.b-act{min-width:46px}.count{right:2px}
+  .b-plus{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .c-body{grid-template-columns:1fr}
+  .filters{position:fixed;top:0;bottom:0;left:0;z-index:110;width:min(340px,88vw);max-height:none;background:#fff;padding:0 20px 20px;transform:translateX(-102%);transition:transform .32s var(--ease);box-shadow:0 0 40px rgba(15,22,18,.2)}
+  .filters.open{transform:none}
+  .f-top{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;padding:16px 0;margin-bottom:6px;z-index:1}
+  .f-top b{font-size:18px}
+  .f-top button{width:44px;height:44px;display:grid;place-items:center;border-radius:10px;background:var(--panel)}
+  .f-apply{display:flex;width:100%;position:sticky;bottom:0}
+  .f-open{display:inline-flex}
+  .toolbar .found{order:3;flex-basis:100%;margin:0}
+  .toolbar{flex-wrap:wrap}
+  .p-wrap,.p-more{grid-template-columns:1fr}
+  .gal{grid-template-columns:1fr}
+  .gal-th{flex-direction:row;order:2;overflow-x:auto}
+  .gal-th button{width:64px;height:64px}
+}
+@media (max-width:860px){
+  .b-top{display:none}
+  .b-row{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;gap:10px}
+  .b-row .logo{margin-right:auto}
+  .b-search{order:3;flex:1 0 100%}
+  .b-catbtn{display:none}
+  .b-hero{grid-template-columns:1fr}
+  .b-show{min-height:auto;flex-direction:column;align-items:stretch}
+  .b-show>img{position:relative;height:240px}
+  .b-card{margin:0;border-radius:0 0 16px 16px;max-width:none;background:var(--panel)}
+  .b-side{grid-template-rows:none}
+  .filters{top:0}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot .brand{grid-column:1/-1}
+}
+@media (max-width:640px){.switch{padding:5px;gap:0}.switch .note{display:none}.seg a{padding:0 13px}}
+@media (max-width:480px){
+  .b-cats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .b-plus{grid-template-columns:1fr;gap:18px}
+  .b-tile{min-height:170px}
+  .b-card .bbtn{flex:1}
+  .b-search button{display:none}
+  .b-search input{padding-right:14px}
+  .pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .pc-nm{font-size:15px}
+  .pc-ft{flex-direction:column;align-items:stretch;gap:8px}
+  .pc-add{width:100%}
+  .foot{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  [data-in],[data-in="photo"]{opacity:1;transform:none}
+  .is-in [data-in]{transition:none}
+  .pc-ph img,.b-tile .im img,.b-cats img,.filters,.toast,.count,.scrim{transition:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="ww-sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".10"/></linearGradient>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+<symbol id="i-cmp" viewBox="0 0 24 24"><path d="M7 20V10M12 20V4M17 20v-7"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.2"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M10 20v-5h4v5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h4"/></symbol>
+</defs></svg>
+
+<div class="site">
+  <div class="b-top">
+    <div class="in">
+      <a href="https://winwoodmsk.ru/dostavka-i-oplata">Доставка и оплата</a><a href="https://winwoodmsk.ru/uslugi-po-ukladke">Услуги по укладке</a><a href="https://winwoodmsk.ru/dizayneram-i-arhitektoram">Дизайнерам и архитекторам</a>
+      <div class="r"><a href="https://wa.me/79037475222">WhatsApp</a><a href="https://t.me/winwoodmsk">Telegram</a><a class="tel" href="tel:+79037475222">+7 (903) 747-52-22</a></div>
+    </div>
+  </div>
+  <header class="b-head" data-head>
+    <div class="b-row">
+      <a class="logo wm" href="#home" aria-label="ПаркетДекор, на главную">Паркет<span>Декор</span></a>
+      <a class="b-catbtn" href="#catalog"><svg class="icon"><use href="#i-grid"/></svg><span class="lbl">Каталог</span></a>
+      <form class="b-search" role="search" id="search">
+        <label class="sr" for="q">Поиск по каталогу</label>
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Например, Oak Brooks" autocomplete="off">
+        <button type="submit">Найти</button>
+      </form>
+      <div class="b-acts">
+        <a class="b-act" href="#catalog" aria-label="Сравнение"><svg class="icon"><use href="#i-cmp"/></svg><span class="lbl">Сравнение</span></a>
+        <a class="b-act" href="#catalog" aria-label="Избранное"><svg class="icon"><use href="#i-heart"/></svg><span class="lbl">Избранное</span></a>
+        <a class="b-act" href="#cart" id="cartlink" aria-label="Корзина, товаров: 0"><svg class="icon"><use href="#i-cart"/></svg><span class="lbl">Корзина</span><span class="count" id="cartn">0</span></a>
+      </div>
+    </div>
+    <nav class="b-nav" aria-label="Разделы каталога">
+      <a href="#catalog" data-sec="parket">Паркет</a><a href="#catalog/laminat" data-sec="laminat">Ламинат</a><a href="#catalog/oboi" data-sec="oboi">Обои</a><a href="#catalog/kraska" data-sec="kraska">Краска</a><a href="#catalog/plintus" data-sec="plintus">Плинтус</a><a href="#catalog/moldingi" data-sec="moldingi">Молдинги</a>
+    </nav>
+  </header>
+
+  <!-- ======================= ГЛАВНАЯ ======================= -->
+  <main class="page" id="p-home" data-page="home">
+    <section class="b-hero">
+      <div class="b-show" data-in="photo" style="--d:0">
+        <img src="https://winwoodmsk.ru/image/cache/catalog/galereya/243-1540x426.jpg" width="1540" height="426" alt="Паркет ёлочкой в светлой гостиной, фото с объекта WINWOOD" fetchpriority="high">
+        <div class="b-card">
+          <h1 data-in style="--d:1">Пол, стены и&nbsp;погонаж в&nbsp;одном магазине</h1>
+          <p data-in style="--d:2">Паркет WINWOOD от производителя, ламинат, обои, краска, плинтус и&nbsp;молдинги.</p>
+          <div class="row" data-in style="--d:3">
+            <a class="bbtn bbtn-g" href="#catalog">Перейти в каталог</a>
+            <a class="bbtn bbtn-s" href="https://winwoodmsk.ru/uslugi-po-ukladke">Укладка паркета</a>
+          </div>
+        </div>
+      </div>
+      <div class="b-side">
+        <a class="b-tile" href="#catalog" data-in style="--d:3">
+          <div class="tx"><div><b>Паркет напрямую с&nbsp;производства</b><span>Ёлочка, инженерная и массивная доска</span></div><em>Выбрать паркет</em></div>
+          <div class="im"><img src="https://winwoodmsk.ru/image/cache/catalog/image_new/galereja_rabot/1(2)-666x500.jpeg" width="520" height="520" alt="Паркет ёлочкой из дуба"></div>
+        </a>
+        <a class="b-tile mint" href="#catalog/kraska" data-in style="--d:4">
+          <div class="tx"><div><b>Обои и краска для&nbsp;стен</b><span>Отделка стен к&nbsp;новому полу в&nbsp;одном заказе</span></div><em>Смотреть краску</em></div>
+          <div class="im"><img src="https://cdn.profi.ru/xfiles/ofiles/95131220/930f67589eb94a12ac1c0563f5d5612f.jpg" referrerpolicy="no-referrer" width="520" height="520" alt="Банки краски для стен" style="object-position:30% 50%"></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="b-sec" aria-labelledby="h-cats">
+      <div class="sec-head"><h2 id="h-cats">Разделы каталога</h2></div>
+      <ul class="b-cats">
+        <li><a href="#catalog"><div class="ph"><img loading="lazy" src="https://winwoodmsk.ru/image/catalog/image_new/galereja_rabot/1(13).jpg" width="420" height="420" alt="Паркет французской ёлочкой"></div><span class="nm">Паркет</span><span class="sub">Производство WINWOOD</span></a></li>
+        <li><a href="#catalog/laminat"><div class="ph"><img loading="lazy" referrerpolicy="no-referrer" src="https://cdn.profi.ru/xfiles/ofiles/95131220/40493c5a71b048d8a2d5ec27a30cf913.jpg" width="420" height="420" alt="Ламинат ёлочкой в гостиной" style="object-position:50% 75%"></div><span class="nm">Ламинат</span></a></li>
+        <li><a href="#catalog/oboi"><div class="ph"><img loading="lazy" referrerpolicy="no-referrer" src="https://cdn.profi.ru/xfiles/ofiles/95131220/24ad398dcbe345a6b738f0bfcb8d5280.jpg" width="420" height="420" alt="Рулоны обоев"></div><span class="nm">Обои</span></a></li>
+        <li><a href="#catalog/kraska"><div class="ph"><img loading="lazy" referrerpolicy="no-referrer" src="https://cdn.profi.ru/xfiles/ofiles/95131220/0cdbb3787f47463f81c3dbcaf315305d.jpg" width="420" height="420" alt="Краска для стен"></div><span class="nm">Краска</span></a></li>
+        <li><a href="#catalog/plintus"><div class="ph"><img loading="lazy" referrerpolicy="no-referrer" src="https://cdn.profi.ru/xfiles/ofiles/95131220/770f7b01cba1412b9fecbef521266074.jpg" width="420" height="420" alt="Белый напольный плинтус" style="object-position:70% 50%"></div><span class="nm">Плинтус</span></a></li>
+        <li><a href="#catalog/moldingi"><div class="ph"><svg class="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Молдинги на стене, рисунок до фото" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="400" fill="#47534D"/><rect x="46" y="62" width="208" height="128" fill="none" stroke="#5E6C65" stroke-width="7"/><rect x="50.5" y="66.5" width="199" height="119" fill="none" stroke="#323C37" stroke-width="2"/><rect x="42.5" y="58.5" width="215" height="135" fill="none" stroke="#6E7C75" stroke-width="1"/><rect x="46" y="214" width="208" height="128" fill="none" stroke="#5E6C65" stroke-width="7"/><rect x="50.5" y="218.5" width="199" height="119" fill="none" stroke="#323C37" stroke-width="2"/><rect x="42.5" y="210.5" width="215" height="135" fill="none" stroke="#6E7C75" stroke-width="1"/><rect y="0" width="300" height="400" fill="url(#ww-sheen)"/></svg></div><span class="nm">Молдинги</span></a></li>
+      </ul>
+    </section>
+
+    <section class="b-sec" aria-labelledby="h-hits">
+      <div class="sec-head"><h2 id="h-hits">Французская ёлочка WINWOOD</h2><a href="#catalog">Все 442 товара</a></div>
+      <ul class="pgrid row4" id="home-grid"></ul>
+    </section>
+
+    <ul class="b-plus">
+      <li><b>Своё производство паркета</b><span>Ёлочка, инженерная и массивная доска из дуба</span></li>
+      <li><b>Более 600 оттенков</b><span>Сортировки рустик, классик, прайм и селект</span></li>
+      <li><b>15 лет на рынке</b><span>Производство, продажа и укладка паркета</span></li>
+      <li><b>Оплата картой на сайте</b><span>При оформлении заказа</span></li>
+    </ul>
+  </main>
+
+  <!-- ======================= КАТАЛОГ ======================= -->
+  <main class="page" id="p-catalog" data-page="catalog" hidden>
+    <ol class="crumbs" id="c-crumbs"></ol>
+    <div class="c-head"><h1 id="c-title">Французская ёлочка</h1><span class="n" id="c-n">442 товара</span></div>
+
+    <div id="c-parket">
+      <nav class="chips" aria-label="Виды паркета">
+        <a href="#catalog" aria-current="page">Французская ёлочка</a><a href="#catalog" data-soon>Английская ёлочка</a><a href="#catalog" data-soon>Инженерная доска</a><a href="#catalog" data-soon>Массивная доска</a><a href="#catalog" data-soon>Модульный паркет</a><a href="#catalog" data-soon>Штучный паркет</a>
+      </nav>
+      <div class="c-body">
+        <aside class="filters" id="filters" aria-label="Фильтры">
+          <div class="f-top"><b>Фильтры</b><button type="button" id="f-close" aria-label="Закрыть фильтры"><svg class="icon"><use href="#i-x"/></svg></button></div>
+          <form id="f-form" onsubmit="return false">
+            <fieldset class="fg"><legend>Цена за м², ₽</legend>
+              <div class="pr"><label><span>от</span><input name="pmin" inputmode="numeric" placeholder="8 500" aria-label="Цена от"></label><label><span>до</span><input name="pmax" inputmode="numeric" placeholder="13 750" aria-label="Цена до"></label></div>
+            </fieldset>
+            <fieldset class="fg"><legend>Коллекция</legend>
+              <label class="ck"><input type="checkbox" name="col" value="CLASSIC">CLASSIC</label>
+              <label class="ck"><input type="checkbox" name="col" value="HARMONY">HARMONY</label>
+              <label class="ck"><input type="checkbox" name="col" value="IMAGE">IMAGE</label>
+              <label class="ck"><input type="checkbox" name="col" value="MODERNITY">MODERNITY</label>
+              <label class="ck"><input type="checkbox" name="col" value="ORIGIN">ORIGIN</label>
+            </fieldset>
+            <fieldset class="fg"><legend>Сортировка</legend>
+              <label class="ck"><input type="checkbox" name="srt" value="классик">классик</label>
+              <label class="ck"><input type="checkbox" name="srt" value="рустик">рустик</label>
+              <label class="ck"><input type="checkbox" name="srt" value="селект">селект</label>
+            </fieldset>
+            <fieldset class="fg"><legend>Ширина</legend>
+              <label class="ck"><input type="checkbox" name="w" value="100">100 мм</label>
+              <label class="ck"><input type="checkbox" name="w" value="120">120 мм</label>
+              <label class="ck"><input type="checkbox" name="w" value="125">125 мм</label>
+            </fieldset>
+            <fieldset class="fg"><legend>Толщина</legend>
+              <label class="ck"><input type="checkbox" name="th" value="12">12 мм, слой 3 мм</label>
+              <label class="ck"><input type="checkbox" name="th" value="15">15 мм, слой 3 мм</label>
+            </fieldset>
+            <fieldset class="fg"><legend>Длина</legend>
+              <label class="ck"><input type="checkbox" name="len" value="500/600">500/600 мм</label>
+              <label class="ck"><input type="checkbox" name="len" value="600">600 мм</label>
+            </fieldset>
+            <button type="button" class="f-reset" id="f-reset">Сбросить фильтры</button>
+            <button type="button" class="bbtn bbtn-g f-apply" id="f-apply">Показать</button>
+          </form>
+        </aside>
+        <div>
+          <div class="toolbar">
+            <button type="button" class="f-open" id="f-open" aria-controls="filters" aria-expanded="false"><svg class="icon"><use href="#i-filter"/></svg>Фильтры<span class="n" id="f-n"></span></button>
+            <span class="found" id="found">Показано 12 из 442</span>
+            <label class="sel"><span class="sr">Порядок товаров</span>
+              <select id="sort"><option value="pop">Сначала популярные</option><option value="name">По названию</option><option value="cheap">Сначала недорогие</option><option value="exp">Сначала дорогие</option></select>
+              <svg class="icon"><use href="#i-down"/></svg>
+            </label>
+          </div>
+          <ul class="pgrid" id="c-grid"></ul>
+          <div class="empty" id="c-empty" hidden>
+            <h2>В макете таких товаров нет</h2>
+            <p>В макете 12 товаров из 442. На сайте этот фильтр покажет все подходящие позиции из каталога.</p>
+            <button type="button" class="bbtn bbtn-s" id="e-reset">Сбросить фильтры</button>
+          </div>
+          <ol class="pager" aria-label="Страницы">
+            <li><a href="#catalog" aria-current="page">1</a></li><li><a href="#catalog">2</a></li><li><a href="#catalog">3</a></li><li><span class="gap">…</span></li><li><a href="#catalog">37</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div id="c-soon" hidden>
+      <div class="sec-ban" id="s-ban"></div>
+      <div class="sec-empty">
+        <div class="mk"><b>Заметка к макету</b><p id="s-text">Товары раздела появятся после загрузки выгрузки поставщика.</p></div>
+        <a class="bbtn bbtn-g" href="#catalog">Посмотреть раздел паркета</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================= ТОВАР ======================= -->
+  <main class="page" id="p-product" data-page="product" hidden>
+    <ol class="crumbs" id="p-crumbs"></ol>
+    <div class="p-wrap">
+      <div class="gal">
+        <ul class="gal-th" id="g-th" aria-label="Фото товара"></ul>
+        <figure class="gal-main"><img id="g-main" src="" width="500" height="500" alt=""><figcaption id="g-cap"></figcaption></figure>
+      </div>
+      <div class="p-info">
+        <h1 id="p-title">Французская ёлочка Oak Brooks WW033-2</h1>
+        <p class="p-sub" id="p-sub">Коллекция CLASSIC, рустик, ширина 100 мм</p>
+        <div class="p-price"><b>8 500 ₽</b><span>за м²</span></div>
+        <div class="calc">
+          <div class="calc-row">
+            <label for="area">Площадь пола</label>
+            <div class="step">
+              <button type="button" data-step="-1" aria-label="Уменьшить площадь">−</button>
+              <input id="area" type="number" inputmode="decimal" min="1" max="999" step="1" value="20">
+              <span class="u">м²</span>
+              <button type="button" data-step="1" aria-label="Увеличить площадь">+</button>
+            </div>
+          </div>
+          <div class="total"><span>Итого за <span id="t-area">20</span> м²</span><b id="t-sum">170 000 ₽</b></div>
+        </div>
+        <div class="p-btns">
+          <button type="button" class="bbtn bbtn-g" id="p-add">Добавить в корзину</button>
+          <button type="button" class="bbtn bbtn-s" id="p-1click">Купить в 1 клик</button>
+        </div>
+        <ul class="p-rows">
+          <li><svg class="icon"><use href="#i-truck"/></svg><span>Сроки и стоимость доставки — на странице <a href="https://winwoodmsk.ru/dostavka-i-oplata">Доставка и оплата</a></span></li>
+          <li><svg class="icon"><use href="#i-tool"/></svg><span>Можно заказать укладку: <a href="https://winwoodmsk.ru/uslugi-po-ukladke">услуги по укладке</a></span></li>
+          <li><svg class="icon"><use href="#i-card"/></svg><span>Оплата картой при оформлении заказа</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="p-more">
+      <section aria-labelledby="h-spec">
+        <h2 class="h2" id="h-spec">Характеристики</h2>
+        <table class="spec">
+          <tr><th>Производитель</th><td>WINWOOD® (Россия)</td></tr>
+          <tr><th>Порода дерева</th><td>Дуб</td></tr>
+          <tr><th>Коллекция</th><td id="s-col">CLASSIC</td></tr>
+          <tr><th>Название цвета</th><td id="s-name">Oak Brooks WW033-2</td></tr>
+          <tr><th>Сортировка</th><td>Рустик</td></tr>
+          <tr><th>Ширина × длина</th><td>100 × 500/600 мм</td></tr>
+          <tr><th>Толщина</th><td>15 мм, полезный слой 3 мм</td></tr>
+          <tr><th>Конструкция</th><td>Двухслойная</td></tr>
+          <tr><th>Тип соединения</th><td>Паз-шпонка</td></tr>
+          <tr><th>Фаска</th><td>С 4-х сторон</td></tr>
+          <tr><th>Браширование</th><td>С брашью</td></tr>
+          <tr><th>Покрытие</th><td>Лак</td></tr>
+          <tr><th>Плотность древесины</th><td>700 кг/м³</td></tr>
+          <tr><th>Твёрдость по Бринеллю</th><td>3,7–3,9</td></tr>
+          <tr><th>Применение</th><td>Жилые и коммерческие помещения, детские сады, медицинские учреждения</td></tr>
+        </table>
+      </section>
+      <section class="desc" aria-labelledby="h-desc">
+        <h2 class="h2" id="h-desc">Описание</h2>
+        <p>Французская ёлочка — укладка, при которой торцы плашек срезаны под углом 30 или 45° и сходятся в ровную линию. Получаются «дорожки», которые зрительно удлиняют комнату.</p>
+        <p>Плашки соединяются в паз-шпонку. Верхний слой из дуба толщиной 3 мм, поверхность с брашью и фаской с четырёх сторон.</p>
+      </section>
+    </div>
+
+    <section class="b-sec" aria-labelledby="h-more">
+      <div class="sec-head"><h2 id="h-more">Другие оттенки коллекции <span id="m-col">CLASSIC</span></h2><a href="#catalog">Весь каталог</a></div>
+      <ul class="pgrid row4" id="p-grid"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="brand">
+      <span class="wm">Паркет<span>Декор</span></span>
+      <a class="tel" href="tel:+79037475222">+7 (903) 747-52-22</a>
+      <a class="muted" href="mailto:winwoodmsk@yandex.ru">winwoodmsk@yandex.ru</a>
+    </div>
+    <div>
+      <h3>Покупателям</h3>
+      <ul><li><a href="https://winwoodmsk.ru/dostavka-i-oplata">Доставка и оплата</a></li><li><a href="https://winwoodmsk.ru/uslugi-po-ukladke">Услуги по укладке</a></li><li><a href="https://winwoodmsk.ru/uhod-za-parketom">Уход за паркетом</a></li><li><a href="https://winwoodmsk.ru/proizvodstvo">Производство</a></li></ul>
+    </div>
+    <div>
+      <h3>Каталог</h3>
+      <ul><li><a href="#catalog">Паркет</a></li><li><a href="#catalog/laminat">Ламинат</a></li><li><a href="#catalog/oboi">Обои</a></li><li><a href="#catalog/kraska">Краска</a></li><li><a href="#catalog/plintus">Плинтус</a></li><li><a href="#catalog/moldingi">Молдинги</a></li></ul>
+    </div>
+  </footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<nav class="switch" aria-label="Страницы макета">
+  <p class="note"><b>Макет магазина ПаркетДекор</b>Паркет — с вашего сайта, остальные разделы — после выгрузок поставщиков</p>
+  <div class="seg">
+    <a href="#home" data-tab="home">Главная</a>
+    <a href="#catalog" data-tab="catalog">Каталог</a>
+    <a href="#product/WW033-2" data-tab="product">Товар</a>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = 'https://winwoodmsk.ru/image/catalog/';
+  var PR = 'https://cdn.profi.ru/xfiles/ofiles/95131220/';
+  var SCHEME = W + 'classic/11.jpg';
+  var ROOM = W + 'image_new/galereja_rabot/1(13).jpg';
+
+  // 12 реальных товаров с winwoodmsk.ru, раздел «Французская ёлочка»
+  var P = [
+    ['WW016','Oak Andre','ORIGIN','origin',['origin/Oak%20Andre%20WW016-3.jpg']],
+    ['WW002','Oak Art Deco','ORIGIN','origin'],
+    ['WW033-2','Oak Brooks','CLASSIC','classic',['classic/Oak%20Brooks%20WW033-2-1.jpg']],
+    ['WW019-3','Oak Calypso','HARMONY','harmony'],
+    ['WW015-2','Oak Dorian','CLASSIC','classic'],
+    ['WW008','Oak Eloise','ORIGIN','origin'],
+    ['WW020-2','Oak Emma','CLASSIC','classic'],
+    ['WW026-2','Oak Fernando','CLASSIC','classic'],
+    ['WW031-3','Oak Helios','HARMONY','harmony'],
+    ['WW026-3','Oak Infiniti','HARMONY','harmony'],
+    ['WW023-2','Oak Iris','CLASSIC','classic'],
+    ['WW023-3','Oak Kaiser','HARMONY','harmony']
+  ].map(function(r, i){
+    return {id:r[0], nm:r[1], col:r[2], img: W + r[3] + '/' + encodeURIComponent(r[1] + ' ' + r[0]) + '.jpg',
+      extra:(r[4]||[]).map(function(x){ return W + x; }), srt:'рустик', w:'100', th:'15', len:'500/600', price:8500, pop:i};
+  });
+  var byId = {}; P.forEach(function(p){ byId[p.id] = p; });
+
+  var SEC = {
+    parket:{t:'Паркет'},
+    laminat:{t:'Ламинат', img:PR+'f40d6c2e0ef9495ba47239ea543a7e88.jpg', alt:'Ламинат в кабинете', f:'класс износостойкости, толщина, тип замка, фаска'},
+    oboi:{t:'Обои', img:PR+'24ad398dcbe345a6b738f0bfcb8d5280.jpg', alt:'Рулоны обоев', f:'основа, ширина рулона, рисунок, помещение'},
+    kraska:{t:'Краска', img:PR+'930f67589eb94a12ac1c0563f5d5612f.jpg', alt:'Банки краски', f:'бренд, объём, степень блеска, помещение'},
+    plintus:{t:'Плинтус', img:PR+'770f7b01cba1412b9fecbef521266074.jpg', alt:'Напольный плинтус', f:'материал, высота, под покраску или готовый'},
+    moldingi:{t:'Молдинги', img:null, f:'материал, ширина, профиль'}
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var fmt = function(n){ return Math.round(n).toLocaleString('ru-RU'); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var cart = 0, favs = {};
+
+  function card(p){
+    return '<li class="pc">' +
+      '<a class="pc-ph" href="#product/' + p.id + '" tabindex="-1" aria-hidden="true"><img loading="lazy" src="' + p.img + '" width="500" height="500" alt=""></a>' +
+      '<button class="pc-fav" type="button" data-fav="' + p.id + '" aria-pressed="' + (!!favs[p.id]) + '" aria-label="В избранное: ' + p.nm + ' ' + p.id + '"><svg class="icon"><use href="#i-heart"/></svg></button>' +
+      '<a class="pc-nm" href="#product/' + p.id + '">' + p.nm + ' ' + p.id + '</a>' +
+      '<span class="pc-mt">' + p.col + ', рустик, 100 мм</span>' +
+      '<div class="pc-ft"><b class="pc-pr">' + fmt(p.price) + ' ₽<small> за м²</small></b>' +
+      '<button class="pc-add" type="button" data-add="' + p.id + '">В корзину</button></div></li>';
+  }
+  function crumbs(el, items){
+    el.innerHTML = items.map(function(c, i){
+      return '<li>' + (c[1] && i < items.length - 1 ? '<a href="' + c[1] + '">' + c[0] + '</a>' : '<span aria-current="page">' + c[0] + '</span>') + '</li>';
+    }).join('');
+  }
+
+  // ---------- главная ----------
+  $('home-grid').innerHTML = ['WW016','WW033-2','WW019-3','WW031-3'].map(function(id){ return card(byId[id]); }).join('');
+
+  // ---------- каталог: фильтры ----------
+  var form = $('f-form');
+  function applyFilters(){
+    var sel = {}, n = 0;
+    form.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){ (sel[c.name] = sel[c.name] || []).push(c.value); n++; });
+    var num = function(v){ return parseInt(String(v).replace(/\D/g,''), 10); };
+    var min = num(form.pmin.value), max = num(form.pmax.value);
+    if (min) n++; if (max) n++;
+    var list = P.filter(function(p){
+      for (var k in sel) if (sel[k].indexOf(String(p[k])) < 0) return false;
+      if (min && p.price < min) return false;
+      if (max && p.price > max) return false;
+      return true;
+    });
+    var s = $('sort').value;
+    list.sort(function(a, b){
+      if (s === 'name') return a.nm.localeCompare(b.nm);
+      if (s === 'cheap') return a.price - b.price || a.pop - b.pop;
+      if (s === 'exp') return b.price - a.price || a.pop - b.pop;
+      return a.pop - b.pop;
+    });
+    $('c-grid').innerHTML = list.map(card).join('');
+    $('c-empty').hidden = list.length > 0;
+    $('found').textContent = n ? 'Найдено в макете: ' + list.length : 'Показано 12 из 442';
+    $('f-n').textContent = n || '';
+    $('f-apply').textContent = list.length ? 'Показать ' + list.length : 'Нет товаров';
+  }
+  form.addEventListener('change', applyFilters);
+  form.addEventListener('input', function(e){ if (e.target.name === 'pmin' || e.target.name === 'pmax') applyFilters(); });
+  $('sort').addEventListener('change', applyFilters);
+  function resetFilters(){ form.reset(); applyFilters(); }
+  $('f-reset').addEventListener('click', resetFilters);
+  $('e-reset').addEventListener('click', resetFilters);
+
+  var filters = $('filters'), scrim = $('scrim'), fopen = $('f-open');
+  function drawer(open){
+    filters.classList.toggle('open', open); scrim.classList.toggle('on', open);
+    fopen.setAttribute('aria-expanded', String(open));
+    if (open) $('f-close').focus(); else fopen.focus();
+  }
+  fopen.addEventListener('click', function(){ drawer(true); });
+  $('f-close').addEventListener('click', function(){ drawer(false); });
+  $('f-apply').addEventListener('click', function(){ drawer(false); });
+  scrim.addEventListener('click', function(){ drawer(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && filters.classList.contains('open')) drawer(false); });
+
+  // ---------- товар ----------
+  var cur = byId['WW033-2'];
+  function renderProduct(id){
+    var p = byId[id] || byId['WW033-2']; cur = p;
+    $('p-title').textContent = 'Французская ёлочка ' + p.nm + ' ' + p.id;
+    $('p-sub').textContent = 'Коллекция ' + p.col + ', рустик, ширина 100 мм';
+    $('s-col').textContent = p.col; $('s-name').textContent = p.nm + ' ' + p.id; $('m-col').textContent = p.col;
+    crumbs($('p-crumbs'), [['Главная','#home'],['Паркет','#catalog'],['Французская ёлочка','#catalog'],[p.nm + ' ' + p.id]]);
+    var shots = [[p.img, p.nm + ' ' + p.id + ', образец', '']]
+      .concat(p.extra.map(function(u){ return [u, p.nm + ' ' + p.id + ', текстура крупно', '']; }))
+      .concat([[SCHEME, 'Схема укладки французской ёлочкой', 'Схема укладки'], [ROOM, 'Французская ёлочка в интерьере, фото с объекта WINWOOD', 'Фото с объекта, оттенок другой']]);
+    $('g-th').innerHTML = shots.map(function(s, i){
+      return '<li><button type="button" data-shot="' + i + '" aria-current="' + (i === 0) + '" aria-label="Фото ' + (i + 1) + ' из ' + shots.length + '"><img src="' + s[0] + '" alt="" width="76" height="76" loading="lazy"></button></li>';
+    }).join('');
+    $('g-th').querySelectorAll('img').forEach(function(im){ im.addEventListener('error', function(){ im.closest('li').remove(); }); });
+    function show(i){
+      $('g-main').src = shots[i][0]; $('g-main').alt = shots[i][1]; $('g-cap').textContent = shots[i][2];
+      $('g-th').querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-current', String(+b.getAttribute('data-shot') === i)); });
+    }
+    $('g-th').onclick = function(e){ var b = e.target.closest('[data-shot]'); if (b) show(+b.getAttribute('data-shot')); };
+    show(0);
+    $('p-grid').innerHTML = P.filter(function(x){ return x.col === p.col && x.id !== p.id; }).slice(0, 4).map(card).join('');
+    calc();
+  }
+  var area = $('area');
+  function calc(){
+    var a = parseFloat(String(area.value).replace(',', '.'));
+    if (!(a > 0)) a = 0;
+    $('t-area').textContent = String(a).replace('.', ',');
+    $('t-sum').textContent = fmt(a * cur.price) + ' ₽';
+  }
+  area.addEventListener('input', calc);
+  area.addEventListener('blur', function(){ var a = parseFloat(area.value); if (!(a >= 1)) area.value = 1; if (a > 999) area.value = 999; calc(); });
+  document.querySelectorAll('[data-step]').forEach(function(b){
+    b.addEventListener('click', function(){ var a = (parseFloat(area.value) || 0) + (+b.getAttribute('data-step')); area.value = Math.min(999, Math.max(1, Math.round(a))); calc(); });
+  });
+  $('p-add').addEventListener('click', function(){ addToCart(cur, ', ' + $('t-area').textContent + ' м²'); });
+  $('p-1click').addEventListener('click', function(){ toast('На сайте здесь откроется короткая форма: имя и телефон'); });
+
+  // ---------- корзина, избранное, уведомления ----------
+  var tt;
+  function toast(msg){
+    var t = $('toast'); t.textContent = msg; t.classList.add('on');
+    clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove('on'); }, 2600);
+  }
+  function addToCart(p, extra){
+    cart++;
+    var n = $('cartn'); n.textContent = cart; $('cartlink').setAttribute('aria-label', 'Корзина, товаров: ' + cart);
+    if (!reduce){ n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump'); setTimeout(function(){ n.classList.remove('bump'); }, 250); }
+    toast('В корзине: ' + p.nm + ' ' + p.id + (extra || ''));
+  }
+  document.addEventListener('click', function(e){
+    var add = e.target.closest('[data-add]');
+    if (add){ addToCart(byId[add.getAttribute('data-add')]); add.textContent = 'В корзине'; add.classList.add('done'); return; }
+    var fav = e.target.closest('[data-fav]');
+    if (fav){ var id = fav.getAttribute('data-fav'); favs[id] = !favs[id]; fav.setAttribute('aria-pressed', String(favs[id])); toast(favs[id] ? 'Добавлено в избранное' : 'Убрано из избранного'); return; }
+    var soon = e.target.closest('[data-soon]');
+    if (soon){ e.preventDefault(); toast('В макете открыт только раздел «Французская ёлочка»'); }
+  });
+  $('cartlink').addEventListener('click', function(e){ e.preventDefault(); toast(cart ? 'Товаров в корзине: ' + cart + '. Страница корзины — следующий этап' : 'Корзина пуста'); });
+
+  // ---------- поиск ----------
+  $('search').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = $('q').value.trim().toLowerCase();
+    if (!q) return;
+    var hit = P.filter(function(p){ return (p.nm + ' ' + p.id + ' ' + p.col).toLowerCase().indexOf(q) > -1; });
+    if (hit.length === 1) location.hash = '#product/' + hit[0].id;
+    else { location.hash = '#catalog'; toast(hit.length ? 'Найдено в макете: ' + hit.length : 'В макете поиск работает по 12 товарам паркета'); }
+  });
+  var q = $('q'), hints = ['Например, Oak Brooks', 'Например, ёлочка ORIGIN', 'Например, ламинат 33 класс', 'Например, плинтус под покраску', 'Например, краска для стен матовая'], hi = 0;
+  if (!reduce) setInterval(function(){ if (document.activeElement !== q && !q.value){ hi = (hi + 1) % hints.length; q.placeholder = hints[hi]; } }, 2800);
+
+  // ---------- страницы ----------
+  var pages = {home:$('p-home'), catalog:$('p-catalog'), product:$('p-product')};
+  var SFX = ' — ПаркетДекор';
+  var titles = {home:'Главная' + SFX, catalog:'Каталог' + SFX, product:'Товар' + SFX};
+  var first = true, last = '';
+  function route(){
+    var h = (location.hash || '').replace(/^#/, ''), parts = h.split('/'), page = parts[0];
+    if (!pages[page]) page = 'home';
+    var arg = parts[1] || '';
+    Object.keys(pages).forEach(function(k){ pages[k].hidden = k !== page; });
+    document.querySelectorAll('.seg a').forEach(function(a){ if (a.getAttribute('data-tab') === page) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    var sec = page === 'catalog' ? (SEC[arg] ? arg : 'parket') : (page === 'product' ? 'parket' : '');
+    document.querySelectorAll('.b-nav a').forEach(function(a){ if (a.getAttribute('data-sec') === sec) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    if (page === 'catalog'){
+      var isP = sec === 'parket', s = SEC[sec];
+      $('c-parket').hidden = !isP; $('c-soon').hidden = isP;
+      $('c-title').textContent = isP ? 'Французская ёлочка' : s.t;
+      $('c-n').textContent = isP ? '442 товара' : '';
+      crumbs($('c-crumbs'), isP ? [['Главная','#home'],['Паркет','#catalog'],['Французская ёлочка']] : [['Главная','#home'],[s.t]]);
+      if (!isP){
+        $('s-ban').innerHTML = s.img ? '<img src="' + s.img + '" referrerpolicy="no-referrer" alt="' + esc(s.alt) + '">' : MOLD;
+        $('s-text').textContent = s.t + ': товары появятся после загрузки выгрузки от поставщика. Нужен файл в Excel, CSV или YML. По нему настроим фильтры под характеристики раздела: ' + s.f + '. Фото баннера — ваше.';
+      }
+      titles.catalog = (isP ? 'Французская ёлочка' : s.t) + SFX;
+      applyFilters();
+    }
+    if (page === 'product') { renderProduct(arg); titles.product = $('p-title').textContent + SFX; }
+    document.title = titles[page];
+    if (!first && h !== last) window.scrollTo(0, 0);
+    if (page === 'home' && first){ if (reduce) pages.home.classList.add('is-in'); else requestAnimationFrame(function(){ pages.home.classList.add('is-in'); }); }
+    if (page !== 'home') pages.home.classList.add('is-in');
+    if (filters.classList.contains('open')) drawer(false);
+    first = false; last = h;
+  }
+  var MOLD = document.querySelector('.b-cats li:last-child .ph').innerHTML;
+  window.addEventListener('hashchange', route);
+  route();
+
+  var heads = document.querySelectorAll('[data-head]');
+  var onScroll = function(){ var s = window.scrollY > 8; heads.forEach(function(h){ h.classList.toggle('scrolled', s); }); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
